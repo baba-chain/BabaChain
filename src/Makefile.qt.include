@@ -45,6 +45,8 @@ QT_MOC_CPP = \
   qt/moc_addresstablemodel.cpp \
   qt/moc_appearancewidget.cpp \
   qt/moc_askpassphrasedialog.cpp \
+  qt/moc_autobootstrap.cpp \
+  qt/moc_autonode.cpp \
   qt/moc_createwalletdialog.cpp \
   qt/moc_bantablemodel.cpp \
   qt/moc_bitcoin.cpp \
@@ -87,6 +89,7 @@ QT_MOC_CPP = \
   qt/moc_sendcoinsentry.cpp \
   qt/moc_signverifymessagedialog.cpp \
   qt/moc_splashscreen.cpp \
+  qt/moc_stakingpage.cpp \
   qt/moc_trafficgraphwidget.cpp \
   qt/moc_transactiondesc.cpp \
   qt/moc_transactiondescdialog.cpp \
@@ -121,6 +124,8 @@ BITCOIN_QT_H = \
   qt/addresstablemodel.h \
   qt/appearancewidget.h \
   qt/askpassphrasedialog.h \
+  qt/autobootstrap.h \
+  qt/autonode.h \
   qt/bantablemodel.h \
   qt/bitcoin.h \
   qt/bitcoinaddressvalidator.h \
@@ -167,6 +172,7 @@ BITCOIN_QT_H = \
   qt/sendcoinsrecipient.h \
   qt/signverifymessagedialog.h \
   qt/splashscreen.h \
+  qt/stakingpage.h \
   qt/trafficgraphdata.h \
   qt/trafficgraphwidget.h \
   qt/transactiondesc.h \
@@ -218,6 +224,8 @@ QT_RES_ICONS = \
 
 BITCOIN_QT_BASE_CPP = \
   qt/appearancewidget.cpp \
+  qt/autobootstrap.cpp \
+  qt/autonode.cpp \
   qt/bantablemodel.cpp \
   qt/bitcoin.cpp \
   qt/bitcoinaddressvalidator.cpp \
@@ -269,6 +277,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/sendcoinsdialog.cpp \
   qt/sendcoinsentry.cpp \
   qt/signverifymessagedialog.cpp \
+  qt/stakingpage.cpp \
   qt/transactiondesc.cpp \
   qt/transactiondescdialog.cpp \
   qt/transactionfilterproxy.cpp \

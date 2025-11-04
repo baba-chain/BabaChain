@@ -195,6 +195,13 @@ void WalletFrame::gotoHistoryPage()
         i.value()->gotoHistoryPage();
 }
 
+void WalletFrame::gotoStakingPage()
+{
+    QMap<WalletModel*, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoStakingPage();
+}
+
 void WalletFrame::gotoMasternodePage()
 {
     QMap<WalletModel*, WalletView*>::const_iterator i;

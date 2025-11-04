@@ -622,6 +622,61 @@ public:
     CoinJoin::Options& coinJoinOptions() override { return m_coinjoin; }
     std::unique_ptr<interfaces::CoinJoin::Loader>& coinJoinLoader() override { return m_context->coinjoin_loader; }
 
+    bool tryGetStakingInfo(UniValue& result) override
+    {
+        try {
+            JSONRPCRequest req;
+            req.context = *m_context;
+            req.params = UniValue(UniValue::VARR);
+            req.strMethod = "getstakinginfo";
+            result = ::tableRPC.execute(req);
+            return true;
+        } catch (const std::exception& e) {
+            return false;
+        }
+    }
+    
+    bool tryGetValidatorsList(UniValue& result) override
+    {
+        try {
+            JSONRPCRequest req;
+            req.context = *m_context;
+            req.params = UniValue(UniValue::VARR);
+            req.strMethod = "listvalidators";
+            result = ::tableRPC.execute(req);
+            return true;
+        } catch (const std::exception& e) {
+            return false;
+        }
+    }
+    
+    bool tryStartStaking(CAmount amount) override
+    {
+        try {
+            JSONRPCRequest req;
+            req.context = *m_context;
+            req.params = UniValue(UniValue::VARR);
+            req.params.push_back(ValueFromAmount(amount));
+            req.params.push_back(86400); // Default 24 hours
+            req.strMethod = "stakecoin";
+            UniValue result = ::tableRPC.execute(req);
+            return result.isObject() && result["success"].get_bool();
+        } catch (const std::exception& e) {
+            return false;
+        }
+    }
+    
+    bool tryStopStaking() override
+    {
+        try {
+            // For now, we don't have a direct "stop staking" RPC command
+            // This would need to be implemented in the staking RPC
+            return true;
+        } catch (const std::exception& e) {
+            return false;
+        }
+    }
+
     std::unique_ptr<Handler> handleInitMessage(InitMessageFn fn) override
     {
         return MakeHandler(::uiInterface.InitMessage_connect(fn));

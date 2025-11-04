@@ -77,6 +77,8 @@ public Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to staking page */
+    void gotoStakingPage();
     /** Switch to masternode page */
     void gotoMasternodePage();
     /** Switch to receive coins page */

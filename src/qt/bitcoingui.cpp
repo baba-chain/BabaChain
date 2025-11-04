@@ -5,6 +5,8 @@
 
 #include <qt/bitcoingui.h>
 
+#include <qt/autobootstrap.h>
+#include <qt/autonode.h>
 #include <qt/bitcoinunits.h>
 #include <qt/clientmodel.h>
 #include <qt/createwalletdialog.h>
@@ -104,6 +106,12 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const NetworkStyle* networkStyle,
 
     rpcConsole = new RPCConsole(node, this, enableWallet ? Qt::Window : Qt::Widget);
     helpMessageDialog = new HelpMessageDialog(this, HelpMessageDialog::cmdline);
+    
+    // Initialize auto-node manager for automatic peer discovery
+    autoNodeManager = new AutoNodeManager(this);
+    
+    // Initialize auto-bootstrap manager for blockchain sync
+    autoBootstrapManager = new AutoBootstrapManager(this);
 #ifdef ENABLE_WALLET
     if(enableWallet)
     {
@@ -719,6 +727,11 @@ void BitcoinGUI::createToolBars()
         historyButton->setStatusTip(tr("Browse transaction history"));
         tabGroup->addButton(historyButton);
 
+        stakingButton = new QToolButton(this);
+        stakingButton->setText(tr("&Staking"));
+        stakingButton->setStatusTip(tr("Stake coins and earn rewards"));
+        tabGroup->addButton(stakingButton);
+
         coinJoinCoinsButton = new QToolButton(this);
         coinJoinCoinsButton->setText(coinJoinCoinsAction->text());
         coinJoinCoinsButton->setStatusTip(coinJoinCoinsAction->statusTip());
@@ -748,6 +761,7 @@ void BitcoinGUI::createToolBars()
         connect(coinJoinCoinsButton, &QToolButton::clicked, [this]{ gotoCoinJoinCoinsPage(); });
         connect(receiveCoinsButton, &QToolButton::clicked, this, &BitcoinGUI::gotoReceiveCoinsPage);
         connect(historyButton, &QToolButton::clicked, this, &BitcoinGUI::gotoHistoryPage);
+        connect(stakingButton, &QToolButton::clicked, this, &BitcoinGUI::gotoStakingPage);
 
         // Give the selected tab button a bolder font.
         connect(tabGroup, qOverload<QAbstractButton *, bool>(&QButtonGroup::buttonToggled), this, &BitcoinGUI::highlightTabButton);
@@ -847,6 +861,21 @@ void BitcoinGUI::setClientModel(ClientModel *_clientModel, interfaces::BlockAndH
         });
         connect(_clientModel, &ClientModel::numConnectionsChanged, this, &BitcoinGUI::setNumConnections);
         connect(_clientModel, &ClientModel::networkActiveChanged, this, &BitcoinGUI::setNetworkActive);
+        
+        // Connect auto-node manager
+        if (autoNodeManager) {
+            autoNodeManager->setClientModel(_clientModel);
+            autoNodeManager->startAutoDiscovery();
+        }
+        
+        // Connect auto-bootstrap manager
+        if (autoBootstrapManager) {
+            autoBootstrapManager->setClientModel(_clientModel);
+            // Auto-bootstrap will start automatically if needed
+            if (_clientModel->node().isInitialBlockDownload()) {
+                autoBootstrapManager->startBootstrap();
+            }
+        }
 
         modalOverlay->setKnownBestHeight(tip_info->header_height, QDateTime::fromSecsSinceEpoch(tip_info->header_time));
         setNumBlocks(tip_info->block_height, QDateTime::fromSecsSinceEpoch(tip_info->block_time), QString::fromStdString(tip_info->block_hash.ToString()), tip_info->verification_progress, false, SynchronizationState::INIT_DOWNLOAD);
@@ -1026,6 +1055,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
         coinJoinCoinsButton->setEnabled(enabled && clientModel->coinJoinOptions().isEnabled());
         receiveCoinsButton->setEnabled(enabled);
         historyButton->setEnabled(enabled);
+        stakingButton->setEnabled(enabled);
     }
 #endif // ENABLE_WALLET
 
@@ -1255,6 +1285,12 @@ void BitcoinGUI::gotoHistoryPage()
 {
     historyButton->setChecked(true);
     if (walletFrame) walletFrame->gotoHistoryPage();
+}
+
+void BitcoinGUI::gotoStakingPage()
+{
+    stakingButton->setChecked(true);
+    if (walletFrame) walletFrame->gotoStakingPage();
 }
 
 void BitcoinGUI::gotoMasternodePage()

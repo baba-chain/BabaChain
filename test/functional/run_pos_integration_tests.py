@@ -12,9 +12,20 @@ from pathlib import Path
 
 # PoS integration test suite
 POS_TESTS = [
+    # Core functionality tests
     'feature_pos_consensus.py',
     'feature_pos_staking.py', 
     'feature_pos_blockchain_sync.py',
+    
+    # Performance tests
+    'performance_pos_validator_selection.py',
+    'performance_pos_network_throughput.py',
+    'benchmark_pos_memory_optimization.py',
+    
+    # Security tests
+    'security_pos_stake_grinding.py',
+    'security_pos_slashing_mechanism.py',
+    'security_pos_premine_audit.py',
 ]
 
 def run_test(test_name, test_dir):

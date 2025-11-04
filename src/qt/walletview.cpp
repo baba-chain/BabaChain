@@ -16,6 +16,7 @@
 #include <qt/receivecoinsdialog.h>
 #include <qt/sendcoinsdialog.h>
 #include <qt/signverifymessagedialog.h>
+#include <qt/stakingpage.h>
 #include <qt/transactionrecord.h>
 #include <qt/transactiontablemodel.h>
 #include <qt/transactionview.h>
@@ -85,6 +86,9 @@ WalletView::WalletView(WalletModel* wallet_model, QWidget* parent)
     coinJoinCoinsPage = new SendCoinsDialog(true);
     coinJoinCoinsPage->setModel(walletModel);
 
+    stakingPage = new StakingPage();
+    stakingPage->setWalletModel(walletModel);
+
     usedSendingAddressesPage = new AddressBookPage(AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedSendingAddressesPage->setModel(walletModel->getAddressTableModel());
 
@@ -96,6 +100,7 @@ WalletView::WalletView(WalletModel* wallet_model, QWidget* parent)
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
     addWidget(coinJoinCoinsPage);
+    addWidget(stakingPage);
 
     QSettings settings;
     if (settings.value("fShowMasternodesTab").toBool()) {
@@ -168,6 +173,9 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     if (coinJoinCoinsPage != nullptr) {
         coinJoinCoinsPage->setClientModel(_clientModel);
     }
+    if (stakingPage != nullptr) {
+        stakingPage->setClientModel(_clientModel);
+    }
     QSettings settings;
     if (settings.value("fShowMasternodesTab").toBool() && masternodeListPage != nullptr) {
         masternodeListPage->setClientModel(_clientModel);
@@ -224,6 +232,11 @@ void WalletView::gotoOverviewPage()
 void WalletView::gotoHistoryPage()
 {
     setCurrentWidget(transactionsPage);
+}
+
+void WalletView::gotoStakingPage()
+{
+    setCurrentWidget(stakingPage);
 }
 
 void WalletView::gotoMasternodePage()

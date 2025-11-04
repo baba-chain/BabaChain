@@ -27,6 +27,8 @@
 #include <qt/macos_appnap.h>
 #endif
 
+class AutoBootstrapManager;
+class AutoNodeManager;
 class ClientModel;
 class NetworkStyle;
 class Notificator;
@@ -139,6 +141,7 @@ private:
     QToolButton* coinJoinCoinsButton = nullptr;
     QToolButton* receiveCoinsButton = nullptr;
     QToolButton* historyButton = nullptr;
+    QToolButton* stakingButton = nullptr;
     QToolButton* masternodeButton = nullptr;
     QToolButton* governanceButton = nullptr;
     QAction* appToolBarLogoAction = nullptr;
@@ -189,6 +192,8 @@ private:
     HelpMessageDialog* helpMessageDialog = nullptr;
     ModalOverlay* modalOverlay = nullptr;
     QButtonGroup* tabGroup = nullptr;
+    AutoNodeManager* autoNodeManager = nullptr;
+    AutoBootstrapManager* autoBootstrapManager = nullptr;
 
     QMenu* m_network_context_menu = new QMenu(this);
 
@@ -326,6 +331,8 @@ public Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to staking page */
+    void gotoStakingPage();
     /** Switch to masternode page */
     void gotoMasternodePage();
     /** Switch to receive coins page */

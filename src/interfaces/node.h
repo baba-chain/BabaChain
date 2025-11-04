@@ -314,6 +314,19 @@ public:
     //! Return interface for accessing coinjoin loader handler.
     virtual std::unique_ptr<interfaces::CoinJoin::Loader>& coinJoinLoader() = 0;
 
+    //! Staking interface methods
+    //! Try to get staking information
+    virtual bool tryGetStakingInfo(UniValue& result) = 0;
+    
+    //! Try to get validators list
+    virtual bool tryGetValidatorsList(UniValue& result) = 0;
+    
+    //! Try to start staking with specified amount
+    virtual bool tryStartStaking(CAmount amount) = 0;
+    
+    //! Try to stop staking
+    virtual bool tryStopStaking() = 0;
+
     //! Register handler for init messages.
     using InitMessageFn = std::function<void(const std::string& message)>;
     virtual std::unique_ptr<Handler> handleInitMessage(InitMessageFn fn) = 0;

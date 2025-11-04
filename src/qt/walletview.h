@@ -17,6 +17,7 @@ class OverviewPage;
 class ReceiveCoinsDialog;
 class SendCoinsDialog;
 class SendCoinsRecipient;
+class StakingPage;
 class TransactionView;
 class WalletModel;
 class AddressBookPage;
@@ -65,6 +66,7 @@ private:
     ReceiveCoinsDialog *receiveCoinsPage;
     SendCoinsDialog *sendCoinsPage;
     SendCoinsDialog* coinJoinCoinsPage;
+    StakingPage *stakingPage;
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList* masternodeListPage{nullptr};
@@ -82,6 +84,8 @@ public Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to staking page */
+    void gotoStakingPage();
     /** Switch to masternode page */
     void gotoMasternodePage();
     /** Switch to receive coins page */
