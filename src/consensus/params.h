@@ -184,7 +184,7 @@ struct Params {
     /** Proof of Stake parameters */
     int64_t nStakeMinAge{8 * 60 * 60};              // Minimum stake age (8 hours)
     int64_t nStakeMaxAge{30 * 24 * 60 * 60};        // Maximum stake age (30 days)
-    CAmount nMinStakeAmount{1000 * COIN};           // Minimum stake amount (1000 coins)
+    CAmount nMinStakeAmount{1 * COIN};              // Minimum stake amount (1 coin - anyone can stake!)
     int64_t nStakeTargetSpacing{150};               // Target block time (2.5 minutes)
     int64_t nStakeTimestampMask{15};                // Timestamp mask for stake modifier
     CAmount nInitialBlockReward{200 * COIN};        // Initial block reward (200 coins)

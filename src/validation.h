@@ -155,7 +155,10 @@ CAmount GetSuperblockSubsidyInner(int nPrevBits, int nPrevHeight, const Consensu
 CAmount GetBlockSubsidy(const CBlockIndex* const pindex, const Consensus::Params& consensusParams);
 CAmount GetBabaChainPoSSubsidy(int nHeight, const Consensus::Params& consensusParams);
 CAmount GetBabaChainCirculatingSupply(int nHeight, const Consensus::Params& consensusParams);
+CAmount CalculateBaseStakingReward(CAmount nCurrentSupply, const Consensus::Params& consensusParams);
 CAmount CalculateStakingReward(int nHeight, CAmount nCurrentSupply, const Consensus::Params& consensusParams);
+CAmount CalculateIndividualStakingReward(CAmount nStakeAmount, CAmount nTotalNetworkStake, CAmount nBlockReward, const Consensus::Params& consensusParams);
+CAmount CalculateExpectedDailyRewards(CAmount nStakeAmount, CAmount nCurrentSupply, CAmount nTotalNetworkStake, const Consensus::Params& consensusParams);
 bool ValidateStakingRequirements(CAmount nStakeAmount, int64_t nStakeAge, const Consensus::Params& consensusParams);
 double CalculateValidatorProbability(CAmount nValidatorStake, CAmount nTotalNetworkStake);
 CAmount DistributeStakingRewards(const std::vector<CAmount>& vStakeAmounts, CAmount nTotalReward);
