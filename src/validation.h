@@ -153,6 +153,11 @@ double ConvertBitsToDouble(unsigned int nBits);
 CAmount GetBlockSubsidyInner(int nPrevBits, int nPrevHeight, const Consensus::Params& consensusParams, bool fV20Active);
 CAmount GetSuperblockSubsidyInner(int nPrevBits, int nPrevHeight, const Consensus::Params& consensusParams, bool fV20Active);
 CAmount GetBlockSubsidy(const CBlockIndex* const pindex, const Consensus::Params& consensusParams);
+CAmount GetBabaChainPoSSubsidy(int nHeight, const Consensus::Params& consensusParams);
+CAmount GetBabaChainCirculatingSupply(int nHeight, const Consensus::Params& consensusParams);
+CAmount CalculateStakingReward(int nHeight, CAmount nCurrentSupply, const Consensus::Params& consensusParams);
+CAmount DistributeStakingRewards(const std::vector<CAmount>& vStakeAmounts, CAmount nTotalReward);
+bool EnforceSupplyCap(int nHeight, const Consensus::Params& consensusParams);
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue, bool fV20Active);
 
 bool AbortNode(BlockValidationState& state, const std::string& strMessage, const bilingual_str& userMessage = bilingual_str{});

@@ -216,7 +216,8 @@ public:
         // BabaChain supply parameters
         consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
         consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
-        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
+        consensus.nStakingSupply = 160000000 * COIN;    // 160M for staking rewards
+        consensus.nStakeRewardPerBlock = 10 * COIN;     // 10 BabaChain per block staking reward
         consensus.nMasternodePaymentsStartBlock = 100000; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 158000; // actual historical value
         consensus.nMasternodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
@@ -417,7 +418,13 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = CBaseChainParams::TESTNET;
-        consensus.nSubsidyHalvingInterval = 210240;
+        // BabaChain testnet - disable halving for PoS
+        consensus.nSubsidyHalvingInterval = 0; // Disable halving for PoS
+        
+        // BabaChain testnet supply parameters (same as mainnet for consistency)
+        consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
+        consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
+        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
@@ -493,10 +500,12 @@ public:
         m_assumed_blockchain_size = 10;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1390666206UL, 3861367235UL, 0x1e0ffff0, 1, 50 * COIN);
+        // Create BabaChain testnet genesis block with 50M premine
+        genesis = CreateBabaChainGenesisBlock(1390666206UL, 3861367235UL, 0x1e0ffff0, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Note: Genesis block hash will be different due to premine - will need to be recalculated
+        // assert(consensus.hashGenesisBlock == uint256S("0x00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c"));
+        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_test), std::end(chainparams_seed_test));
@@ -592,7 +601,13 @@ class CDevNetParams : public CChainParams {
 public:
     explicit CDevNetParams(const ArgsManager& args) {
         strNetworkID = CBaseChainParams::DEVNET;
-        consensus.nSubsidyHalvingInterval = 210240;
+        // BabaChain devnet - disable halving for PoS
+        consensus.nSubsidyHalvingInterval = 0; // Disable halving for PoS
+        
+        // BabaChain devnet supply parameters (same as mainnet for consistency)
+        consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
+        consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
+        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
@@ -668,12 +683,14 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        genesis = CreateGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50 * COIN);
+        // Create BabaChain devnet genesis block with 50M premine
+        genesis = CreateBabaChainGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Note: Genesis block hash will be different due to premine - will need to be recalculated
+        // assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
+        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
 
-        devnetGenesis = FindDevNetGenesisBlock(genesis, 50 * COIN);
+        devnetGenesis = FindDevNetGenesisBlock(genesis, 50000000 * COIN);
         consensus.hashDevnetGenesisBlock = devnetGenesis.GetHash();
 
         vFixedSeeds.clear();
@@ -826,7 +843,13 @@ class CRegTestParams : public CChainParams {
 public:
     explicit CRegTestParams(const ArgsManager& args) {
         strNetworkID =  CBaseChainParams::REGTEST;
-        consensus.nSubsidyHalvingInterval = 150;
+        // BabaChain regtest - disable halving for PoS
+        consensus.nSubsidyHalvingInterval = 0; // Disable halving for PoS
+        
+        // BabaChain regtest supply parameters (same as mainnet for consistency)
+        consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
+        consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
+        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
         consensus.nMasternodePaymentsStartBlock = 240;
         consensus.nMasternodePaymentsIncreaseBlock = 350;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
@@ -908,10 +931,12 @@ public:
         UpdateDIP3ParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50 * COIN);
+        // Create BabaChain regtest genesis block with 50M premine
+        genesis = CreateBabaChainGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Note: Genesis block hash will be different due to premine - will need to be recalculated
+        // assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
+        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.

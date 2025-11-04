@@ -175,12 +175,18 @@ struct Params {
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
 
+    /** Supply Management parameters */
+    CAmount nMaxSupply{210000000 * COIN};           // Maximum total supply (210M coins)
+    CAmount nPremineAmount{50000000 * COIN};        // Premine amount (50M coins)
+    CAmount nStakingSupply{160000000 * COIN};       // Remaining supply for staking rewards (160M coins)
+    
     /** Proof of Stake parameters */
     int64_t nStakeMinAge{8 * 60 * 60};              // Minimum stake age (8 hours)
     int64_t nStakeMaxAge{30 * 24 * 60 * 60};        // Maximum stake age (30 days)
     CAmount nMinStakeAmount{1000 * COIN};           // Minimum stake amount (1000 coins)
     int64_t nStakeTargetSpacing{150};               // Target block time (2.5 minutes)
     int64_t nStakeTimestampMask{15};                // Timestamp mask for stake modifier
+    CAmount nStakeRewardPerBlock{10 * COIN};        // Base staking reward per block (10 coins)
 
     /** Supply management parameters */
     CAmount nMaxSupply{210000000 * COIN};           // Maximum total supply (210M coins)
