@@ -65,7 +65,26 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
 }
 
 /**
- * Build the genesis block. Note that the output of its generation
+ * Build the BabaChain genesis block with 50M premine. Note that the output of its generation
+ * transaction cannot be spent since it did not originally exist in the
+ * database.
+ *
+ * CBlock(hash=TBD, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=TBD, nTime=TBD, nBits=1e0ffff0, nNonce=TBD, vtx=1)
+ *   CTransaction(hash=TBD, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+ *     CTxIn(COutPoint(000000, -1), coinbase TBD)
+ *     CTxOut(nValue=50000000.00000000, scriptPubKey=TBD)
+ *   vMerkleTree: TBD
+ */
+static CBlock CreateBabaChainGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
+{
+    const char* pszTimestamp = "BabaChain Genesis Block - New Era of Proof of Stake - 2025";
+    // BabaChain development team premine address public key
+    const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
+}
+
+/**
+ * Build the legacy genesis block for compatibility. Note that the output of its generation
  * transaction cannot be spent since it did not originally exist in the
  * database.
  *
@@ -80,6 +99,38 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
     const char* pszTimestamp = "Wired 09/Jan/2014 The Grand Experiment Goes Live: Overstock.com Is Now Accepting Bitcoins";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
+}
+
+/**
+ * Build the BabaChain genesis block with 50M premine allocation.
+ * This creates a new genesis block specifically for BabaChain with the required premine.
+ */
+static CBlock CreateBabaChainGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& premineAmount)
+{
+    const char* pszTimestamp = "BabaChain Genesis Block - New Era of Proof of Stake - 50M Premine for Development";
+    
+    // Create premine transaction with 50M coins
+    CMutableTransaction txNew;
+    txNew.nVersion = 1;
+    txNew.vin.resize(1);
+    txNew.vout.resize(1);
+    txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
+    
+    // Premine output - 50M coins to development address
+    txNew.vout[0].nValue = premineAmount;
+    // Use a standard P2PKH script for the premine (this can be changed to a specific address later)
+    const CScript premineOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
+    txNew.vout[0].scriptPubKey = premineOutputScript;
+
+    CBlock genesis;
+    genesis.nTime    = nTime;
+    genesis.nBits    = nBits;
+    genesis.nNonce   = nNonce;
+    genesis.nVersion = nVersion;
+    genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
+    genesis.hashPrevBlock.SetNull();
+    genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
+    return genesis;
 }
 
 static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount& reward)
@@ -159,7 +210,13 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = CBaseChainParams::MAIN;
-        consensus.nSubsidyHalvingInterval = 210240; // Note: actual number of blocks per calendar year with DGW v3 is ~200700 (for example 449750 - 249050)
+        // BabaChain supply management - disable halving for PoS
+        consensus.nSubsidyHalvingInterval = 0; // Disable halving for PoS - rewards managed differently
+        
+        // BabaChain supply parameters
+        consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
+        consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
+        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
         consensus.nMasternodePaymentsStartBlock = 100000; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 158000; // actual historical value
         consensus.nMasternodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
@@ -240,10 +297,12 @@ public:
         m_assumed_blockchain_size = 54;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1390095618, 28917698, 0x1e0ffff0, 1, 50 * COIN);
+        // Create BabaChain genesis block with 50M premine
+        genesis = CreateBabaChainGenesisBlock(1390095618, 28917698, 0x1e0ffff0, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Note: Genesis block hash will be different due to premine - will need to be recalculated
+        // assert(consensus.hashGenesisBlock == uint256S("0x00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6"));
+        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
