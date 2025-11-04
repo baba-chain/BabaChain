@@ -226,7 +226,7 @@ def get_legacy_sigopcount_tx(tx, accurate=True):
     return count
 
 """
-Dash chaintips rpc returns extra info in each tip (difficulty, chainwork, and
+BabaChain chaintips rpc returns extra info in each tip (difficulty, chainwork, and
 forkpoint). Filter down to relevant ones checked in this test.
 """
 def filter_tip_keys(chaintips):

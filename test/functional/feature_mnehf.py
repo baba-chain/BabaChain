@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2023-2025 The Dash Core developers
+# Copyright (c) 2023-2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +17,7 @@ from test_framework.messages import (
 )
 
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo
 )
 from test_framework.util import (
@@ -25,10 +25,10 @@ from test_framework.util import (
     get_bip9_details,
 )
 
-class MnehfTest(DashTestFramework):
+class MnehfTest(BabaChainTestFramework):
     def set_test_params(self):
         extra_args = [["-vbparams=testdummy:0:999999999999:0:4:4:4:5:1", "-persistmempool=0"]] * 4
-        self.set_dash_test_params(4, 3, extra_args=extra_args)
+        self.set_babachain_test_params(4, 3, extra_args=extra_args)
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()

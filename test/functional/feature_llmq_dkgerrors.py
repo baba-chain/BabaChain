@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2025 The Dash Core developers
+# Copyright (c) 2015-2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@ from test_framework.messages import (
     from_hex,
 )
 
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import assert_equal
 '''
 feature_llmq_dkgerrors.py
@@ -21,9 +21,9 @@ Simulate and check DKG errors
 
 '''
 
-class LLMQDKGErrors(DashTestFramework):
+class LLMQDKGErrors(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(4, 3, [["-whitelist=127.0.0.1"]] * 4)
+        self.set_babachain_test_params(4, 3, [["-whitelist=127.0.0.1"]] * 4)
 
     def run_test(self):
         self.nodes[0].sporkupdate("SPORK_17_QUORUM_DKG_ENABLED", 0)

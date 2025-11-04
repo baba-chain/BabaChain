@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2024 The Dash Core developers
+# Copyright (c) 2015-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,15 +13,15 @@ Checks intra quorum connections
 import time
 
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo,
 )
 from test_framework.util import assert_greater_than_or_equal
 
-class LLMQConnections(DashTestFramework):
+class LLMQConnections(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(15, 14)
-        self.set_dash_llmq_test_params(5, 3)
+        self.set_babachain_test_params(15, 14)
+        self.set_babachain_llmq_test_params(5, 3)
         # Probes should age after this many seconds.
         # NOTE: mine_quorum() can bump mocktime quite often internally so make sure this number is high enough.
         self.MAX_AGE = int(120 * self.options.timeout_factor)

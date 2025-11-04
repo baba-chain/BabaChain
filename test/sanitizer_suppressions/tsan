@@ -20,7 +20,7 @@ race:bitcoin-qt
 deadlock:CChainState::ConnectTip
 deadlock:wallet_tests::CreateWallet
 
-# deadlock false positive (see: https://github.com/dashpay/dash/pull/4563)
+# deadlock false positive (see: https://github.com/babachainpay/babachain/pull/4563)
 deadlock:CChainState::ConnectTip
 
 # Intentional deadlock in tests

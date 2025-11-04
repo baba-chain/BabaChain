@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2025 The Dash Core developers
+# Copyright (c) 2015-2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@ from io import BytesIO
 from test_framework.messages import CBlock, CBlockHeader, CCbTx, CMerkleBlock, from_hex, hash256, msg_getmnlistd, QuorumId, ser_uint256
 from test_framework.p2p import P2PInterface
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo,
 )
 from test_framework.util import assert_equal
@@ -46,10 +46,10 @@ class TestP2PConn(P2PInterface):
         return self.last_mnlistdiff
 
 
-class LLMQCoinbaseCommitmentsTest(DashTestFramework):
+class LLMQCoinbaseCommitmentsTest(BabaChainTestFramework):
     def set_test_params(self):
         self.extra_args = [[ f'-testactivationheight=dip0008@{DIP0008_HEIGHT}', f'-testactivationheight=dip0024@{DIP0024_HEIGHT}', "-vbparams=testdummy:999999999999:999999999999" ]] * 4
-        self.set_dash_test_params(4, 3, extra_args = self.extra_args)
+        self.set_babachain_test_params(4, 3, extra_args = self.extra_args)
         self.delay_v20_and_mn_rr(height=V20_HEIGHT)
 
     def remove_masternode(self, idx):
@@ -80,7 +80,7 @@ class LLMQCoinbaseCommitmentsTest(DashTestFramework):
         mnList = self.test_getmnlistdiff(null_hash, self.nodes[0].getbestblockhash(), {}, [], expectedUpdated)
         expectedUpdated2 = expectedUpdated + []
 
-        # Register one more MN, but don't start it (that would fail as DashTestFramework doesn't support this atm)
+        # Register one more MN, but don't start it (that would fail as BabaChainTestFramework doesn't support this atm)
         baseBlockHash = self.nodes[0].getbestblockhash()
         self.prepare_masternode(self.mn_count)
         new_mn: MasternodeInfo = self.mninfo[self.mn_count]

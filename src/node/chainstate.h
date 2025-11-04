@@ -108,12 +108,12 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
                                                      int64_t nCoinCacheUsage,
                                                      bool block_tree_db_in_memory,
                                                      bool coins_db_in_memory,
-                                                     bool dash_dbs_in_memory,
+                                                     bool babachain_dbs_in_memory,
                                                      std::function<bool()> shutdown_requested = nullptr,
                                                      std::function<void()> coins_error_cb = nullptr);
 
-/** Initialize Dash-specific components during chainstate initialization */
-void DashChainstateSetup(ChainstateManager& chainman,
+/** Initialize BabaChain-specific components during chainstate initialization */
+void BabaChainChainstateSetup(ChainstateManager& chainman,
                          CGovernanceManager& govman,
                          CMasternodeMetaMan& mn_metaman,
                          CMasternodeSync& mn_sync,
@@ -131,7 +131,7 @@ void DashChainstateSetup(ChainstateManager& chainman,
                          bool llmq_dbs_wipe,
                          const Consensus::Params& consensus_params);
 
-void DashChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
+void BabaChainChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
                               std::unique_ptr<CCreditPoolManager>& cpoolman,
                               std::unique_ptr<CDeterministicMNManager>& dmnman,
                               std::unique_ptr<CMNHFManager>& mnhf_manager,

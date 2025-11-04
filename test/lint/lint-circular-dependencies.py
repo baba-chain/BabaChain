@@ -21,7 +21,7 @@ EXPECTED_CIRCULAR_DEPENDENCIES = (
     "qt/transactiontablemodel -> qt/walletmodel -> qt/transactiontablemodel",
     "wallet/wallet -> wallet/walletdb -> wallet/wallet",
     "node/coinstats -> validation -> node/coinstats",
-    # Dash
+    # BabaChain
     "banman -> common/bloom -> evo/assetlocktx -> llmq/quorums -> net -> banman",
     "chainlock/chainlock -> instantsend/instantsend -> chainlock/chainlock",
     "chainlock/chainlock -> instantsend/instantsend -> instantsend/signing -> chainlock/chainlock",

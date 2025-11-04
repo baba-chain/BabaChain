@@ -30,7 +30,7 @@ import unittest
 from test_framework.crypto.siphash import siphash256
 from test_framework.util import assert_equal
 
-import dash_hash
+import babachain_hash
 
 MAX_LOCATOR_SZ = 101
 MAX_BLOCK_SIZE = 2000000
@@ -40,7 +40,7 @@ MAX_BLOOM_HASH_FUNCS = 50
 COIN = 100000000  # 1 btc in satoshis
 MAX_MONEY = 21000000 * COIN
 
-BIP125_SEQUENCE_NUMBER = 0xfffffffd  # Sequence number that is BIP 125 opt-in and BIP 68-opt-out -- not used in DASH
+BIP125_SEQUENCE_NUMBER = 0xfffffffd  # Sequence number that is BIP 125 opt-in and BIP 68-opt-out -- not used in BABACHAIN
 SEQUENCE_FINAL = 0xffffffff  # Sequence number that disables nLockTime if set for every input of a tx
 
 MAX_PROTOCOL_MESSAGE_LENGTH = 3 * 1024 * 1024  # Maximum length of incoming protocol messages
@@ -89,8 +89,8 @@ def sha3(s):
 def hash256(s):
     return sha256(sha256(s))
 
-def dashhash(s):
-    return dash_hash.getPoWHash(s)
+def babachainhash(s):
+    return babachain_hash.getPoWHash(s)
 
 def ser_compact_size(l):
     r = b""
@@ -232,7 +232,7 @@ def tx_from_hex(hex_string):
     return from_hex(CTransaction(), hex_string)
 
 
-# Objects that map to dashd objects, which can be serialized/deserialized
+# Objects that map to babachaind objects, which can be serialized/deserialized
 
 class CService:
     __slots__ = ("ip", "port")
@@ -645,8 +645,8 @@ class CBlockHeader:
             r += struct.pack("<I", self.nTime)
             r += struct.pack("<I", self.nBits)
             r += struct.pack("<I", self.nNonce)
-            self.sha256 = uint256_from_str(dashhash(r))
-            self.hash = dashhash(r)[::-1].hex()
+            self.sha256 = uint256_from_str(babachainhash(r))
+            self.hash = babachainhash(r)[::-1].hex()
 
     def rehash(self):
         self.sha256 = None
@@ -807,8 +807,8 @@ class CompressibleBlockHeader:
             r += struct.pack("<I", self.nTime)
             r += struct.pack("<I", self.nBits)
             r += struct.pack("<I", self.nNonce)
-            self.sha256 = uint256_from_str(dashhash(r))
-            self.hash = int(dashhash(r)[::-1].hex(), 16)
+            self.sha256 = uint256_from_str(babachainhash(r))
+            self.hash = int(babachainhash(r)[::-1].hex(), 16)
 
     def rehash(self):
         self.sha256 = None
@@ -2041,7 +2041,7 @@ class msg_headers:
         self.headers = headers if headers is not None else []
 
     def deserialize(self, f):
-        # comment in dashd indicates these should be deserialized as blocks
+        # comment in babachaind indicates these should be deserialized as blocks
         blocks = deser_vector(f, CBlock)
         for x in blocks:
             self.headers.append(CBlockHeader(x))

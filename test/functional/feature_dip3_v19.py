@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2024 The Dash Core developers
+# Copyright (c) 2015-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@ from test_framework.p2p import P2PInterface
 from test_framework.messages import CBlock, CBlockHeader, CCbTx, CMerkleBlock, from_hex, hash256, msg_getmnlistd, \
     QuorumId, ser_uint256
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo,
 )
 from test_framework.util import (
@@ -44,13 +44,13 @@ class TestP2PConn(P2PInterface):
         return self.last_mnlistdiff
 
 
-class DIP3V19Test(DashTestFramework):
+class DIP3V19Test(BabaChainTestFramework):
     def set_test_params(self):
         self.extra_args = [[
             '-deprecatedrpc=legacy_mn',
             '-testactivationheight=v19@200',
         ]] * 6
-        self.set_dash_test_params(6, 5, evo_count=2, extra_args=self.extra_args)
+        self.set_babachain_test_params(6, 5, evo_count=2, extra_args=self.extra_args)
 
 
     def run_test(self):

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -219,7 +219,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
     {
         if (rcp.fSubtractFeeFromAmount)
             fSubtractFeeFromAmount = true;
-        {   // User-entered dash address / amount:
+        {   // User-entered babachain address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -289,7 +289,7 @@ void WalletModel::sendCoins(WalletModelTransaction& transaction, bool fIsCoinJoi
         std::vector<std::pair<std::string, std::string>> vOrderForm;
         for (const SendCoinsRecipient &rcp : transaction.getRecipients())
         {
-            if (!rcp.message.isEmpty()) // Message from normal dash:URI (dash:XyZ...?message=example)
+            if (!rcp.message.isEmpty()) // Message from normal babachain:URI (babachain:XyZ...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 

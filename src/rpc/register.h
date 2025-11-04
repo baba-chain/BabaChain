@@ -30,7 +30,7 @@ void RegisterEvoRPCCommands(CRPCTable &tableRPC);
 void RegisterQuorumsRPCCommands(CRPCTable &tableRPC);
 
 #ifdef ENABLE_WALLET
-// Dash-specific wallet-only RPC commands
+// BabaChain-specific wallet-only RPC commands
 Span<const CRPCCommand> GetWalletCoinJoinRPCCommands();
 Span<const CRPCCommand> GetWalletEvoRPCCommands();
 Span<const CRPCCommand> GetWalletGovernanceRPCCommands();

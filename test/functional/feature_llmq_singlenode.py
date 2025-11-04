@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2024 The Dash Core developers
+# Copyright (c) 2015-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@ import time
 
 from test_framework.authproxy import JSONRPCException
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo,
 )
 from test_framework.util import (
@@ -31,11 +31,11 @@ msgHashConflict = "0000000000000000000000000000000000000000000000000000000000000
 
 
 q_type=100
-class LLMQSigningTest(DashTestFramework):
+class LLMQSigningTest(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(1, 0, [["-llmqtestinstantsenddip0024=llmq_test_instantsend", "-peertimeout=300000000"]],
+        self.set_babachain_test_params(1, 0, [["-llmqtestinstantsenddip0024=llmq_test_instantsend", "-peertimeout=300000000"]],
                 evo_count=2)
-        self.set_dash_llmq_test_params(1, 1)
+        self.set_babachain_llmq_test_params(1, 1)
 
 
     def mine_single_node_quorum(self):

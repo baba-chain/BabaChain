@@ -75,4 +75,4 @@ RUN \
   chown ${USER_ID}:${GROUP_ID} -R /cache
 
 # We're done, switch back to non-privileged user
-USER dash
+USER babachain

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,9 +24,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnit> unitlist;
-    unitlist.append(Unit::DASH);
-    unitlist.append(Unit::mDASH);
-    unitlist.append(Unit::uDASH);
+    unitlist.append(Unit::BABACHAIN);
+    unitlist.append(Unit::mBABACHAIN);
+    unitlist.append(Unit::uBABACHAIN);
     unitlist.append(Unit::duffs);
     return unitlist;
 }
@@ -35,9 +35,9 @@ QString BitcoinUnits::name(Unit unit)
 {
     const bool is_mainnet{Params().NetworkIDString() == CBaseChainParams::MAIN};
     switch (unit) {
-    case Unit::DASH:  return is_mainnet ? QString("DASH") : QString("tDASH");
-    case Unit::mDASH: return is_mainnet ? QString("mDASH") : QString("mtDASH");
-    case Unit::uDASH: return is_mainnet ? QString::fromUtf8("μDASH") : QString::fromUtf8("μtDASH");
+    case Unit::BABACHAIN:  return is_mainnet ? QString("BABACHAIN") : QString("tBABACHAIN");
+    case Unit::mBABACHAIN: return is_mainnet ? QString("mBABACHAIN") : QString("mtBABACHAIN");
+    case Unit::uBABACHAIN: return is_mainnet ? QString::fromUtf8("μBABACHAIN") : QString::fromUtf8("μtBABACHAIN");
     case Unit::duffs: return is_mainnet ? QString("duffs") : QString("tduffs");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -47,10 +47,10 @@ QString BitcoinUnits::description(Unit unit)
 {
     const QString maybe_prefix{Params().NetworkIDString() == CBaseChainParams::MAIN ? "" : "Test"};
     switch(unit) {
-    case Unit::DASH:  return QString("%1Dash");
-    case Unit::mDASH: return QString("Milli-%1Dash (1 / 1" THIN_SP_UTF8 "000)").arg(maybe_prefix);
-    case Unit::uDASH: return QString("Micro-%1Dash (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
-    case Unit::duffs: return QString("Ten Nano-%1Dash (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
+    case Unit::BABACHAIN:  return QString("%1BabaChain");
+    case Unit::mBABACHAIN: return QString("Milli-%1BabaChain (1 / 1" THIN_SP_UTF8 "000)").arg(maybe_prefix);
+    case Unit::uBABACHAIN: return QString("Micro-%1BabaChain (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
+    case Unit::duffs: return QString("Ten Nano-%1BabaChain (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)").arg(maybe_prefix);
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
@@ -58,9 +58,9 @@ QString BitcoinUnits::description(Unit unit)
 qint64 BitcoinUnits::factor(Unit unit)
 {
     switch (unit) {
-    case Unit::DASH:  return 100'000'000;
-    case Unit::mDASH: return 100'000;
-    case Unit::uDASH: return 100;
+    case Unit::BABACHAIN:  return 100'000'000;
+    case Unit::mBABACHAIN: return 100'000;
+    case Unit::uBABACHAIN: return 100;
     case Unit::duffs: return 1;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -69,9 +69,9 @@ qint64 BitcoinUnits::factor(Unit unit)
 int BitcoinUnits::decimals(Unit unit)
 {
     switch (unit) {
-    case Unit::DASH:  return 8;
-    case Unit::mDASH: return 5;
-    case Unit::uDASH: return 2;
+    case Unit::BABACHAIN:  return 8;
+    case Unit::mBABACHAIN: return 5;
+    case Unit::uBABACHAIN: return 2;
     case Unit::duffs: return 0;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -252,9 +252,9 @@ namespace {
 qint8 ToQint8(BitcoinUnit unit)
 {
     switch (unit) {
-    case BitcoinUnit::DASH: return 0;
-    case BitcoinUnit::mDASH: return 1;
-    case BitcoinUnit::uDASH: return 2;
+    case BitcoinUnit::BABACHAIN: return 0;
+    case BitcoinUnit::mBABACHAIN: return 1;
+    case BitcoinUnit::uBABACHAIN: return 2;
     case BitcoinUnit::duffs: return 3;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
@@ -263,9 +263,9 @@ qint8 ToQint8(BitcoinUnit unit)
 BitcoinUnit FromQint8(qint8 num)
 {
     switch (num) {
-    case 0: return BitcoinUnit::DASH;
-    case 1: return BitcoinUnit::mDASH;
-    case 2: return BitcoinUnit::uDASH;
+    case 0: return BitcoinUnit::BABACHAIN;
+    case 1: return BitcoinUnit::mBABACHAIN;
+    case 2: return BitcoinUnit::uBABACHAIN;
     case 3: return BitcoinUnit::duffs;
     }
     assert(false);

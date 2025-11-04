@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,7 +21,7 @@
 #include <uint256.h>
 
 
-/* ----------- Dash Hash ------------------------------------------------ */
+/* ----------- BabaChain Hash ------------------------------------------------ */
 template <typename T1>
 inline uint256 HashX11(const T1 pbegin, const T1 pend)
 

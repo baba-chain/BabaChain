@@ -80,8 +80,8 @@
 
 using node::BlockAssembler;
 using node::CalculateCacheSizes;
-using node::DashChainstateSetup;
-using node::DashChainstateSetupClose;
+using node::BabaChainChainstateSetup;
+using node::BabaChainChainstateSetupClose;
 using node::DEFAULT_ADDRESSINDEX;
 using node::DEFAULT_SPENTINDEX;
 using node::DEFAULT_TIMESTAMPINDEX;
@@ -123,21 +123,21 @@ std::ostream& operator<<(std::ostream& os, const uint256& num)
     return os;
 }
 
-void DashChainstateSetup(ChainstateManager& chainman,
+void BabaChainChainstateSetup(ChainstateManager& chainman,
                          NodeContext& node,
                          bool llmq_dbs_in_memory,
                          bool llmq_dbs_wipe,
                          const Consensus::Params& consensus_params)
 {
-    DashChainstateSetup(chainman, *Assert(node.govman.get()), *Assert(node.mn_metaman.get()), *Assert(node.mn_sync.get()),
+    BabaChainChainstateSetup(chainman, *Assert(node.govman.get()), *Assert(node.mn_metaman.get()), *Assert(node.mn_sync.get()),
                         *Assert(node.sporkman.get()), node.mn_activeman, node.chain_helper, node.cpoolman, node.dmnman,
                         node.evodb, node.mnhf_manager, node.llmq_ctx, Assert(node.mempool.get()), node.args->GetDataDirNet(),
                         llmq_dbs_in_memory, llmq_dbs_wipe, consensus_params);
 }
 
-void DashChainstateSetupClose(NodeContext& node)
+void BabaChainChainstateSetupClose(NodeContext& node)
 {
-    DashChainstateSetupClose(node.chain_helper, node.cpoolman, node.dmnman, node.mnhf_manager, node.llmq_ctx,
+    BabaChainChainstateSetupClose(node.chain_helper, node.cpoolman, node.dmnman, node.mnhf_manager, node.llmq_ctx,
                              Assert(node.mempool.get()));
 }
 
@@ -332,7 +332,7 @@ TestingSetup::TestingSetup(const std::string& chainName, const std::vector<const
                                            m_cache_sizes.coins,
                                            /*block_tree_db_in_memory=*/true,
                                            /*coins_db_in_memory=*/true,
-                                           /*dash_dbs_in_memory=*/true);
+                                           /*babachain_dbs_in_memory=*/true);
     assert(!maybe_load_error.has_value());
 
     auto maybe_verify_error = VerifyLoadedChainstate(
@@ -408,9 +408,9 @@ TestingSetup::~TestingSetup()
         m_node.connman->Stop();
     }
 
-    // DashChainstateSetup() is called by LoadChainstate() internally but
+    // BabaChainChainstateSetup() is called by LoadChainstate() internally but
     // winding them down is our responsibility
-    DashChainstateSetupClose(m_node);
+    BabaChainChainstateSetupClose(m_node);
 }
 
 TestChain100Setup::TestChain100Setup(const std::string& chain_name, const std::vector<const char*>& extra_args)

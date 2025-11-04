@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -84,13 +84,13 @@ static inline bool InsecureRandBool() { return g_insecure_rand_ctx.randbool(); }
 
 static constexpr CAmount CENT{1000000};
 
-/** Initialize Dash-specific components during chainstate initialization (NodeContext-friendly aliases) */
-void DashChainstateSetup(ChainstateManager& chainman,
+/** Initialize BabaChain-specific components during chainstate initialization (NodeContext-friendly aliases) */
+void BabaChainChainstateSetup(ChainstateManager& chainman,
                          node::NodeContext& node,
                          bool llmq_dbs_in_memory,
                          bool llmq_dbs_wipe,
                          const Consensus::Params& consensus_params);
-void DashChainstateSetupClose(node::NodeContext& node);
+void BabaChainChainstateSetupClose(node::NodeContext& node);
 
 /** Basic testing setup.
  * This just configures logging, data dir and chain parameters.

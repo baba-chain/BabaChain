@@ -25,7 +25,7 @@ void ResetArgs(ArgsManager& local_args, const std::string& strArg)
     }
 
     // Insert dummy executable name:
-    vecArg.insert(vecArg.begin(), "testdash");
+    vecArg.insert(vecArg.begin(), "testbabachain");
 
     // Convert to char*:
     std::vector<const char*> vecChar;
@@ -377,7 +377,7 @@ BOOST_AUTO_TEST_CASE(patharg)
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir", "default"), fs::path{""});
 }
 
-BOOST_AUTO_TEST_CASE(doubledash)
+BOOST_AUTO_TEST_CASE(doublebabachain)
 {
     ArgsManager local_args;
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2025 The Dash Core developers
+# Copyright (c) 2019-2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -90,7 +90,7 @@ class CoinJoinTest(BitcoinTestFramework):
             assert_equal(node.getcoinjoininfo()['max_amount'], value)
         # Test values below minimum and above maximum
         for value in [COINJOIN_TARGET_MIN - 1, COINJOIN_TARGET_MAX + 1]:
-            assert_raises_rpc_error(-8, "Invalid amount of DASH as mixing goal amount", node.setcoinjoinamount, value)
+            assert_raises_rpc_error(-8, "Invalid amount of BABACHAIN as mixing goal amount", node.setcoinjoinamount, value)
 
     def test_setcoinjoinrounds(self, node):
         self.log.info('"setcoinjoinrounds" should update mixing rounds')

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2024 The Dash Core developers
+// Copyright (c) 2014-2024 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -77,15 +77,15 @@ void OptionsModel::Init(bool resetSettings)
     fMinimizeOnClose = settings.value("fMinimizeOnClose").toBool();
 
     // Display
-    if (!settings.contains("DisplayDashUnit")) {
-        settings.setValue("DisplayDashUnit", QVariant::fromValue(BitcoinUnit::DASH));
+    if (!settings.contains("DisplayBabaChainUnit")) {
+        settings.setValue("DisplayBabaChainUnit", QVariant::fromValue(BitcoinUnit::BABACHAIN));
     }
-    QVariant unit = settings.value("DisplayDashUnit");
+    QVariant unit = settings.value("DisplayBabaChainUnit");
     if (unit.canConvert<BitcoinUnit>()) {
         m_display_bitcoin_unit = unit.value<BitcoinUnit>();
     } else {
-        m_display_bitcoin_unit = BitcoinUnit::DASH;
-        settings.setValue("DisplayDashUnit", QVariant::fromValue(m_display_bitcoin_unit));
+        m_display_bitcoin_unit = BitcoinUnit::BABACHAIN;
+        settings.setValue("DisplayBabaChainUnit", QVariant::fromValue(m_display_bitcoin_unit));
     }
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -868,7 +868,7 @@ void OptionsModel::setDisplayUnit(const QVariant& new_unit)
     if (new_unit.isNull() || new_unit.value<BitcoinUnit>() == m_display_bitcoin_unit) return;
     m_display_bitcoin_unit = new_unit.value<BitcoinUnit>();
     QSettings settings;
-    settings.setValue("DisplayDashUnit", QVariant::fromValue(m_display_bitcoin_unit));
+    settings.setValue("DisplayBabaChainUnit", QVariant::fromValue(m_display_bitcoin_unit));
     Q_EMIT displayUnitChanged(m_display_bitcoin_unit);
 }
 

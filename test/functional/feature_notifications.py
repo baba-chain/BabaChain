@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2020 The Bitcoin Core developers
-# Copyright (c) 2023-2024 The Dash Core developers
+# Copyright (c) 2023-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the -alertnotify, -blocknotify, -chainlocknotify, -instantsendnotify and -walletnotify options."""
@@ -8,7 +8,7 @@ import os
 
 from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE
 
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import (
     assert_equal,
     force_finish_mnsync,
@@ -25,9 +25,9 @@ def notify_outputname(walletname, txid):
     return txid if os.name == 'nt' else f'{walletname}_{txid}'
 
 
-class NotificationsTest(DashTestFramework):
+class NotificationsTest(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(6, 4)
+        self.set_babachain_test_params(6, 4)
 
     def setup_network(self):
         self.wallet = ''.join(chr(i) for i in range(FILE_CHAR_START, FILE_CHAR_END) if chr(i) not in FILE_CHARS_DISALLOWED)

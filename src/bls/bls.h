@@ -1,9 +1,9 @@
-// Copyright (c) 2018-2025 The Dash Core developers
+// Copyright (c) 2018-2025 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef DASH_CRYPTO_BLS_H
-#define DASH_CRYPTO_BLS_H
+#ifndef BABACHAIN_CRYPTO_BLS_H
+#define BABACHAIN_CRYPTO_BLS_H
 
 #include <hash.h>
 #include <serialize.h>
@@ -11,14 +11,14 @@
 #include <util/strencodings.h>
 #include <util/ranges.h>
 
-// bls-dash uses relic, which may define DEBUG and ERROR, which leads to many warnings in some build setups
+// bls-babachain uses relic, which may define DEBUG and ERROR, which leads to many warnings in some build setups
 #undef ERROR
 #undef DEBUG
-#include <dashbls/bls.hpp>
-#include <dashbls/privatekey.hpp>
-#include <dashbls/elements.hpp>
-#include <dashbls/schemes.hpp>
-#include <dashbls/threshold.hpp>
+#include <babachainbls/bls.hpp>
+#include <babachainbls/privatekey.hpp>
+#include <babachainbls/elements.hpp>
+#include <babachainbls/schemes.hpp>
+#include <babachainbls/threshold.hpp>
 #undef DOUBLE
 #undef SEED
 
@@ -596,4 +596,4 @@ using BLSVerificationVectorPtr = std::shared_ptr<std::vector<CBLSPublicKey>>;
 
 bool BLSInit();
 
-#endif // DASH_CRYPTO_BLS_H
+#endif // BABACHAIN_CRYPTO_BLS_H

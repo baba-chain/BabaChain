@@ -1,4 +1,4 @@
-// Copyright (c) 2025 The Dash Core developers
+// Copyright (c) 2025 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -170,7 +170,7 @@ void ProposalWizard::buildJsonAndHex()
     QJsonObject o;
     o.insert("name", m_ui->editName->text());
     o.insert("payment_address", m_ui->editPayAddr->text());
-    const auto formatted = BitcoinUnits::format(BitcoinUnits::Unit::DASH, m_ui->paymentAmount->value(), false,
+    const auto formatted = BitcoinUnits::format(BitcoinUnits::Unit::BABACHAIN, m_ui->paymentAmount->value(), false,
                                                 BitcoinUnits::SeparatorStyle::NEVER);
     o.insert("payment_amount", formatted.toDouble());
     o.insert("url", m_ui->editUrl->text());

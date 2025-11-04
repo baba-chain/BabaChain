@@ -8,6 +8,7 @@
 
 #include <uint256.h>
 #include <llmq/params.h>
+#include <consensus/amount.h>
 
 #include <limits>
 #include <vector>
@@ -173,6 +174,13 @@ struct Params {
     int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
+
+    /** Proof of Stake parameters */
+    int64_t nStakeMinAge{8 * 60 * 60};              // Minimum stake age (8 hours)
+    int64_t nStakeMaxAge{30 * 24 * 60 * 60};        // Maximum stake age (30 days)
+    CAmount nMinStakeAmount{1000 * COIN};           // Minimum stake amount (1000 coins)
+    int64_t nStakeTargetSpacing{150};               // Target block time (2.5 minutes)
+    int64_t nStakeTimestampMask{15};                // Timestamp mask for stake modifier
 
     /** these parameters are only used on devnet and can be configured from the outside */
     int nMinimumDifficultyBlocks{0};

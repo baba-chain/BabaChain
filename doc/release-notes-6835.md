@@ -1,11 +1,11 @@
 Mobile CoinJoin Compatibility
 ------------
 
-- Fixed an issue where CoinJoin funds mixed in Dash Android wallet were
-  invisible when importing the mnemonic into Dash Core. Descriptor Wallets now
+- Fixed an issue where CoinJoin funds mixed in BabaChain Android wallet were
+  invisible when importing the mnemonic into BabaChain Core. Descriptor Wallets now
   include an additional default descriptor for mobile CoinJoin funds, ensuring
   seamless wallet migration and complete fund visibility across different
-  Dash wallet implementations.
+  BabaChain wallet implementations.
 
 - This is a breaking change that increases the default number of descriptors
   from 2 to 3 on mainnet (internal, external, mobile CoinJoin) for newly created

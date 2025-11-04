@@ -63,7 +63,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
                                                      int64_t nCoinCacheUsage,
                                                      bool block_tree_db_in_memory,
                                                      bool coins_db_in_memory,
-                                                     bool dash_dbs_in_memory,
+                                                     bool babachain_dbs_in_memory,
                                                      std::function<bool()> shutdown_requested,
                                                      std::function<void()> coins_error_cb)
 {
@@ -74,7 +74,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     LOCK(cs_main);
 
     evodb.reset();
-    evodb = std::make_unique<CEvoDB>(util::DbWrapperParams{.path = data_dir, .memory = dash_dbs_in_memory, .wipe = fReset || fReindexChainState});
+    evodb = std::make_unique<CEvoDB>(util::DbWrapperParams{.path = data_dir, .memory = babachain_dbs_in_memory, .wipe = fReset || fReindexChainState});
 
     mnhf_manager.reset();
     mnhf_manager = std::make_unique<CMNHFManager>(*evodb);
@@ -89,8 +89,8 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     pblocktree.reset();
     pblocktree.reset(new CBlockTreeDB(nBlockTreeDBCache, block_tree_db_in_memory, fReset));
 
-    DashChainstateSetup(chainman, govman, mn_metaman, mn_sync, sporkman, mn_activeman, chain_helper, cpoolman,
-                        dmnman, evodb, mnhf_manager, llmq_ctx, mempool, data_dir, dash_dbs_in_memory,
+    BabaChainChainstateSetup(chainman, govman, mn_metaman, mn_sync, sporkman, mn_activeman, chain_helper, cpoolman,
+                        dmnman, evodb, mnhf_manager, llmq_ctx, mempool, data_dir, babachain_dbs_in_memory,
                         /*llmq_dbs_wipe=*/fReset || fReindexChainState, consensus_params);
 
     if (fReset) {
@@ -112,7 +112,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     }
 
     // TODO: Remove this when pruning is fixed.
-    // See https://github.com/dashpay/dash/pull/1817 and https://github.com/dashpay/dash/pull/1743
+    // See https://github.com/babachainpay/babachain/pull/1817 and https://github.com/babachainpay/babachain/pull/1743
     if (is_governance_enabled && !is_txindex_enabled && network_id != CBaseChainParams::REGTEST) {
         return ChainstateLoadingError::ERROR_TXINDEX_DISABLED_WHEN_GOV_ENABLED;
     }
@@ -217,7 +217,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     return std::nullopt;
 }
 
-void DashChainstateSetup(ChainstateManager& chainman,
+void BabaChainChainstateSetup(ChainstateManager& chainman,
                          CGovernanceManager& govman,
                          CMasternodeMetaMan& mn_metaman,
                          CMasternodeSync& mn_sync,
@@ -260,7 +260,7 @@ void DashChainstateSetup(ChainstateManager& chainman,
                                                        *(llmq_ctx->qman));
 }
 
-void DashChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
+void BabaChainChainstateSetupClose(std::unique_ptr<CChainstateHelper>& chain_helper,
                               std::unique_ptr<CCreditPoolManager>& cpoolman,
                               std::unique_ptr<CDeterministicMNManager>& dmnman,
                               std::unique_ptr<CMNHFManager>& mnhf_manager,

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021-2024 The Dash Core developers
+# Copyright (c) 2021-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error
 
 '''
@@ -16,11 +16,11 @@ Test the following RPC:
 '''
 
 
-class RPCVerifyChainLockTest(DashTestFramework):
+class RPCVerifyChainLockTest(BabaChainTestFramework):
     def set_test_params(self):
         # -whitelist is needed to avoid the trickling logic on node0
-        self.set_dash_test_params(5, 3, [["-whitelist=127.0.0.1"], [], [], [], []])
-        self.set_dash_llmq_test_params(3, 2)
+        self.set_babachain_test_params(5, 3, [["-whitelist=127.0.0.1"], [], [], [], []])
+        self.set_babachain_llmq_test_params(3, 2)
 
     def cl_helper(self, height, chainlock, mempool):
         return {'height': height, 'chainlock': chainlock, 'mempool': mempool}

@@ -6,7 +6,7 @@ FROM ./ci/ci.Dockerfile
 # just started configuring this image, give us root access
 USER root
 
-# Make development environment more standalone, allow running Dash Qt
+# Make development environment more standalone, allow running BabaChain Qt
 RUN set -ex; \
     apt-get update && apt-get install ${APT_ARGS} \
     apt-cacher-ng \
@@ -40,17 +40,17 @@ RUN set -ex; \
 # unconditionally returns 0
 #
 RUN groupadd docker && \
-    usermod -aG sudo dash && \
+    usermod -aG sudo babachain && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers; \
-    mkdir -p /home/dash/.config/gdb; \
-    echo "add-auto-load-safe-path /usr/lib/llvm-${LLVM_VERSION}/lib" | tee /home/dash/.config/gdb/gdbinit; \
-    chown ${USER_ID}:${GROUP_ID} -R /home/dash
+    mkdir -p /home/babachain/.config/gdb; \
+    echo "add-auto-load-safe-path /usr/lib/llvm-${LLVM_VERSION}/lib" | tee /home/babachain/.config/gdb/gdbinit; \
+    chown ${USER_ID}:${GROUP_ID} -R /home/babachain
 
 # Disable noninteractive mode
 ENV DEBIAN_FRONTEND="dialog"
 
-# Expose Dash P2P and RPC ports for main network and test networks
+# Expose BabaChain P2P and RPC ports for main network and test networks
 EXPOSE 9998 9999 19998 19999
 
 # We're done, switch back to non-privileged user
-USER dash
+USER babachain

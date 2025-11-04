@@ -35,7 +35,7 @@ jobs:
         id: setup
         run: |
           BUILD_TARGET="${{ inputs.build-target }}"
-          source ./ci/dash/matrix.sh
+          source ./ci/babachain/matrix.sh
           echo "DEP_OPTS=${DEP_OPTS}" >> "${GITHUB_OUTPUT}"
           echo "HOST=${HOST}" >> "${GITHUB_OUTPUT}"
           DEP_HASH="$(echo -n "${BUILD_TARGET}" "${DEP_OPTS}" "${HOST}" | sha256sum | head -c 64)"

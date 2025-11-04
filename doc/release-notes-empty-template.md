@@ -2,7 +2,7 @@
 [/doc/developer-notes.md#release-notes](/doc/developer-notes.md#release-notes)
 for the process.*
 
-# Dash Core version *version*
+# BabaChain Core version *version*
 ===============================
 
 This is a new minor version release, bringing various bugfixes and performance improvements.
@@ -10,7 +10,7 @@ This release is **optional** for all nodes, although recommended.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/dashpay/dash/issues>
+  <https://github.com/babachainpay/babachain/issues>
 
 
 # Upgrading and downgrading
@@ -19,8 +19,8 @@ Please report bugs using the issue tracker at GitHub:
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/Dash-Qt` (on Mac) or
-`dashd`/`dash-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/BabaChain-Qt` (on Mac) or
+`babachaind`/`babachain-qt` (on Linux).
 
 ## Downgrade warning
 
@@ -97,4 +97,4 @@ These releases are considered obsolete. Old release notes can be found here:
 -
 -
 
-[set-of-changes]: https://github.com/dashpay/dash/compare/*version*...dashpay:*version*
+[set-of-changes]: https://github.com/babachainpay/babachain/compare/*version*...babachainpay:*version*

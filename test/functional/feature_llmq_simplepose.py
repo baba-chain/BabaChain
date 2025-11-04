@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2025 The Dash Core developers
+# Copyright (c) 2015-2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@ import time
 
 from test_framework.masternodes import check_banned, check_punished
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo,
 )
 from test_framework.util import assert_equal, force_finish_mnsync
@@ -22,12 +22,12 @@ from test_framework.util import assert_equal, force_finish_mnsync
 # See version.h
 MIN_MASTERNODE_PROTO_VERSION = 70238
 
-class LLMQSimplePoSeTest(DashTestFramework):
+class LLMQSimplePoSeTest(BabaChainTestFramework):
     def set_test_params(self):
         # rotating quorums add instability for this functional tests
         self.extra_args = [[ '-testactivationheight=dip0024@9999' ]] * 6
-        self.set_dash_test_params(6, 5)
-        self.set_dash_llmq_test_params(5, 3)
+        self.set_babachain_test_params(6, 5)
+        self.set_babachain_llmq_test_params(5, 3)
         self.delay_v20_and_mn_rr(height=9999)
 
     def add_options(self, parser):

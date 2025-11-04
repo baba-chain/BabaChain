@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2024 The Dash Core developers
+# Copyright (c) 2015-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,17 +13,17 @@ Checks LLMQs signing sessions
 from test_framework.messages import CSigShare, msg_qsigshare, uint256_to_string
 from test_framework.p2p import P2PInterface
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo,
 )
 from test_framework.util import assert_equal, assert_raises_rpc_error, force_finish_mnsync
 
 
 q_type=100
-class LLMQSigningTest(DashTestFramework):
+class LLMQSigningTest(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(6, 5)
-        self.set_dash_llmq_test_params(5, 3)
+        self.set_babachain_test_params(6, 5)
+        self.set_babachain_llmq_test_params(5, 3)
 
     def add_options(self, parser):
         parser.add_argument("--spork21", dest="spork21", default=False, action="store_true",

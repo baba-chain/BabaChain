@@ -45,7 +45,7 @@ jobs:
     with:
       context: ./contrib/containers/ci
       file: ./contrib/containers/ci/ci.Dockerfile
-      name: dashcore-ci-runner
+      name: babachaincore-ci-runner
 
   container-slim:
     name: Build slim container
@@ -55,7 +55,7 @@ jobs:
     with:
       context: ./contrib/containers/ci
       file: ./contrib/containers/ci/ci-slim.Dockerfile
-      name: dashcore-ci-slim
+      name: babachaincore-ci-slim
 
   depends-arm-linux:
     name: arm-linux-gnueabihf

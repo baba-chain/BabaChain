@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2025 The Dash Core developers
+# Copyright (c) 2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,14 +11,14 @@ set -eo pipefail
 #          only on nor do they set the requisite build parameters. Make sure you do
 #          that *before* running this script.
 
-cd "${BASE_ROOT_DIR}/build-ci/dashcore-${BUILD_TARGET}/src"
+cd "${BASE_ROOT_DIR}/build-ci/babachaincore-${BUILD_TARGET}/src"
 if ! ( run-clang-tidy -quiet "${MAKEJOBS}" | tee tmp.tidy-out.txt ); then
   grep -C5 "error: " tmp.tidy-out.txt
   echo "^^^ ⚠️ Failure generated from clang-tidy"
   false
 fi
 
-cd "${BASE_ROOT_DIR}/build-ci/dashcore-${BUILD_TARGET}"
+cd "${BASE_ROOT_DIR}/build-ci/babachaincore-${BUILD_TARGET}"
 iwyu_tool.py \
   "src/compat" \
   "src/dbwrapper.cpp" \
@@ -49,6 +49,6 @@ iwyu_tool.py \
   -- -Xiwyu --cxx17ns -Xiwyu --mapping_file="${BASE_ROOT_DIR}/contrib/devtools/iwyu/bitcoin.core.imp" \
   2>&1 | tee "/tmp/iwyu_ci.out"
 
-cd "${BASE_ROOT_DIR}/build-ci/dashcore-${BUILD_TARGET}/src"
+cd "${BASE_ROOT_DIR}/build-ci/babachaincore-${BUILD_TARGET}/src"
 fix_includes.py --nosafe_headers < /tmp/iwyu_ci.out
 git --no-pager diff

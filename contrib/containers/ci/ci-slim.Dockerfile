@@ -83,12 +83,12 @@ RUN uv pip install --system --break-system-packages \
     vulture==2.3
 
 # Install packages relied on by tests
-ARG DASH_HASH_VERSION=1.4.0
+ARG BABACHAIN_HASH_VERSION=1.4.0
 RUN set -ex; \
     cd /tmp; \
-    git clone --depth 1 --no-tags --branch=${DASH_HASH_VERSION} https://github.com/dashpay/dash_hash; \
-    cd dash_hash && uv pip install --system --break-system-packages -r requirements.txt .; \
-    cd .. && rm -rf dash_hash
+    git clone --depth 1 --no-tags --branch=${BABACHAIN_HASH_VERSION} https://github.com/babachainpay/babachain_hash; \
+    cd babachain_hash && uv pip install --system --break-system-packages -r requirements.txt .; \
+    cd .. && rm -rf babachain_hash
 
 # Symlink all Python package executables to /usr/local/bin
 RUN set -ex; \
@@ -123,13 +123,13 @@ RUN set -ex; \
 ARG USER_ID=1000 \
     GROUP_ID=1000
 RUN set -ex; \
-    getent group ${GROUP_ID} || groupmod -g ${GROUP_ID} -n dash ubuntu; \
-    usermod -u ${USER_ID} -md /home/dash -l dash ubuntu; \
-    chown ${USER_ID}:${GROUP_ID} -R /home/dash; \
-    mkdir -p /src/dash && \
+    getent group ${GROUP_ID} || groupmod -g ${GROUP_ID} -n babachain ubuntu; \
+    usermod -u ${USER_ID} -md /home/babachain -l babachain ubuntu; \
+    chown ${USER_ID}:${GROUP_ID} -R /home/babachain; \
+    mkdir -p /src/babachain && \
     chown ${USER_ID}:${GROUP_ID} /src && \
     chown ${USER_ID}:${GROUP_ID} -R /src
 
-WORKDIR /src/dash
+WORKDIR /src/babachain
 
-USER dash
+USER babachain

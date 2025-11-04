@@ -373,7 +373,7 @@ BOOST_AUTO_TEST_CASE(bnb_search_test)
         add_coin(9 * CENT, 2, expected_result);
         add_coin(1 * CENT, 2, expected_result);
         const auto result12 = SelectCoins(*wallet, available_coins, 10 * CENT, coin_control, coin_selection_params_bnb);
-        // NOTE: Dash does not use BnB and therefore, this check will fail
+        // NOTE: BabaChain does not use BnB and therefore, this check will fail
         // BOOST_CHECK(EquivalentResult(expected_result, *result12));
         available_coins.clear();
 
@@ -915,7 +915,7 @@ BOOST_AUTO_TEST_CASE(effective_value_test)
     BOOST_CHECK_EQUAL(output5.GetEffectiveValue(), nValue); // The effective value should be equal to the absolute value if input_bytes is -1
 }
 
-/* --------------------------- Dash-specific tests start here --------------------------- */
+/* --------------------------- BabaChain-specific tests start here --------------------------- */
 BOOST_AUTO_TEST_CASE(minimum_inputs_test)
 {
     std::unique_ptr<CWallet> wallet = std::make_unique<CWallet>(m_node.chain.get(), /*coinjoin_loader=*/nullptr, "", m_args, CreateMockWalletDatabase());

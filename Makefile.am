@@ -17,7 +17,7 @@ endif
 
 if BUILD_BITCOIN_LIBS
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libdashconsensus.pc
+pkgconfig_DATA = libbabachainconsensus.pc
 endif
 
 BITCOIND_BIN=$(top_builddir)/src/$(BITCOIN_DAEMON_NAME)$(EXEEXT)
@@ -165,7 +165,7 @@ LCOV_FILTER_PATTERN = \
 	-p "/usr/include/" \
 	-p "/usr/lib/" \
 	-p "/usr/lib64/" \
-	-p "src/dashbls/" \
+	-p "src/babachainbls/" \
 	-p "src/immer/" \
 	-p "src/leveldb/" \
 	-p "src/crc32c/" \

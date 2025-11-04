@@ -2,7 +2,7 @@
 
 **Updated for OpenBSD [7.1](https://www.openbsd.org/71.html)**
 
-This guide describes how to build dashd, command-line utilities, and GUI on OpenBSD.
+This guide describes how to build babachaind, command-line utilities, and GUI on OpenBSD.
 
 ## Preparation
 
@@ -14,22 +14,22 @@ pkg_add bash git gmake gmp libevent libtool boost
 # Select the newest version of the following packages:
 pkg_add autoconf automake python
 
-git clone https://github.com/dashpay/dash.git
+git clone https://github.com/babachainpay/babachain.git
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.
 
-### 2. Clone Dash Core Repo
-Clone the Dash Core repository to a directory. All build scripts and commands will run from this directory.
+### 2. Clone BabaChain Core Repo
+Clone the BabaChain Core repository to a directory. All build scripts and commands will run from this directory.
 ``` bash
-git clone https://github.com/dashpay/dash.git
+git clone https://github.com/babachainpay/babachain.git
 ```
 
 ### 3. Install Optional Dependencies
 
 #### Wallet Dependencies
 
-It is not necessary to build wallet functionality to run either `dashd` or `dash-qt`.
+It is not necessary to build wallet functionality to run either `babachaind` or `babachain-qt`.
 
 ###### Descriptor Wallet Support
 
@@ -48,25 +48,25 @@ from ports. However you can build it yourself, [using depends](/depends).
 ```bash
 gmake -C depends NO_BOOST=1 NO_LIBEVENT=1 NO_QT=1 NO_SQLITE=1 NO_NATPMP=1 NO_UPNP=1 NO_ZMQ=1 NO_USDT=1
 ...
-to: /path/to/dash/depends/x86_64-unknown-openbsd
+to: /path/to/babachain/depends/x86_64-unknown-openbsd
 ```
 
 Then set `BDB_PREFIX`:
 
 ```bash
-export BDB_PREFIX="/path/to/dash/depends/x86_64-unknown-openbsd"
+export BDB_PREFIX="/path/to/babachain/depends/x86_64-unknown-openbsd"
 ```
 
 #### GUI Dependencies
 ###### Qt5
 
-Dash Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, Qt 5 is required.
+BabaChain Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, Qt 5 is required.
 
 ```bash
 pkg_add qt5
 ```
 
-## Building Dash Core
+## Building BabaChain Core
 
 **Important**: Use `gmake` (the non-GNU `make` will exit with an error).
 
@@ -86,7 +86,7 @@ Note that external signer support is currently not available on OpenBSD, since
 the used header-only library Boost.Process fails to compile (certain system
 calls and preprocessor defines like `waitid()` and `WEXITED` are missing).
 
-There are many ways to configure Dash Core, here are a few common examples:
+There are many ways to configure BabaChain Core, here are a few common examples:
 
 ##### Descriptor Wallet and GUI:
 This enables the GUI and descriptor wallet support, assuming `sqlite` and `qt5` are installed.

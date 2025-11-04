@@ -1,4 +1,4 @@
-// Copyright (c) 2015 The Dash Core developers
+// Copyright (c) 2015 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

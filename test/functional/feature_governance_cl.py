@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2024 The Dash Core developers
+# Copyright (c) 2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Tests governance checks can be skipped for blocks covered by the best chainlock."""
@@ -9,12 +9,12 @@ import time
 
 from test_framework.governance import have_trigger_for_height
 from test_framework.messages import uint256_to_string
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import assert_equal, satoshi_round
 
-class DashGovernanceTest (DashTestFramework):
+class BabaChainGovernanceTest (BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(6, 5, [["-budgetparams=10:10:10"]] * 6)
+        self.set_babachain_test_params(6, 5, [["-budgetparams=10:10:10"]] * 6)
 
     def prepare_object(self, object_type, parent_hash, creation_time, revision, name, amount, payment_address):
         proposal_rev = revision
@@ -26,7 +26,7 @@ class DashGovernanceTest (DashTestFramework):
             "end_epoch": proposal_time + 20 * 156,
             "payment_amount": float(amount),
             "payment_address": payment_address,
-            "url": "https://dash.org"
+            "url": "https://babachain.org"
         }
         proposal_hex = ''.join(format(x, '02x') for x in json.dumps(proposal_template).encode())
         collateral_hash = self.nodes[0].gobject("prepare", parent_hash, proposal_rev, proposal_time, proposal_hex)
@@ -153,4 +153,4 @@ class DashGovernanceTest (DashTestFramework):
 
 
 if __name__ == '__main__':
-    DashGovernanceTest().main()
+    BabaChainGovernanceTest().main()

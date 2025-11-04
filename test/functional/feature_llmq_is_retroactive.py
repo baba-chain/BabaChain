@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2024 The Dash Core developers
+# Copyright (c) 2015-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,14 +15,14 @@ and by having a higher relay fee on node 4.
 
 import time
 
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import set_node_times
 
 
-class LLMQ_IS_RetroactiveSigning(DashTestFramework):
+class LLMQ_IS_RetroactiveSigning(BabaChainTestFramework):
     def set_test_params(self):
         # -whitelist is needed to avoid the trickling logic on node0
-        self.set_dash_test_params(5, 4, [["-whitelist=127.0.0.1"], [], [], [], ["-minrelaytxfee=0.001"]])
+        self.set_babachain_test_params(5, 4, [["-whitelist=127.0.0.1"], [], [], [], ["-minrelaytxfee=0.001"]])
 
     def assert_no_instantlock(self, txid, node):
         self.log.info(f"Expecting no InstantLock for {txid}")

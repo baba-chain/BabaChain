@@ -120,7 +120,7 @@ public Q_SLOTS:
     /** Show progress dialog e.g. for rescan */
     void showProgress(const QString &title, int nProgress);
 
-    /** Update selected DASH amount from transactionview */
+    /** Update selected BABACHAIN amount from transactionview */
     void trxAmount(QString amount);
 Q_SIGNALS:
     void setPrivacy(bool privacy);

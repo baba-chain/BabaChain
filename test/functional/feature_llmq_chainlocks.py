@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2025 The Dash Core developers
+# Copyright (c) 2015-2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,14 +13,14 @@ Checks LLMQs based ChainLocks
 from io import BytesIO
 
 from test_framework.messages import CBlock, CCbTx
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error, force_finish_mnsync
 
 import time
 
-class LLMQChainLocksTest(DashTestFramework):
+class LLMQChainLocksTest(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(5, 4)
+        self.set_babachain_test_params(5, 4)
         self.delay_v20_and_mn_rr(height=200)
 
     def sleep_and_assert_no_cl(self, block_hash, sleep_time=5):

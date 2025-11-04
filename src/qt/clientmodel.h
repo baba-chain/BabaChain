@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2021 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Dash Core developers
+// Copyright (c) 2014-2025 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -50,7 +50,7 @@ enum NumConnections {
 class CDeterministicMNList;
 class CGovernanceObject;
 
-/** Model for Dash network client. */
+/** Model for BabaChain network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT

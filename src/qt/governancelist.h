@@ -1,4 +1,4 @@
-// Copyright (c) 2021-2024 The Dash Core developers
+// Copyright (c) 2021-2024 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -119,7 +119,7 @@ class ProposalModel : public QAbstractTableModel
 private:
     QList<const Proposal*> m_data;
     int nAbsVoteReq = 0;
-    BitcoinUnit m_display_unit{BitcoinUnit::DASH};
+    BitcoinUnit m_display_unit{BitcoinUnit::BABACHAIN};
 
 public:
     explicit ProposalModel(QObject* parent = nullptr) :

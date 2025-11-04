@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022-2024 The Dash Core developers
+# Copyright (c) 2022-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,8 +32,8 @@ except ImportError:
     sys.exit(1)
 
 def get_pr_json(pr_num):
-    # Get repository from environment or default to dashpay/dash
-    repo = os.environ.get('GITHUB_REPOSITORY', 'dashpay/dash')
+    # Get repository from environment or default to babachainpay/babachain
+    repo = os.environ.get('GITHUB_REPOSITORY', 'babachainpay/babachain')
 
     try:
         response = requests.get(f'https://api.github.com/repos/{repo}/pulls/{pr_num}')
@@ -137,7 +137,7 @@ def main():
             continue
 
         # Get repository from environment
-        repo = os.environ.get('GITHUB_REPOSITORY', 'dashpay/dash')
+        repo = os.environ.get('GITHUB_REPOSITORY', 'babachainpay/babachain')
         merge_check_url = f'https://github.com/{repo}/branches/pre_mergeable/{our_pr_label}...{conflict_pr_label}'
 
         try:

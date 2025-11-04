@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2024 The Dash Core developers
+# Copyright (c) 2015-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@ import struct
 from test_framework.blocktools import create_block_with_mnpayments
 from test_framework.messages import CInv, hash256, msg_clsig, msg_inv, ser_string, tx_from_hex, uint256_from_str
 from test_framework.p2p import P2PInterface
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error
 
 
@@ -47,10 +47,10 @@ class TestP2PConn(P2PInterface):
                 self.send_message(self.islocks[inv.hash])
 
 
-class LLMQ_IS_CL_Conflicts(DashTestFramework):
+class LLMQ_IS_CL_Conflicts(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(5, 4)
-        self.set_dash_llmq_test_params(4, 4)
+        self.set_babachain_test_params(5, 4)
+        self.set_babachain_llmq_test_params(4, 4)
         self.delay_v20_and_mn_rr(2000)
         self.supports_cli = False
 

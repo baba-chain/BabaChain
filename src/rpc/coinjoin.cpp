@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2024 The Dash Core developers
+// Copyright (c) 2019-2024 The BabaChain Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -505,16 +505,16 @@ static RPCHelpMan getcoinjoininfo()
 Span<const CRPCCommand> GetWalletCoinJoinRPCCommands()
 {
     static const CRPCCommand commands[]{
-        {"dash", &coinjoin},
-        {"dash", &coinjoin_reset},
-        {"dash", &coinjoin_start},
-        {"dash", &coinjoin_status},
-        {"dash", &coinjoin_stop},
-        {"dash", &coinjoinsalt},
-        {"dash", &coinjoinsalt_generate},
-        {"dash", &coinjoinsalt_get},
-        {"dash", &coinjoinsalt_set},
-        {"dash", &getcoinjoininfo},
+        {"babachain", &coinjoin},
+        {"babachain", &coinjoin_reset},
+        {"babachain", &coinjoin_start},
+        {"babachain", &coinjoin_status},
+        {"babachain", &coinjoin_stop},
+        {"babachain", &coinjoinsalt},
+        {"babachain", &coinjoinsalt_generate},
+        {"babachain", &coinjoinsalt_get},
+        {"babachain", &coinjoinsalt_set},
+        {"babachain", &getcoinjoininfo},
     };
     return commands;
 }
@@ -523,7 +523,7 @@ Span<const CRPCCommand> GetWalletCoinJoinRPCCommands()
 void RegisterCoinJoinRPCCommands(CRPCTable& t)
 {
     static const CRPCCommand commands_wallet[]{
-        {"dash", &getcoinjoininfo},
+        {"babachain", &getcoinjoininfo},
     };
     // If we aren't compiling with wallet support, we still need to register RPCs that are
     // capable of working without wallet support. We have to do this even if wallet support

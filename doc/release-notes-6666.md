@@ -1,7 +1,7 @@
 Notable Changes
 ---------------
 
-* Dash Core has added support for the ability to register multiple addr:port pairs to a masternode and for specifying
+* BabaChain Core has added support for the ability to register multiple addr:port pairs to a masternode and for specifying
   distinct addresses for platform P2P and platform HTTPS endpoints. The consensus and format changes needed to enable
   this capability is referred to as "extended addresses" and is enabled by the deployment of the v24 fork, affecting
   new masternode registrations and service updates to basic BLS masternodes.
@@ -10,7 +10,7 @@ Notable Changes
 Additional Notes
 ----------------
 
-* While the field `service` is deprecated (see dash#6665), its effective value can be obtained by querying
+* While the field `service` is deprecated (see babachain#6665), its effective value can be obtained by querying
   `addresses['core_p2p'][0]`.
 
 * If the masternode is eligible for extended addresses, operators may register non-IPv4 addresses, subject to validation
@@ -50,7 +50,7 @@ Updated RPCs
 
 * `protx register{,_evo}` and `register_fund{,_evo}` will continue to allow specifying only the port number for `platformP2PAddrs`
   and `platformHTTPSAddrs`, pairing it with the address from the first `coreP2PAddrs` entry. This mirrors existing behavior.
-  * This method of entry may not be available in future releases of Dash Core and operators are recommended to switch over to
+  * This method of entry may not be available in future releases of BabaChain Core and operators are recommended to switch over to
     explicitly specifying (arrays of) addr:port strings for all address fields.
 
 * When reporting on extended address payloads, `platformP2PPort` and `platformHTTPPort` will read the port value from

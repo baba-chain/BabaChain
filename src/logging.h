@@ -68,7 +68,7 @@ namespace BCLog {
         BLOCKSTORE  = (1 << 26),
         TXRECONCILIATION = (1 << 27),
 
-        //Start Dash
+        //Start BabaChain
         CHAINLOCKS  = ((uint64_t)1 << 32),
         GOBJECT     = ((uint64_t)1 << 33),
         INSTANTSEND = ((uint64_t)1 << 34),
@@ -82,13 +82,14 @@ namespace BCLog {
         NETCONN     = ((uint64_t)1 << 43),
         EHF         = ((uint64_t)1 << 44),
         CREDITPOOL  = ((uint64_t)1 << 45),
+        POS         = ((uint64_t)1 << 46),
 
-        DASH        = CHAINLOCKS | GOBJECT | INSTANTSEND | LLMQ | LLMQ_DKG
+        BABACHAIN        = CHAINLOCKS | GOBJECT | INSTANTSEND | LLMQ | LLMQ_DKG
                     | LLMQ_SIGS | MNPAYMENTS | MNSYNC | COINJOIN | SPORK | NETCONN
-                    | EHF | CREDITPOOL,
+                    | EHF | CREDITPOOL | POS,
 
         NET_NETCONN = NET | NETCONN, // use this to have something logged in NET and NETCONN as well
-        //End Dash
+        //End BabaChain
 
         ALL         = ~(uint64_t)0,
     };

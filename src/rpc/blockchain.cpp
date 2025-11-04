@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2022 The Bitcoin Core developers
-// Copyright (c) 2014-2025 The Dash Core developers
+// Copyright (c) 2014-2025 The BabaChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -902,7 +902,7 @@ const RPCResult getblock_vin{
                     {RPCResult::Type::STR, "asm", "Disassembly of the public key script"},
                     {RPCResult::Type::STR, "desc", "Inferred descriptor for the output"},
                     {RPCResult::Type::STR_HEX, "hex", "The raw public key script bytes, hex-encoded"},
-                    {RPCResult::Type::STR, "address", /*optional=*/true, "The Dash address (only if a well-defined address exists)"},
+                    {RPCResult::Type::STR, "address", /*optional=*/true, "The BabaChain address (only if a well-defined address exists)"},
                     {RPCResult::Type::STR, "type", "The type, eg 'pubkeyhash'"},
                 }},
             }},
@@ -1271,7 +1271,7 @@ static RPCHelpMan gettxout()
                         {RPCResult::Type::STR, "desc", "Inferred descriptor for the output"},
                         {RPCResult::Type::STR_HEX, "hex", "The raw public key script bytes, hex-encoded"},
                         {RPCResult::Type::STR_HEX, "type", "The type, eg pubkeyhash"},
-                        {RPCResult::Type::STR, "address", /*optional=*/ true, "Dash address (only if a well-defined address exists)"},
+                        {RPCResult::Type::STR, "address", /*optional=*/ true, "BabaChain address (only if a well-defined address exists)"},
                     }},
                 {RPCResult::Type::BOOL, "coinbase", "Coinbase or not"},
             }},

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021-2024 The Dash Core developers
+# Copyright (c) 2021-2024 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from test_framework.messages import hash256
 from test_framework.p2p import P2PInterface
 from test_framework.test_framework import (
-    DashTestFramework,
+    BabaChainTestFramework,
     MasternodeInfo,
 )
 from test_framework.util import assert_equal, assert_raises_rpc_error
@@ -18,9 +18,9 @@ Tests mnauth RPC command
 '''
 
 
-class FakeMNAUTHTest(DashTestFramework):
+class FakeMNAUTHTest(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(2, 1)
+        self.set_babachain_test_params(2, 1)
 
     def run_test(self):
         masternode: MasternodeInfo = self.mninfo[0]

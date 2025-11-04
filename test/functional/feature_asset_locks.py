@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2022-2025 The Dash Core developers
+# Copyright (c) 2022-2025 The BabaChain Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,7 +35,7 @@ from test_framework.script_util import (
     key_to_p2pk_script,
     key_to_p2pkh_script,
 )
-from test_framework.test_framework import DashTestFramework
+from test_framework.test_framework import BabaChainTestFramework
 from test_framework.util import (
     assert_equal,
     assert_greater_than,
@@ -49,9 +49,9 @@ tiny_amount = int(Decimal("0.0007") * COIN)
 blocks_in_one_day = 100
 HEIGHT_DIFF_EXPIRING = 48
 
-class AssetLocksTest(DashTestFramework):
+class AssetLocksTest(BabaChainTestFramework):
     def set_test_params(self):
-        self.set_dash_test_params(2, 0, [[
+        self.set_babachain_test_params(2, 0, [[
                 "-whitelist=127.0.0.1",
                 "-llmqtestinstantsenddip0024=llmq_test_instantsend",
         ]] * 2, evo_count=2)
@@ -238,7 +238,7 @@ class AssetLocksTest(DashTestFramework):
 
     # This functional test intentionally setup only 2 MN and only 2 Evo nodes
     # to ensure that corner case of quorum with minimum amount of nodes as possible
-    # does not cause any issues in Dash Core
+    # does not cause any issues in BabaChain Core
     def mine_quorum_2_nodes(self):
         self.mine_quorum(llmq_type_name='llmq_test_platform', expected_members=2, expected_connections=1, expected_contributions=2, expected_commitments=2, llmq_type=106)
 

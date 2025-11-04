@@ -1,3 +1,3 @@
-# Bootstrappable Dash Core Builds
+# Bootstrappable BabaChain Core Builds
 
 See [contrib/guix/README.md](../contrib/guix/README.md)
