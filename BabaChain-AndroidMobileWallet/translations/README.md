@@ -1,6 +1,6 @@
 # Translation Source Comparison Tool
-This will compare the english source files from the the iOS BabaChain Wallet 
-(stored on Transifex) to the android BabaChain Wallet app (stored locally) 
+This will compare the english source files from the iOS BabaChain Wallet 
+(stored on Transifex) to the Android BabaChain Wallet app (stored locally) 
 and generate a report.
 
 # Prerequisites
