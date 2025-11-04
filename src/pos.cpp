@@ -8,6 +8,32 @@
 #include <consensus/consensus.h>
 #include <util/moneystr.h>
 #include <logging.h>
+#include <streams.h>
+#include <util/time.h>
+
+std::string CStakeTransactionPayload::ToString() const
+{
+    return strprintf("CStakeTransactionPayload(nStakeAmount=%s, stakePubKey=%s, nLockTime=%d)",
+                    FormatMoney(nStakeAmount), stakePubKey.ToString(), nLockTime);
+}
+
+std::string CUnstakeTransactionPayload::ToString() const
+{
+    return strprintf("CUnstakeTransactionPayload(stakeOutpoint=%s, stakePubKey=%s)",
+                    stakeOutpoint.ToString(), stakePubKey.ToString());
+}
+
+std::string CValidatorRegistrationPayload::ToString() const
+{
+    return strprintf("CValidatorRegistrationPayload(validatorPubKey=%s, nStakeAmount=%s, strDescription=%s)",
+                    validatorPubKey.ToString(), FormatMoney(nStakeAmount), strDescription);
+}
+
+std::string CStakeLock::ToString() const
+{
+    return strprintf("CStakeLock(outpoint=%s, nLockTime=%d, nAmount=%s, ownerPubKey=%s)",
+                    outpoint.ToString(), nLockTime, FormatMoney(nAmount), ownerPubKey.ToString());
+}
 
 /**
  * Calculate staking reward based on stake amount and duration
@@ -136,6 +162,9 @@ CAmount GetRemainingStakingSupply(int nHeight, const Consensus::Params& consensu
     return consensusParams.nStakingSupply - distributedRewards;
 }
 
+// Global stake lock registry (in production, this would be in a database)
+static std::map<COutPoint, CStakeLock> mapStakeLocks;
+
 /**
  * Validate staking transaction
  */
@@ -143,12 +172,514 @@ bool ValidateStakingTransaction(const CTransaction& tx, const Consensus::Params&
 {
     // Basic validation checks
     if (tx.vin.empty() || tx.vout.empty()) {
+        LogPrintf("ValidateStakingTransaction: Transaction has no inputs or outputs\n");
         return false;
     }
     
-    // Check for staking-specific transaction markers
-    // This is a placeholder - actual implementation would check for
-    // specific transaction types and validation rules
+    // Check transaction type and validate accordingly
+    if (tx.nType == TRANSACTION_STAKE) {
+        if (tx.vExtraPayload.empty()) {
+            LogPrintf("ValidateStakingTransaction: Stake transaction missing payload\n");
+            return false;
+        }
+        
+        CStakeTransactionPayload payload;
+        try {
+            CDataStream ds(tx.vExtraPayload, SER_NETWORK, PROTOCOL_VERSION);
+            ds >> payload;
+        } catch (const std::exception& e) {
+            LogPrintf("ValidateStakingTransaction: Failed to deserialize stake payload: %s\n", e.what());
+            return false;
+        }
+        
+        return ValidateStakeTransaction(tx, payload, consensusParams);
+    }
+    else if (tx.nType == TRANSACTION_UNSTAKE) {
+        if (tx.vExtraPayload.empty()) {
+            LogPrintf("ValidateStakingTransaction: Unstake transaction missing payload\n");
+            return false;
+        }
+        
+        CUnstakeTransactionPayload payload;
+        try {
+            CDataStream ds(tx.vExtraPayload, SER_NETWORK, PROTOCOL_VERSION);
+            ds >> payload;
+        } catch (const std::exception& e) {
+            LogPrintf("ValidateStakingTransaction: Failed to deserialize unstake payload: %s\n", e.what());
+            return false;
+        }
+        
+        return ValidateUnstakeTransaction(tx, payload, consensusParams);
+    }
+    else if (tx.nType == TRANSACTION_VALIDATOR_REGISTER) {
+        if (tx.vExtraPayload.empty()) {
+            LogPrintf("ValidateStakingTransaction: Validator registration missing payload\n");
+            return false;
+        }
+        
+        CValidatorRegistrationPayload payload;
+        try {
+            CDataStream ds(tx.vExtraPayload, SER_NETWORK, PROTOCOL_VERSION);
+            ds >> payload;
+        } catch (const std::exception& e) {
+            LogPrintf("ValidateStakingTransaction: Failed to deserialize validator registration payload: %s\n", e.what());
+            return false;
+        }
+        
+        return ValidateValidatorRegistration(tx, payload, consensusParams);
+    }
     
     return true;
+}
+
+/**
+ * Validate stake transaction payload
+ */
+bool ValidateStakeTransaction(const CTransaction& tx, const CStakeTransactionPayload& payload, const Consensus::Params& consensusParams)
+{
+    // Check minimum stake amount
+    if (payload.nStakeAmount < consensusParams.nMinStakeAmount) {
+        LogPrintf("ValidateStakeTransaction: Stake amount %s below minimum %s\n", 
+                 FormatMoney(payload.nStakeAmount), FormatMoney(consensusParams.nMinStakeAmount));
+        return false;
+    }
+    
+    // Check lock time is within acceptable range
+    if (payload.nLockTime < consensusParams.nStakeMinAge) {
+        LogPrintf("ValidateStakeTransaction: Lock time %d below minimum %d\n", 
+                 payload.nLockTime, consensusParams.nStakeMinAge);
+        return false;
+    }
+    
+    if (payload.nLockTime > consensusParams.nStakeMaxAge) {
+        LogPrintf("ValidateStakeTransaction: Lock time %d above maximum %d\n", 
+                 payload.nLockTime, consensusParams.nStakeMaxAge);
+        return false;
+    }
+    
+    // Validate public key
+    if (!payload.stakePubKey.IsValid()) {
+        LogPrintf("ValidateStakeTransaction: Invalid stake public key\n");
+        return false;
+    }
+    
+    // Check that transaction output matches stake amount
+    CAmount totalOutput = 0;
+    for (const auto& vout : tx.vout) {
+        totalOutput += vout.nValue;
+    }
+    
+    if (totalOutput != payload.nStakeAmount) {
+        LogPrintf("ValidateStakeTransaction: Output amount %s doesn't match stake amount %s\n", 
+                 FormatMoney(totalOutput), FormatMoney(payload.nStakeAmount));
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * Validate unstake transaction payload
+ */
+bool ValidateUnstakeTransaction(const CTransaction& tx, const CUnstakeTransactionPayload& payload, const Consensus::Params& consensusParams)
+{
+    // Check if the referenced stake exists and is locked
+    CStakeLock stakeLock;
+    if (!GetStakeLock(payload.stakeOutpoint, stakeLock)) {
+        LogPrintf("ValidateUnstakeTransaction: No stake lock found for outpoint %s\n", 
+                 payload.stakeOutpoint.ToString());
+        return false;
+    }
+    
+    // Check if stake lock has expired
+    int64_t nCurrentTime = GetTime();
+    if (!stakeLock.IsExpired(nCurrentTime)) {
+        LogPrintf("ValidateUnstakeTransaction: Stake lock not yet expired (expires at %d, current time %d)\n", 
+                 stakeLock.nLockTime, nCurrentTime);
+        return false;
+    }
+    
+    // Validate that the public key matches the stake owner
+    if (stakeLock.ownerPubKey != payload.stakePubKey) {
+        LogPrintf("ValidateUnstakeTransaction: Public key mismatch\n");
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * Validate validator registration transaction payload
+ */
+bool ValidateValidatorRegistration(const CTransaction& tx, const CValidatorRegistrationPayload& payload, const Consensus::Params& consensusParams)
+{
+    // Check minimum stake amount for validators
+    if (payload.nStakeAmount < consensusParams.nMinStakeAmount * 10) { // Validators need 10x minimum stake
+        LogPrintf("ValidateValidatorRegistration: Validator stake amount %s below minimum %s\n", 
+                 FormatMoney(payload.nStakeAmount), FormatMoney(consensusParams.nMinStakeAmount * 10));
+        return false;
+    }
+    
+    // Validate public key
+    if (!payload.validatorPubKey.IsValid()) {
+        LogPrintf("ValidateValidatorRegistration: Invalid validator public key\n");
+        return false;
+    }
+    
+    // Check if validator is already registered
+    if (IsValidatorRegistered(payload.validatorPubKey)) {
+        LogPrintf("ValidateValidatorRegistration: Validator %s already registered\n", 
+                 payload.validatorPubKey.ToString());
+        return false;
+    }
+    
+    // Validate reward script
+    if (payload.rewardScript.empty()) {
+        LogPrintf("ValidateValidatorRegistration: Empty reward script\n");
+        return false;
+    }
+    
+    // Check description length (optional field)
+    if (payload.strDescription.length() > 256) {
+        LogPrintf("ValidateValidatorRegistration: Description too long (%d > 256)\n", 
+                 payload.strDescription.length());
+        return false;
+    }
+    
+    // Verify that the transaction has sufficient input value to cover the stake
+    CAmount totalInput = 0;
+    // Note: In a real implementation, we would need to look up the input values
+    // from the UTXO set. For now, we assume this is done elsewhere.
+    
+    CAmount totalOutput = 0;
+    for (const auto& vout : tx.vout) {
+        totalOutput += vout.nValue;
+    }
+    
+    // The stake amount should be locked in the transaction outputs
+    if (totalOutput < payload.nStakeAmount) {
+        LogPrintf("ValidateValidatorRegistration: Insufficient output value %s for stake %s\n", 
+                 FormatMoney(totalOutput), FormatMoney(payload.nStakeAmount));
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * Create a stake lock for a given transaction output
+ */
+bool CreateStakeLock(const COutPoint& outpoint, int64_t nLockDuration, CAmount nAmount, const CPubKey& ownerPubKey)
+{
+    // Check if already locked
+    if (mapStakeLocks.find(outpoint) != mapStakeLocks.end()) {
+        LogPrintf("CreateStakeLock: Output %s already locked\n", outpoint.ToString());
+        return false;
+    }
+    
+    int64_t nLockTime = GetTime() + nLockDuration;
+    CStakeLock stakeLock(outpoint, nLockTime, nAmount, ownerPubKey);
+    
+    mapStakeLocks[outpoint] = stakeLock;
+    
+    LogPrintf("CreateStakeLock: Created stake lock for %s, amount %s, expires at %d\n", 
+             outpoint.ToString(), FormatMoney(nAmount), nLockTime);
+    
+    return true;
+}
+
+/**
+ * Remove a stake lock (when unstaking)
+ */
+bool RemoveStakeLock(const COutPoint& outpoint)
+{
+    auto it = mapStakeLocks.find(outpoint);
+    if (it == mapStakeLocks.end()) {
+        LogPrintf("RemoveStakeLock: No stake lock found for %s\n", outpoint.ToString());
+        return false;
+    }
+    
+    mapStakeLocks.erase(it);
+    
+    LogPrintf("RemoveStakeLock: Removed stake lock for %s\n", outpoint.ToString());
+    
+    return true;
+}
+
+/**
+ * Check if an output is currently stake-locked
+ */
+bool IsStakeLocked(const COutPoint& outpoint, int64_t nCurrentTime)
+{
+    if (nCurrentTime == 0) {
+        nCurrentTime = GetTime();
+    }
+    
+    auto it = mapStakeLocks.find(outpoint);
+    if (it == mapStakeLocks.end()) {
+        return false;
+    }
+    
+    return !it->second.IsExpired(nCurrentTime);
+}
+
+/**
+ * Get stake lock information for an output
+ */
+bool GetStakeLock(const COutPoint& outpoint, CStakeLock& stakeLock)
+{
+    auto it = mapStakeLocks.find(outpoint);
+    if (it == mapStakeLocks.end()) {
+        return false;
+    }
+    
+    stakeLock = it->second;
+    return true;
+}
+
+// Global validator registry (in production, this would be in a database)
+static std::map<CPubKey, CValidator> mapValidators;
+static std::map<CPubKey, bool> mapValidatorStatus; // true = active, false = inactive
+
+/**
+ * Register a new validator
+ */
+bool RegisterValidator(const CPubKey& validatorPubKey, CAmount nStakeAmount, const CScript& rewardScript, const std::string& strDescription)
+{
+    // Check if validator is already registered
+    if (mapValidators.find(validatorPubKey) != mapValidators.end()) {
+        LogPrintf("RegisterValidator: Validator %s already registered\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    // Create validator entry
+    CValidator validator;
+    validator.pubkey = validatorPubKey;
+    validator.nStakeAmount = nStakeAmount;
+    validator.nRegistrationTime = GetTime();
+    validator.fActive = true;
+    
+    // Add to registry
+    mapValidators[validatorPubKey] = validator;
+    mapValidatorStatus[validatorPubKey] = true;
+    
+    LogPrintf("RegisterValidator: Registered validator %s with stake %s\n", 
+             validatorPubKey.ToString(), FormatMoney(nStakeAmount));
+    
+    return true;
+}
+
+/**
+ * Update validator stake amount
+ */
+bool UpdateValidatorStake(const CPubKey& validatorPubKey, CAmount nNewStakeAmount)
+{
+    auto it = mapValidators.find(validatorPubKey);
+    if (it == mapValidators.end()) {
+        LogPrintf("UpdateValidatorStake: Validator %s not found\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    CAmount oldStake = it->second.nStakeAmount;
+    it->second.nStakeAmount = nNewStakeAmount;
+    
+    LogPrintf("UpdateValidatorStake: Updated validator %s stake from %s to %s\n", 
+             validatorPubKey.ToString(), FormatMoney(oldStake), FormatMoney(nNewStakeAmount));
+    
+    return true;
+}
+
+/**
+ * Set validator active/inactive status
+ */
+bool SetValidatorStatus(const CPubKey& validatorPubKey, bool fActive)
+{
+    auto it = mapValidators.find(validatorPubKey);
+    if (it == mapValidators.end()) {
+        LogPrintf("SetValidatorStatus: Validator %s not found\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    it->second.fActive = fActive;
+    mapValidatorStatus[validatorPubKey] = fActive;
+    
+    LogPrintf("SetValidatorStatus: Set validator %s status to %s\n", 
+             validatorPubKey.ToString(), fActive ? "active" : "inactive");
+    
+    return true;
+}
+
+/**
+ * Get validator information
+ */
+bool GetValidator(const CPubKey& validatorPubKey, CValidator& validator)
+{
+    auto it = mapValidators.find(validatorPubKey);
+    if (it == mapValidators.end()) {
+        return false;
+    }
+    
+    validator = it->second;
+    return true;
+}
+
+/**
+ * Check if validator is registered
+ */
+bool IsValidatorRegistered(const CPubKey& validatorPubKey)
+{
+    return mapValidators.find(validatorPubKey) != mapValidators.end();
+}
+
+/**
+ * Check if validator is active
+ */
+bool IsValidatorActive(const CPubKey& validatorPubKey)
+{
+    auto it = mapValidatorStatus.find(validatorPubKey);
+    if (it == mapValidatorStatus.end()) {
+        return false;
+    }
+    
+    return it->second;
+}
+
+/**
+ * Get all active validators
+ */
+std::vector<CValidator> GetActiveValidators()
+{
+    std::vector<CValidator> activeValidators;
+    
+    for (const auto& pair : mapValidators) {
+        if (pair.second.fActive && IsValidatorActive(pair.first)) {
+            activeValidators.push_back(pair.second);
+        }
+    }
+    
+    return activeValidators;
+}
+
+/**
+ * Get total stake of all active validators
+ */
+CAmount GetTotalActiveStake()
+{
+    CAmount totalStake = 0;
+    
+    for (const auto& pair : mapValidators) {
+        if (pair.second.fActive && IsValidatorActive(pair.first)) {
+            totalStake += pair.second.nStakeAmount;
+        }
+    }
+    
+    return totalStake;
+}
+
+/**
+ * Remove validator from registry (for slashing or voluntary exit)
+ */
+bool RemoveValidator(const CPubKey& validatorPubKey)
+{
+    auto it = mapValidators.find(validatorPubKey);
+    if (it == mapValidators.end()) {
+        LogPrintf("RemoveValidator: Validator %s not found\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    mapValidators.erase(it);
+    mapValidatorStatus.erase(validatorPubKey);
+    
+    LogPrintf("RemoveValidator: Removed validator %s from registry\n", validatorPubKey.ToString());
+    
+    return true;
+}
+
+/**
+ * Get validator count
+ */
+size_t GetValidatorCount()
+{
+    return mapValidators.size();
+}
+
+/**
+ * Get active validator count
+ */
+size_t GetActiveValidatorCount()
+{
+    size_t count = 0;
+    
+    for (const auto& pair : mapValidators) {
+        if (pair.second.fActive && IsValidatorActive(pair.first)) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
+/**
+ * Process validator registration transaction (called during block processing)
+ */
+bool ProcessValidatorRegistration(const CTransaction& tx, const CValidatorRegistrationPayload& payload)
+{
+    // Validation should have been done already, but double-check
+    if (IsValidatorRegistered(payload.validatorPubKey)) {
+        LogPrintf("ProcessValidatorRegistration: Validator %s already registered\n", 
+                 payload.validatorPubKey.ToString());
+        return false;
+    }
+    
+    // Register the validator
+    bool success = RegisterValidator(payload.validatorPubKey, payload.nStakeAmount, 
+                                   payload.rewardScript, payload.strDescription);
+    
+    if (success) {
+        LogPrintf("ProcessValidatorRegistration: Successfully registered validator %s with stake %s\n", 
+                 payload.validatorPubKey.ToString(), FormatMoney(payload.nStakeAmount));
+    }
+    
+    return success;
+}
+
+/**
+ * Process stake transaction (called during block processing)
+ */
+bool ProcessStakeTransaction(const CTransaction& tx, const CStakeTransactionPayload& payload)
+{
+    // Create stake lock for the first output (assuming it contains the staked amount)
+    if (tx.vout.empty()) {
+        LogPrintf("ProcessStakeTransaction: No outputs in stake transaction\n");
+        return false;
+    }
+    
+    // Create outpoint for the first output
+    COutPoint stakeOutpoint(tx.GetHash(), 0);
+    
+    // Create stake lock
+    bool success = CreateStakeLock(stakeOutpoint, payload.nLockTime, payload.nStakeAmount, payload.stakePubKey);
+    
+    if (success) {
+        LogPrintf("ProcessStakeTransaction: Created stake lock for %s, amount %s, duration %d seconds\n", 
+                 stakeOutpoint.ToString(), FormatMoney(payload.nStakeAmount), payload.nLockTime);
+    }
+    
+    return success;
+}
+
+/**
+ * Process unstake transaction (called during block processing)
+ */
+bool ProcessUnstakeTransaction(const CTransaction& tx, const CUnstakeTransactionPayload& payload)
+{
+    // Remove the stake lock
+    bool success = RemoveStakeLock(payload.stakeOutpoint);
+    
+    if (success) {
+        LogPrintf("ProcessUnstakeTransaction: Removed stake lock for %s\n", 
+                 payload.stakeOutpoint.ToString());
+    }
+    
+    return success;
 }

@@ -188,11 +188,6 @@ struct Params {
     int64_t nStakeTimestampMask{15};                // Timestamp mask for stake modifier
     CAmount nStakeRewardPerBlock{10 * COIN};        // Base staking reward per block (10 coins)
 
-    /** Supply management parameters */
-    CAmount nMaxSupply{210000000 * COIN};           // Maximum total supply (210M coins)
-    CAmount nPremineAmount{50000000 * COIN};        // Premine amount (50M coins)
-    CAmount nStakingRewardPool{160000000 * COIN};   // Remaining coins for staking rewards (160M coins)
-
     /** these parameters are only used on devnet and can be configured from the outside */
     int nMinimumDifficultyBlocks{0};
     int nHighSubsidyBlocks{0};
