@@ -13,31 +13,28 @@ BabaChain is a modern cryptocurrency built from the ground up with Proof-of-Stak
 
 - **⚡ Proof-of-Stake Consensus** - Energy efficient, fast, and secure
 - **🎯 Fair Distribution** - Only 10% premine, 90% for community rewards  
-- **📈 Progressive Economics** - Predictable reward reduction system
-- **🔒 Secure Staking** - Minimum 1,000 BabaChain stake requirement
+- **📈 Gradual Bonus System** - Smooth reward progression based on stake size
+- **🔒 Secure Staking** - Any amount can stake (even 1 BabaChain!)
 - **⏱️ Fast Blocks** - 2.5 minute average block time
 - **🌱 Sustainable** - Designed for long-term network health
 
-## 📊 Simple Economics
+## 📊 Economics & Supply
 
 | Parameter | Value |
 |-----------|-------|
-| **Total Supply** | 210,000,000 BabaChain |
-| **Community (Staking)** | 190,000,000 (90.5%) |
-| **Development** | 20,000,000 (9.5%) |
-| **Block Reward** | 200 BabaChain (fixed) |
+| **Initial Supply** | 210,000,000 BabaChain |
+| **Maximum Supply** | 1,000,000,000 BabaChain (hard cap) |
+| **Premine** | 20,000,000 (~10%) |
+| **Initial Staking Pool** | 190,000,000 (~90%) |
+| **Extended Staking Pool** | 790,000,000 (210M to 1B) |
 | **Block Time** | 2.5 minutes |
-| **Daily Rewards** | ~115,200 BabaChain |
+| **Staking ROI** | ~365% annually (1% daily) + gradual bonuses |
 
 ### 💰 How Rewards Work
 
-**Simple Formula**: Your daily rewards = (Your Stake ÷ Total Network Stake) × 115,200 BabaChain + Bonus
+**Simple Formula**: Your daily rewards = Your Stake × 1% + Gradual Bonus
 
-**No Complicated Reductions**: 
-- Block reward stays at 200 BabaChain
-- Your share depends on your stake amount
-- Larger stakes get bonus multipliers
-- Fair and predictable system
+**No Complex Math**: Just earn ~1% of your stake daily, plus bonuses for larger stakes!
 
 ## 📥 Wallet Downloads
 
@@ -95,7 +92,13 @@ See [build-windows.md](doc/build-windows.md) for detailed instructions.
 
 ## 🥩 Solo Staking - No Pools Required!
 
-**BabaChain's Revolutionary Approach**: Unlike traditional cryptocurrencies that require expensive mining equipment or joining mining pools, BabaChain allows anyone to earn rewards directly from their wallet - no pools, no middlemen, no extra fees!
+**Revolutionary Auto-Node System!** 
+- Every wallet automatically becomes a network node
+- No manual setup - just install and run!
+- Your wallet auto-connects to the BabaChain network
+- Automatically participates in block validation and earns rewards
+- The more users join, the stronger and more decentralized the network becomes
+- Earn rewards directly to your wallet - no pool fees, no middlemen!
 
 ### 📱 Available Wallets
 
@@ -106,20 +109,12 @@ See [build-windows.md](doc/build-windows.md) for detailed instructions.
 | **iOS** | 🔄 Coming Soon | Mobile staking, notifications |
 | **Web Wallet** | 📋 Planned | Browser-based, light client |
 
-### 💰 How Solo Staking Works
-
-**No Mining Pools Needed!** 
-- Just run your wallet and connect to the BabaChain network
-- Your wallet automatically participates in block validation
-- Earn rewards directly to your wallet - no pool fees!
-- The more BabaChain you stake, the more rewards you earn
-
-### 🚀 Getting Started
+### � Get ting Started
 
 #### Desktop Staking
 1. **Download** the BabaChain wallet for your OS
 2. **Sync** with the blockchain (first time only)
-3. **Transfer** at least 1,000 BabaChain to your wallet
+3. **Transfer** BabaChain to your wallet (any amount!)
 4. **Wait** 8 hours for coins to mature
 5. **Enable staking** in wallet settings
 6. **Keep wallet online** and start earning!
@@ -131,68 +126,97 @@ See [build-windows.md](doc/build-windows.md) for detailed instructions.
 4. **Earn rewards** 24/7 with background staking
 5. **Get notifications** when you find blocks
 
-### � Howk Much Can You Earn? (Exact Calculations)
+### 💰 How Much Can You Earn? (Gradual Bonus System!)
 
-**🔥 AMAZING RETURNS**: Earn ~1% of your stake DAILY = ~365% yearly ROI + Bonuses!
+**🔥 AMAZING RETURNS**: Earn ~1% of your stake DAILY = ~365% yearly ROI + Gradual Bonuses!
 
 **Daily Reward Examples:**
 
-| Your Stake | Daily Earnings | Monthly Earnings | Yearly Earnings | Bonus Rate | Total ROI |
-|------------|---------------|------------------|-----------------|------------|-----------|
-| **50 BabaChain** | 0.5 | 15 | 182 | 0% | **365%** |
-| **100 BabaChain** | 1 | 30 | 365 | 0% | **365%** |
-| **500 BabaChain** | 5 | 150 | 1,825 | 0% | **365%** |
-| **1,000 BabaChain** | 10 | 300 | 3,650 | 0% | **365%** |
-| **2,500 BabaChain** | 25 | 750 | 9,125 | 0% | **365%** |
-| **5,000 BabaChain** | 50 | 1,500 | 18,250 | 0% | **365%** |
-| **10,000 BabaChain** | 105 | 3,150 | 38,325 | **+5%** | **383%** |
-| **25,000 BabaChain** | 275 | 8,250 | 100,375 | **+10%** | **402%** |
-| **50,000 BabaChain** | 575 | 17,250 | 209,875 | **+15%** | **420%** |
-| **100,000 BabaChain** | 1,200 | 36,000 | 438,000 | **+20%** | **438%** |
+| Your Stake | Base Daily (1%) | Gradual Bonus | Total Daily | Monthly | Yearly | ROI |
+|------------|----------------|---------------|-------------|---------|--------|-----|
+| **100 BabaChain** | 1.0 | +0.05 | 1.05 | 31.5 | 383 | **383%** |
+| **1,000 BabaChain** | 10.0 | +0.5 | 10.5 | 315 | 3,833 | **383%** |
+| **5,000 BabaChain** | 50.0 | +12.5 | 62.5 | 1,875 | 22,813 | **456%** |
+| **10,000 BabaChain** | 100.0 | +50 | 150 | 4,500 | 54,750 | **548%** |
+| **25,000 BabaChain** | 250.0 | +208 | 458 | 13,750 | 167,175 | **669%** |
+| **50,000 BabaChain** | 500.0 | +625 | 1,125 | 33,750 | 410,625 | **821%** |
+| **100,000 BabaChain** | 1,000.0 | +2,000 | 3,000 | 90,000 | 1,095,000 | **1,095%** |
 
 ### 🎯 Key Points:
 
 ✅ **No Minimum Required**: Stake ANY amount (even 1 BabaChain works!)
 ✅ **1% Daily Returns**: Your stake grows by ~1% every single day
 ✅ **365%+ Yearly ROI**: Incredible returns that beat any bank or investment
-✅ **Bonus System**: Larger stakes get even higher returns
+✅ **Gradual Bonus System**: Larger stakes get progressively higher bonuses
 ✅ **No Pool Fees**: 100% of rewards go directly to you
 ✅ **Compound Growth**: Reinvest daily rewards to grow exponentially
 
-### 🏆 Bonus Tier System:
+### 🏆 Gradual Bonus System (Smooth Progression):
 
-- 💚 **1-9,999 BabaChain**: Base 365% ROI (1% daily)
-- � **10,0000-24,999 BabaChain**: **383% ROI** (+5% bonus = 1.05% daily)
-- 🥈 **25,000-49,999 BabaChain**: **402% ROI** (+10% bonus = 1.10% daily)
-- 🥇 **50,000-99,999 BabaChain**: **420% ROI** (+15% bonus = 1.15% daily)
-- � * *100,000+ BabaChain**: **438% ROI** (+20% bonus = 1.20% daily)
+**No Fixed Tiers - Continuous Bonus Growth!**
+
+- 💚 **1-10,000 BabaChain**: 0% to 5% bonus (gradual increase)
+- 🚀 **10,000-100,000 BabaChain**: 5% to 20% bonus (gradual increase)  
+- 💎 **100,000+ BabaChain**: Maximum 20% bonus
+
+**How It Works:**
+- Every additional BabaChain increases your bonus slightly
+- No sudden jumps or unfair tier cutoffs
+- Smooth mathematical progression rewards growth
+- The more you stake, the higher your daily percentage
+
+**Bonus Examples:**
+- **1,000 BabaChain**: ~0.5% bonus = 1.005% daily (367% ROI)
+- **5,000 BabaChain**: ~2.5% bonus = 1.025% daily (374% ROI)
+- **10,000 BabaChain**: 5% bonus = 1.05% daily (383% ROI)
+- **25,000 BabaChain**: ~8.3% bonus = 1.083% daily (395% ROI)
+- **50,000 BabaChain**: ~12.5% bonus = 1.125% daily (411% ROI)
+- **75,000 BabaChain**: ~16.7% bonus = 1.167% daily (426% ROI)
+- **100,000 BabaChain**: 20% bonus = 1.20% daily (438% ROI)
 
 ### 📈 Real Example:
 
 **If you stake 15,000 BabaChain:**
 - Base daily reward: 150 BabaChain (1%)
-- Bonus (5%): +7.5 BabaChain  
-- **Total daily**: 157.5 BabaChain
-- **Monthly**: 4,725 BabaChain
-- **Yearly**: 57,487 BabaChain (**383% ROI!**)
+- Gradual bonus (~5.6%): +8.4 BabaChain  
+- **Total daily**: 158.4 BabaChain
+- **Monthly**: 4,752 BabaChain
+- **Yearly**: 57,816 BabaChain (**385% ROI!**)
 
 ### 🚀 Compound Growth Example:
 
 **Start with 10,000 BabaChain:**
-- **Month 1**: 10,000 → 13,150 (+3,150)
-- **Month 6**: 13,150 → 25,000+ (bonus tier upgrade!)
-- **Month 12**: 25,000+ → 100,000+ (**10x growth!**)
+- **Month 1**: 10,000 → 14,500 (+4,500)
+- **Month 6**: 14,500 → 35,000+ (bonus increases!)
+- **Month 12**: 35,000+ → 150,000+ (**15x growth!**)
 
-### ⚡ Why Solo Staking is Better
+### 🌐 Network Growth = Everyone Wins
 
-| Traditional Mining | BabaChain Solo Staking |
-|-------------------|----------------------|
-| ❌ Expensive hardware required | ✅ Any device can stake |
+**The More Users, The Stronger The Network:**
+- Every new wallet = New network node
+- More nodes = Better security and speed
+- Larger network = Higher BabaChain value
+- Your rewards grow as network grows!
+
+**Viral Growth Mechanics:**
+- � ***Easy Mobile Apps**: Anyone can start staking in 30 seconds
+- 🔄 **Auto-Everything**: No technical setup required
+- 💰 **365%+ ROI**: Incredible returns attract more users
+- 🎯 **Referral Bonuses**: Earn extra for bringing friends
+- 🏆 **Social Features**: Share achievements, compete with friends
+
+### ⚡ Why BabaChain's Auto-Node System is Revolutionary
+
+| Traditional Crypto | BabaChain Auto-Node System |
+|-------------------|---------------------------|
+| ❌ Expensive mining hardware | ✅ Any device becomes a node |
 | ❌ High electricity costs | ✅ Minimal energy usage |
 | ❌ Pool fees (1-3%) | ✅ No fees - 100% rewards |
-| ❌ Complex setup | ✅ Simple wallet setup |
-| ❌ Centralized pools | ✅ Fully decentralized |
-| ❌ Hardware becomes obsolete | ✅ Software always updated |
+| ❌ Complex node setup | ✅ Zero setup - auto-connects |
+| ❌ Centralized mining pools | ✅ Every wallet = decentralized node |
+| ❌ Hardware becomes obsolete | ✅ Software auto-updates |
+| ❌ Need technical knowledge | ✅ Anyone can participate |
+| ❌ Network controlled by few | ✅ Network grows with every user |
 
 ### 🔧 Staking Requirements
 
@@ -204,7 +228,7 @@ See [build-windows.md](doc/build-windows.md) for detailed instructions.
 
 **To Maximize Earnings:**
 - **Stay Online 24/7**: More uptime = more rewards
-- **Larger Stakes**: Get bonus multipliers (10K+ gets +5% bonus)
+- **Larger Stakes**: Get gradual bonus increases
 - **Compound Rewards**: Reinvest earnings to grow your stake
 - **Keep Updated**: Use latest wallet version
 
@@ -253,6 +277,33 @@ test/functional/test_runner.py
 - [Staking Guide](doc/staking.md)
 - [Whitepaper](whitepaper.md)
 
+## 📱 Mobile Wallet Features (Coming Soon)
+
+### Android & iOS Apps
+
+**Revolutionary Mobile Staking:**
+- 🔋 **Background Staking**: Earn rewards even when app is closed
+- 📊 **Real-time Stats**: Monitor your staking performance
+- 🔔 **Push Notifications**: Get alerted when you find blocks
+- 💸 **QR Payments**: Send/receive with camera scan
+- � **Biomretric Security**: Fingerprint and Face ID support
+- 🌐 **Offline Mode**: View balance and history without internet
+- 📈 **Portfolio Tracking**: Track your BabaChain value in real-time
+
+**Mobile-First Design:**
+- Simple, intuitive interface for all users
+- One-tap staking activation
+- Built-in calculator for reward estimation
+- Social features to share achievements
+- Multi-language support
+
+### Why Mobile Staking Matters
+
+**Accessibility**: Anyone with a smartphone can earn BabaChain
+**Convenience**: Stake while commuting, traveling, or sleeping  
+**Decentralization**: More mobile stakers = stronger network
+**Adoption**: Easy mobile access drives mainstream adoption
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
@@ -271,33 +322,6 @@ BabaChain takes security seriously. If you discover a security vulnerability, pl
 ## 📄 License
 
 BabaChain Core is released under the [MIT License](LICENSE).
-
-## 📱 Mobile Wallet Features (Coming Soon)
-
-### Android & iOS Apps
-
-**Revolutionary Mobile Staking:**
-- 🔋 **Background Staking**: Earn rewards even when app is closed
-- 📊 **Real-time Stats**: Monitor your staking performance
-- 🔔 **Push Notifications**: Get alerted when you find blocks
-- 💸 **QR Payments**: Send/receive with camera scan
-- 🔐 **Biometric Security**: Fingerprint and Face ID support
-- 🌐 **Offline Mode**: View balance and history without internet
-- 📈 **Portfolio Tracking**: Track your BabaChain value in real-time
-
-**Mobile-First Design:**
-- Simple, intuitive interface for all users
-- One-tap staking activation
-- Built-in calculator for reward estimation
-- Social features to share achievements
-- Multi-language support
-
-### Why Mobile Staking Matters
-
-**Accessibility**: Anyone with a smartphone can earn BabaChain
-**Convenience**: Stake while commuting, traveling, or sleeping  
-**Decentralization**: More mobile stakers = stronger network
-**Adoption**: Easy mobile access drives mainstream adoption
 
 ## 🌐 Community
 

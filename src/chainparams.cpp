@@ -184,9 +184,11 @@ public:
         consensus.nSubsidyHalvingInterval = 0; // Disable halving for PoS - rewards managed differently
         
         // BabaChain supply parameters
-        consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
-        consensus.nPremineAmount = 20000000 * COIN;     // 20M premine (10%)
-        consensus.nStakingSupply = 190000000 * COIN;    // 190M for staking rewards (90%)
+        consensus.nMaxSupply = 1000000000 * COIN;       // 1B maximum possible supply (hard cap)
+        consensus.nInitialSupply = 210000000 * COIN;    // 210M initial planned supply
+        consensus.nPremineAmount = 20000000 * COIN;     // 20M premine (~10%)
+        consensus.nStakingSupply = 190000000 * COIN;    // 190M initial staking rewards (~90%)
+        consensus.nExtendedStaking = 790000000 * COIN;  // 790M extended staking (210M to 1B)
         consensus.nReductionInterval = 20000000 * COIN; // Reward reduction every 20M coins
         consensus.nInitialBlockReward = 200 * COIN;     // Initial block reward: 200 BabaChain
         consensus.nMasternodePaymentsStartBlock = 100000; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
@@ -393,9 +395,11 @@ public:
         consensus.nSubsidyHalvingInterval = 0; // Disable halving for PoS
         
         // BabaChain testnet supply parameters (same as mainnet for consistency)
-        consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
-        consensus.nPremineAmount = 20000000 * COIN;     // 20M premine (10%)
-        consensus.nStakingSupply = 190000000 * COIN;    // 190M for staking rewards (90%)
+        consensus.nMaxSupply = 1000000000 * COIN;       // 1B maximum possible supply (hard cap)
+        consensus.nInitialSupply = 210000000 * COIN;    // 210M initial planned supply
+        consensus.nPremineAmount = 20000000 * COIN;     // 20M premine (~10%)
+        consensus.nStakingSupply = 190000000 * COIN;    // 190M initial staking rewards (~90%)
+        consensus.nExtendedStaking = 790000000 * COIN;  // 790M extended staking (210M to 1B)
         consensus.nReductionInterval = 20000000 * COIN; // Reward reduction every 20M coins
         consensus.nInitialBlockReward = 200 * COIN;     // Initial block reward: 200 BabaChain
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
@@ -578,9 +582,9 @@ public:
         consensus.nSubsidyHalvingInterval = 0; // Disable halving for PoS
         
         // BabaChain devnet supply parameters (same as mainnet for consistency)
-        consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
-        consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
-        consensus.nStakingSupply = 160000000 * COIN; // 160M for staking rewards
+        consensus.nMaxSupply = 1000000000 * COIN;       // 1B total supply
+        consensus.nPremineAmount = 100000000 * COIN;    // 100M premine (10%)
+        consensus.nStakingSupply = 900000000 * COIN;    // 900M for staking rewards (90%)
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;

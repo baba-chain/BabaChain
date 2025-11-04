@@ -153,14 +153,19 @@ BOOST_AUTO_TEST_CASE(babachain_fixed_reward_test)
     CAmount nReward100K = CalculateIndividualStakingReward(100000 * COIN, nTotalNetworkStake, nBlockReward, consensus);
     BOOST_CHECK(nReward100K > nReward1K * 100); // Should get more than 100x due to bonus
     
-    // Test expected daily rewards
-    CAmount nDailyReward1K = CalculateExpectedDailyRewards(1000 * COIN, 25000000 * COIN, nTotalNetworkStake, consensus);
-    CAmount nDailyReward10K = CalculateExpectedDailyRewards(10000 * COIN, 25000000 * COIN, nTotalNetworkStake, consensus);
-    CAmount nDailyReward100K = CalculateExpectedDailyRewards(100000 * COIN, 25000000 * COIN, nTotalNetworkStake, consensus);
+    // Test gradual bonus system
+    CAmount nDailyReward1K = CalculateActualDailyStakingReward(1000 * COIN, consensus);
+    CAmount nDailyReward5K = CalculateActualDailyStakingReward(5000 * COIN, consensus);
+    CAmount nDailyReward10K = CalculateActualDailyStakingReward(10000 * COIN, consensus);
+    CAmount nDailyReward50K = CalculateActualDailyStakingReward(50000 * COIN, consensus);
+    CAmount nDailyReward100K = CalculateActualDailyStakingReward(100000 * COIN, consensus);
     
-    // Verify daily rewards are proportional with bonuses
-    BOOST_CHECK(nDailyReward10K > nDailyReward1K * 10); // 10K should earn more than 10x
-    BOOST_CHECK(nDailyReward100K > nDailyReward1K * 100); // 100K should earn more than 100x
+    // Verify gradual bonus progression
+    BOOST_CHECK(nDailyReward1K > 10 * COIN); // 1000 with ~0.5% bonus > base 1%
+    BOOST_CHECK(nDailyReward5K > nDailyReward1K * 5); // 5K should earn more than 5x due to higher bonus
+    BOOST_CHECK_EQUAL(nDailyReward10K, 1050000000ULL); // 10000 * 1.05% = 105 (5% bonus)
+    BOOST_CHECK(nDailyReward50K > 56250000000ULL); // 50K with ~12.5% bonus
+    BOOST_CHECK_EQUAL(nDailyReward100K, 120000000000ULL); // 100000 * 1.20% = 1200 (20% bonus)
     
     // Test staking requirements validation (very liberal - just 1 BabaChain minimum)
     bool bValidStake = ValidateStakingRequirements(1 * COIN, 8 * 60 * 60, consensus);

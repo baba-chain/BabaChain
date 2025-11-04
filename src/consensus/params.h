@@ -176,9 +176,11 @@ struct Params {
     uint256 defaultAssumeValid;
 
     /** Supply Management parameters */
-    CAmount nMaxSupply{210000000 * COIN};           // Maximum total supply (210M coins)
-    CAmount nPremineAmount{20000000 * COIN};        // Premine amount (20M coins - 10%)
-    CAmount nStakingSupply{190000000 * COIN};       // Remaining supply for staking rewards (190M coins - 90%)
+    CAmount nMaxSupply{1000000000 * COIN};          // Maximum possible supply (1B coins - hard cap)
+    CAmount nInitialSupply{210000000 * COIN};       // Initial planned supply (210M coins)
+    CAmount nPremineAmount{20000000 * COIN};        // Premine amount (20M coins - ~10%)
+    CAmount nStakingSupply{190000000 * COIN};       // Initial staking rewards (190M coins - ~90%)
+    CAmount nExtendedStaking{790000000 * COIN};     // Extended staking pool (790M more coins until 1B cap)
     CAmount nReductionInterval{20000000 * COIN};    // Reward reduction every 20M coins mined
     
     /** Proof of Stake parameters */
