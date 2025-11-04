@@ -190,6 +190,7 @@ See [build-windows.md](doc/build-windows.md) for detailed instructions.
 - **Month 6**: 14,500 → 35,000+ (bonus increases!)
 - **Month 12**: 35,000+ → 150,000+ (**15x growth!**)
 
+
 ### 🌐 Network Growth = Everyone Wins
 
 **The More Users, The Stronger The Network:**
