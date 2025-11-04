@@ -4,7 +4,31 @@ This document describes the iOS-specific features implemented for the BabaChain 
 
 ## Overview
 
-The BabaChain iOS wallet has been enhanced with advanced features to provide a seamless, secure, and user-friendly experience for BabaChain staking and transactions.
+The BabaChain iOS wallet has been enhanced with advanced features to provide a seamless, secure, and user-friendly experience for BabaChain staking and transactions. Built on BabaChain's fair economics with only 10% premine (20M BABA) and 90% community rewards (190M BABA), the mobile wallet enables users to earn 365%+ APR through the innovative gradual bonus system.
+
+## BabaChain Economics Integration
+
+The mobile wallet fully integrates BabaChain's fair and sustainable economics:
+
+### Economic Parameters
+- **Initial Supply**: 210,000,000 BABA
+- **Maximum Supply**: 1,000,000,000 BABA (hard cap)
+- **Premine**: 20,000,000 BABA (~10% - fair distribution)
+- **Initial Staking Pool**: 190,000,000 BABA (~90% for community)
+- **Extended Staking Pool**: 790,000,000 BABA (210M to 1B growth)
+
+### Gradual Bonus System
+- **Base Rate**: 1% daily (365% APR)
+- **1-10,000 BABA**: 0% to 5% gradual bonus
+- **10,000-100,000 BABA**: 5% to 20% gradual bonus  
+- **100,000+ BABA**: Maximum 20% bonus
+- **No Minimum**: Stake any amount (even 1 BABA works!)
+
+### Mobile Wallet Benefits
+- **Real-time bonus calculation** based on stake size
+- **Automatic reward compounding** for exponential growth
+- **Fair distribution** - no pool fees, 100% rewards to users
+- **Transparent economics** - all parameters clearly displayed
 
 ## Features Implemented
 
@@ -162,7 +186,7 @@ The main app delegate has been updated to initialize and manage all BabaChain iO
 ### Staking Experience
 1. One-tap staking activation with biometric confirmation
 2. Real-time earnings tracking and notifications
-3. 365% APR clearly displayed
+3. 365%+ APR with gradual bonus system clearly displayed
 4. Automatic reward compounding
 5. Social sharing of achievements
 

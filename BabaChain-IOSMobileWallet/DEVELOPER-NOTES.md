@@ -3,8 +3,8 @@
 
 ## Generating screenshots for AppStore
 
- 1. Install [fastlane](fastlane.tools) by running `brew cask install fastlane`
- 2. Uncomment `#define SNAPSHOT 1` in **DashWallet-Prefix.pch** file
+ 1. Install [fastlane](fastlane.tools) by running `brew install fastlane`
+ 2. Uncomment `#define SNAPSHOT 1` in **BabaChainWallet-Prefix.pch** file
  3. Run `fastlane snapshot` (ETA ~1.5 hours on MBP 2017 i7 2.8 Ghz, 16 RAM) 
  4. Upload screenshots by running `fastlane deliver --skip_binary_upload --skip_metadata --skip_app_version_update`
 
@@ -25,7 +25,7 @@
 
 ## In-house crash reporting
 
-DashWallet uses fork of [PLCrashReporter](https://github.com/podkovyrin/plcrashreporter) to allow users to manually send crash reports if they decided to share it with us.
+BabaChainWallet uses fork of [PLCrashReporter](https://github.com/baba-chain/plcrashreporter) to allow users to manually send crash reports if they decided to share it with us.
 
 #### Decoding crash reports
 

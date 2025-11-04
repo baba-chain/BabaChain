@@ -73,7 +73,7 @@ class BabaChainStakingViewController: UIViewController {
         updateBiometricButton()
         
         // Configure APR label
-        aprLabel.text = "365% APR"
+        aprLabel.text = "365%+ APR (1% daily + gradual bonuses)"
         aprLabel.textColor = .systemGreen
     }
     
@@ -153,6 +153,34 @@ class BabaChainStakingViewController: UIViewController {
         }
     }
     
+    @IBAction func showBonusInfoButtonTapped(_ sender: UIButton) {
+        let mockBalance: UInt64 = 1000000000 // 10 BABA
+        let babaAmount = Double(mockBalance) / Double(kOneBabaChain)
+        let gradualBonus = calculateGradualBonus(for: babaAmount)
+        let totalRate = 1.0 + gradualBonus
+        
+        let message = """
+        BabaChain Gradual Bonus System:
+        
+        Your Stake: \(String(format: "%.0f", babaAmount)) BABA
+        Base Rate: 1.00% daily
+        Gradual Bonus: +\(String(format: "%.2f", gradualBonus))%
+        Total Rate: \(String(format: "%.2f", totalRate))% daily
+        
+        Bonus Tiers:
+        • 1-10K BABA: 0% to 5% bonus
+        • 10K-100K BABA: 5% to 20% bonus
+        • 100K+ BABA: Maximum 20% bonus
+        
+        Fair Economics:
+        • Only 10% premine (20M BABA)
+        • 90% for community rewards (190M BABA)
+        • No pool fees - 100% rewards to you!
+        """
+        
+        showAlert(title: "Gradual Bonus System", message: message)
+    }
+    
     // MARK: - Private Methods
     
     private func enableStakingWithAuthentication() {
@@ -181,7 +209,7 @@ class BabaChainStakingViewController: UIViewController {
         
         if success {
             updateStakingToggleButton(isStaking: true)
-            showAlert(title: "Staking Enabled", message: "Your BabaChain is now staking and earning rewards!")
+            showAlert(title: "Staking Enabled", message: "Your BabaChain is now earning 1% daily + gradual bonuses! Keep your wallet online for maximum rewards.")
         } else {
             showAlert(title: "Error", message: "Failed to enable staking. Please try again.")
         }
@@ -193,10 +221,29 @@ class BabaChainStakingViewController: UIViewController {
         let babaAmount = Double(mockBalance) / Double(kOneBabaChain)
         balanceLabel.text = String(format: "%.4f BABA", babaAmount)
         
-        // Update rewards (mock data for demo)
-        let mockRewards: UInt64 = 50000000 // 0.5 BABA
-        let rewardAmount = Double(mockRewards) / Double(kOneBabaChain)
-        rewardsLabel.text = String(format: "Today: +%.4f BABA", rewardAmount)
+        // Calculate expected daily reward with gradual bonus
+        let baseDailyRate: Double = 1.0 // 1% daily
+        let gradualBonus = calculateGradualBonus(for: babaAmount)
+        let totalDailyRate = baseDailyRate + gradualBonus
+        let expectedDailyReward = Double(mockBalance) * totalDailyRate / 100.0
+        let rewardAmount = expectedDailyReward / Double(kOneBabaChain)
+        
+        rewardsLabel.text = String(format: "Expected Daily: +%.4f BABA (%.2f%% rate)", rewardAmount, totalDailyRate)
+    }
+    
+    private func calculateGradualBonus(for babaAmount: Double) -> Double {
+        // Gradual bonus system: smooth progression based on stake size
+        if babaAmount <= 10000 {
+            // 0% to 5% bonus for 1-10,000 BABA
+            return (babaAmount / 10000.0) * 5.0
+        } else if babaAmount <= 100000 {
+            // 5% to 20% bonus for 10,000-100,000 BABA
+            let progress = (babaAmount - 10000) / 90000.0
+            return 5.0 + (progress * 15.0)
+        } else {
+            // Maximum 20% bonus for 100,000+ BABA
+            return 20.0
+        }
     }
     
     private func updateStakingStatus() {

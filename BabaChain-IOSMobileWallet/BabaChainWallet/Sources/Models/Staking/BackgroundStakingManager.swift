@@ -247,12 +247,47 @@ class StakingService {
     }
     
     private func calculateStakingReward() -> UInt64 {
-        // Simplified reward calculation
-        // In production, this would consider network difficulty, stake amount, etc.
-        let baseReward: UInt64 = 1000000 // 0.01 BABA
-        let randomMultiplier = Double.random(in: 0.5...2.0)
+        // Calculate staking reward based on BabaChain's gradual bonus system
+        guard let stakingInfo = SPVLightNode.shared.getCurrentStakingInfo() else {
+            return 0
+        }
         
-        return UInt64(Double(baseReward) * randomMultiplier)
+        let balance = stakingInfo.balance
+        let babaAmount = Double(balance) / Double(kOneBabaChain)
+        
+        // Base daily rate: 1%
+        let baseDailyRate: Double = 1.0
+        
+        // Calculate gradual bonus
+        let gradualBonus = calculateGradualBonus(for: babaAmount)
+        
+        // Total daily rate
+        let totalDailyRate = baseDailyRate + gradualBonus
+        
+        // Calculate daily reward
+        let dailyReward = Double(balance) * totalDailyRate / 100.0
+        
+        // For background checks, calculate proportional reward based on time elapsed
+        let timeElapsed: Double = 300 // 5 minutes in seconds
+        let secondsInDay: Double = 86400
+        let proportionalReward = dailyReward * (timeElapsed / secondsInDay)
+        
+        return UInt64(proportionalReward)
+    }
+    
+    private func calculateGradualBonus(for babaAmount: Double) -> Double {
+        // Gradual bonus system: smooth progression based on stake size
+        if babaAmount <= 10000 {
+            // 0% to 5% bonus for 1-10,000 BABA
+            return (babaAmount / 10000.0) * 5.0
+        } else if babaAmount <= 100000 {
+            // 5% to 20% bonus for 10,000-100,000 BABA
+            let progress = (babaAmount - 10000) / 90000.0
+            return 5.0 + (progress * 15.0)
+        } else {
+            // Maximum 20% bonus for 100,000+ BABA
+            return 20.0
+        }
     }
 }
 

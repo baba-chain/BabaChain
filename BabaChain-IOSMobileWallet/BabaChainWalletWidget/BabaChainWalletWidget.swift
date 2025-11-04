@@ -224,7 +224,7 @@ struct BabaChainWidgetMediumView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.green)
                     
-                    Text("365% APR")
+                    Text("365%+ APR")
                         .font(.caption2)
                         .fontWeight(.medium)
                         .foregroundColor(.green)
@@ -308,7 +308,7 @@ struct BabaChainWidgetLargeView: View {
                     Spacer()
                     
                     VStack(alignment: .trailing, spacing: 4) {
-                        Text("365% APR")
+                        Text("365%+ APR")
                             .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(.green)

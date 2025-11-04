@@ -165,12 +165,30 @@ import Combine
     
     private func calculateExpectedReward() -> UInt64 {
         // Calculate expected staking rewards based on current stake
-        // Using BabaChain's progressive reward system (100→75→50→25→10)
+        // Using BabaChain's gradual bonus system: 1% daily base + gradual bonuses
         let balance = getCurrentBalance()
-        let annualRate: Double = 3.65 // 365% APR as mentioned in requirements
-        let dailyRate = annualRate / 365.0
+        let baseDailyRate: Double = 1.0 // 1% daily base rate
+        let gradualBonus = calculateGradualBonus(for: balance)
+        let totalDailyRate = baseDailyRate + gradualBonus
         
-        return UInt64(Double(balance) * dailyRate / 100.0)
+        return UInt64(Double(balance) * totalDailyRate / 100.0)
+    }
+    
+    private func calculateGradualBonus(for balance: UInt64) -> Double {
+        // Gradual bonus system: smooth progression based on stake size
+        let babaAmount = Double(balance) / Double(kOneBabaChain)
+        
+        if babaAmount <= 10000 {
+            // 0% to 5% bonus for 1-10,000 BABA
+            return (babaAmount / 10000.0) * 5.0
+        } else if babaAmount <= 100000 {
+            // 5% to 20% bonus for 10,000-100,000 BABA
+            let progress = (babaAmount - 10000) / 90000.0
+            return 5.0 + (progress * 15.0)
+        } else {
+            // Maximum 20% bonus for 100,000+ BABA
+            return 20.0
+        }
     }
     
     private func scheduleBackgroundStaking() {

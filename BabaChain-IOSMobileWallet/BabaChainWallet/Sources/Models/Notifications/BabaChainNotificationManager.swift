@@ -61,8 +61,8 @@ import WidgetKit
     
     @objc func sendStakingRewardNotification(reward: UInt64, totalEarnings: UInt64) {
         let content = UNMutableNotificationContent()
-        content.title = "🎉 Staking Reward Earned!"
-        content.body = "You earned \(formatBabaChainAmount(reward)) BABA! Total earnings: \(formatBabaChainAmount(totalEarnings)) BABA"
+        content.title = "🎉 Daily Staking Reward!"
+        content.body = "You earned \(formatBabaChainAmount(reward)) BABA today! Total: \(formatBabaChainAmount(totalEarnings)) BABA (1%+ daily)"
         content.sound = .default
         content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
         content.categoryIdentifier = stakingCategory

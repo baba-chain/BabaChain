@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-Check that you have **DashSync** repo next to the wallet repo.
+Check that you have **BabaChainSync** repo next to the wallet repo.
 
-Make sure you're on the **master** branch for both DashSync and DashWallet.
+Make sure you're on the **master** branch for both BabaChainSync and BabaChainWallet.
 
 ### Clang Version Check
 
@@ -85,13 +85,13 @@ brew install cbindgen
 
 ---
 
-### Issue 2: Git Repository Error with DAPI-GRPC
+### Issue 2: Git Repository Error with BabaChain-GRPC
 
 **Error:**
 ```
-Installing DAPI-GRPC (0.22.0-dev.8)
+Installing BabaChain-GRPC (1.0.0)
  > Git download
-     $ /usr/bin/git clone https://github.com/dashevo/dashsync-iOS.git
+     $ /usr/bin/git clone https://github.com/baba-chain/babachainsync-iOS.git
      ...
    fatal: not a git repository (or any of the parent directories): .git
 ```
@@ -113,38 +113,38 @@ sudo /opt/homebrew/opt/ruby/bin/gem install -n /usr/local/bin cocoapods -v 1.15.
 
 ---
 
-### Issue 3: 'dash_shared_core.h' file not found
+### Issue 3: 'babachain_shared_core.h' file not found
 
-**Problem:** dash-shared-core was not compiled properly due to various potential reasons.
+**Problem:** babachain-shared-core was not compiled properly due to various potential reasons.
 
 **Solution:** Check the build log for more details. Usually caused by missing dependencies (see above).
 
-## dash-shared-core Development
+## babachain-shared-core Development
 
-If you want to make modifications to dash-shared-core, follow these steps:
+If you want to make modifications to babachain-shared-core, follow these steps:
 
 ### Setup Steps
 
-1. **Place dash-shared-core in the correct location:**
-   Put dash-shared-core in the same directory as the wallet repo.
+1. **Place babachain-shared-core in the correct location:**
+   Put babachain-shared-core in the same directory as the wallet repo.
 
-2. **Remove DashSharedCore from DashSync.podspec:**
+2. **Remove BabaChainSharedCore from BabaChainSync.podspec:**
    ```ruby
-   # s.dependency 'DashSharedCore', '0.5.1'
+   # s.dependency 'BabaChainSharedCore', '1.0.0'
    ```
 
-3. **Add local dash-shared-core to Podfile:**
-   In the wallet or DashSync example Podfile, add:
+3. **Add local babachain-shared-core to Podfile:**
+   In the wallet or BabaChainSync example Podfile, add:
    ```ruby
-   pod 'DashSharedCore', :path => '../dash-shared-core/'
+   pod 'BabaChainSharedCore', :path => '../babachain-shared-core/'
    ```
 
 ### Issue 4: Bad CPU type in executable
-The protoc compiler that is part of dapi-grpc-pod-installer is for intel chips.  You will need to have Rosetta installed
-allow this protoc compiler to run.
+The protoc compiler that is part of babachain-grpc-pod-installer is for intel chips. You will need to have Rosetta installed
+to allow this protoc compiler to run.
 
 ```
-> FETCH_HEAD /bin/bash: line 10: dapi-grpc-pod-installer/Pods/!ProtoCompiler/protoc: Bad CPU type in executable
+> FETCH_HEAD /bin/bash: line 10: babachain-grpc-pod-installer/Pods/!ProtoCompiler/protoc: Bad CPU type in executable
 ```
 ```bash
 softwareupdate --install-rosetta --agree-to-license
