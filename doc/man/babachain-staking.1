@@ -1,0 +1,217 @@
+.\" Manual page for BabaChain staking
+.TH BABACHAIN-STAKING "1" "November 2025" "babachain-staking v1.0.0" "User Commands"
+.SH NAME
+babachain-staking \- BabaChain Proof-of-Stake staking guide
+.SH SYNOPSIS
+.B babachaind
+[\fI\,staking options\/\fR]
+.br
+.B babachain-qt
+[\fI\,staking options\/\fR]
+.SH DESCRIPTION
+BabaChain uses Proof-of-Stake (PoS) consensus, allowing users to earn rewards by staking their coins. This manual page describes how to set up and optimize staking operations.
+.SH STAKING OVERVIEW
+Staking is the process of holding BabaChain coins in your wallet to support network operations and earn rewards. Unlike traditional Proof-of-Work mining, staking:
+.IP \(bu 2
+Requires no expensive hardware
+.IP \(bu 2
+Uses minimal electricity
+.IP \(bu 2
+Can be done with any amount of BabaChain
+.IP \(bu 2
+Provides consistent daily rewards (~1% daily)
+.SH STAKING REQUIREMENTS
+.TP
+.B Minimum Stake
+Any amount (even 1 BabaChain works!)
+.TP
+.B Coin Maturity
+8 hours after receiving coins
+.TP
+.B Wallet Status
+Online and unlocked for staking
+.TP
+.B Internet Connection
+Stable connection to BabaChain network
+.SH STAKING OPTIONS
+.TP
+\fB\-staking\fR
+Enable staking (default: 1 if wallet is loaded)
+.TP
+\fB\-stakeminconfirmations=\fR<n>
+Minimum confirmations required for staking (default: 1)
+.TP
+\fB\-stakeminage=\fR<n>
+Minimum age in seconds for coins to be eligible for staking (default: 28800 = 8 hours)
+.TP
+\fB\-stakemaxage=\fR<n>
+Maximum age in seconds for stake selection (default: -1 = no limit)
+.TP
+\fB\-stakecombinethreshold=\fR<amt>
+Threshold for combining stakes (default: 1000)
+.TP
+\fB\-stakesplitthreshold=\fR<amt>
+Threshold for splitting stakes (default: 2000)
+.SH REWARD SYSTEM
+.SS Base Rewards
+.IP \(bu 2
+Daily Rate: ~1% of your stake per day
+.IP \(bu 2
+Annual ROI: ~365% (before compounding)
+.IP \(bu 2
+Payment: Direct to your wallet address
+.IP \(bu 2
+Frequency: Every time you find a block
+.SS Gradual Bonus System
+BabaChain features a smooth bonus progression based on stake size:
+.TP
+.B 1-10,000 BabaChain
+0-5% bonus (gradual increase)
+.TP
+.B 10,000-100,000 BabaChain
+5-20% bonus (gradual increase)
+.TP
+.B 100,000+ BabaChain
+Maximum 20% bonus
+.SH STAKING SETUP
+.SS Desktop Wallet
+.IP 1. 3
+Download and install BabaChain wallet
+.IP 2. 3
+Sync with the blockchain
+.IP 3. 3
+Transfer BabaChain to your wallet
+.IP 4. 3
+Wait 8 hours for coins to mature
+.IP 5. 3
+Enable staking in wallet settings
+.IP 6. 3
+Keep wallet online 24/7
+.SS Command Line
+.IP 1. 3
+Start babachaind with staking enabled:
+.br
+.B babachaind -staking=1
+.IP 2. 3
+Unlock wallet for staking:
+.br
+.B babachain-cli walletpassphrase "password" 0 true
+.IP 3. 3
+Check staking status:
+.br
+.B babachain-cli getstakinginfo
+.SH RPC COMMANDS
+.TP
+.B getstakinginfo
+Get staking information and statistics
+.TP
+.B stakecoin <amount> [address]
+Stake a specific amount of coins
+.TP
+.B listvalidators
+List active validators on the network
+.TP
+.B getvalidatorinfo [validator_id]
+Get information about a specific validator
+.TP
+.B setstakesplitthreshold <amount>
+Set the threshold for automatic stake splitting
+.SH OPTIMIZATION TIPS
+.SS Maximize Rewards
+.IP \(bu 2
+Maintain high uptime (keep wallet online 24/7)
+.IP \(bu 2
+Use reliable internet connection
+.IP \(bu 2
+Consider dedicated staking device
+.IP \(bu 2
+Compound earnings by reinvesting rewards
+.SS Security Best Practices
+.IP \(bu 2
+Use strong wallet passwords
+.IP \(bu 2
+Regular wallet backups
+.IP \(bu 2
+Keep software updated
+.IP \(bu 2
+Monitor staking performance
+.SH TROUBLESHOOTING
+.SS Staking Not Working
+.IP \(bu 2
+Check wallet is unlocked for staking
+.IP \(bu 2
+Verify coins have matured (8+ hours)
+.IP \(bu 2
+Ensure stable internet connection
+.IP \(bu 2
+Update to latest wallet version
+.SS Low Rewards
+.IP \(bu 2
+Increase wallet uptime
+.IP \(bu 2
+Check network weight vs your stake
+.IP \(bu 2
+Verify staking is actually enabled
+.IP \(bu 2
+Consider increasing stake size
+.SH EXAMPLES
+.SS Basic Staking Setup
+.nf
+# Start daemon with staking enabled
+babachaind -staking=1 -daemon
+
+# Unlock wallet for staking only
+babachain-cli walletpassphrase "mypassword" 0 true
+
+# Check staking status
+babachain-cli getstakinginfo
+
+# View current validators
+babachain-cli listvalidators
+.fi
+.SS Reward Calculation Examples
+.TP
+.B 1,000 BabaChain stake
+Daily: ~10.5 BabaChain (1.05%)
+.br
+Monthly: ~315 BabaChain
+.br
+Yearly: ~3,833 BabaChain (383% ROI)
+.TP
+.B 25,000 BabaChain stake
+Daily: ~270 BabaChain (1.08%)
+.br
+Monthly: ~8,100 BabaChain
+.br
+Yearly: ~98,550 BabaChain (394% ROI)
+.TP
+.B 100,000 BabaChain stake
+Daily: ~1,200 BabaChain (1.20%)
+.br
+Monthly: ~36,000 BabaChain
+.br
+Yearly: ~438,000 BabaChain (438% ROI)
+.SH FILES
+.TP
+.I ~/.babachaincore/babachain.conf
+Main configuration file
+.TP
+.I ~/.babachaincore/wallet.dat
+Wallet data file
+.TP
+.I ~/.babachaincore/debug.log
+Debug log file
+.SH SEE ALSO
+.BR babachaind (1),
+.BR babachain-cli (1),
+.BR babachain-qt (1),
+.BR babachain.conf (5)
+.PP
+Online documentation: https://docs.babachain.org/staking/
+.SH COPYRIGHT
+Copyright (C) 2025 The BabaChain Core developers
+.PP
+This is experimental software.
+Distributed under the MIT software license.
+.SH AUTHOR
+BabaChain Core developers <dev@babachain.org>

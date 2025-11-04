@@ -2,7 +2,7 @@
 
 **A Sustainable Proof-of-Stake Blockchain with Fair Economic Distribution**
 
-*Version 1.0 - November 2024*
+*Version 1.0 - September 2025*
 
 ---
 

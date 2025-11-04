@@ -56,6 +56,7 @@
 #include <evo/specialtx.h>
 #include <instantsend/instantsend.h>
 #include <llmq/context.h>
+#include <pos.h>
 
 #include <stdint.h>
 
@@ -1491,6 +1492,17 @@ RPCHelpMan getblockchaininfo()
                         {RPCResult::Type::BOOL, "active", "true if the rules are enforced for the mempool and the next block"},
                     }},
                 }},
+                {RPCResult::Type::OBJ, "pos", "Proof-of-Stake information",
+                {
+                    {RPCResult::Type::BOOL, "enabled", "Whether PoS consensus is active"},
+                    {RPCResult::Type::NUM, "totalvalidators", "Total number of registered validators"},
+                    {RPCResult::Type::NUM, "activevalidators", "Number of active validators"},
+                    {RPCResult::Type::STR_AMOUNT, "totalstake", "Total amount staked in the network"},
+                    {RPCResult::Type::STR_AMOUNT, "minstake", "Minimum stake amount required"},
+                    {RPCResult::Type::NUM, "stakedifficulty", "Current staking difficulty"},
+                    {RPCResult::Type::STR_AMOUNT, "blockreward", "Current block reward for validators"},
+                    {RPCResult::Type::STR_AMOUNT, "remainingsupply", "Remaining supply for staking rewards"},
+                }},
                 {RPCResult::Type::STR, "warnings", "any network and blockchain warnings"},
             }},
         RPCExamples{
@@ -1567,6 +1579,36 @@ RPCHelpMan getblockchaininfo()
         SoftForkDescPushBack(&tip, ehfSignals, softforks, consensusParams, ehf_deploy);
     }
     obj.pushKV("softforks", softforks);
+
+    // Add PoS information
+    UniValue posInfo(UniValue::VOBJ);
+    posInfo.pushKV("enabled", true); // PoS is always enabled in BabaChain
+    
+    // Get validator information
+    size_t nTotalValidators = GetValidatorCount();
+    size_t nActiveValidators = GetActiveValidatorCount();
+    CAmount nTotalStake = GetTotalActiveStake();
+    
+    posInfo.pushKV("totalvalidators", (int)nTotalValidators);
+    posInfo.pushKV("activevalidators", (int)nActiveValidators);
+    posInfo.pushKV("totalstake", ValueFromAmount(nTotalStake));
+    posInfo.pushKV("minstake", ValueFromAmount(consensusParams.nMinStakeAmount));
+    
+    // Calculate staking difficulty
+    double dStakeDifficulty = 1.0;
+    if (nTotalStake > 0) {
+        dStakeDifficulty = static_cast<double>(nTotalStake) / static_cast<double>(consensusParams.nMinStakeAmount);
+    }
+    posInfo.pushKV("stakedifficulty", dStakeDifficulty);
+    
+    // Current block reward
+    posInfo.pushKV("blockreward", ValueFromAmount(consensusParams.nStakeRewardPerBlock));
+    
+    // Remaining supply for staking rewards
+    CAmount nRemainingSupply = GetRemainingStakingSupply(height, consensusParams);
+    posInfo.pushKV("remainingsupply", ValueFromAmount(nRemainingSupply));
+    
+    obj.pushKV("pos", posInfo);
 
     obj.pushKV("warnings", GetWarnings(false).original);
     return obj;

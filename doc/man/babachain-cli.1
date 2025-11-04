@@ -152,6 +152,38 @@ Use devnet chain with provided name
 \fB\-testnet\fR
 .IP
 Use the test chain. Equivalent to \fB\-chain\fR=\fI\,test\/\fR
+.SH STAKING COMMANDS
+BabaChain Core includes several RPC commands for managing Proof-of-Stake operations:
+.TP
+.B getstakinginfo
+Get staking information and statistics
+.TP
+.B stakecoin <amount> [address]
+Stake a specific amount of coins
+.TP
+.B listvalidators
+List active validators on the network
+.TP
+.B getvalidatorinfo [validator_id]
+Get information about a specific validator
+.TP
+.B setstakesplitthreshold <amount>
+Set the threshold for automatic stake splitting
+.SH EXAMPLES
+.SS Basic Staking Commands
+.nf
+# Get staking information
+babachain-cli getstakinginfo
+
+# List all validators
+babachain-cli listvalidators
+
+# Unlock wallet for staking
+babachain-cli walletpassphrase "password" 0 true
+
+# Check wallet staking status
+babachain-cli getwalletinfo
+.fi
 .SH COPYRIGHT
 Copyright (C) 2014-2025 The BabaChain Core developers
 Copyright (C) 2009-2025 The Bitcoin Core developers

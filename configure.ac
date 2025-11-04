@@ -48,9 +48,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef DASH_CONFIG_H])
-AH_TOP([#define DASH_CONFIG_H])
-AH_BOTTOM([#endif //DASH_CONFIG_H])
+AH_TOP([#ifndef BABACHAIN_CONFIG_H])
+AH_TOP([#define BABACHAIN_CONFIG_H])
+AH_BOTTOM([#endif //BABACHAIN_CONFIG_H])
 
 dnl Automake init set-up and checks
 AM_INIT_AUTOMAKE([1.13 no-define subdir-objects foreign])
@@ -263,7 +263,7 @@ AC_ARG_WITH([mpgen],
 
 AC_ARG_ENABLE([multiprocess],
   [AS_HELP_STRING([--enable-multiprocess],
-  [build multiprocess dash-node, dash-wallet, and dash-gui executables in addition to monolithic dashd and dash-qt executables. Requires libmultiprocess library. Experimental (default is no)])],
+  [build multiprocess babachain-node, babachain-wallet, and babachain-gui executables in addition to monolithic babachaind and babachain-qt executables. Requires libmultiprocess library. Experimental (default is no)])],
   [enable_multiprocess=$enableval],
   [enable_multiprocess=no])
 

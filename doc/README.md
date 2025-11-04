@@ -1,7 +1,7 @@
 BabaChain Core
 ==========
 
-This is the official reference wallet for BabaChain digital currency and comprises the backbone of the BabaChain peer-to-peer network. You can [download BabaChain Core](https://www.babachain.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for BabaChain digital currency and comprises the backbone of the BabaChain peer-to-peer network. BabaChain is a modern Proof-of-Stake cryptocurrency designed for energy efficiency, fair distribution, and sustainable rewards. You can [download BabaChain Core](https://www.babachain.org/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
@@ -24,10 +24,11 @@ Drag BabaChain Core to your applications folder, and then run BabaChain Core.
 
 ### Need Help?
 
-* See the [BabaChain documentation](https://docs.babachain.org)
-for help and more information.
-* Ask for help on [BabaChain Discord](http://staybabachainy.com)
-* Ask for help on the [BabaChain Forum](https://babachain.org/forum)
+* See the [BabaChain documentation](https://docs.babachain.org) for help and more information
+* Ask for help on [BabaChain Discord](https://discord.gg/babachain)
+* Ask for help on the [BabaChain Forum](https://forum.babachain.org)
+* Check out the [Staking Guide](staking.md) to start earning rewards
+* Read about [PoS Consensus](pos-consensus.md) for technical details
 
 Building
 ---------------------
@@ -61,11 +62,17 @@ The BabaChain Core repo's [root README](/README.md) contains relevant informatio
 - [Internal Design Docs](design/)
 
 ### Resources
-* See the [BabaChain Developer Documentation](https://babachaincore.readme.io/)
+* See the [BabaChain Developer Documentation](https://docs.babachain.org/developers/)
   for technical specifications and implementation details.
-* Discuss on the [BabaChain Forum](https://babachain.org/forum), in the Development & Technical Discussion board.
-* Discuss on [BabaChain Discord](http://staybabachainy.com)
-* Discuss on [BabaChain Developers Discord](http://chat.babachaindevs.org/)
+* Discuss on the [BabaChain Forum](https://forum.babachain.org), in the Development & Technical Discussion board.
+* Discuss on [BabaChain Discord](https://discord.gg/babachain)
+* Follow us on [Twitter](https://twitter.com/babachainorg) for updates
+
+### BabaChain Specific
+- [Staking Guide](staking.md)
+- [PoS Consensus](pos-consensus.md)
+- [Validator Setup](validator-setup.md)
+- [Migration from Dash](migration-guide.md)
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

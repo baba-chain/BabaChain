@@ -1127,6 +1127,32 @@ subject to empty whitelists.
 \fB\-server\fR
 .IP
 Accept command line and JSON\-RPC commands
+.PP
+Proof-of-Stake options:
+.HP
+\fB\-staking\fR
+.IP
+Enable staking (default: 1 if wallet is loaded)
+.HP
+\fB\-stakeminconfirmations=\fR<n>
+.IP
+Minimum confirmations required for staking (default: 1)
+.HP
+\fB\-stakeminage=\fR<n>
+.IP
+Minimum age in seconds for coins to be eligible for staking (default: 28800 = 8 hours)
+.HP
+\fB\-stakemaxage=\fR<n>
+.IP
+Maximum age in seconds for stake selection (default: -1 = no limit)
+.HP
+\fB\-stakecombinethreshold=\fR<amt>
+.IP
+Threshold for combining stakes (default: 1000)
+.HP
+\fB\-stakesplitthreshold=\fR<amt>
+.IP
+Threshold for splitting stakes (default: 2000)
 .SH COPYRIGHT
 Copyright (C) 2014-2025 The BabaChain Core developers
 Copyright (C) 2009-2025 The Bitcoin Core developers
