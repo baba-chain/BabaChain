@@ -96,7 +96,7 @@ std::string CopyrightHolders(const std::string& strPrefix, unsigned int nStartYe
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/babachainpay/babachain>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/baba-chain/babachain>";
 
     return CopyrightHolders(_("Copyright (C)").translated, 2014, COPYRIGHT_YEAR) + "\n" +
            "\n" +

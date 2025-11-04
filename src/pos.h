@@ -302,4 +302,89 @@ bool ProcessStakeTransaction(const CTransaction& tx, const CStakeTransactionPayl
  */
 bool ProcessUnstakeTransaction(const CTransaction& tx, const CUnstakeTransactionPayload& payload);
 
+/**
+ * Slashing Mechanism Functions
+ */
+
+/**
+ * Slashing conditions enumeration
+ */
+enum SlashingCondition {
+    SLASH_DOUBLE_SIGNING = 1,       // Validator signed two conflicting blocks
+    SLASH_LONG_RANGE_ATTACK = 2,    // Validator participated in long-range attack
+    SLASH_UNAVAILABILITY = 3,       // Validator was offline for extended period
+    SLASH_INVALID_BLOCK = 4,        // Validator produced invalid block
+    SLASH_EQUIVOCATION = 5          // Validator sent conflicting messages
+};
+
+/**
+ * Slashing evidence structure
+ */
+struct SlashingEvidence {
+    CPubKey validatorPubKey;        // Validator being slashed
+    SlashingCondition condition;    // Type of slashing condition
+    int64_t nTime;                  // Time of the offense
+    uint256 blockHash1;             // First conflicting block (if applicable)
+    uint256 blockHash2;             // Second conflicting block (if applicable)
+    std::vector<uint8_t> evidence;  // Additional evidence data
+    
+    SlashingEvidence() : condition(SLASH_DOUBLE_SIGNING), nTime(0) {}
+    
+    SERIALIZE_METHODS(SlashingEvidence, obj) {
+        READWRITE(obj.validatorPubKey, obj.condition, obj.nTime, obj.blockHash1, obj.blockHash2, obj.evidence);
+    }
+    
+    std::string ToString() const;
+};
+
+/**
+ * Calculate slashing penalty based on condition and validator stake
+ */
+CAmount CalculateSlashingPenalty(const CPubKey& validatorPubKey, SlashingCondition condition, const Consensus::Params& consensusParams);
+
+/**
+ * Apply slashing penalty to a validator
+ */
+bool SlashValidator(const CPubKey& validatorPubKey, SlashingCondition condition, const SlashingEvidence& evidence, const Consensus::Params& consensusParams);
+
+/**
+ * Check if validator is blacklisted
+ */
+bool IsValidatorBlacklisted(const CPubKey& validatorPubKey);
+
+/**
+ * Check if validator has been slashed
+ */
+bool IsValidatorSlashed(const CPubKey& validatorPubKey);
+
+/**
+ * Get slashing information for a validator
+ */
+bool GetSlashingInfo(const CPubKey& validatorPubKey, int64_t& slashTime, CAmount& penalty);
+
+/**
+ * Detect double signing (validator signed two different blocks at same height)
+ */
+bool DetectDoubleSigning(const CPubKey& validatorPubKey, const uint256& blockHash1, const uint256& blockHash2, int nHeight);
+
+/**
+ * Detect validator unavailability (missed too many blocks)
+ */
+bool DetectUnavailability(const CPubKey& validatorPubKey, int nMissedBlocks, int nTotalBlocks);
+
+/**
+ * Remove validator from blacklist (for governance decisions)
+ */
+bool RemoveFromBlacklist(const CPubKey& validatorPubKey);
+
+/**
+ * Get all blacklisted validators
+ */
+std::vector<CPubKey> GetBlacklistedValidators();
+
+/**
+ * Get all slashed validators
+ */
+std::vector<CPubKey> GetSlashedValidators();
+
 #endif // BITCOIN_POS_H

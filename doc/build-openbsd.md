@@ -14,7 +14,7 @@ pkg_add bash git gmake gmp libevent libtool boost
 # Select the newest version of the following packages:
 pkg_add autoconf automake python
 
-git clone https://github.com/babachainpay/babachain.git
+git clone https://github.com/baba-chain/babachain.git
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.
@@ -22,7 +22,7 @@ See [dependencies.md](dependencies.md) for a complete overview.
 ### 2. Clone BabaChain Core Repo
 Clone the BabaChain Core repository to a directory. All build scripts and commands will run from this directory.
 ``` bash
-git clone https://github.com/babachainpay/babachain.git
+git clone https://github.com/baba-chain/babachain.git
 ```
 
 ### 3. Install Optional Dependencies

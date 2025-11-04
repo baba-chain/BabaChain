@@ -77,7 +77,7 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
  */
 static CBlock CreateBabaChainGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "BabaChain Genesis Block - New Era of Proof of Stake - 2025";
+    const char* pszTimestamp = "BabaChain Genesis Block - New Era of Proof of Stake - January 2025";
     // BabaChain development team premine address public key
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
@@ -101,37 +101,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
-/**
- * Build the BabaChain genesis block with 50M premine allocation.
- * This creates a new genesis block specifically for BabaChain with the required premine.
- */
-static CBlock CreateBabaChainGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& premineAmount)
-{
-    const char* pszTimestamp = "BabaChain Genesis Block - New Era of Proof of Stake - 50M Premine for Development";
-    
-    // Create premine transaction with 50M coins
-    CMutableTransaction txNew;
-    txNew.nVersion = 1;
-    txNew.vin.resize(1);
-    txNew.vout.resize(1);
-    txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-    
-    // Premine output - 50M coins to development address
-    txNew.vout[0].nValue = premineAmount;
-    // Use a standard P2PKH script for the premine (this can be changed to a specific address later)
-    const CScript premineOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
-    txNew.vout[0].scriptPubKey = premineOutputScript;
 
-    CBlock genesis;
-    genesis.nTime    = nTime;
-    genesis.nBits    = nBits;
-    genesis.nNonce   = nNonce;
-    genesis.nVersion = nVersion;
-    genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
-    genesis.hashPrevBlock.SetNull();
-    genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
-    return genesis;
-}
 
 static CBlock FindDevNetGenesisBlock(const CBlock &prevBlock, const CAmount& reward)
 {
@@ -299,11 +269,11 @@ public:
         m_assumed_chain_state_size = 1;
 
         // Create BabaChain genesis block with 50M premine
-        genesis = CreateBabaChainGenesisBlock(1390095618, 28917698, 0x1e0ffff0, 1, 50000000 * COIN);
+        // Using new timestamp for BabaChain launch (January 1, 2025)
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x1e0ffff0, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Note: Genesis block hash will be different due to premine - will need to be recalculated
-        // assert(consensus.hashGenesisBlock == uint256S("0x00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6"));
-        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Genesis block hash and merkle root will be calculated at runtime
+        // These values will be different from the original due to the 50M premine
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -501,11 +471,11 @@ public:
         m_assumed_chain_state_size = 1;
 
         // Create BabaChain testnet genesis block with 50M premine
-        genesis = CreateBabaChainGenesisBlock(1390666206UL, 3861367235UL, 0x1e0ffff0, 1, 50000000 * COIN);
+        // Using new timestamp for BabaChain testnet launch
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x1e0ffff0, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Note: Genesis block hash will be different due to premine - will need to be recalculated
-        // assert(consensus.hashGenesisBlock == uint256S("0x00000bafbc94add76cb75e2ec92894837288a481e5c005f6563d91623bf8bc2c"));
-        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Genesis block hash and merkle root will be calculated at runtime
+        // These values will be different from the original due to the 50M premine
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_test), std::end(chainparams_seed_test));
@@ -684,11 +654,10 @@ public:
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
         // Create BabaChain devnet genesis block with 50M premine
-        genesis = CreateBabaChainGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50000000 * COIN);
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x207fffff, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Note: Genesis block hash will be different due to premine - will need to be recalculated
-        // assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
-        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Genesis block hash and merkle root will be calculated at runtime
+        // These values will be different from the original due to the 50M premine
 
         devnetGenesis = FindDevNetGenesisBlock(genesis, 50000000 * COIN);
         consensus.hashDevnetGenesisBlock = devnetGenesis.GetHash();
@@ -932,11 +901,10 @@ public:
         UpdateBudgetParametersFromArgs(args);
 
         // Create BabaChain regtest genesis block with 50M premine
-        genesis = CreateBabaChainGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50000000 * COIN);
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x207fffff, 1, 50000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // Note: Genesis block hash will be different due to premine - will need to be recalculated
-        // assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
-        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        // Genesis block hash and merkle root will be calculated at runtime
+        // These values will be different from the original due to the 50M premine
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.

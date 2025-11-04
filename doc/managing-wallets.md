@@ -102,7 +102,7 @@ If both the wallet and all backups are lost for any reason, the coins related to
 
 The BabaChain Core wallet is by default a collection of unrelated private keys. If a non-HD wallet had received funds to an address and then was restored from a backup made before the address was generated, then any funds sent to that address would have been lost because there was no deterministic mechanism to derive the address again.
 
-BabaChain Core [version 0.12.2](https://github.com/babachainpay/babachain/blob/master/doc/release-notes/babachain/release-notes-0.12.2.md) introduced HD wallets with deterministic key derivation. With HD wallets, users no longer lose funds when restoring old backups because all addresses are derived from the HD wallet seed.
+BabaChain Core [version 0.12.2](https://github.com/baba-chain/babachain/blob/master/doc/release-notes/babachain/release-notes-0.12.2.md) introduced HD wallets with deterministic key derivation. With HD wallets, users no longer lose funds when restoring old backups because all addresses are derived from the HD wallet seed.
 
 This means that a single backup is enough to recover the coins at any time. It is still recommended to make regular backups (once a week) or after a significant number of new transactions to maintain the metadata, such as labels. Metadata cannot be retrieved from a blockchain rescan, so if the backup is too old, the metadata will be lost forever.
 

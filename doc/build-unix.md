@@ -280,7 +280,7 @@ This example lists the steps necessary to setup and build a command line only di
 
 ```sh
 pacman --sync --needed autoconf automake boost gcc git libevent libtool make pkgconf python sqlite
-git clone https://github.com/babachainpay/babachain.git
+git clone https://github.com/baba-chain/babachain.git
 cd babachain/
 ./autogen.sh
 ./configure

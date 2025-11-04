@@ -118,7 +118,7 @@ These subdirectories and files are no longer used by BabaChain Core:
 
 Path           | Description | Repository notes
 ---------------|-------------|-----------------
-`banlist.dat`  | Stores the addresses/subnets of banned nodes; completely ignored and superseded by `banlist.json` in 20.0 | [PR #5574](https://github.com/babachainpay/babachain/pull/5574)
+`banlist.dat`  | Stores the addresses/subnets of banned nodes; completely ignored and superseded by `banlist.json` in 20.0 | [PR #5574](https://github.com/baba-chain/babachain/pull/5574)
 `blktree/`     | Blockchain index; replaced by `blocks/index/` in [0.8.0](https://github.com/babachain/babachain/blob/master/doc/release-notes/release-notes-0.8.0.md#improvements) | [PR #2231](https://github.com/babachain/babachain/pull/2231), [`8fdc94cc`](https://github.com/babachain/babachain/commit/8fdc94cc8f0341e96b1edb3a5b56811c0b20bd15)
 `coins/`       | Unspent transaction output database; replaced by `chainstate/` in 0.8.0 | [PR #2231](https://github.com/babachain/babachain/pull/2231), [`8fdc94cc`](https://github.com/babachain/babachain/commit/8fdc94cc8f0341e96b1edb3a5b56811c0b20bd15)
 `blkindex.dat` | Blockchain index BDB database; replaced by {`chainstate/`, `blocks/index/`, `blocks/revNNNNN.dat`<sup>[\[2\]](#note2)</sup>} in 0.8.0 | [PR #1677](https://github.com/babachain/babachain/pull/1677)

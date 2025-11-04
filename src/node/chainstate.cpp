@@ -112,7 +112,7 @@ std::optional<ChainstateLoadingError> LoadChainstate(bool fReset,
     }
 
     // TODO: Remove this when pruning is fixed.
-    // See https://github.com/babachainpay/babachain/pull/1817 and https://github.com/babachainpay/babachain/pull/1743
+    // See https://github.com/baba-chain/babachain/pull/1817 and https://github.com/baba-chain/babachain/pull/1743
     if (is_governance_enabled && !is_txindex_enabled && network_id != CBaseChainParams::REGTEST) {
         return ChainstateLoadingError::ERROR_TXINDEX_DISABLED_WHEN_GOV_ENABLED;
     }

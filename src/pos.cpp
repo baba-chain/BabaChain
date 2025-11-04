@@ -11,6 +11,9 @@
 #include <streams.h>
 #include <util/time.h>
 
+// Forward declaration to avoid circular dependency
+extern const CChainParams& Params();
+
 std::string CStakeTransactionPayload::ToString() const
 {
     return strprintf("CStakeTransactionPayload(nStakeAmount=%s, stakePubKey=%s, nLockTime=%d)",
@@ -682,4 +685,278 @@ bool ProcessUnstakeTransaction(const CTransaction& tx, const CUnstakeTransaction
     }
     
     return success;
+}
+
+// Global slashing and blacklist management
+static std::map<CPubKey, int64_t> mapSlashedValidators; // validator -> slash time
+static std::map<CPubKey, CAmount> mapSlashPenalties;    // validator -> penalty amount
+static std::set<CPubKey> setBlacklistedValidators;     // permanently blacklisted validators
+
+/**
+ * Slashing conditions enumeration
+ */
+enum SlashingCondition {
+    SLASH_DOUBLE_SIGNING = 1,       // Validator signed two conflicting blocks
+    SLASH_LONG_RANGE_ATTACK = 2,    // Validator participated in long-range attack
+    SLASH_UNAVAILABILITY = 3,       // Validator was offline for extended period
+    SLASH_INVALID_BLOCK = 4,        // Validator produced invalid block
+    SLASH_EQUIVOCATION = 5          // Validator sent conflicting messages
+};
+
+/**
+ * Slashing evidence structure
+ */
+struct SlashingEvidence {
+    CPubKey validatorPubKey;        // Validator being slashed
+    SlashingCondition condition;    // Type of slashing condition
+    int64_t nTime;                  // Time of the offense
+    uint256 blockHash1;             // First conflicting block (if applicable)
+    uint256 blockHash2;             // Second conflicting block (if applicable)
+    std::vector<uint8_t> evidence;  // Additional evidence data
+    
+    SlashingEvidence() : condition(SLASH_DOUBLE_SIGNING), nTime(0) {}
+    
+    SERIALIZE_METHODS(SlashingEvidence, obj) {
+        READWRITE(obj.validatorPubKey, obj.condition, obj.nTime, obj.blockHash1, obj.blockHash2, obj.evidence);
+    }
+    
+    std::string ToString() const {
+        return strprintf("SlashingEvidence(validator=%s, condition=%d, time=%d, block1=%s, block2=%s)",
+                        validatorPubKey.ToString(), condition, nTime, blockHash1.ToString(), blockHash2.ToString());
+    }
+};
+
+/**
+ * Calculate slashing penalty based on condition and validator stake
+ */
+CAmount CalculateSlashingPenalty(const CPubKey& validatorPubKey, SlashingCondition condition, const Consensus::Params& consensusParams)
+{
+    CValidator validator;
+    if (!GetValidator(validatorPubKey, validator)) {
+        LogPrintf("CalculateSlashingPenalty: Validator %s not found\n", validatorPubKey.ToString());
+        return 0;
+    }
+    
+    CAmount penalty = 0;
+    
+    switch (condition) {
+        case SLASH_DOUBLE_SIGNING:
+            // Severe penalty: 50% of stake
+            penalty = validator.nStakeAmount / 2;
+            break;
+            
+        case SLASH_LONG_RANGE_ATTACK:
+            // Maximum penalty: 100% of stake (permanent slashing)
+            penalty = validator.nStakeAmount;
+            break;
+            
+        case SLASH_UNAVAILABILITY:
+            // Moderate penalty: 5% of stake
+            penalty = validator.nStakeAmount / 20;
+            break;
+            
+        case SLASH_INVALID_BLOCK:
+            // Significant penalty: 25% of stake
+            penalty = validator.nStakeAmount / 4;
+            break;
+            
+        case SLASH_EQUIVOCATION:
+            // Severe penalty: 40% of stake
+            penalty = (validator.nStakeAmount * 2) / 5;
+            break;
+            
+        default:
+            LogPrintf("CalculateSlashingPenalty: Unknown slashing condition %d\n", condition);
+            penalty = 0;
+            break;
+    }
+    
+    // Ensure penalty doesn't exceed validator's stake
+    if (penalty > validator.nStakeAmount) {
+        penalty = validator.nStakeAmount;
+    }
+    
+    LogPrintf("CalculateSlashingPenalty: Validator %s, condition %d, penalty %s\n", 
+             validatorPubKey.ToString(), condition, FormatMoney(penalty));
+    
+    return penalty;
+}
+
+/**
+ * Apply slashing penalty to a validator
+ */
+bool SlashValidator(const CPubKey& validatorPubKey, SlashingCondition condition, const SlashingEvidence& evidence, const Consensus::Params& consensusParams)
+{
+    // Check if validator exists
+    if (!IsValidatorRegistered(validatorPubKey)) {
+        LogPrintf("SlashValidator: Validator %s not registered\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    // Check if validator is already slashed
+    if (mapSlashedValidators.find(validatorPubKey) != mapSlashedValidators.end()) {
+        LogPrintf("SlashValidator: Validator %s already slashed\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    // Calculate penalty
+    CAmount penalty = CalculateSlashingPenalty(validatorPubKey, condition, consensusParams);
+    if (penalty == 0) {
+        LogPrintf("SlashValidator: No penalty calculated for validator %s\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    // Apply penalty
+    CValidator validator;
+    if (!GetValidator(validatorPubKey, validator)) {
+        return false;
+    }
+    
+    // Reduce validator's stake
+    CAmount newStake = validator.nStakeAmount - penalty;
+    if (newStake < 0) newStake = 0;
+    
+    UpdateValidatorStake(validatorPubKey, newStake);
+    
+    // Record slashing
+    mapSlashedValidators[validatorPubKey] = GetTime();
+    mapSlashPenalties[validatorPubKey] = penalty;
+    
+    // Deactivate validator
+    SetValidatorStatus(validatorPubKey, false);
+    
+    // For severe offenses, add to blacklist
+    if (condition == SLASH_LONG_RANGE_ATTACK || condition == SLASH_DOUBLE_SIGNING) {
+        setBlacklistedValidators.insert(validatorPubKey);
+        LogPrintf("SlashValidator: Blacklisted validator %s for severe offense\n", validatorPubKey.ToString());
+    }
+    
+    LogPrintf("SlashValidator: Slashed validator %s, penalty %s, new stake %s\n", 
+             validatorPubKey.ToString(), FormatMoney(penalty), FormatMoney(newStake));
+    
+    return true;
+}
+
+/**
+ * Check if validator is blacklisted
+ */
+bool IsValidatorBlacklisted(const CPubKey& validatorPubKey)
+{
+    return setBlacklistedValidators.find(validatorPubKey) != setBlacklistedValidators.end();
+}
+
+/**
+ * Check if validator has been slashed
+ */
+bool IsValidatorSlashed(const CPubKey& validatorPubKey)
+{
+    return mapSlashedValidators.find(validatorPubKey) != mapSlashedValidators.end();
+}
+
+/**
+ * Get slashing information for a validator
+ */
+bool GetSlashingInfo(const CPubKey& validatorPubKey, int64_t& slashTime, CAmount& penalty)
+{
+    auto timeIt = mapSlashedValidators.find(validatorPubKey);
+    auto penaltyIt = mapSlashPenalties.find(validatorPubKey);
+    
+    if (timeIt == mapSlashedValidators.end() || penaltyIt == mapSlashPenalties.end()) {
+        return false;
+    }
+    
+    slashTime = timeIt->second;
+    penalty = penaltyIt->second;
+    return true;
+}
+
+/**
+ * Detect double signing (validator signed two different blocks at same height)
+ */
+bool DetectDoubleSigning(const CPubKey& validatorPubKey, const uint256& blockHash1, const uint256& blockHash2, int nHeight)
+{
+    if (blockHash1 == blockHash2) {
+        return false; // Same block, not double signing
+    }
+    
+    LogPrintf("DetectDoubleSigning: Validator %s signed two blocks at height %d: %s and %s\n", 
+             validatorPubKey.ToString(), nHeight, blockHash1.ToString(), blockHash2.ToString());
+    
+    // Create slashing evidence
+    SlashingEvidence evidence;
+    evidence.validatorPubKey = validatorPubKey;
+    evidence.condition = SLASH_DOUBLE_SIGNING;
+    evidence.nTime = GetTime();
+    evidence.blockHash1 = blockHash1;
+    evidence.blockHash2 = blockHash2;
+    
+    // Apply slashing
+    return SlashValidator(validatorPubKey, SLASH_DOUBLE_SIGNING, evidence, Params().GetConsensus());
+}
+
+/**
+ * Detect validator unavailability (missed too many blocks)
+ */
+bool DetectUnavailability(const CPubKey& validatorPubKey, int nMissedBlocks, int nTotalBlocks)
+{
+    // Threshold: if validator missed more than 20% of blocks in recent period
+    double missRate = static_cast<double>(nMissedBlocks) / static_cast<double>(nTotalBlocks);
+    
+    if (missRate <= 0.2) {
+        return false; // Within acceptable range
+    }
+    
+    LogPrintf("DetectUnavailability: Validator %s missed %d/%d blocks (%.2f%%)\n", 
+             validatorPubKey.ToString(), nMissedBlocks, nTotalBlocks, missRate * 100);
+    
+    // Create slashing evidence
+    SlashingEvidence evidence;
+    evidence.validatorPubKey = validatorPubKey;
+    evidence.condition = SLASH_UNAVAILABILITY;
+    evidence.nTime = GetTime();
+    
+    // Apply slashing
+    return SlashValidator(validatorPubKey, SLASH_UNAVAILABILITY, evidence, Params().GetConsensus());
+}
+
+/**
+ * Remove validator from blacklist (for governance decisions)
+ */
+bool RemoveFromBlacklist(const CPubKey& validatorPubKey)
+{
+    auto it = setBlacklistedValidators.find(validatorPubKey);
+    if (it == setBlacklistedValidators.end()) {
+        LogPrintf("RemoveFromBlacklist: Validator %s not blacklisted\n", validatorPubKey.ToString());
+        return false;
+    }
+    
+    setBlacklistedValidators.erase(it);
+    
+    LogPrintf("RemoveFromBlacklist: Removed validator %s from blacklist\n", validatorPubKey.ToString());
+    
+    return true;
+}
+
+/**
+ * Get all blacklisted validators
+ */
+std::vector<CPubKey> GetBlacklistedValidators()
+{
+    std::vector<CPubKey> blacklisted;
+    for (const auto& pubkey : setBlacklistedValidators) {
+        blacklisted.push_back(pubkey);
+    }
+    return blacklisted;
+}
+
+/**
+ * Get all slashed validators
+ */
+std::vector<CPubKey> GetSlashedValidators()
+{
+    std::vector<CPubKey> slashed;
+    for (const auto& pair : mapSlashedValidators) {
+        slashed.push_back(pair.first);
+    }
+    return slashed;
 }

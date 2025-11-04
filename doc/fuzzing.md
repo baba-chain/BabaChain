@@ -5,12 +5,12 @@
 To quickly get started fuzzing BabaChain Core using [libFuzzer](https://llvm.org/docs/LibFuzzer.html):
 
 ```sh
-$ git clone https://github.com/babachainpay/babachain
+$ git clone https://github.com/baba-chain/babachain
 $ cd babachain/
 $ ./autogen.sh
 $ CC=clang CXX=clang++ ./configure --enable-fuzz --with-sanitizers=address,fuzzer,undefined
 # macOS users: If you have problem with this step then make sure to read "macOS hints for
-# libFuzzer" on https://github.com/babachainpay/babachain/blob/develop/doc/fuzzing.md#macos-hints-for-libfuzzer
+# libFuzzer" on https://github.com/baba-chain/babachain/blob/develop/doc/fuzzing.md#macos-hints-for-libfuzzer
 $ make
 $ FUZZ=process_message src/test/fuzz/fuzz
 # abort fuzzing using ctrl-c
@@ -25,7 +25,7 @@ There is also a runner script to execute all fuzz targets. Refer to
 
 ## Fuzzing harnesses and output
 
-[`process_message`](https://github.com/babachainpay/babachain/blob/develop/src/test/fuzz/process_message.cpp) is a fuzzing harness for the [`ProcessMessage(...)` function (`net_processing`)](https://github.com/babachainpay/babachain/blob/develop/src/net_processing.cpp). The available fuzzing harnesses are found in [`src/test/fuzz/`](https://github.com/babachainpay/babachain/tree/develop/src/test/fuzz).
+[`process_message`](https://github.com/baba-chain/babachain/blob/develop/src/test/fuzz/process_message.cpp) is a fuzzing harness for the [`ProcessMessage(...)` function (`net_processing`)](https://github.com/baba-chain/babachain/blob/develop/src/net_processing.cpp). The available fuzzing harnesses are found in [`src/test/fuzz/`](https://github.com/baba-chain/babachain/tree/develop/src/test/fuzz).
 
 The fuzzer will output `NEW` every time it has created a test input that covers new areas of the code under test. For more information on how to interpret the fuzzer output, see the [libFuzzer documentation](https://llvm.org/docs/LibFuzzer.html).
 
@@ -146,7 +146,7 @@ Read the [libFuzzer documentation](https://llvm.org/docs/LibFuzzer.html) for mor
 To quickly get started fuzzing BabaChain Core using [afl++](https://github.com/AFLplusplus/AFLplusplus):
 
 ```sh
-$ git clone https://github.com/babachainpay/babachain
+$ git clone https://github.com/baba-chain/babachain
 $ cd babachain/
 $ git clone https://github.com/AFLplusplus/AFLplusplus
 $ make -C AFLplusplus/ source-only
@@ -173,7 +173,7 @@ Read the [afl++ documentation](https://github.com/AFLplusplus/AFLplusplus) for m
 To quickly get started fuzzing BabaChain Core using [Honggfuzz](https://github.com/google/honggfuzz):
 
 ```sh
-$ git clone https://github.com/babachainpay/babachain
+$ git clone https://github.com/baba-chain/babachain
 $ cd babachain/
 $ ./autogen.sh
 $ git clone https://github.com/google/honggfuzz
@@ -202,7 +202,7 @@ To quickly get started fuzzing the P2P layer using Honggfuzz NetDriver:
 ```sh
 $ mkdir bitcoin-honggfuzz-p2p/
 $ cd bitcoin-honggfuzz-p2p/
-$ git clone https://github.com/babachainpay/babachain/
+$ git clone https://github.com/baba-chain/babachain/
 $ cd babachain/
 $ ./autogen.sh
 $ git clone https://github.com/google/honggfuzz

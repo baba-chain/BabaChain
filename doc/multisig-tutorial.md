@@ -2,7 +2,7 @@
 
 Currently, it is possible to create a multisig wallet using BabaChain Core only.
 
-Although there is already a brief explanation about the multisig in the [Descriptors documentation](https://github.com/babachainpay/babachain/blob/master/doc/descriptors.md#multisig), this tutorial proposes to use the testnet (instead of regtest), bringing the reader closer to a real environment and explaining some functions in more detail.
+Although there is already a brief explanation about the multisig in the [Descriptors documentation](https://github.com/baba-chain/babachain/blob/master/doc/descriptors.md#multisig), this tutorial proposes to use the testnet (instead of regtest), bringing the reader closer to a real environment and explaining some functions in more detail.
 
 This tutorial uses [jq](https://github.com/stedolan/jq) JSON processor to process the results from RPC and stores the relevant values in bash variables. This makes the tutorial reproducible and easier to follow step by step.
 

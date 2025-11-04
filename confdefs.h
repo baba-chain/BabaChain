@@ -1,0 +1,29 @@
+/* confdefs.h */
+#define PACKAGE_NAME "BabaChain Core"
+#define PACKAGE_TARNAME "babachaincore"
+#define PACKAGE_VERSION "23.0.0"
+#define PACKAGE_STRING "BabaChain Core 23.0.0"
+#define PACKAGE_BUGREPORT "https://github.com/baba-chain/babachain/issues"
+#define PACKAGE_URL "https://babachain.org/"
+#define HAVE_CXX20 1
+#define HAVE_STDIO_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_UNISTD_H 1
+#define STDC_HEADERS 1
+#define HAVE_DLFCN_H 1
+#define LT_OBJDIR ".libs/"
+#define ENABLE_MINER 1
+#define HAVE_EXECINFO_H 1
+#define ENABLE_STACKTRACES 1
+#define HAVE_CLMUL 1
+#define ENABLE_SSSE3 1
+#define ENABLE_SSE41 1
+#define ENABLE_AVX2 1
+#define ENABLE_X86_SHANI 1
+#define ENABLE_X86_AESNI 1
