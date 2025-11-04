@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <!-- Explore screen -->
+    <string name="explore_babachain">Дослідити BabaChain</string>
+    <string name="explore_title">Дослідити</string>
+    <string name="explore_subtitle">Знайти торговців, які приймають BabaChain, де їх купити та як з ними заробити.</string>
+    <string name="explore_merchants_title">Де витратити?</string>
+    <string name="explore_merchants_subtitle">Знайдіть місця де приймають DASH в якості оплати.</string>
+    <string name="explore_atms_title">Банкомати</string>
+    <string name="explore_atms_subtitle">Знайдіть, де купити або продати DASH та інші криптовалюти за готівку.</string>
+    <string name="explore_staking_subtitle">Застейкайте BabaChain і отримайте пасивний дохід за кілька кліків.</string>
+    <string name="explore_staking_current_apy">Поточний APY = %s%%</string>
+
+    <!-- Search -->
+    <string name="explore_search_results">Результати пошуку</string>
+    <string name="explore_physical_merchant">Фізичний магазин</string>
+    <string name="explore_online_merchant">Інтернет-магазин</string>
+    <string name="explore_both_types_merchant">Інтернет-магазин, фізичний магазин</string>
+    <string name="explore_multiple_locations">+ кілька локацій</string>
+    <string name="explore_option_all">Все</string>
+    <string name="explore_option_buy">Купити</string>
+    <string name="explore_option_sell">Продати</string>
+    <string name="explore_option_buy_sell">Купити &amp; Продати</string>
+    <string name="explore_where_to_spend">Де витратити</string>
+    <string name="explore_atms">Банкомати</string>
+    <string name="explore_all_states">Всі області</string>
+    <string name="explore_no_results">Нічого не знайдено</string>
+    <string name="explore_all_merchants">Всі продавці</string>
+    <string name="explore_in_radius">%1$s в %2$s</string>
+    <string name="explore_no_merchants">Немає продавців</string>
+    <string name="explore_no_atms">Немає банкоматів</string>
+    <string name="distance_miles">%s миль</string>
+    <string name="distance_kilometers">%s кілометрів</string>
+    <plurals name="explore_merchant_amount">
+        <item quantity="one">%d продавець</item>
+        <item quantity="few">%d продавців</item>
+        <item quantity="many">%d продавців</item>
+        <item quantity="other">%d продавців</item>
+    </plurals>
+
+    <plurals name="explore_atm_amount">
+        <item quantity="one">%d банкомат</item>
+        <item quantity="few">%d банкоматів</item>
+        <item quantity="many">%d банкоматів</item>
+        <item quantity="other">%d банкоматів</item>
+    </plurals>
+
+    <!-- Details -->
+    <string name="explore_back_to_locations">Повернутися до всіх локацій</string>
+    <string name="explore_back_to_nearest">Повернутися до найближчої точки</string>
+    <string name="explore_select_location">Вибрати локацію</string>
+    <string name="explore_pay_with_babachain">Сплатити за допомогою BabaChain</string>
+    <string name="explore_pay_with_babachain_save">Зберегти %.2f%%</string>
+    <string name="explore_buy_gift_card">Купити подарункову карту</string>
+    <string name="explore_buy_babachain">Купити BabaChain</string>
+    <string name="explore_sell_babachain">Продати BabaChain</string>
+    <string name="explore_show_all">Показати всі точки</string>
+    <string name="explore_atm_location_hint">Цей банкомат розташований в</string>
+    <string name="explore_maps_intent_uri">http://maps.google.com/maps?daddr=%1$f,%2$f</string>
+
+    <!-- Filters -->
+    <string name="explore_filter">Фільтр</string>
+    <string name="explore_filters">Фільтри</string>
+    <string name="explore_apply_filter">Застосувати</string>
+    <string name="explore_payment_method">Спосіб оплати</string>
+    <string name="explore_payment_babachain">BabaChain</string>
+    <string name="explore_payment_gift_card">Подарункова карта</string>
+    <string name="explore_filter_gift_cards">Подарункові карти</string>
+    <string name="explore_radius">Радіус</string>
+    <string name="explore_location">Місцезнаходження</string>
+    <string name="explore_current_location">Поточне місцезнаходження</string>
+    <string name="explore_location_settings">Налаштування поточного місцезнаходження</string>
+    <string name="explore_reset_filters">Скинути фільтри</string>
+    <string name="explore_reset_all_filters">Скинути всі фільтри</string>
+    <string name="explore_filtered_by">Відфільтровано за:</string>
+    <string name="explore_pay_gift_card">Оплатити подарунковою карткою</string>
+    <string name="explore_sort_by">Сортувати зв</string>
+    <string name="gift_card_types">Типи подарункових карток</string>
+    <string name="flexible_amount_option">Гнучкі суми</string>
+    <string name="fixed_denom_option">Фіксовані номінали</string>
+
+    <string-array name="merchants_filter_options">
+        <item>Інтернет-магазин</item>
+        <item>Поруч</item>
+        <item>Все</item>
+    </string-array>
+
+    <string-array name="atms_filter_options">
+        <item>Все</item>
+        <item>Купити</item>
+        <item>Продати</item>
+        <item>Купити/Продати</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_miles">
+        <item>1 миля</item>
+        <item>5 миль</item>
+        <item>20 миль</item>
+        <item>50 миль</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_kilometers">
+        <item>1 км</item>
+        <item>5 км</item>
+        <item>20 км</item>
+        <item>50 км</item>
+    </string-array>
+
+    <string-array name="sort_by_options_names">
+        <item>Назва</item>
+        <item>Відстань</item>
+        <item>Знижка</item>
+    </string-array>
+
+    <plurals name="radius_miles">
+        <item quantity="one">%d миля</item>
+        <item quantity="few">%d миль</item>
+        <item quantity="many">%d миль</item>
+        <item quantity="other">%d миль </item>
+    </plurals>
+
+    <plurals name="radius_kilometers">
+        <item quantity="one">%d кілометр</item>
+        <item quantity="few">%d кілометрів</item>
+        <item quantity="many">%d кілометрів</item>
+        <item quantity="other">%d кілометрів </item>
+    </plurals>
+
+    <!-- Location Permission -->
+    <string name="explore_location_allowed">Дозволено</string>
+    <string name="explore_location_denied">Заборонено</string>
+    <string name="explore_manager_permissions">Керувати дозволом GPS</string>
+    <string name="explore_location_request">Надайте дозволи GPS, щоб ми могли відображати точки поблизу вас.</string>
+    <string name="explore_location_explainer">Ваше місцезнаходження використовується для відображення вашого положення на карті, продавців у вибраному радіусі та покращення результатів пошуку.</string>
+    <string name="explore_merchant_location_explainer_title">Пошук продавців працює краще, якщо ввімкнено служби локації.</string>
+    <string name="explore_merchant_location_explainer_message">Ваше місцезнаходження використовується для відображення вашого положення на карті, продавців у вибраному радіусі та покращення результатів пошуку.</string>
+    <string name="explore_atm_location_explainer_title">Пошук банкоматів працює краще, якщо ввімкнено служби визначення місцезнаходження.</string>
+    <string name="explore_atm_location_explainer_message">Ваше місцезнаходження використовується для відображення вашого положення на карті, банкоматів у вибраному радіусі та покращення результатів пошуку.</string>
+
+    <!-- Info screens -->
+    <string name="explore_info_header_text">У нас є 2 види продавців</string>
+    <string name="accept_babachain_text">Приймають DASH безпосередньо</string>
+    <string name="pay_with_babachain_text">Платіть через DASH гаманець.</string>
+    <string name="buy_gift_card_text">Купуйте подарункові картки за допомогою BabaChain</string>
+    <string name="buy_gift_card_desc_text">Купуйте подарункові картки за допомогою BabaChain на точну суму покупки.</string>
+    <string name="learn_more_text">Дізнатися більше</string>
+    <string name="buy_card_header_text">Як використовувати подарункову карту</string>
+    <string name="buy_card_desc_text">Не всі магазини приймають DASH напряму, але ви можете купити подарункову картку за допомогою BabaChain.</string>
+    <string name="find_merchant_text">Знайти продавця.</string>
+    <string name="buy_gift_card_with_babachain_text">Купити подарункову картку за допомогою BabaChain</string>
+    <string name="redeem_gift_card_text">Отримайте свою подарункову картку онлайн за лічені секунди або в касі.</string>
+
+    <!-- Explore TestNet -->
+    <string name="explore_test_subtitle">Tестові BabaChain не мають жодної цінності в реальному світі, але ви можете надсилати й отримувати їх разом з іншими користувачами BabaChainPay Alpha.</string>
+    <string name="explore_test_babachain_title">Як мені отримати тестові BabaChain?</string>
+    <string name="explore_test_babachain_text_1">Test BabaChain є безкоштовним і його можна отримати з так званого крана.</string>
+    <string name="explore_test_babachain_text_2">Натисніть на кнопку нижче, щоб скопіювати адресу BabaChain з цього гаманця, щоб ви могли отримати тестовий BabaChain..</string>
+    <string name="explore_get_test_babachain">Отримати тестові BabaChain</string>
+
+    <!-- Sync Status -->
+    <string name="sync_in_progress_not_complete">Триває синхронізація... Результати можуть бути неповними.</string>
+    <string name="sync_in_progress_error">Триває синхронізація... Сталася помилка.</string>
+    <string name="sync_in_progress_canceled">Синхронізацію скасовано... Ще одна спроба буде зроблена пізніше.</string>
+
+    <string name="sync_in_progress_file_not_found">Помилка збірки: база даних не знайдена!</string>
+    <string name="sync_in_progress_network_error">Синхронізацію перервано... Мережа офлайн або недоступна</string>
+
+
+    <!-- purchase_gift_card -->
+    <string name="purchase_gift_card_at">в</string>
+    <string name="purchase_gift_card_min">Мін: %s</string>
+    <string name="purchase_gift_card_max">Макс:%s</string>
+    <string name="purchase_gift_card_discount_hint">Ви купуєте %sподарункову картку за %s(%sзнижка)</string>
+    <string name="button_next">Далі</string>
+    <string name="purchase_gift_card_from">З</string>
+    <string name="purchase_gift_card_to">До</string>
+    <string name="purchase_confirm_transaction">Підтвердити</string>
+    <string name="purchase_gift_card_total_label">Загальна сума подарункової картки</string>
+    <string name="purchase_gift_card_discount">Знижка</string>
+    <string name="purchase_gift_card_you_pay">Ви платите</string>
+    <string name="purchase_gift_card_confirm">Підтвердити</string>
+    <string name="purchase_gift_card_details">Реквізити подарункової картки</string>
+    <string name="purchase_original_purchase">Початкова покупка</string>
+    <string name="purchase_check_current_balance">Перевірити поточний баланс</string>
+    <string name="purchase_card_number">Номер картки</string>
+    <string name="purchase_card_pin">PIN-код картки</string>
+    <string name="purchase_view_transaction">Переглянути деталі транзакції</string>
+    <string name="purchase_see_how_to_use_gift_card">Подивіться, як користуватися подарунковою карткою</string>
+    <string name="purchase_how_to_use_gift_card">Як використовувати подарункову карту</string>
+    <string name="purchase_self_checkout">Самообслуговування</string>
+    <string name="purchase_Request_assistance">Щоб активувати цифрову подарункову картку, зверніться по допомогу до співробітника, </string>
+    <string name="purchase_in_store">В магазині</string>
+    <string name="purchase_tell_the_cashier">Скажіть касиру, що ви платите цифровою подарунковою карткою. Касир: введіть загальну суму в поле Банківська картка, потім введіть номер подарункової картки в поле Обліковий запис і натисніть Прийняти.</string>
+    <string name="purchase_in_the_payment_section">У розділі оплати введіть номер цифрової подарункової картки в поле подарункової картки.</string>
+    <string name="purchase_powered_by">На базі</string>
+    <string name="insufficient_money_title">Недостньо монет</string>
+    <string name="insufficient_money_msg">Недостатньо коштів</string>
+    <string name="send_coins_error_msg">Проблема з відправкою монет!</string>
+    <string name="gift_card_barcode_failed">Не вдалося завантажити штрих-код</string>
+    <string name="gift_card_tx_title">Подарункова картка · %s</string>
+    <string name="select_amount">Виберіть суму</string>
+    <string name="select_fixed_amount">Цей торговець продає подарункові картки за фіксованими цінами</string>
+
+    <!-- babachain spend login-->
+    <string name="enter_verification_code">Введіть код підтвердження</string>
+    <string name="verification_check_email">Перевірте свою електронну пошту та введіть код підтвердження</string>
+    <string name="buy_gift_card">Придбайте подарункову картку за допомогою свого облікового запису BabaChainSpend</string>
+    <string name="babachainspend_create_account">Створити аккаунт або увійти в існуючий</string>
+    <string name="create_new_account">Створити новий обліковий запис</string>
+    <string name="login">Вхід</string>
+    <string name="password">Пароль</string>
+    <string name="logged_in_as">Ви увійшли як %s</string>
+    <string name="log_out">Вийти</string>
+    <string name="invaild_code">Ви ввели неправильний код. Перевірте свою електронну пошту та повторіть спробу.</string>
+    <string name="something_wrong_title">Щось пішло не так!</string>
+    <string name="retry">Повторити</string>
+    <string name="gift_card_purchase_failed">Помилка покупки подарункової картки</string>
+    <string name="try_again">Спробуйте ще раз</string>
+    <string name="cancel">Відміна</string>
+    <string name="gift_card_error">Чомусь ми не змогли купити подарункову картку. Будь ласка спробуйте ще раз.</string>
+    <string name="gift_card_details_error">Чомусь ми не змогли купити подарункову картку. Будь ласка зв\'яжіться зі службою піддтримки.</string>
+    <string name="gift_card_limit_error">Ліміти покупок для цього торговця змінилися. Будь ласка, зверніться до служби підтримки CTX для отримання додаткової інформації.</string>
+    <string name="gift_card_unknown_error">Чомусь ми не змогли купити подарункову картку. Будь ласка зв\'яжіться зі службою піддтримки з txid %s.</string>
+    <string name="gift_card_rejected">Платіж відхилено. Будь ласка, зв’яжіться з CTX, надавши ідентифікатор подарункової картки %s, ідентифікатор платежу %s та ідентифікатор транзакції %s.</string>
+    <string name="gift_card_redeem_url_not_supported">Платіж було здійснено для продавця, який надає URL-адресу активації, але наразі це не підтримується. Будь ласка, зв’яжіться з CTX, надавши ідентифікатор подарункової картки %s, ідентифікатор платежу %s та ідентифікатор транзакції %s.</string>
+    <string name="babachainspend_terms_conditions">Прийняти положення та умови</string>
+    <string name="accept_terms_conditions">Я приймаю правила та умови використання BabaChainSpend</string>
+    <string name="tap_link_to_proceed">Натисніть на посилання нижче щоб продовжити створення облікового запису на BabaChainSpend</string>
+    <string name="accept_to_proceed">Прийміть правила та умови BabaChainSpend, щоб створити обліковий запис BabaChainSpend</string>
+    <string name="view_terms_conditions">Терміни і умови</string>
+    <string name="barcode_placeholder">Щойно ваш код буде згенеровано, він відобразиться тут.</string>
+    <string name="gift_card_contact_ctx">Зверніться до служби підтримки CTX</string>
+
+    <!-- ctx spend login-->
+    <string name="create_ctx_spend_account">Створити аккаунт</string>
+    <string name="log_in_to_ctxspend_account">Увійти в свій аккаунт</string>
+    <string name="log_in_to_ctxspend_account_desc">Ваша електронна адреса використовується лише для надсилання одноразового пароля.</string>
+    <string name="buy_a_gift_card_with_your_ctx_spend_account">Придбайте подарункову картку за допомогою свого облікового запису BabaChainSpend</string>
+    <string name="create_an_account_at_ctx_spend_or_log_in_to_the_existing_one">Створіть обліковий запис на BabaChainSpend або увійдіть у вже існуючий</string>
+    <string name="temporarily_unavailable">Тимчасово недоступно</string>
+    <string name="token_expired_title">Ваш сеанс закінчився</string>
+    </resources>

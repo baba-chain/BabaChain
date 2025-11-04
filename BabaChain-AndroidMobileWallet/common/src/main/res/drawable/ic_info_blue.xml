@@ -1,0 +1,28 @@
+<!--
+  ~ Copyright 2022 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="47dp"
+    android:height="46dp"
+    android:viewportWidth="47"
+    android:viewportHeight="46">
+  <path
+      android:pathData="M0.5,23C0.5,10.297 10.797,0 23.5,0V0C36.202,0 46.5,10.297 46.5,23V23C46.5,35.702 36.202,46 23.5,46V46C10.797,46 0.5,35.702 0.5,23V23Z"
+      android:fillColor="#008DE4"/>
+  <path
+      android:pathData="M18.28,30.975C18.272,30.521 18.409,30.162 18.69,29.896C18.979,29.631 19.366,29.498 19.85,29.498H22.241V22.959H20.178C19.701,22.959 19.319,22.83 19.03,22.572C18.748,22.307 18.604,21.951 18.596,21.506C18.588,21.06 18.729,20.709 19.018,20.451C19.307,20.185 19.694,20.053 20.178,20.053H23.834C24.287,20.053 24.651,20.185 24.924,20.451C25.198,20.717 25.334,21.08 25.334,21.541V29.498H27.139C27.631,29.498 28.018,29.631 28.299,29.896C28.588,30.162 28.729,30.521 28.721,30.975C28.713,31.412 28.569,31.764 28.287,32.029C28.006,32.287 27.623,32.416 27.139,32.416H19.85C19.373,32.416 18.994,32.287 18.713,32.029C18.432,31.764 18.287,31.412 18.28,30.975ZM21.338,15.611C21.338,15.041 21.534,14.561 21.924,14.17C22.315,13.779 22.791,13.584 23.354,13.584C23.924,13.584 24.401,13.779 24.784,14.17C25.174,14.561 25.369,15.041 25.369,15.611C25.369,16.174 25.174,16.654 24.784,17.053C24.401,17.443 23.924,17.639 23.354,17.639C22.791,17.639 22.315,17.443 21.924,17.053C21.534,16.654 21.338,16.174 21.338,15.611Z"
+      android:fillColor="#ffffff"/>
+</vector>

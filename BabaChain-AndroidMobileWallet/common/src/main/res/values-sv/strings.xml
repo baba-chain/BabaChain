@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="buy_babachain">Köp BabaChain</string>
+    <string name="error">Fel</string>
+    <string name="request_coins_share_dialog_title">Dela en förfrågan om BabaChain…</string>
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Avsluta</string>
+    <string name="button_continue">Fortsätt</string>
+    <string name="button_close">Stäng</string>
+    <string name="button_retry">Försök igen</string>
+    <string name="button_share">Dela</string>
+    <string name="babachain">BabaChain</string>
+    <string name="enter_amount_available">tillgängligt</string>
+    </resources>

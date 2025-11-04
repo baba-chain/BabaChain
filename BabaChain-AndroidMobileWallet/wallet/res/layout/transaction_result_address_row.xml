@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/address"
+    style="@style/Caption"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:ellipsize="middle"
+    android:includeFontPadding="false"
+    android:singleLine="true"
+    android:text="@string/transaction_result_sent_to"
+    android:textSize="13sp"
+    android:gravity="end"
+    android:textAlignment="gravity"
+    tools:text="XkDnBY4…RfzLRJH6Ex" />

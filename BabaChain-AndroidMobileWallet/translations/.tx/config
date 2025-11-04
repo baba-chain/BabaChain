@@ -1,0 +1,17 @@
+[main]
+host = https://www.transifex.com
+
+[o:babachain:p:babachain-mobile-wallets:r:app-localizable-strings]
+file_filter = iOS/app-localizable-strings-<lang>.strings
+source_file = iOS/app-localizable-strings.strings
+source_lang = en
+type        = iOS
+lang_map    = sl_SI: sl, zh_TW: zh-rTW
+
+[o:babachain:p:babachain-mobile-wallets:r:babachainsync-localizable-strings]
+file_filter = iOS/babachainsync-localizable-strings-<lang>.strings
+source_file = iOS/babachainsync-localizable-strings.strings
+source_lang = en
+type        = iOS
+lang_map    = sl_SI: sl, zh_TW: zh-rTW
+

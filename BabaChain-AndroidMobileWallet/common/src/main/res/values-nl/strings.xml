@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">Laden...</string>
+    <string name="loading_error">Er is een fout opgetreden. Probeer het later nog eens.</string>
+    <string name="please_wait_title">Even wachten a.u.b.</string>
+    <string name="babachain_available">%1$s beschikbaar</string>
+    <string name="network_unavailable_title">Netwerk niet beschikbaar</string>
+    <string name="network_unavailable_check_connection">Controleer de netwerkverbinding</string>
+    <string name="network_unavailable_balance_not_accurate">Het saldo is mogelijk niet correct vanwege de verbroken verbinding</string>
+    <string name="buy_babachain">Koop BabaChain</string>
+    <string name="copied">Gekopieerd</string>
+    <string name="staking_title">Staking</string>
+    <string name="email">E-mail</string>
+    <string name="email_placeholder">bijvoorbeeld jan@mail.com</string>
+    <string name="error">Fout</string>
+    <string name="select_a_coin">Selecteer een munt</string>
+    <string name="request_coins_share_dialog_title">Deel BabaChainverzoek...</string>
+    <string name="buy_with_fiat">Koop BabaChain met fiat geld</string>
+    <string name="buy_and_convert">Koop en converteer BabaChain met een andere cryptovaluta</string>
+    <string name="transfer_babachain">BabaChain overzetten</string>
+    <string name="login_error_title">Kan niet inloggen op je %s account</string>
+    <string name="login_error_message">Er is een fout opgetreden tijdens het inloggen op je %s account.</string>
+    <string name="babachain_address">BabaChainadres</string>
+    <string name="username">Gebruikersnaam</string>
+    <string name="balance">Saldo:</string>
+    <string name="nothing_here">Niets hier</string>
+
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">Guernsey Pound</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">Jersey Pound</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">Isle of Man Pound</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">USD Coin</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">Litecoin</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">Ethereum</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">Bitcoin</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">Paxos Standard</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">Gemini Dollar</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Annuleren</string>
+    <string name="network_unavailable_return">Keer terug naar portemonnee</string>
+    <string name="button_continue">Doorgaan</string>
+    <string name="get_quote">Offerte aanvragen</string>
+    <string name="button_close">Sluit</string>
+    <string name="button_retry">Probeer opnieuw</string>
+    <string name="button_send_report">Verstuur rapport</string>
+    <string name="button_info">info</string>
+    <string name="button_copy_address">Kopieer adres</string>
+    <string name="button_understand">ik snap het</string>
+    <string name="button_okay">Oké</string>
+    <string name="button_share">Deel</string>
+    <string name="button_skip">Overslaan</string>
+    <string name="share_address">Deel adres</string>
+    <string name="verify">Verifiëren</string>
+    <string name="receive_enter_amount_button">Specificeer bedrag</string>
+    <string name="account_create">Maak account aan</string>
+    <string name="submit">Indienen</string>
+    <string name="try_again">Probeer opnieuw</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">Zoek</string>
+    <string name="permission_allow">Sta toe</string>
+    <string name="permission_deny">Weiger</string>
+    <string name="pay_with">Betaal met</string>
+    <string name="choose_payment_method">Kies betalingsmethode</string>
+    <string name="debit_credit_card">Debit/Creditcard</string>
+    <string name="max">Max</string>
+    <string name="select_the_coin">Selecteer de munt</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">BabaChain portemonnee</string>
+    <string name="from">van</string>
+    <string name="to">naar</string>
+    <string name="select_currency">Selecteer valuta</string>
+    <string name="send_coins_error_dusty_send">bedrag is te klein om te versturen</string>
+    <string name="send_coins_error_insufficient_money">Ontoereikende fondsen</string>
+    <string name="send_coins_error_insufficient_mixed_money">Onvoldoende gemengd saldo. Wacht tot de CoinJoin mix is voltooid of schakel deze functie uit in de instellingen om deze transactie te voltooien.</string>
+    <string name="syncing">Aan het synchroniseren</string>
+    <string name="no_connection">Geen internetverbinding</string>
+    <string name="rate_not_available">Niet beschikbaar</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">Het ziet er naar uit dat je je BabaChainportemonee leeg aan het maken bent</string>
+    <string name="empty_wallet_crowdnode_warning">Let op, je zal geen geld kunnen opnemen van CrowdNode naar deze portemonnee totdat je je saldo verhoogt tot 0,0003 BabaChain.</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">Betaling werd niet bevestigd</string>
+    <string name="payment_protocol_default_error_title">Fout in de betaling</string>
+    <string name="payment_request_problem_message">Je betaling kon niet door de server worden verwerkt, doe a.u.b. navraag bij de winkelier</string>
+    <string name="exchange_rate_not_found">De wisselkoers kon niet worden gevonden.</string>
+    <string name="send_coins_fragment_hint_replaying">Momenteel zijn betalingen niet mogelijk omdat de portemonnee niet volledig is gesynchroniseerd met het netwerk</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">Ontvang het direct in de BabaChain portemonnee.</string>
+    <string name="convert_crypto">Converteer crypto</string>
+    <string name="last_known_balance" >Laatst bekende saldo</string>
+    <string name="disconnected">Verbinding verbroken</string>
+    <string name="enter_amount_available">beschikbaar</string>
+    <string name="transaction_row_rate_not_available">Niet beschikbaar</string>
+    <string name="log_in">Log in</string>
+
+    <string name="chain_syncing">De blockchain wordt gesynchroniseerd...</string>
+    <string name="report_issue_dialog_mail_intent_chooser">Stuur rapport met...</string>
+
+    </resources>

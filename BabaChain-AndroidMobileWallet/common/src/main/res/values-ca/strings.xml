@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">Error</string>
+    <string name="request_coins_share_dialog_title">Compartir sol·licitud de BabaChain…</string>
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Descarta</string>
+    <string name="button_retry">Re-intenta</string>
+    <string name="button_share">Comparteix</string>
+    </resources>

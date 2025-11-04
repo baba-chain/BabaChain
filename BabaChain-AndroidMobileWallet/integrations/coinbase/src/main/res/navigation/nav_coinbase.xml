@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_coinbase"
+    app:startDestination="@id/coinbaseServicesFragment">
+
+
+    <fragment
+        android:id="@+id/coinbaseServicesFragment"
+        android:name="org.babachain.wallet.integrations.coinbase.ui.CoinbaseServicesFragment"
+        android:label="CoinbaseServicesFragment"
+        tools:layout="@layout/fragment_integration_portal">
+
+        <action
+            android:id="@+id/services_to_buyBabaChain"
+            app:destination="@id/coinbaseBuyBabaChainFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/activity_stay"
+            app:popExitAnim="@anim/slide_out_left" />
+
+        <action
+            android:id="@+id/services_to_convertCrypto"
+            app:destination="@id/coinbaseConvertCryptoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/activity_stay"
+            app:popExitAnim="@anim/slide_out_left" />
+
+        <action
+            android:id="@+id/services_to_transferBabaChain"
+            app:destination="@id/transferBabaChainFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/activity_stay"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/coinbaseBuyBabaChainFragment"
+        android:name="org.babachain.wallet.integrations.coinbase.ui.CoinbaseBuyBabaChainFragment"
+        android:label="CoinbaseBuyBabaChainFragment"
+        tools:layout="@layout/fragment_coinbase_buy_babachain">
+
+        <action
+            android:id="@+id/buyBabaChain_to_orderReview"
+            app:destination="@id/coinbaseOrderReviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/activity_stay"
+            app:popExitAnim="@anim/slide_out_left" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/coinbaseOrderReviewFragment"
+        android:name="org.babachain.wallet.integrations.coinbase.ui.CoinbaseOrderReviewFragment"
+        android:label="CoinbaseOrderReviewFragment"
+        tools:layout="@layout/fragment_coinbase_order_review">
+
+        <action
+            android:id="@+id/coinbaseBuyBabaChainOrderReviewToTwoFaCode"
+            app:destination="@id/enterTwoFaCodeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/activity_stay"
+            app:popExitAnim="@anim/slide_out_left"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/coinbaseConvertCryptoFragment"
+        android:name="org.babachain.wallet.integrations.coinbase.ui.CoinbaseConvertCryptoFragment"
+        android:label="CoinbaseConvertCryptoFragment"
+        tools:layout="@layout/fragment_coinbase_convert_crypto">
+        <argument
+            android:name="hasCoinbaseCryptoBalance"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/coinbaseConvertCryptoFragmentTocoinbaseConversionPreviewFragment"
+            app:destination="@id/coinbaseConversionPreviewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/coinbaseConversionPreviewFragment"
+        android:name="org.babachain.wallet.integrations.coinbase.ui.CoinbaseConversionPreviewFragment"
+        android:label="CoinbaseConversionPreviewFragment"
+        tools:layout="@layout/fragment_coinbase_conversion_preview">
+
+        <argument
+            android:name="swapModel"
+            app:argType="org.babachain.wallet.integrations.coinbase.model.SwapTradeUIModel" />
+        <action
+            android:id="@+id/conversionPreviewToTwoFaCode"
+            app:destination="@id/enterTwoFaCodeFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/enterTwoFaCodeFragment"
+        android:name="org.babachain.wallet.integrations.coinbase.ui.EnterTwoFaCodeFragment"
+        android:label="TwoFACodeFragment"
+        tools:layout="@layout/enter_two_fa_code_fragment">
+        <argument
+            android:name="transactionParams"
+            app:argType="org.babachain.wallet.integrations.coinbase.model.CoinbaseTransactionParams"
+            app:nullable="false" />
+        <action
+            android:id="@+id/conversionPreviewToTwoFaCode"
+            app:destination="@id/enterTwoFaCodeFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/transferBabaChainFragment"
+        android:name="org.babachain.wallet.integrations.coinbase.ui.TransferBabaChainFragment"
+        tools:layout="@layout/transfer_babachain_fragment"
+        android:label="TransferBabaChain">
+
+        <action
+            android:id="@+id/transferBabaChainToTwoFaCode"
+            app:destination="@id/enterTwoFaCodeFragment"
+            />
+    </fragment>
+</navigation>

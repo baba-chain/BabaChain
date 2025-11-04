@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <!-- Explore screen -->
+    <string name="explore_babachain">瀏覽達世幣</string>
+    <string name="explore_title">瀏覽</string>
+    <string name="explore_subtitle">尋找接受達世幣的商家、可以在哪裡購買以及如何透過它賺取收入。</string>
+    <string name="explore_merchants_title">在哪裡消費?</string>
+    <string name="explore_merchants_subtitle">查找接受達世幣作為付款的商家。</string>
+    <string name="explore_atms_title">自動提款機</string>
+    <string name="explore_atms_subtitle">查找在哪裡購買或出售達世幣和其他加密貨幣以換取現金。</string>
+    <string name="explore_staking_subtitle">只需點擊幾下，即可輕鬆質押達世幣並賺取被動收入。</string>
+    <string name="explore_staking_current_apy">目前的年利率 = %s%%</string>
+
+    <!-- Search -->
+    <string name="explore_search_results">搜索結果</string>
+    <string name="explore_physical_merchant">實體商戶</string>
+    <string name="explore_online_merchant">在線的</string>
+    <string name="explore_both_types_merchant">在線、實體商戶</string>
+    <string name="explore_multiple_locations">+ 多個地點</string>
+    <string name="explore_option_all">所有</string>
+    <string name="explore_option_buy">購買</string>
+    <string name="explore_option_sell">出售</string>
+    <string name="explore_option_buy_sell">購買 &amp; 出售</string>
+    <string name="explore_where_to_spend">在哪裡消費</string>
+    <string name="explore_atms">自動提款機</string>
+    <string name="explore_all_states">所有州</string>
+    <string name="explore_no_results">未找到結果</string>
+    <string name="explore_all_merchants">所有商戶</string>
+    <string name="explore_in_radius">%1$s 在 %2$s</string>
+    <string name="explore_no_merchants">沒有商戶</string>
+    <string name="explore_no_atms">沒有自動提款機</string>
+    <string name="distance_miles">%s 英里</string>
+    <string name="distance_kilometers">%s 公里</string>
+    <plurals name="explore_merchant_amount">
+        <item quantity="other">%d 商戶</item>
+    </plurals>
+
+    <plurals name="explore_atm_amount">
+        <item quantity="other">%d 自動提款機</item>
+    </plurals>
+
+    <!-- Details -->
+    <string name="explore_back_to_locations">返回所有位置</string>
+    <string name="explore_back_to_nearest">返回最近的位置</string>
+    <string name="explore_select_location">選擇位置</string>
+    <string name="explore_pay_with_babachain">用達世幣支付</string>
+    <string name="explore_pay_with_babachain_save">保存%.2f%%</string>
+    <string name="explore_buy_gift_card">購買禮品卡</string>
+    <string name="explore_buy_babachain">購買達世幣</string>
+    <string name="explore_sell_babachain">出售達世幣</string>
+    <string name="explore_show_all">顯示所有地點</string>
+    <string name="explore_atm_location_hint">該自動櫃員機位於</string>
+    <string name="explore_maps_intent_uri">http://maps.google.com/maps?daddr=%1$f,%2$f</string>
+
+    <!-- Filters -->
+    <string name="explore_filter">篩選</string>
+    <string name="explore_filters">過濾器</string>
+    <string name="explore_apply_filter">應用</string>
+    <string name="explore_payment_method">付款方法</string>
+    <string name="explore_payment_babachain">達世幣</string>
+    <string name="explore_payment_gift_card">禮物卡</string>
+    <string name="explore_filter_gift_cards">禮物卡</string>
+    <string name="explore_radius">半徑</string>
+    <string name="explore_location">位置</string>
+    <string name="explore_current_location">當前位置</string>
+    <string name="explore_location_settings">當前位置設定</string>
+    <string name="explore_reset_filters">重置過濾器</string>
+    <string name="explore_reset_all_filters">重置所有過濾器</string>
+    <string name="explore_filtered_by">篩選條件:</string>
+    <string name="explore_pay_gift_card">使用禮品卡付款</string>
+    <string name="explore_sort_by">排序方式</string>
+    <string name="gift_card_types">禮品卡類型</string>
+    <string name="flexible_amount_option">彈性的金額</string>
+    <string name="fixed_denom_option">固定金額</string>
+
+    <string-array name="merchants_filter_options">
+        <item>在線的</item>
+        <item>附近的</item>
+        <item>所有</item>
+    </string-array>
+
+    <string-array name="atms_filter_options">
+        <item>所有</item>
+        <item>購買</item>
+        <item>出售</item>
+        <item>購買/出售</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_miles">
+        <item>1 英里</item>
+        <item>5 英里</item>
+        <item>20 英里</item>
+        <item>50 英里</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_kilometers">
+        <item>1 公里</item>
+        <item>5 公里</item>
+        <item>20 公里</item>
+        <item>50 公里</item>
+    </string-array>
+
+    <string-array name="sort_by_options_names">
+        <item>名稱</item>
+        <item>距離</item>
+        <item>折扣</item>
+    </string-array>
+
+    <plurals name="radius_miles">
+        <item quantity="other">%d 英里</item>
+    </plurals>
+
+    <plurals name="radius_kilometers">
+        <item quantity="other">%d 公里</item>
+    </plurals>
+
+    <!-- Location Permission -->
+    <string name="explore_location_allowed">允許</string>
+    <string name="explore_location_denied">拒絕</string>
+    <string name="explore_manager_permissions">管理 GPS 權限</string>
+    <string name="explore_location_request">授予 GPS 權限，以便我們向您顯示您附近的位置。</string>
+    <string name="explore_location_explainer">您的位置用於顯示您在地圖上的位置、所選半徑內的商家以及改進搜索結果。</string>
+    <string name="explore_merchant_location_explainer_title">開啟位置服務後，商家搜索效果會更好。</string>
+    <string name="explore_merchant_location_explainer_message">您的位置用於顯示您在地圖上的位置、所選半徑內的商家以及改進搜索結果。</string>
+    <string name="explore_atm_location_explainer_title">ATM 搜索在啟用定位服務的情況下效果更好。</string>
+    <string name="explore_atm_location_explainer_message">您的位置用於在地圖上顯示您的位置、所選半徑內的自動取款機並改善搜索結果。</string>
+
+    <!-- Info screens -->
+    <string name="explore_info_header_text">我們有2種類型的商家</string>
+    <string name="accept_babachain_text">直接接受達世幣</string>
+    <string name="pay_with_babachain_text">使用達世幣錢包付款。</string>
+    <string name="buy_gift_card_text">使用達世幣購買禮品卡</string>
+    <string name="buy_gift_card_desc_text">使用您的達世幣購買與您購物的金額確切相同的禮品卡。</string>
+    <string name="learn_more_text">了解更多</string>
+    <string name="buy_card_header_text">如何使用禮品卡</string>
+    <string name="buy_card_desc_text">並非所有商店都直接接受達世幣，但您可以使用達世幣購買禮品卡。</string>
+    <string name="find_merchant_text">尋找商家。</string>
+    <string name="buy_gift_card_with_babachain_text">使用達世幣購買禮品卡。</string>
+    <string name="redeem_gift_card_text">在幾秒鐘內在線或在收銀台兌換您的禮品卡。</string>
+
+    <!-- Explore TestNet -->
+    <string name="explore_test_subtitle">測試用的達世幣在現實世界中沒有任何價值，但您可以與其他 BabaChainPay Alpha 用戶一起發送和接收它。</string>
+    <string name="explore_test_babachain_title">如何才能索取測試的達世幣?</string>
+    <string name="explore_test_babachain_text_1">測試達世幣是免費的，可以透過所謂的「水龍頭」獲得。</string>
+    <string name="explore_test_babachain_text_2">點擊下面的按鈕從該錢包複製達世幣地址，以便您可以獲得測試達世幣。</string>
+    <string name="explore_get_test_babachain">索取測試的達世幣</string>
+
+    <!-- Sync Status -->
+    <string name="sync_in_progress_not_complete">同步中...  結果可能不完整。</string>
+    <string name="sync_in_progress_error">同步中... 出現錯誤。</string>
+    <string name="sync_in_progress_canceled">同步已取消... 稍後將進行另一次嘗試。</string>
+
+    <string name="sync_in_progress_file_not_found">構建錯誤 : 找不到數據庫!</string>
+    <string name="sync_in_progress_network_error">同步中斷... 網絡離線或無法訪問</string>
+
+
+    <!-- purchase_gift_card -->
+    <string name="purchase_gift_card_at">在</string>
+    <string name="purchase_gift_card_min">最少: %s</string>
+    <string name="purchase_gift_card_max">最多: %s</string>
+    <string name="purchase_gift_card_discount_hint">您正在以 %s 購買 %s 禮品卡(%s 折扣)</string>
+    <string name="button_next">下一個</string>
+    <string name="purchase_gift_card_from">由</string>
+    <string name="purchase_gift_card_to">到</string>
+    <string name="purchase_confirm_transaction">確認:</string>
+    <string name="purchase_gift_card_total_label">禮品卡總計</string>
+    <string name="purchase_gift_card_discount">折扣</string>
+    <string name="purchase_gift_card_you_pay">你支付</string>
+    <string name="purchase_gift_card_confirm">確認:</string>
+    <string name="purchase_gift_card_details">禮品卡詳細信息</string>
+    <string name="purchase_original_purchase">原先購買</string>
+    <string name="purchase_check_current_balance">檢查當前餘額</string>
+    <string name="purchase_card_number">卡號</string>
+    <string name="purchase_card_pin">卡密碼</string>
+    <string name="purchase_view_transaction">查看交易詳情</string>
+    <string name="purchase_see_how_to_use_gift_card">了解如何使用禮品卡</string>
+    <string name="purchase_how_to_use_gift_card">如何使用禮品卡</string>
+    <string name="purchase_self_checkout">自助結帳</string>
+    <string name="purchase_Request_assistance">要求員工協助兌換數位禮品卡。</string>
+    <string name="purchase_in_store">有存貨</string>
+    <string name="purchase_tell_the_cashier">告訴收銀員您正在使用數位禮品卡付款。收銀員：在「銀行卡」欄位中輸​​入總金額，然後在「帳戶」欄位中輸​​入禮品卡號碼並按 Enter 鍵。</string>
+    <string name="purchase_in_the_payment_section">在付款部分，在禮品卡欄位中輸入您的數位禮品卡號碼。</string>
+    <string name="purchase_powered_by">提供方</string>
+    <string name="insufficient_money_title">餘額不足</string>
+    <string name="insufficient_money_msg">餘額不足</string>
+    <string name="send_coins_error_msg">付款出現問題!</string>
+    <string name="gift_card_barcode_failed">條碼載入失敗</string>
+    <string name="gift_card_tx_title">禮物卡 · %s</string>
+    <string name="select_amount">選擇金額</string>
+    <string name="select_fixed_amount">這個商戶以固定價格出售禮品卡</string>
+
+    <!-- babachain spend login-->
+    <string name="enter_verification_code">輸入驗證碼</string>
+    <string name="verification_check_email">檢查您的電子郵件並輸入驗證碼</string>
+    <string name="buy_gift_card">使用您的 BabaChainSpend 帳戶購買禮品卡</string>
+    <string name="babachainspend_create_account">創建一個帳戶或登錄現有的帳戶</string>
+    <string name="create_new_account">建立新帳戶</string>
+    <string name="login">登入</string>
+    <string name="password">密碼</string>
+    <string name="logged_in_as">登入為 %s</string>
+    <string name="log_out">登出</string>
+    <string name="invaild_code">您輸入了錯誤的代碼。請檢查您的電子郵件並重試。</string>
+    <string name="something_wrong_title">出了些問題!</string>
+    <string name="retry">重試</string>
+    <string name="gift_card_purchase_failed">禮品卡購買失敗</string>
+    <string name="try_again">再試一次</string>
+    <string name="cancel">取消</string>
+    <string name="gift_card_error">由於某些原因，我們無法購買禮品卡。請再試一次。</string>
+    <string name="gift_card_details_error">由於某些原因，我們無法購買禮品卡。請聯絡支援人員。</string>
+    <string name="gift_card_limit_error">該商人的購買限額已更改。請聯繫CTX客戶服務以獲取更多信息。</string>
+    <string name="gift_card_unknown_error">由於某些原因，我們無法購買禮品卡。請透過 txid %s聯繫支援人員。</string>
+    <string name="gift_card_rejected">付款已被拒絕。請聯絡 CTX，並提供禮品卡 ID %s 、付款 ID %s and 和交易 ID %s。</string>
+    <string name="gift_card_redeem_url_not_supported">已向提供兌換 URL 的商家進行付款，但目前不支援。請聯絡 CTX，並提供禮品卡 ID %s 、付款 ID %s 和交易 ID %s。</string>
+    <string name="babachainspend_terms_conditions">接受條款和條件</string>
+    <string name="accept_terms_conditions">我接受 BabaChainSpend 條款和條件</string>
+    <string name="tap_link_to_proceed">要在 BabaChainSpend 建立帳戶，您必須點擊下面的連結才能繼續</string>
+    <string name="accept_to_proceed">要在 BabaChainSpend 建立帳戶，您必須接受 BabaChainSpend 條款和條件</string>
+    <string name="view_terms_conditions">條款 &amp; 條件</string>
+    <string name="barcode_placeholder">一旦生成代碼，它將在此處顯示。</string>
+    <string name="gift_card_contact_ctx">聯繫CTX客戶服務</string>
+
+    <!-- ctx spend login-->
+    <string name="create_ctx_spend_account">創建賬戶</string>
+    <string name="log_in_to_ctxspend_account">登錄到您的帳戶</string>
+    <string name="log_in_to_ctxspend_account_desc">您的電子郵件僅用於發送一次性密碼。</string>
+    <string name="buy_a_gift_card_with_your_ctx_spend_account">使用您的 BabaChainSpend 帳戶購買禮品卡</string>
+    <string name="create_an_account_at_ctx_spend_or_log_in_to_the_existing_one">建立 BabaChainSpend 帳戶或登入現有帳戶</string>
+    <string name="temporarily_unavailable">暫時不可用</string>
+    <string name="token_expired_title">您的工作階段已經過期</string>
+    </resources>

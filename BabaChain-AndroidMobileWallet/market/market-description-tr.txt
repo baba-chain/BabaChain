@@ -1,0 +1,39 @@
+﻿ANA AÇIKLAMA
+
+BabaChain Cüzdanı, BabaChain Core Group tarafından, Bitcoin'den daha iyi ödeme odaklı yenilikçi alternatifler sunan BabaChain - Dijital Para - için geliştirilmiş referans edilen cüzdandır.
+
+BabaChain, diğer kripto para birimlerinin yaşadığı kusurları düzeltmeyi amaçlayan bir kripto para birimidir. Anlık işlemler, isteğe bağlı gizlilik özellikleri ve ağını genişletecek fonlama mekanizması anadüğümlerden oluşan bir ağa dayanır.
+
+Sezgisel ve güvenli, BabaChain Wallet gösterge paneli dijital paranızı üzerinde tam kontrol sağlar. Mevcut en güvenli mobil cüzdan ile, anında ödemeler gönderin ve alın.
+
+BabaChain Cüzdani doğrudan BabaChain ağına bağlanır. Bu, saldırıya uğrayabilecek, çökebilecek veya heklenebilecek bir sunucunun olmadığı anlamına gelir - paranız her zaman güvendedir. Telefonunuz kaybolsa, hasar görse veya çalınsa bile kişisel kurtarma sözcük grubunuz ile paranızı kolayca kurtarabilirsiniz.
+
+Özellikler:
+
+* Çevrimiçi veya şahsen saniyeler içinde BabaChain ödemeleri gönderin ve alın
+* BabaChain kabul eden satıcı ve websitelere tek tuşla ödeme yapın
+* Biyometrik Kimlik Doğrulama ile hızlı ödeme yap
+* Kağıt cüzdanların taranması (örn. soğuk depolama için kullanılan)
+* Kullanıcıların BabaChain alıp satmasını sağlayan 3. parti entegrasyonları
+* Basit kurtarma sözcük grupları, cihazınızın değişme veya kaybolma durumunda fonlarınızı kurtarmanızı sağlar.
+* Bir dizi özel güvenlik tercihini karşılamak için esnek ayarlar
+* Doğrudan BabaChain ağ istemcisi - hack edilenebilecek veya çökecek bir merkezi sunucu yok
+
+BabaChain Cüzdanı açık kaynak kodlu ve ücretsizdir. Ağ ücretleri çoğu kripto para birimlerinden daha düşük olup merkezi maliyet yoktur. Saniyeler içinde dünyadaki herhangi birine herhangi bir miktarda para gönderin. İşletmenizde ödemeleri güvenilir ve anında kabul edin. Para bu şekilde olmalı.
+
+KATKIDA BULUN
+
+BabaChain Wallet açık kaynak kodlu ücretsiz bir yazılımdır. Lisans: GPLv3
+https://www.gnu.org/licenses/gpl-3.0.en.html
+
+Kaynak kodumuz GitHub'da mevcuttur:
+https://github.com/babachainevo/babachain-wallet
+
+Tüm çeviriler Transifex aracılığıyla yönetilmektedir:
+https://www.transifex.com/babachain/babachain-mobile-wallets/
+
+BabaChain hakkında daha fazlası için
+https://www.babachain.org/
+
+v7.0.0 Yükseltme
+BabaChain Cüzdan v7.0, tüm cihazlarınızda sezgisel ve tanıdık bir şekilde kullanım kolaylığını artırmayı amaçlayan tamamen yeniden tasarlanmış bir deneyim getiriyor. Kullanıcıların kurtarma sözcük grubunu korumasının önemini vurgalmak ve güvenliğini artırmak için kurtarma sözcük grubu doğrulama sürecimizi yeniden tasarladık ki; eğer kullanıcılar 12-kelimelik kurtarma sözcük grubunu güvenli bir şekilde yazabilecek bir durumda değiller ise bunu sonra da yapabilecekler. Ayrıca sık kullanılan özelliklere daha hızlı erişebilmeleri için ana ekrana kısayollar ekledik. Kullanıcıların cüzdanlarını daha hızlı ve kolay yapılandırmasına yardımcı olmak için ayarlar menümüzü de uygulamada yeniden konumlandırıp düzenledik. Güvenlik ayarlarına gelince kullanıcılar artık daha geniş bir kontrole sahip olacak ve PİN kodlarının ne sıklıkta girilmesi gerektiğine karar verebilecekler.

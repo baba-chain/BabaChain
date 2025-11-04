@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">Virhe</string>
+    <string name="request_coins_share_dialog_title">Jaa BabaChain-pyyntö</string>
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Hylkää</string>
+    <string name="button_retry">Yritä uudelleen</string>
+    <string name="button_share">Jaa</string>
+    </resources>

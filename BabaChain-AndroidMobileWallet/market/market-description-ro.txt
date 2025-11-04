@@ -1,0 +1,36 @@
+Foloseşte pe propria răspundere! (Necesită Android 4 sau mai recent)
+
+<b>Poți avea BabaChain mereu cu tine, în propriul buzunar!</b> Plătește prin scanarea rapidă a unui cod QR. Ca și comerciant, primești plăți în mod fiabil și instantaneu. Portofelul BabaChain este prima aplicație mobilă BabaChain și, fără îndoială, cea mai sigură!
+
+<b>CARACTERISTICI</b>
+
+• Nu este nevoie de înregistrare, serviciu web sau cloud! Acest portofel este descentralizat și peer to peer.
+• Afișarea sumelor BabaChain în DASH, mDASH și μDASH.
+• Conversie către și din valute naționale.
+• Trimiterea și primirea BabaChain prin NFC, coduri QR sau adrese URL BabaChain.
+• Carte de adrese pentru adresele BabaChain utilizate în mod regulat.
+• Când ești offline, poți plăti în continuare prin Bluetooth.
+• Notificarea sistemului pentru monedele primite.
+• Sweeping pentru portofelele de hârtie (de exemplu, cele utilizate pentru depozitarea la rece).
+• Widget pentru soldul BabaChain.
+
+
+<b>CONTRIBUIE</b>
+
+Portofelul BabaChain este <b>open source</b> si <b>free software</b>. Licența: GPLv3
+https://www.gnu.org/licenses/gpl-3.0.en.html
+
+Codul sursă este disponibil pe GitHub:
+https://github.com/HashEngineering/babachain-wallet
+
+Toate traducerile sunt gestionate prin intermediul Transifex:
+https://www.transifex.com/babachain/babachain-wallet/
+
+Poți afla mai mult despre BabaChain la
+https://www.babachain.org/
+
+<b>MĂRTURII</b>
+
+• Un portofel mobil recomandat de https://www.babachain.org
+
+<i>Folosește pe propria răspundere!</i>

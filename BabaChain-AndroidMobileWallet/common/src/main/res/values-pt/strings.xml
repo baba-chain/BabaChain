@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">Carregando…</string>
+    <string name="loading_error">Ocorreu um erro. Por favor, tente novamente mais tarde.</string>
+    <string name="please_wait_title">Espere por favor</string>
+    <string name="babachain_available">%1$s disponível</string>
+    <string name="network_unavailable_title">A rede não está disponível</string>
+    <string name="network_unavailable_check_connection">Por favor, verifique sua conexão de rede</string>
+    <string name="network_unavailable_balance_not_accurate">O saldo pode não ser preciso devido à perda de conexão</string>
+    <string name="buy_babachain">Comprar BabaChain</string>
+    <string name="copied">Copiado</string>
+    <string name="staking_title">Staking</string>
+    <string name="email">E-mail</string>
+    <string name="email_placeholder">por exemplo: johndoe@mail.com</string>
+    <string name="error">Erro</string>
+    <string name="select_a_coin">Selecionar uma moeda</string>
+    <string name="request_coins_share_dialog_title">Compartilhar pedido de BabaChain…</string>
+    <string name="buy_with_fiat">Compre BabaChain com fiat</string>
+    <string name="buy_and_convert">Compre e converta BabaChain com outra criptomoeda</string>
+    <string name="transfer_babachain">Transferir BabaChain</string>
+    <string name="login_error_title">Não é possível fazer login na sua conta %s</string>
+    <string name="login_error_message">Ocorreu um erro ao fazer login na sua conta %s.</string>
+    <string name="babachain_address">Endereço BabaChain</string>
+    <string name="username">Nome de usuário</string>
+    <string name="balance">Saldo:</string>
+    <string name="nothing_here">Nada aqui</string>
+
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">Libra Guernsey</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">Libra Jersey</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">Libra Manesa</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">USDC</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">Litecoin</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">Ethereum</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">Bitcoin</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">PAX</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">Gemini Dólar</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Dispensar</string>
+    <string name="network_unavailable_return">Voltar para a carteira</string>
+    <string name="button_continue">Continuar</string>
+    <string name="get_quote">Obter cotação</string>
+    <string name="button_close">Fechar</string>
+    <string name="button_retry">Tentar novamente</string>
+    <string name="button_send_report">Enviar Relatório</string>
+    <string name="button_info">informação</string>
+    <string name="button_copy_address">Copiar endereço</string>
+    <string name="button_understand">Eu entendo</string>
+    <string name="button_okay">Okay</string>
+    <string name="button_share">Compartilhar</string>
+    <string name="button_skip">Pular</string>
+    <string name="share_address">Compartilhar Endereço</string>
+    <string name="verify">Verificar</string>
+    <string name="receive_enter_amount_button">Especificar Valor</string>
+    <string name="account_create">Criar Conta</string>
+    <string name="submit">Enviar</string>
+    <string name="try_again">Tentar Novamente</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">Buscar</string>
+    <string name="permission_allow">Permitir</string>
+    <string name="permission_deny">Negar</string>
+    <string name="pay_with">Pagar com</string>
+    <string name="choose_payment_method">Escolher método de pagamento</string>
+    <string name="debit_credit_card">Cartão de débito/crédito</string>
+    <string name="max">Máx</string>
+    <string name="select_the_coin">Selecione a moeda</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">Carteira BabaChain</string>
+    <string name="from">de</string>
+    <string name="to">para</string>
+    <string name="select_currency">Selecione a moeda</string>
+    <string name="send_coins_error_dusty_send">O valor é muito baixo para ser enviado</string>
+    <string name="send_coins_error_insufficient_money">Fundos insuficientes</string>
+    <string name="send_coins_error_insufficient_mixed_money">Fundos misturados insuficientes. Aguarde o término da mistura CoinJoin ou desative este recurso nas configurações para concluir esta transação.</string>
+    <string name="syncing">Sincronizando</string>
+    <string name="no_connection">Sem conexão com a internet</string>
+    <string name="rate_not_available">Não disponível</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">Parece que você está esvaziando sua Carteira BabaChain</string>
+    <string name="empty_wallet_crowdnode_warning">Por favor, observe que você não poderá retirar seus fundos do CrowdNode para esta carteira até que aumente seu saldo para 0,0003 BabaChain.</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">O pagamento não foi reconhecido</string>
+    <string name="payment_protocol_default_error_title">Erro no pagamento</string>
+    <string name="payment_request_problem_message">Seu pagamento não pôde ser processado pelo servidor, por favor, entre em contato com o comerciante</string>
+    <string name="exchange_rate_not_found">Não foi possível encontrar a taxa de câmbio.</string>
+    <string name="send_coins_fragment_hint_replaying">Pagamentos não são possíveis no momento porque a carteira não está totalmente sincronizada com a rede</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">Receba diretamente na sua Carteira BabaChain</string>
+    <string name="convert_crypto">Converter Crypto</string>
+    <string name="last_known_balance" >Último saldo conhecido</string>
+    <string name="disconnected">Desconectado</string>
+    <string name="enter_amount_available">disponível</string>
+    <string name="transaction_row_rate_not_available">Não disponível</string>
+    <string name="log_in">Entrar</string>
+
+    <string name="chain_syncing">A cadeia está sendo sincronizada…</string>
+    <string name="report_issue_dialog_mail_intent_chooser">Enviar relatório usando…</string>
+
+    </resources>

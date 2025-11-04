@@ -1,0 +1,40 @@
+<!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="17dp"
+    android:height="16dp"
+    android:viewportWidth="17"
+    android:viewportHeight="16">
+  <path
+      android:pathData="M8.55,10.743C8.373,10.743 8.188,10.672 8.047,10.53C7.77,10.254 7.77,9.808 8.047,9.531L9.222,8.355H0V11.543C0,13.498 1.587,15.085 3.542,15.085H10.271V9.319L9.052,10.53C8.911,10.672 8.734,10.743 8.55,10.743Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M13.82,9.531C14.096,9.808 14.096,10.254 13.82,10.53C13.685,10.672 13.501,10.743 13.324,10.743C13.147,10.743 12.955,10.672 12.821,10.53L11.688,9.397V15.085H13.458C15.413,15.085 17,13.498 17,11.543V8.355H12.644L13.82,9.531Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M13.529,5.678C13.529,5.487 13.38,5.211 12.977,5.211C12.353,5.211 11.921,5.898 11.758,6.719C12.311,6.656 12.984,6.5 13.324,6.167C13.465,6.032 13.529,5.876 13.529,5.678Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M8.982,5.211C8.578,5.211 8.429,5.487 8.429,5.678C8.429,5.869 8.493,6.032 8.635,6.174C8.982,6.507 9.648,6.656 10.2,6.719C10.037,5.898 9.605,5.211 8.982,5.211Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M0,4.46V6.939H7.43C7.154,6.578 7.012,6.145 7.012,5.678C7.012,4.75 7.749,3.794 8.982,3.794C9.477,3.794 9.91,3.935 10.271,4.19V0.918H3.542C1.587,0.918 0,2.505 0,4.46Z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="M13.458,0.918H11.688V4.19C12.049,3.935 12.481,3.794 12.977,3.794C14.209,3.794 14.946,4.75 14.946,5.678C14.946,6.145 14.804,6.578 14.528,6.939H17V4.46C17,2.505 15.413,0.918 13.458,0.918Z"
+      android:fillColor="#ffffff"/>
+</vector>

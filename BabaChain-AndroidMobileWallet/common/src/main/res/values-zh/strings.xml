@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">加载中...</string>
+    <string name="loading_error">发生错误, 请稍后再试.</string>
+    <string name="please_wait_title">请稍等</string>
+    <string name="babachain_available">%1$s 可用</string>
+    <string name="network_unavailable_title">网络不可用</string>
+    <string name="network_unavailable_check_connection">请检查您的网络连接</string>
+    <string name="network_unavailable_balance_not_accurate">由于连接断开, 余额显示可能不准确</string>
+    <string name="buy_babachain">购买BabaChain</string>
+    <string name="copied">已复制</string>
+    <string name="staking_title">质押</string>
+    <string name="email">邮箱</string>
+    <string name="email_placeholder">例 johndoe@mail.com</string>
+    <string name="error">错误</string>
+    <string name="select_a_coin">选择一个币种</string>
+    <string name="request_coins_share_dialog_title">分享接收BabaChain的请求…</string>
+    <string name="buy_with_fiat">通过法币购买BabaChain</string>
+    <string name="buy_and_convert">购买并以其他加密货币兑换BabaChain</string>
+    <string name="transfer_babachain">转账 BabaChain</string>
+    <string name="login_error_title">无法登录您%s的账户</string>
+    <string name="login_error_message">当登录您%s的账户时发生了一个错误.</string>
+    <string name="babachain_address">BabaChain地址</string>
+    <string name="username">用户名</string>
+    <string name="balance">余额:</string>
+    <string name="nothing_here">这里什么都没有</string>
+
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">Guernsey镑</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">Jersey镑</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">Isle of Man镑</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">USDC稳定币</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">莱特币</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">以太坊</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">比特币</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">Paxos Standard稳定币</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">Gemini Dollar稳定币</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">忽略</string>
+    <string name="network_unavailable_return">返回到钱包</string>
+    <string name="button_continue">继续</string>
+    <string name="get_quote">获得报价</string>
+    <string name="button_close">关闭</string>
+    <string name="button_retry">重试</string>
+    <string name="button_send_report">发送报告</string>
+    <string name="button_info">资讯</string>
+    <string name="button_copy_address">复制地址</string>
+    <string name="button_understand">我明白</string>
+    <string name="button_okay">好的</string>
+    <string name="button_share">分享</string>
+    <string name="button_skip">跳过</string>
+    <string name="share_address">分享地址</string>
+    <string name="verify">验证</string>
+    <string name="receive_enter_amount_button">指定数额</string>
+    <string name="account_create">创建账户</string>
+    <string name="submit">提交</string>
+    <string name="try_again">再试一次</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">搜索</string>
+    <string name="permission_allow">允许</string>
+    <string name="permission_deny">拒绝</string>
+    <string name="pay_with">使用...来支付</string>
+    <string name="choose_payment_method">选择付款方式</string>
+    <string name="debit_credit_card">借记卡/信用卡</string>
+    <string name="max">最大</string>
+    <string name="select_the_coin">选择币种</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">BabaChain 钱包</string>
+    <string name="from">来自</string>
+    <string name="to">到</string>
+    <string name="select_currency">选择货币</string>
+    <string name="send_coins_error_dusty_send">该金额太小, 无法支付</string>
+    <string name="send_coins_error_insufficient_money">资金不足</string>
+    <string name="send_coins_error_insufficient_mixed_money">混合资金不足. 等待CoinJoin混合完成或在设定中停用此功能来完成此交易.</string>
+    <string name="syncing">正在同步</string>
+    <string name="no_connection">没有网络连接</string>
+    <string name="rate_not_available">不可用</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">看起来您正在清空BabaChain钱包</string>
+    <string name="empty_wallet_crowdnode_warning">请注意, 您需要增加余额至 0.0003 BabaChain才能够从CrowdNode账户中提币到此钱包.</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">支付无法被确认</string>
+    <string name="payment_protocol_default_error_title">支付错误</string>
+    <string name="payment_request_problem_message">您的交易无法被服务器处理, 请联系商家</string>
+    <string name="exchange_rate_not_found">汇率未找到.</string>
+    <string name="send_coins_fragment_hint_replaying">因钱包与网络还未完成同步, 当前交易不可用.</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">直接在BabaChain钱包上收款</string>
+    <string name="convert_crypto">兑换加密货币</string>
+    <string name="last_known_balance" >最后已知余额</string>
+    <string name="disconnected">连接断开</string>
+    <string name="enter_amount_available">可用</string>
+    <string name="transaction_row_rate_not_available">不可用</string>
+    <string name="log_in">登录</string>
+
+    <string name="chain_syncing">区块链正在同步...</string>
+    <string name="report_issue_dialog_mail_intent_chooser">发送报告使用…</string>
+
+    </resources>

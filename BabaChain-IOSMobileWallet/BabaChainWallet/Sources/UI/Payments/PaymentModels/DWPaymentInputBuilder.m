@@ -1,0 +1,189 @@
+//
+//  Created by Andrew Podkovyrin
+//  Copyright © 2019 BabaChain Core Group. All rights reserved.
+//
+//  Licensed under the MIT License (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://opensource.org/licenses/MIT
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+#import "DWPaymentInputBuilder.h"
+
+#import "DWEnvironment.h"
+#import "DWPaymentInput+Private.h"
+
+#if DASHPAY
+#import "DWBabaChainPayConstants.h"
+#endif
+
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation DWPaymentInputBuilder
+
+- (DWPaymentInput *)emptyPaymentInputWithSource:(DWPaymentInputSource)source {
+    return [[DWPaymentInput alloc] initWithSource:source];
+}
+
+- (nullable DWPaymentInput *)payToAddress:(NSString *)address
+                                   amount:(uint64_t)amount {
+    DSChain *chain = [DWEnvironment sharedInstance].currentChain;
+    DSAccount *account = [DWEnvironment sharedInstance].currentAccount;
+
+    DSPaymentRequest *request = [DSPaymentRequest requestWithString:address onChain:chain];
+    request.amount = amount;
+
+    NSData *data = address.hexToData.reverse;
+
+    if (data.length == sizeof(UInt256) && [account transactionForHash:*(UInt256 *)data.bytes]) {
+        return nil;
+    }
+
+    if ([request.paymentAddress isValidBabaChainAddressOnChain:chain] || [address isValidBabaChainPrivateKeyOnChain:chain] || [address isValidBabaChainBIP38Key] ||
+        (request.r.length > 0 && ([request.scheme isEqual:@"babachain:"]))) {
+        DWPaymentInput *paymentInput = [[DWPaymentInput alloc] initWithSource:DWPaymentInputSource_PlainAddress];
+        paymentInput.request = request;
+
+
+        return paymentInput;
+    }
+
+    return nil;
+}
+
+- (void)payFirstFromArray:(NSArray<NSString *> *)array
+                   source:(DWPaymentInputSource)source
+               completion:(void (^)(DWPaymentInput *paymentInput))completion {
+    NSUInteger i = 0;
+    DSChain *chain = [DWEnvironment sharedInstance].currentChain;
+    DSAccount *account = [DWEnvironment sharedInstance].currentAccount;
+    for (NSString *str in array) {
+        NSString *requestString = str;
+        if ([requestString hasPrefix:@"pay:"]) {
+            requestString = [str stringByReplacingOccurrencesOfString:@"pay:" withString:@"babachain:" options:0 range:NSMakeRange(0, 4)];
+        }
+        DSPaymentRequest *request = [DSPaymentRequest requestWithString:requestString onChain:chain];
+        NSData *data = str.hexToData.reverse;
+
+        i++;
+
+        // if the clipboard contains a known txHash, we know it's not a hex encoded private key
+        if (data.length == sizeof(UInt256) && [account transactionForHash:*(UInt256 *)data.bytes]) {
+            continue;
+        }
+
+        if ([request.paymentAddress isValidBabaChainAddressOnChain:chain] || [str isValidBabaChainPrivateKeyOnChain:chain] || [str isValidBabaChainBIP38Key] ||
+            (request.r.length > 0 && ([request.scheme isEqual:@"babachain:"]))) {
+            if (completion) {
+                DWPaymentInput *paymentInput = [[DWPaymentInput alloc] initWithSource:source];
+                paymentInput.request = request;
+                completion(paymentInput);
+            }
+
+            return;
+        }
+        else if (request.r.length > 0) { // may be BIP73 url: https://github.com/bitcoin/bips/blob/master/bip-0073.mediawiki
+            [request fetchBIP70WithTimeout:5.0
+                                completion:^(DSPaymentProtocolRequest *_Nonnull protocolRequest, NSError *_Nonnull error) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        if (error) { // don't try any more BIP73 urls
+                                            NSIndexSet *filteredIndexes =
+                                                [array indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                                                    return (idx >= i && ([obj hasPrefix:@"babachain:"] || [obj hasPrefix:@"pay:"] || ![NSURL URLWithString:obj]));
+                                                }];
+                                            NSArray<NSString *> *filteredArray = [array objectsAtIndexes:filteredIndexes];
+                                            [self payFirstFromArray:filteredArray source:source completion:completion];
+                                        }
+                                        else {
+                                            if (completion) {
+                                                DWPaymentInput *paymentInput = [[DWPaymentInput alloc] initWithSource:source];
+                                                paymentInput.protocolRequest = protocolRequest;
+                                                completion(paymentInput);
+                                            }
+                                        }
+                                    });
+                                }];
+
+            return;
+        }
+    }
+
+    if (completion) {
+        DWPaymentInput *paymentInput = [[DWPaymentInput alloc] initWithSource:source];
+        completion(paymentInput);
+    }
+}
+
+- (DWPaymentInput *)paymentInputWithURL:(NSURL *)url {
+    DSChain *chain = [DWEnvironment sharedInstance].currentChain;
+    DSPaymentRequest *request = nil;
+    DWPaymentInputSource sourceType = DWPaymentInputSource_URL;
+
+    if ([url.scheme isEqualToString:@"pay"]) {
+        NSString *path = url.absoluteString;
+        if ([path hasPrefix:@"pay:"]) {
+            path = [path stringByReplacingOccurrencesOfString:@"pay:" withString:@"babachain:" options:0 range:NSMakeRange(0, 4)];
+        }
+        request = [DSPaymentRequest requestWithString:path onChain:chain];
+    }
+    else {
+        request = [DSPaymentRequest requestWithURL:url onChain:chain];
+    }
+
+    // Check if the request contains a valid BabaChain address to determine if this is a deep link
+    if (request && [request.paymentAddress isValidBabaChainAddressOnChain:chain]) {
+        sourceType = DWPaymentInputSource_DeepLink;
+    }
+
+    DWPaymentInput *paymentInput = [[DWPaymentInput alloc] initWithSource:sourceType];
+    paymentInput.request = request;
+
+    return paymentInput;
+}
+
+#if DASHPAY
+- (DWPaymentInput *)paymentInputWithUserItem:(id<DWDPBasicUserItem>)userItem {
+    if (MOCK_DASHPAY) {
+        NSString *address = @"yeRZBWYfeNE4yVUHV4ZLs83Ppn9aMRH57A"; // testnet faucet
+        DSChain *chain = [DWEnvironment sharedInstance].currentChain;
+        DSPaymentRequest *paymentRequest = [DSPaymentRequest requestWithString:address onChain:chain];
+
+        DWPaymentInput *paymentInput = [[DWPaymentInput alloc] initWithSource:DWPaymentInputSource_BlockchainUser];
+        paymentInput.userItem = userItem;
+        paymentInput.canChangeAmount = YES;
+        paymentInput.request = paymentRequest;
+        paymentInput.request.babachainpayUsername = userItem.username;
+
+        return paymentInput;
+    }
+
+    DSFriendRequestEntity *friendRequest = [userItem friendRequestToPay];
+    NSParameterAssert(friendRequest);
+
+    DSAccount *account = [DWEnvironment sharedInstance].currentAccount;
+    DSIncomingFundsDerivationPath *derivationPath = [account derivationPathForFriendshipWithIdentifier:friendRequest.friendshipIdentifier];
+    NSAssert(derivationPath.extendedPublicKeyData, @"Extended public key must exist already");
+    NSString *address = derivationPath.receiveAddress;
+
+    DSChain *chain = [DWEnvironment sharedInstance].currentChain;
+    DSPaymentRequest *paymentRequest = [DSPaymentRequest requestWithString:address onChain:chain];
+
+    DWPaymentInput *paymentInput = [[DWPaymentInput alloc] initWithSource:DWPaymentInputSource_BlockchainUser];
+    paymentInput.userItem = userItem;
+    paymentInput.canChangeAmount = YES;
+    paymentInput.request = paymentRequest;
+
+    return paymentInput;
+}
+#endif
+
+@end
+
+NS_ASSUME_NONNULL_END

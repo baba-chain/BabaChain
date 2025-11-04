@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="buy_babachain">Buy BabaChain</string>
+    <string name="error">Gabim</string>
+    <string name="request_coins_share_dialog_title">Ndaje kërkesën për BabaChain</string>
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Shpërfille</string>
+    <string name="button_retry">Provo prapë</string>
+    <string name="button_share">Shpërndaje</string>
+    <string name="babachain">BabaChain</string>
+    </resources>

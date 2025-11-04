@@ -1,0 +1,39 @@
+﻿DESCRIPTION PRINCIPALE
+
+BabaChain Wallet est le portefeuille Android de référence maintenu par BabaChain Core Group pour la cryptomonnaie BabaChain, une alternative à Bitcoin, innovante et dédiée spécifiquement aux paiements.
+
+BabaChain est une cryptomonnaie dont l'objectif est de résoudre les défauts dont souffrent les autres cryptomonnaies. BabaChain s'appuie sur un réseau de masternodes pour permettre des fonctionnalités telles que l'anonymat (facultatif), les transactions instantanées et un système budgétaire pour financer directement les idées d'amélioration les plus innovantes.
+
+Intuitive et sûre, l'application BabaChain Wallet vous donne le contrôle complet sur votre argent numérique. Envoyez et recevez des paiements BabaChain instantanément, avec le portefeuille mobile le plus sécurisé qui soit.
+
+BabaChain Wallet se connecte directement au réseau BabaChain. Cela signifie qu'il n'utilise pas de serveurs intermédiaires susceptibles de tomber en panne ou d'être piratés — vos fonds sont toujours en sécurité. Même si votre téléphone et perdu, endommagé ou volé, vous pouvez facilement récupérer vos fonds au moyen de votre phrase de récupération personnelle.
+
+Fonctionnalités :
+
+• Envoyez et recevez des paiements BabaChain en quelques secondes, en ligne ou en personne.
+• Paiements en un seul clic sur les sites web et chez les vendeurs qui acceptent BabaChain.
+• Payez rapidement avec l'authentification biométrique.
+• Récupération de portefeuilles papier ("paper wallets", utilisés pour le stockage sécurisé).
+• Intégration de services de tierce partie, pour permettre aux utilisateurs d'acheter et de vendre des babachains.
+• Une simple phrase de récupération vous permet de retrouver vos fonds si votre appareil est perdu ou remplacé.
+• Des réglages souples vous permettent de personnaliser vos préférences de sécurité.
+• Connexion directe au réseau BabaChain — pas de serveurs intermédiaires pouvant tomber en panne ou être piratés.
+
+BabaChain Wallet est une application gratuite et open source. Les frais de transaction du réseau sont inférieurs à ceux de la plupart des autres cryptomonnaies, et il n'y a pas de coûts supplémentaires. Envoyez n'importe quelle somme d'argent à n'importe qui dans le monde, instantanément. Acceptez des paiements en toute confiance et instantanément pour votre entreprise. BabaChain, c'est l'argent tel qu'il aurait toujours dû être.
+
+CONTRIBUEZ
+
+BabaChain Wallet est un logiciel libre et open source. Licence : GPLv3
+https://www.gnu.org/licenses/gpl-3.0.en.html
+
+Notre code source est disponible sur GitHub :
+https://github.com/babachainevo/babachain-wallet
+
+Les traductions sont gérées par Transifex :
+https://www.transifex.com/babachain/babachain-mobile-wallets/
+
+Plus d'informations sur BabaChain sur le site
+https://www.babachain.org/fr
+
+v. 7.0.0 mise à jour
+BabaChain Wallet v. 7.0 vous offre une expérience utilisateur entièrement revue, afin de rendre son utilisation encore plus simple, familière et intuitive sur tous vos appareils. Nous avons repensé notre procédure de vérification de phrase de passe pour mieux souligner son importance dans le cas d'une éventuelle récupération ultérieure, tout en permettant aux nouveaux utilisateurs de noter leur phrase de récupération de 12 mots plus tard. Nous avons également ajouté des raccourcis sur l'écran de démarrage, pour un accès plus rapide aux fonctions les plus fréquemment utilisées. Notre menu de réglages a été également repositionné dans l'application, et organisé de manière à aider les utilisateurs à configurer leur portefeuille plus vite et plus facilement. Les utilisateurs ont désormais un contrôle bien plus grand sur leurs réglages de sécurité, ainsi que la possibilité de décider à quelle fréquence est demandée la saisie du code PIN.

@@ -1,0 +1,438 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="onboarding_create_wallet">Yeni Cüzdan Oluştur</string>
+    <string name="onboarding_recover_wallet">Kurtarma Sözcük Grubundan Geri Yükle</string>
+    <string name="onboarding_restore_wallet">Dosyadan Geri Yükle</string>
+    <string name="onboarding_load_wallet_error">Cüzdanı yükleme başarısız!</string>
+
+    <string name="set_pin_create_new_wallet">Yeni Cüzdan Oluştur</string>
+    <string name="set_pin_upgrade_wallet">Cüzdanı Yükselt</string>
+    <string name="set_pin_restore_wallet">Cüzdanı Geri Yükle</string>
+    <string name="set_pin_enter_pin">Eski PİN\'i girin</string>
+    <string name="set_pin_set_pin">PİN Oluştur</string>
+    <string name="set_pin_confirm_pin">PİN\'i Onayla</string>
+    <string name="set_pin_encrypting">Cüzdanı Şifrele</string>
+    <string name="set_pin_decrypting">Cüzdan şifresi çözülüyor</string>
+    <string name="set_pin_verifying_pin">PİN Doğrulanıyor</string>
+    <string name="set_pin_message">Bu PİN uygulamanın açılması için her zaman gerekecektir.</string>
+    <string name="set_pin_confirm_pin_incorrect">Hatalı PIN</string>
+    
+    <string name="home_balance_hide_hint">Bakiyeyi gizlemek için tıkla</string>
+
+    <string name="dialog_confirm_confirm">Onayla</string>
+    <string name="dialog_confirm_pay_to">Gönder</string>
+    <string name="dialog_confirm_secured_by">ile güvence altına alınmış</string>
+    <string name="dialog_confirm_fee">Ağ ücreti</string>
+    <string name="dialog_confirm_total">Toplam</string>
+    <string name="shortcut_action_join_babachainpay">BabaChainPay\'e Katılın</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_secure_now">Yedekle</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_scan_to_pay">QR Tara</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_send">Gönder</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_pay_to_contact">Kişiye Gönder</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_buy_sell">Al &amp; Sat</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_receive">Al</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_import_key">Özel Anahtarı İçe Aktar</string>
+
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_quick_receive">Hızlı Al</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_pin">PİN ile Oturum aç</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_fingerprint">Parmak izi ile Oturum aç</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_scan_to_pay">Göndermek için Tara</string>
+    <!-- Lock Screen: Text above the PIN Entry area -->
+    <string name="lock_enter_pin">PIN Girin</string>
+    <string name="lock_unlock_with_fingerprint">Açmak için parmak izini kullan</string>
+
+    <string name="perm_lock_info">Cüzdan kalıcı olarak kitlendi</string>
+    <string name="perm_lock_wipe_wallet">Cüzdanı Sıfırla</string>
+    <string name="perm_lock_close_app">Kapat</string>
+
+    <string name="scan_to_pay_error_dialog_title">Göndermek için Tara</string>
+    <string name="scan_to_pay_error_dialog_message">Panodaki BabaChain Adresi veya URL isteği geçerli değil:\n\n%s</string>
+    <string name="scan_to_pay_error_dialog_message_no_data">Panodaki BabaChain Adresi veya URL isteği geçerli değil.</string>
+
+    <string name="receive_title">Al</string>
+    <string name="receive_enter_amount_message">Alınacak tutarı belirtin</string>
+
+    <string name="pay_title">Gönder</string>
+    <string name="history_title">Geçmiş</string>
+    <string name="more_title">Daha Fazla</string>
+    <string name="settings_title">Ayarlar</string>
+    <string name="security_title">Güvenlik</string>
+    <string name="recover_wallet_title">Cüzdanı Kurtar</string>
+    <string name="tools_title">Araçlar</string>
+
+    <string name="payments_title">Tüm Ödemeler</string>
+    <string name="payments_tab_pay_label">Gönder</string>
+    <string name="payments_tab_receive_label">Al</string>
+    <string name="payments_pay_to_contact_title">Bir Kişiye Gönder</string>
+    <string name="payments_pay_to_contact_sub_title">Kişilerinizden biri</string>
+    <string name="payments_pay_to_contact_button">Seç</string>
+    <string name="payments_pay_by_qr_title">Tarafından Gönderildi</string>
+    <string name="payments_pay_by_qr_sub_title">QR kodu taranıyor</string>
+    <string name="payments_pay_to_clipboard_title">Kopyalanan adrese gönder</string>
+    <string name="payments_pay_to_clipboard_sub_title">Kopyalanan adres yok</string>
+
+    <string name="forgot_pin_title">PİN\'inizi unuttunuz mu?</string>
+    <string name="forgot_pin_message">Kurtarma sözcük grubuyla yeni bir PİN oluşturabilirsiniz.</string>
+    <string name="forgot_pin_instruction_1">Cüzdanınızı kurtarmak için kurtarma sözcük grubunu girin.</string>
+    <string name="forgot_pin_instruction_2">Yeni PİN oluşturun</string>
+    <string name="forgot_pin_instruction_3">Yeni PİN\'inizle oturum açarak cüzdanınıza erişin</string>
+    <string name="forgot_pin_warning">Eğer kurtarma sözcük grubunuzu ve PİN\'inizi unuttuysanız cüzdanınıza ve paranıza erişemezsiniz.</string>
+    <string name="forgot_pin_recover">Kurtarma ifadesini girin</string>
+    <string name="forgot_pin_passphrase_doesnt_match">Kurtarma ifadesi cüzdanın önceden belirlenen ifadesiyle eşleşmemektedir</string>
+
+    <string name="send_coins_auto_lock_feasible">Bu işlem hiç ek ücret ödenmeden anında tamamlanabilir</string>
+    <string name="send_coins_auto_lock_not_feasible">Bu işlemin gerçekleşmesi birkaç dakika sürebilir. %1$s%2$s ile anında tamamlansın mı?</string>
+    <string name="send_coins_instant_send_not_feasible">Bu işlemin gerçekleşmesi birkaç dakika sürebilir.</string>
+
+    <string name="options_paste_from_clipboard_title">Panodan yapıştır</string>
+
+    <string name="transaction_row_message_own_instantx_lock_request_notsent">Bu ödeme henüz aktarılmadı.</string>
+    <string name="transaction_row_message_sent_to_single_peer">Bu ödeme gönderildi.</string>
+
+    <string name="regular_transaction_info_message">Bu işlem anında gerçekleşmedi.</string>
+
+    <string name="wallet_options_disconnect">Bağlantıyı Kes</string>
+
+    <string name="network_monitor_masternodes_title">TemelAğlar</string>
+    <string name="export_keys_dialog_title_to_seed">Kurtarma Sözcük Grubunu Göster</string>
+    <string name="import_keys_dialog_title_from_seed">Kurtarma sözcük grubundan geri yükle</string>
+    <string name="backup_to_seed_wallet_dialog_message">Bu sizin kurtarma sözcük grubunuzdur. Lütfen bir yere yazınız.</string>
+    <string name="backup_wallet_to_seed_dialog_warning">Kurtarma sözcük grubunuzu kimselere ASLA göstermeyin, yoksa BabaChain\'lerinizi harcayabilirler.</string>
+    <string name="backup_to_seed_wallet_dialog_enter_pin_message">Cüzdanınız bir harcama PİN\'i ile korunur. PİN\'inizi girin ve Göster\'e tıklayarak kurtarma sözcük grubunuzu görüntüleyin.</string>
+    <string name="import_keys_from_seed_dialog_message">Kurtarma sözcük grubunuzu girin.</string>
+    <string name="import_export_keys_dialog_password_phrase">Kurtarma sözcük grubunuz buraya.</string>
+    <string name="preferences_report_issue_summary">Sorununuz ile ilgili bilgi toplayın ve raporunuzu geliştiricilere e-posta yolu ile gönderin.</string>
+    <string name="navigation_configuration">Yapılandırma</string>
+    <string name="request_coins_clipboard_address_msg">BabaChain adresi panoya kopyalandı</string>
+    <string name="backup_wallet_to_seed_show_recovery_phrase">Göster</string>
+    <string name="restore_wallet_from_invalid_seed_warning_message">\"%s\" kurtarma cümlesi kelimesi değil</string>
+    <string name="restore_wallet_from_invalid_seed_bad_checksum">Hatalı kurtarma cümlesi</string>
+    <string name="restore_wallet_from_invalid_seed_failure">Cüzdan geri yüklenemedi:\n\n%s\n\nYanlış kurtarma sözcük grubu?</string>
+
+    <string name="send_coins_options_fee_category_zero">Ücret Yok</string>
+    <string name="send_coins_fragment_hint_fee_zero">Ücret ödenmeyecek. Sadece onay süresi sizin için önemli değilse \'ücret yok\' seçeneğini kullanın.</string>
+
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_public_key_request_dialog_msg">%s uygulaması size ait Ana Herkese Açık Anahtarı istiyor. Bunun sayesinde cüzdanınız takip edilebilir ama BabaChainlerinizi başka bir yere aktarmakta kullanılamaz.</string>
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_address_request_dialog_msg">%s uygulaması size ödeme yapabilmek için bir adres talep ediyor. Onay veriyor musunuz?</string>
+
+    <string name="wallet_lock_unlock">Kilidi Aç</string>
+    <string name="wallet_lock_unlock_wallet">Cüzdanın kilidini aç</string>
+    <string name="wallet_lock_unlock_to_see_txs_title">Cüzdan kilitli.</string>
+    <string name="wallet_lock_unlock_to_see_txs_txt">Cüzdanınızın kilidi açıp işlem geçmişinizi görmek için yukarıdaki kilit simgesine dokunun.</string>
+    <string name="wallet_lock_unlock_dialog_title">Cüzdanının kilidini aç</string>
+    <string name="wallet_lock_unlock_dialog_message">Cüzdanınız bir harcama PIN kodu ile korunuyor. Devam etmek için PIN kodunuzu girin ve Kilidi Aça basın.</string>
+    <string name="wallet_lock_reset_wallet_title">Cüzdanı Sıfırla</string>
+    <string name="wallet_lock_reset_wallet_message">Emin misiniz? Cüzdanınız silinecek ve tüm BabaChain\'iniz kaybolacak.\n\nBabaChain\'inizi geri almanın tek yolu yedek dosyası veya kurtarma sözcükleridir.</string>
+
+    <string name="wallet_lock_wallet_disabled">Cüzdan devredışı</string>
+    <string name="wallet_lock_try_again">%1$d %2$s içinde tekrar dene</string>
+    <string name="wallet_lock_reset">Yeniden Başlat</string>
+    <string name="wallet_lock_wrong_pin">Yanlış PIN! %s</string>
+    <string name="wallet_last_attempt">Son PIN denemesi</string>
+    <string name="wallet_last_attempt_message">Başka bir başarısız girişim, cüzdanımı kurtarmak için parolamı gerektirecek</string>
+
+    <plurals name="wallet_lock_attempts_remaining">
+        <item quantity="one">%d deneme hakkı kaldı</item>
+        <item quantity="other">%d deneme hakkı kaldı</item>
+    </plurals>
+
+    <plurals name="minute">
+        <item quantity="one">dakika</item>
+        <item quantity="other">dakika</item>
+    </plurals>
+
+    <plurals name="hour">
+        <item quantity="one">saat</item>
+        <item quantity="other">saat</item>
+    </plurals>
+
+    <string name="encrypt_new_key_chain_upgrade_button">Yükselt</string>
+    <string name="encrypt_new_key_chain_dialog_title">Cüzdanı yükselt</string>
+    <string name="encrypt_new_key_chain_dialog_message">Cüzdanınız daha fazla uygulama arasında içeri ve dışarı aktarım yapmayı desteklemek için yükseltilecek.</string>
+    <string name="encrypt_new_key_chain_enter_pin_dialog_message">Yükseltme işlemini bitirmek için PIN kodunu girmelisiniz.</string>
+    <string name="pin_code_required_dialog_message">Bu uygulama artık para harcamak, bakiye ve işlemleri görmek için PIN kodu soracak.</string>
+    <string name="backup_wallet_seed_private_key_written_down_box">Kurtarma sözcüklerini not aldım</string>
+
+    <string name="change_exchange_currency_code_message">Yerel para biriminiz %1$s ama bu uygulamada varsayılan para birimi %2$s olarak ayarlanmış. %1$s olarak değiştirmek ister misiniz yoksa %2$s olarak mı kalsın?</string>
+    <string name="change_to">%s olarak değiştir</string>
+    <string name="leave_as">%s olarak kalsın</string>
+
+    <string name="remind_later">Sonra hatırlat</string>
+    <string name="backup_now">Hemen yedekle</string>
+
+    <string name="notification_transactions_channel_name">İşlemler</string>
+    <string name="notification_transactions_channel_description">Yaklaşan işlemlerle ilgili uyarı al.</string>
+    <string name="notification_synchronization_channel_name">Eşleştirme</string>
+    <string name="notification_synchronization_channel_description">Uygulama ağ ile eşleşirken bir bildirim gösterir.</string>
+    <string name="notification_generic_channel_name">Genel bildirimler</string>
+    <string name="notification_generic_channel_description">Diğer BabaChain Cüzdan etkinlikleri</string>
+    <string name="notification_push_channel_name">Push bildirimleri</string>
+    <string name="notification_push_channel_description">BabaChain tarafından size gönderilen push bildirimlerini gösterir</string>
+    <string name="notification_settings_title">Bildirimler</string>
+    <string name="notification_explainer_title">BabaChain Cüzdanı size bildirim göndermek istiyor</string>
+    <string name="notification_explainer_message">Bildirimler, uyarıları, sesleri ve simge rozetlerini içerebilir. Bunlar telefon Ayarlarında yapılandırılabilir.</string>
+    <string name="net_type_indicator" />
+
+    <string name="unlock_with_fingerprint">Açmak için parmak izini kullan.</string>
+    <string name="unlock_with_fingerprint_error">Parmak izi tanınamadı, lütfen tekrar dene.</string>
+    <string name="unlock_with_fingerprint_error_max_attempts">Parmak izi deneme sınırı aşıldı. Lütfen daha sonra tekrar dene.</string>
+    <string name="or_unlock_with_fingerprint">Ya da açmak için parmak izini kullan.</string>
+    <string name="enable_fingerprint">Parmak izini etkinleştir</string>
+    <string name="touch_fingerprint_sensor">Parmak izi sensörüne dokunun</string>
+    <string name="touch_fingerprint_to_enable">Parmak izi ile kilit açma için parmak izi okuyucusuna dokun.</string>
+    <string name="fingerprint_changed_title">Parmak izi verileri değiştirildi</string>
+    <string name="fingerprint_changed_message">Parmak izi kimlik doğrulama verilerinizde bir değişiklik tespit ettik. Bu sefer PIN kodunuzu kullanmanız gerekiyor.</string>
+    <string name="exchange_rate_missing">Bu ödeme itibari para karşılığını göstermek için çok eskidir.</string>
+
+    <string name="preferences_enable_payment_request_summary">QR-koduyla başlatılan ödemeler için ödeme protokolünü kullan</string>
+    <string name="preferences_enable_payment_request_title">ödemeyi-tara için BIP70</string>
+
+    <string name="verify_continue">Devam</string>
+    <string name="verify_backup_wallet">Cüzdanı Yedekle</string>
+    <string name="verify_show_recovery_phrase">Kurtarma Sözcük Grubunu Göster</string>
+    <string name="verify_info_title">Kurtarma sözcük grubunu yedekle</string>
+    <string name="verify_info_subtitle">Bu cihaz kaybolursa, hasar görürse veya BabaChain Cüzdan\'ı bu cihazdan kaldırılırsa paranıza erişmek için bu kurtarma ifadesine ihtiyacınız olacaktır.</string>
+    <string name="verify_info_title_1">BabaChain Core Group bu kurtarma sözcük grubunu SAKLAMAZ</string>
+    <string name="verify_info_subtitle_1">Kurtarma sözcük grubunuza sahip olan herkes fonlarınıza erişebilir.</string>
+    <string name="verify_info_title_2">Bir kurtarma sözcük grubu olmadan cüzdanı geri yükleyemezsiniz</string>
+    <string name="verify_seed_buttons_tip">Lütfen kurtarma sözcük grubunuzu doğru şekilde sıralayın</string>
+    <string name="verify_seed_success_title">Başarıyla Doğrulandı</string>
+    <string name="verify_seed_success_message">Cüzdanınız artık güvende. Hesabınızı başka bir cihaza aktarmak için kurtarma sözcük grubunuzu istediğiniz zaman kullanabilirsiniz.</string>
+    <string name="verify_no_screenshot_title">Ekran görüntüsü almayın</string>
+    <string name="verify_no_screenshot_message">Bunun yerine kurtarma sözcük grubunu güvenli bir yere yazın.</string>
+    <string name="verify_why_no_screenshot">Neden ekran görüntüsü almamalıyım?</string>
+    <string name="verify_warning_title">Uyarı</string>
+    <string name="verify_warning_message">Bu kurtarma sözcük grubu, cüzdanınızdaki fonlara erişiminizdir.</string>
+    <string name="verify_warning_screenshots_title">Ekran görüntüleri ALMAYIN</string>
+    <string name="verify_warning_screenshots_message">Ekran görüntüleri başka uygulamalara ve cihazlara açıktır.</string>
+    <string name="verify_warning_do_not_show">Kurtarma sözcük grubunuzu kimsenin görmesine izin VERMEYİN.</string>
+    <string name="verify_warning_do_not_type">Kurtarma sözcük grubunuzu parola yöneticilerine veya başka bir yere asla yazmayın.</string>
+    <string name="view_seed_done">Bitti</string>
+    <string name="view_seed_title">Kurtarma Sözcük Grubu</string>
+    <string name="transaction_result_view_on_explorer">Blok gezgininde görüntüle</string>
+    <string name="transaction_result_tax_category">Vergi Kategorisi</string>
+    <string name="transaction_result_tax_category_loading">Yükleniyor...</string>
+    <string name="tax_category_income">Gelir</string>
+    <string name="tax_category_expense">Gider</string>
+    <string name="tax_category_transfer_in">İçe transfer</string>
+    <string name="tax_category_transfer_out">Dışa transfer</string>
+    <string name="transaction_result_paid_successfully">Başarıyla gönderildi</string>
+    <string name="transaction_result_sent_to">Gönder</string>
+    <string name="transaction_date_and_time">Tarih</string>
+    <string name="transaction_close">Kapat</string>
+    <string name="transaction_details_amount_received">Alınan Tutar</string>
+    <string name="transaction_details_amount_sent">Gönderilen Tutar</string>
+    <string name="transaction_details_sent_from">Tarafından Gönderildi</string>
+    <string name="transaction_details_sent_to">Gönderildi</string>
+    <string name="transaction_details_received_at">Alındı</string>
+    <string name="transaction_details_received_from">Gönderen</string>
+    <string name="transaction_details_moved_from">Taşındı</string>
+    <string name="transaction_details_moved_internally_to">Dahili olarak taşındı</string>
+    <string name="transaction_failed_details">İşlem başarısız</string>
+    <string name="transaction_failed_resolve">Bu, şu şekilde çözülebilir:</string>
+    <string name="transaction_failed_rescan">blok zincirini yeniden tarıyor</string>
+    <string name="transaction_failed_in_conflict">Bu cüzdan iki cihazda kuruluysa mümkündür.</string>
+
+    <string name="authenticate_fingerprint_title">Doğrulama</string>
+    <string name="authenticate_fingerprint_message">Devam etmek için parmak iziyle onaylayın</string>
+    <string name="authenticate_pin_message">Devam etmek için PİN\'inizi girin</string>
+    <string name="authenticate_switch_to_fingerprint">Parmak izinizi kullanın</string>
+    <string name="authenticate_switch_to_pin">PİN Kullan</string>
+
+    <string name="menu_invite_title">Davet etmek</string>
+    <string name="menu_buy_and_sell_title">BabaChain Al &amp; Sat</string>
+    <string name="menu_buy_and_sell_subtitle">Üçüncü parti borsalara bağlanın</string>
+    <string name="liquid_unavailable">BabaChain Cüzdanı ile Liquid entegrasyonu artık yok</string>
+    <string name="liquid_unavailable_details">Liquid\'deki BabaChain varlıklarınızla ilgili herhangi bir sorunuz varsa, lütfen Liquid destek merkezi ile iletişime geçin.</string>
+    <string name="menu_security_title">Güvenlik</string>
+    <string name="menu_security_subtitle">Kurtarma sözcük grubunu göster, cüzdanı yedekle...</string>
+    <string name="menu_settings_title">Ayarlar</string>
+    <string name="menu_settings_subtitle">Varsayılan para birimi, kısayollar, hakkında…</string>
+    <string name="menu_tools_title">Araçlar</string>
+    <string name="menu_tools_subtitle">Özel anahtari içeri aktar...</string>
+    <string name="menu_local_currency">Yerel para birimi</string>
+    <string name="menu_rescan_blockchain">Blok zincirini tekrar tara</string>
+    <string name="menu_contact_support_title">Destekle İletişime Geçin</string>
+    <string name="menu_contact_support_subtitle">Sorun rapor et</string>
+    <string name="menu_explore_title">Keşfet</string>
+    <string name="menu_explore_subtitle">DASH\'i kabul eden satıcıları bulun</string>
+
+    <string name="tools_address_book">Adres Rehberi</string>
+    <string name="tools_import_private_key">Özel anahtar içeri al</string>
+    <string name="tools_network_monitor">Ağ monitörü</string>
+    <string name="tools_show_xpub">Genişletilmiş Genel Anahtar</string>
+
+    <string name="about_help_us_improve">Deneyiminizi geliştirmemize yardımcı olun</string>
+    <string name="about_review_and_rate">Uygulamamızı değerlendirip puanlayın</string>
+    <string name="about_contact_support">Destekle İletişime Geçin</string>
+    <string name="about_fork_disclaimer">Bu uygulama açık kaynak kodlu bir Bitcoin çatallanmasıdır</string>
+    <string name="about_license">GNU Genel Kamu Lisansı v3.0</string>
+    <string name="about_last_explore_device_sync">Son Explore cihaz senkronizasyonu</string>
+    <string name="about_last_explore_server_update">Son Explore sunucu güncellemesi</string>
+    <string name="about_firebase_installation_id">Firebase kurulum kimliği</string>
+    <string name="about_fcm_token">Firebase bulut mesajlaşma jetonu</string>
+    <string name="about_last_explore_babachain_update_error">getirilemiyor</string>
+    <string name="about_last_explore_babachain_sync_never">asla</string>
+    <string name="about_explore_failed_sync">%s üzerinde senkronize edilemedi</string>
+    <string name="about_explore_preloaded_on">%s üzerinde önceden yüklenmiş</string>
+
+    <string name="block">Blok</string>
+    <string name="time">Zaman</string>
+    <string name="hash">Karma</string>
+    <string name="block_info">Blok Bilgisi</string>
+
+    <string name="scan_private_key">Özel Anahtarı Tara</string>
+    <string name="scan_private_key_intro_1">Bir BabaChain kağıt cüzdanından para aktarmak üzeresiniz.</string>
+    <string name="scan_private_key_intro_2">Bu işlem o cüzdandaki tüm parayı şuan kullandığınız cihazdaki cüzdanınıza aktaracaktır.</string>
+    <string name="scan_private_key_intro_3">İşlem onaylandığında, diğer cüzdan değersiz olacaktır ve güvenlik nedeniyle yeniden kullanılmamalıdır.</string>
+    <string name="confirm">Onayla</string>
+
+    <string name="advanced_security_security_level">Güvenlik Seviyesi</string>
+    <string name="auto_logout">Otomatik Oturum Kapatma</string>
+    <string name="spending_confirmation">Harcama Onayı</string>
+    <string name="logout_after">Sonra çıkış yap</string>
+    <string name="immediately">Derhal</string>
+    <string name="twenty_four_hours">24 saat</string>
+    <string name="one_minute">1 dk</string>
+    <string name="five_minute">5 dk</string>
+    <string name="one_hour">1 saat</string>
+    <string name="biometric_limit">Biyometrik Limit</string>
+    <string name="spending_confirmation_hint_zero">Ödeme yapmak için her zaman PIN gereklidir</string>
+    <string name="spending_confirmation_hint_above_zero">Aşağıdaki ödemeleri Biyometrik Kimlik Doğrulaması ile onaylayabilirsin</string>
+
+    <string name="security_none">Hiçbiri</string>
+    <string name="security_low">Düşük</string>
+    <string name="security_medium">Orta</string>
+    <string name="security_high">Yüksek</string>
+    <string name="security_very_high">Çok Yüksek</string>
+    <string name="max">Maksimum</string>
+
+    <string name="skip">atla</string>
+    <string name="get_started">Başla</string>
+    <string name="welcome_screen_title_1_new_install">Hoşgeldiniz</string>
+    <string name="welcome_screen_title_1_upgrade">Yeni sürüme geçtik</string>
+    <string name="welcome_screen_subtitle_1">Tüm cihazlarınızda tanıdık sezgisel bir deneyim</string>
+    <string name="welcome_screen_title_2">Kolaylıkla öde</string>
+    <string name="welcome_screen_subtitle_2">Kullanımı kolay ödeme akımlarıyla anında ödeme yapın ve alın</string>
+    <string name="welcome_screen_title_3">Daha Fazla Kontrol</string>
+    <string name="welcome_screen_subtitle_3">Tam kontrol sahibi olun ve cüzdanınızı ihtiyacınıza göre özelleştirin</string>
+
+    <string-array name="history_filter">
+        <item>Hepsi</item>
+        <item>Alınan</item>
+        <item>Gönderilen</item>
+    </string-array>
+
+    <string name="sync_status_wait">Lütfen senkronizasyonun tamamlanmasını bekleyin</string>
+    <string name="sync_status_syncing_sub_title">BabaChain blok zinciri ile</string>
+    <string name="sync_status_unable_to_connect">Bağlanılamıyor</string>
+    <string name="sync_status_check_connection">Bağlantınızı kontrol edin</string>
+    <string name="sync_status_sync_title">Senkronize Et</string>
+    <string name="sync_status_sync_completed">Tamamlandı</string>
+
+    <string name="appwidget_wallet_not_ready">Lütfen cüzdanınızı kurun</string>
+
+    <string name="payment_request_please_wait_message">Ödeme Sunucusuna Bağlanıyor</string>
+    <string name="payment_request_unable_to_connect">Bağlanılamıyor</string>
+    <string name="payment_request_unable_to_send">Gönderilemiyor</string>
+    <string name="payment_request_please_try_again">Lütfen tekrar deneyin</string>
+    <string name="payment_request_try_again">Tekrar Dene</string>
+    <string name="payment_request_expired_title">Ödeme Talebinin Süresi Bitti</string>
+    <string name="payment_request_close">Kapat</string>
+    <string name="payment_request_skip">Atla</string>
+    <string name="payment_request_paid_to">Ödeme yap</string>
+
+    <string name="import_image_not_valid_qr_code">Geçerli bir QR kodu değil</string>
+    <string name="import_image_please_use_valid_qr_code">Lütfen geçerli bir BabaChain QR Kodu kullanın</string>
+    <string name="import_image_no_private_key_copied">Kopyalanan bir özel anahtar yok</string>
+    <string name="import_image_import_valid_private_key">BabaChain\'i içe aktarmak için geçerli bir özel anahtar kopyalayın</string>
+    <string name="import_image_invalid_private">Geçersiz Özel Anahtar</string>
+    <string name="okay">Tamam</string>
+
+    <string name="onboard_from_invite_subtitle">BabaChainPay\'e hoş geldiniz</string>
+    <string name="onboard_from_invite_step1_title">Kullanıcı adınızı seçin</string>
+    <string name="onboard_from_invite_step2_title">PIN\'inizi Ayarlayın</string>
+    <string name="onboard_from_invite_step3_title">Cüzdanınızı Güvende Tutun</string>
+
+    <string name="restore_wallet_please_wait">Lütfen Bekleyin</string>
+    <string name="network_unavailable">Ağ Kullanılamıyor</string>
+    <string name="network_error_contact_details">Kişi ayrıntıları alınamıyor</string>
+    <string name="network_error_user_search">Bir kullanıcı aranamıyor</string>
+    <string name="network_error_contact_suggestions">Öneri verilemiyor</string>
+    <string name="today">Bugün</string>
+    <string name="yesterday">Dün</string>
+
+    <string name="syncing">Senkronize ediliyor</string>
+    <string name="syncing_balance">Bakiye senkronize ediliyor</string>
+    <string name="transaction_count">%d işlemler</string>
+    <string name="all_transactions">Hepsi</string>
+    <string name="received_transactions">Alınan</string>
+    <string name="sent_transactions">Gönderilen</string>
+    <string name="set_pin_error_missing_wallet_title">Eksik Cüzdan Hatası</string>
+    <string name="set_pin_error_missing_wallet_message">Cüzdan kayıp. Lütfen bunu Destek Masasına bildirin.</string>
+    <string name="wallet_encryption_error_title">Cüzdan Oluşturma Hatası</string>
+    <string name="wallet_encryption_error_message">Cüzdan oluşturulurken bir sorun oluştu. Lütfen bunu Destek Masasına bildirin.</string>
+    <string name="wallet_not_encrypted_error_message">Cüzdanınızla ilgili bir sorun var.\n\nBu cüzdanda BabaChain yoksa, bu uygulamayı kaldırıp yeniden yükleyin. Ardından yeni bir cüzdan oluşturun.\n\nBir kurtarma ifadeniz veya bir yedekleme dosyanız varsa, bu uygulamayı kaldırın ve yeniden yükleyin.\n\nAksi takdirde, lütfen bunu Destek Masasına bildirin.</string>
+
+    <string name="reset_wallet_title">Cüzdanı sıfırlamak istediğinizden emin misiniz?</string>
+    <string name="reset_wallet_message">Cüzdanınızı sıfırlarsanız, ona erişmenin tek yolu, kurtarma ifadesiyle cüzdanı kurtarmaktır.</string>
+    <string name="positive_reset_text">Evet, Cüzdanı Sıfırla</string>
+    <string name="launch_reset_wallet_title">Pozitif bir bakiyeniz var</string>
+    <string name="launch_reset_wallet_message">Cüzdanınızı sıfırlarsanız, kurtarma ifadenizi yedeklemediyseniz tüm paranızı kaybedersiniz.</string>
+    <string name="continue_reset">Devam</string>
+    <string name="launch_reset_wallet_extra_message">Kurtarma ifadenizi yedekleyin</string>
+    <string name="start_reset_wallet_title">%s kaybedebilirsiniz</string>
+    <string name="reset_wallet_text">Cüzdanı Sıfırla</string>
+
+
+
+    <!-- Tax category -->
+    <string name="reclassify_transactions_title">İşlemlerinizi Yeniden Sınıflandırın</string>
+    <string name="reclassify_transactions_title_message">Bu sınıflandırmalar, vergi raporlama hizmetlerine içe aktarılmak için kullanılabilecek CSV aktarımlarına yansıyacaktır.</string>
+    <string name="reclassify_transactions_question">Vergi kategorisini nereden değiştirebilirim?</string>
+    <string name="reclassify_transactions_outgoing_title">Giden işlemler</string>
+    <string name="reclassify_transactions_by_default_message">varsayılan olarak işaretlenecektir</string>
+    <string name="reclassify_transactions_incoming_title">Gelen işlemler</string>
+    <string name="reclassify_transactions_change_it_message">olarak değiştirebilirsiniz</string>
+    <string name="reclassify_transactions_linked_accounts_title">Bağlı hesaplar</string>
+    <string name="reclassify_transactions_linked_accounts_message">Varsayılan olarak, bağlı hesaplarınıza yapılan veya bu hesaplardan yapılan tüm işlemler (borsalar, vb.) transfer olarak işaretlenecektir.</string>
+    <string name="reclassify_transactions_change_explanation">Ana sayfadan herhangi bir işlemi seçin ve işlem ayrıntıları sayfasında kategoriyi değiştirin.</string>
+
+    <string name="masternode_keys_title">Ana düğüm Anahtarları</string>
+    <string name="masternode_key_type_owner">Sahip Anahtarları</string>
+    <string name="masternode_key_type_voting">Oy Verme Anahtarları</string>
+    <string name="masternode_key_type_operator">Operatör Anahtarları</string>
+    <string name="masternode_key_type_platform">Evolution Node Kimlik Anahtarları</string>
+    <string name="masternode_key_type_total">%d anahtarları</string>
+    <string name="masternode_key_type_used">%d kullanıldı</string>
+    <string name="masternode_key_pair_index">Tuş Çifti %d</string>
+    <string name="masternode_key_address">Adres</string>
+    <string name="masternode_key_id">Anahtar Kimliği</string>
+    <string name="masternode_key_public">Genel Anahtar</string>
+    <string name="masternode_key_public_legacy">Genel Anahtar (miras)</string>
+    <string name="masternode_key_private_hex">Özel Anahtar</string>
+    <string name="masternode_key_private_wif">Özel Anahtar WIF</string>
+    <string name="masternode_key_used">IP: %s</string>
+    <string name="masternode_key_ip_address_unknown">Bilinmeyen</string>
+    <string name="masternode_key_not_used">Kullanılmamış</string>
+    <string name="masternode_key_revoked">İptal edildi</string>
+    <string name="masternode_key_private_public_base64">Özel / Genel Anahtarlar (base64)</string>
+    <!-- stale rates messages -->
+    <string name="stale_exchange_rates_error">Fiyatlar alınamadı. Fiat değerleri yanlış olabilir.</string>
+    <string name="stale_exchange_rates_stale">Fiyatlar en az 30 dakikalıktır. Fiat değerleri yanlış olabilir.</string>
+    <string name="stale_exchange_rates_volatile">Fiyatlar son güncellemeden bu yana %50\'den fazla dalgalandı.</string>
+    </resources>

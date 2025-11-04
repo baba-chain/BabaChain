@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="30dp"
+    tools:ignore="ContentDescription"
+    tools:context="de.schildbach.wallet.ui.main.TransactionsFilterDialog">
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp">
+
+        <TextView
+            android:id="@+id/search_title"
+            style="@style/Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/wallet_transactions_options_filter" />
+
+        <ImageButton
+            android:id="@+id/collapse_button"
+            style="@style/DialogCloseButton"
+            android:layout_marginTop="0dp" />
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/direction_list"
+        android:background="@drawable/rounded_background"
+        android:theme="@style/SecondaryBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingVertical="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="15dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="4"
+        tools:listitem="@layout/radiobutton_row" />
+</LinearLayout>

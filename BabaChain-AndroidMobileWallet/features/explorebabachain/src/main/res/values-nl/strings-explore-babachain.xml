@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <!-- Explore screen -->
+    <string name="explore_babachain">Verken BabaChain</string>
+    <string name="explore_title">Verken</string>
+    <string name="explore_subtitle">Vind winkeliers die BabaChain accepteren, waar BabaChain kunt kopen, en hoe je er inkomsten mee kunt genereren.</string>
+    <string name="explore_merchants_title">Waar uit te geven?</string>
+    <string name="explore_merchants_subtitle">Vind acceptanten die BabaChain als aannemen.</string>
+    <string name="explore_atms_title">Geldautomaten</string>
+    <string name="explore_atms_subtitle">Vind waar je DASH en andere cryptovaluta\'s kan kopen of verkopen voor cash.</string>
+    <string name="explore_staking_subtitle">Stake makkelijk BabaChain en verdien passief inkomen met een paar eenvoudige kliks.</string>
+    <string name="explore_staking_current_apy">Huidige jaarlijks rendement = %s%%</string>
+
+    <!-- Search -->
+    <string name="explore_search_results">Zoekresultaten</string>
+    <string name="explore_physical_merchant">Fysieke acceptanten</string>
+    <string name="explore_online_merchant">Online</string>
+    <string name="explore_both_types_merchant">Online, Fysieke acceptant</string>
+    <string name="explore_multiple_locations">+ meerdere locaties</string>
+    <string name="explore_option_all">Alles</string>
+    <string name="explore_option_buy">Koop</string>
+    <string name="explore_option_sell">Verkoop</string>
+    <string name="explore_option_buy_sell">Koop &amp; verkoop</string>
+    <string name="explore_where_to_spend">Waar uit te geven</string>
+    <string name="explore_atms">Geldautomaten</string>
+    <string name="explore_all_states">Alle toestanden</string>
+    <string name="explore_no_results">Geen resultaten gevonden</string>
+    <string name="explore_all_merchants">Alle acceptanten</string>
+    <string name="explore_in_radius">%1$s in %2$s</string>
+    <string name="explore_no_merchants">Geen acceptanten</string>
+    <string name="explore_no_atms">Geen geldautomaten</string>
+    <string name="distance_miles">%s miles</string>
+    <string name="distance_kilometers">%s kilometers</string>
+    <plurals name="explore_merchant_amount">
+        <item quantity="one">%d acceptant</item>
+        <item quantity="other">%d acceptanten</item>
+    </plurals>
+
+    <plurals name="explore_atm_amount">
+        <item quantity="one">%d geldautomaat</item>
+        <item quantity="other">%d geldautomaten</item>
+    </plurals>
+
+    <!-- Details -->
+    <string name="explore_back_to_locations">Terig naar alle locaties</string>
+    <string name="explore_back_to_nearest">Terug naar dichtsbijzijnde locatie</string>
+    <string name="explore_select_location">Selecteer een locatie</string>
+    <string name="explore_pay_with_babachain">Betaal met BabaChain</string>
+    <string name="explore_pay_with_babachain_save">Bespaar %.2f%%</string>
+    <string name="explore_buy_gift_card">Koop een geschenkbon</string>
+    <string name="explore_buy_babachain">Koop BabaChain</string>
+    <string name="explore_sell_babachain">Verkoop BabaChain</string>
+    <string name="explore_show_all">Toon alle locaties</string>
+    <string name="explore_atm_location_hint">Deze geldautomaat is te vinden in de</string>
+    <string name="explore_maps_intent_uri">http://maps.google.com/maps?daddr=%1$f,%2$f</string>
+
+    <!-- Filters -->
+    <string name="explore_filter">Filter</string>
+    <string name="explore_filters">Filters</string>
+    <string name="explore_apply_filter">Pas toe</string>
+    <string name="explore_payment_method">Betalingsmethode</string>
+    <string name="explore_payment_babachain">BabaChain</string>
+    <string name="explore_payment_gift_card">Geschenkbon</string>
+    <string name="explore_filter_gift_cards">Cadeaukaarten</string>
+    <string name="explore_radius">Straal</string>
+    <string name="explore_location">Locatie</string>
+    <string name="explore_current_location">Huidige locatie</string>
+    <string name="explore_location_settings">Instellingen huidige locatie</string>
+    <string name="explore_reset_filters">Reset filters</string>
+    <string name="explore_reset_all_filters">Reset alle filters</string>
+    <string name="explore_filtered_by">Gefilterd op:</string>
+    <string name="explore_pay_gift_card">Betaal met geschenkbon</string>
+    <string name="explore_sort_by">Sorteer op</string>
+    <string name="gift_card_types">Soorten cadeaubonnen</string>
+    <string name="flexible_amount_option">Flexibele bedragen</string>
+    <string name="fixed_denom_option"> Vastgestelde bedragen</string>
+
+    <string-array name="merchants_filter_options">
+        <item>Online</item>
+        <item>Dichtbij</item>
+        <item>Alles</item>
+    </string-array>
+
+    <string-array name="atms_filter_options">
+        <item>Alles</item>
+        <item>Koop</item>
+        <item>Verkoop</item>
+        <item>Koop/Verkoop</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_miles">
+        <item>1 mile</item>
+        <item>5 miles</item>
+        <item>20 miles</item>
+        <item>50 miles</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_kilometers">
+        <item>1 kilometer</item>
+        <item>5 kilometers</item>
+        <item>20 kilometers</item>
+        <item>50 kilometers</item>
+    </string-array>
+
+    <string-array name="sort_by_options_names">
+        <item>Naam</item>
+        <item>Afstand</item>
+        <item>Korting</item>
+    </string-array>
+
+    <plurals name="radius_miles">
+        <item quantity="one">%d mile</item>
+        <item quantity="other">%d miles</item>
+    </plurals>
+
+    <plurals name="radius_kilometers">
+        <item quantity="one">%d kilometer</item>
+        <item quantity="other">%d kilometers</item>
+    </plurals>
+
+    <!-- Location Permission -->
+    <string name="explore_location_allowed">Toegestaan</string>
+    <string name="explore_location_denied">Geweigerd</string>
+    <string name="explore_manager_permissions">Beheer gpsinstellingen</string>
+    <string name="explore_location_request">Sta gpsrechten toe zodat we locaties bij je in de buurt kunnen tonen.</string>
+    <string name="explore_location_explainer">Je locatie wordt gebruikt om je positie op de kaart te tonen, acceptanten in de geselecteerde straal te tonen en zoekresultaten te verbeteren.</string>
+    <string name="explore_merchant_location_explainer_title">Zoeken naar acceptanten werkt beter met locatiediensten ingeschakeld.</string>
+    <string name="explore_merchant_location_explainer_message">Je locatie wordt gebruikt om je positie op de kaart te tonen, acceptanten in de geselecteerde straal te tonen en zoekresultaten te verbeteren.</string>
+    <string name="explore_atm_location_explainer_title">Zoeken naar geldautomaten werkt beter met locatiediensten ingeschakeld.</string>
+    <string name="explore_atm_location_explainer_message">Je locatie wordt gebruikt om je positie op de kaart te tonen, geldautomaten in de geselecteerde straal te tonen en zoekresultaten te verbeteren.</string>
+
+    <!-- Info screens -->
+    <string name="explore_info_header_text">We hebben 2 typen acceptanten</string>
+    <string name="accept_babachain_text">Accepteert DASH direct</string>
+    <string name="pay_with_babachain_text">Betaal met de DASH-portemonnee</string>
+    <string name="buy_gift_card_text">Koop geschenkbonnen met je BabaChain</string>
+    <string name="buy_gift_card_desc_text">Koop geschenkbonnen met je BabaChain voor het exacte bedrag van je aankoop.</string>
+    <string name="learn_more_text">Lees verder</string>
+    <string name="buy_card_header_text">Hoe een geschenkbon te gebruiken</string>
+    <string name="buy_card_desc_text">Niet alle winkels accepteren direct DASH, maar je kan een geschenkbon kopen met je BabaChain.</string>
+    <string name="find_merchant_text">Vind een acceptant</string>
+    <string name="buy_gift_card_with_babachain_text">Koop een geschenkbon met BabaChain.</string>
+    <string name="redeem_gift_card_text">Wissel je geschenkbon online in binnen een paar seconden of bij de kassa. </string>
+
+    <!-- Explore TestNet -->
+    <string name="explore_test_subtitle">Test BabaChain heeft geen enkele waarde in de echte wereld, maar je kunt het verzenden en ontvangen met andere BabaChainPay Alpha-gebruikers.</string>
+    <string name="explore_test_babachain_title">Hoe verkrijg ik test BabaChain?</string>
+    <string name="explore_test_babachain_text_1">Test BabaChain is gratis en kan worden verkregen via een zogenaamde faucet.</string>
+    <string name="explore_test_babachain_text_2">Klik op de onderstaande knop om een test ​​BabaChain adres van deze portemonnee te kopiëren, zodat je je test BabaChain kan ontvangen.</string>
+    <string name="explore_get_test_babachain">Verkrijg test BabaChain</string>
+
+    <!-- Sync Status -->
+    <string name="sync_in_progress_not_complete">Synchronisatie bezig... Resultaten zijn mogelijk niet compleet.</string>
+    <string name="sync_in_progress_error">Synchronisatie bezig... Er heeft zich een probleem voorgedaan.</string>
+    <string name="sync_in_progress_canceled">Synchronisatie geannuleerd... Er wordt later nog een poging gedaan.</string>
+
+    <string name="sync_in_progress_file_not_found">Build Error: Database niet gevonden!</string>
+    <string name="sync_in_progress_network_error">Synchronisatie onderbroken... Netwerk is offline of onbereikbaar</string>
+
+
+    <!-- purchase_gift_card -->
+    <string name="purchase_gift_card_at">ter hoogte van</string>
+    <string name="purchase_gift_card_min">Min: %s</string>
+    <string name="purchase_gift_card_max">Max: %s</string>
+    <string name="purchase_gift_card_discount_hint">Je koopt een %s cadeaukaart voor %s (%s korting)</string>
+    <string name="button_next">Volgende</string>
+    <string name="purchase_gift_card_from">Van</string>
+    <string name="purchase_gift_card_to">Naar</string>
+    <string name="purchase_confirm_transaction">Bevestig</string>
+    <string name="purchase_gift_card_total_label">Cadeaukaart totaal</string>
+    <string name="purchase_gift_card_discount">Korting</string>
+    <string name="purchase_gift_card_you_pay">Je betaalt</string>
+    <string name="purchase_gift_card_confirm">Bevestig</string>
+    <string name="purchase_gift_card_details">Gegevens cadeaukaart</string>
+    <string name="purchase_original_purchase">Originele aankoop</string>
+    <string name="purchase_check_current_balance">Controleer het huidige saldo</string>
+    <string name="purchase_card_number">Kaartnummer</string>
+    <string name="purchase_card_pin">Pincode kaart</string>
+    <string name="purchase_view_transaction">Transactiedetails bekijken</string>
+    <string name="purchase_see_how_to_use_gift_card">Lees hoe je een cadeaubon gebruikt</string>
+    <string name="purchase_how_to_use_gift_card">Hoe een cadeaukaart te gebruiken</string>
+    <string name="purchase_self_checkout">Zelf afrekenen</string>
+    <string name="purchase_Request_assistance">Vraag hulp aan een medewerker bij het inwisselen van een cadeaukaart.</string>
+    <string name="purchase_in_store">Aanwezig</string>
+    <string name="purchase_tell_the_cashier">Vertel de kassamedewerker dat je met een digitale cadeaukaart betaalt. Medewerker: typ het totaalbedrag in het veld Bankcard , typ vervolgens het nummer van de cadeaukaart in het veld Account en druk op Enter.</string>
+    <string name="purchase_in_the_payment_section">Voer het nummer van de digitale cadeaukaart in.</string>
+    <string name="purchase_powered_by">Aangedreven door</string>
+    <string name="insufficient_money_title">Onvoldoende munten</string>
+    <string name="insufficient_money_msg">Ontoereikende fondsen</string>
+    <string name="send_coins_error_msg">Er is een probleem opgetreden bij het versturen van munten!</string>
+    <string name="gift_card_barcode_failed">Kan de streepjescode niet laden</string>
+    <string name="gift_card_tx_title">Cadeaukaart · %s</string>
+    <string name="select_amount">selecteer bedrag</string>
+    <string name="select_fixed_amount"> Deze winkelier verkoopt cadeaubonnen tegen vaste prijzen</string>
+
+    <!-- babachain spend login-->
+    <string name="enter_verification_code">Voer verificatiecode in</string>
+    <string name="verification_check_email">Controleer je e-mail en voer de verificatiecode in</string>
+    <string name="buy_gift_card">Koop een cadeaukaart met je BabaChainSpend account</string>
+    <string name="babachainspend_create_account"> Maak een account aan of log in op een bestaand account</string>
+    <string name="create_new_account">Creëer een nieuw account</string>
+    <string name="login">Log in</string>
+    <string name="password">Wachtwoord</string>
+    <string name="logged_in_as">Ingelogd als %s</string>
+    <string name="log_out">Uitloggen</string>
+    <string name="invaild_code">Je hebt een verkeerde code ingevoerd. Controleer de e-mail en probeer het opnieuw.</string>
+    <string name="something_wrong_title">Er is iets verkeerd gegaan</string>
+    <string name="retry">Opnieuw</string>
+    <string name="gift_card_purchase_failed">Aankoop van cadeaukaart mislukt</string>
+    <string name="try_again">Probeer opnieuw</string>
+    <string name="cancel">Annuleer</string>
+    <string name="gift_card_error">Vanwege een onbekende reden is de aankoop van de cadeaukaart mislukt. Probeer het opnieuw.</string>
+    <string name="gift_card_details_error">Vanwege een onbekende reden is de aankoop van de cadeaukaart mislukt. Neem contact op met de ondersteuning.</string>
+    <string name="gift_card_limit_error">De aankooplimieten voor deze winkelier zijn gewijzigd. Neem contact op met CTX Support voor meer informatie.</string>
+    <string name="gift_card_unknown_error">Vanwege een onbekende reden is de aankoop van de cadeaukaart mislukt. Neem contact op met de ondersteuning met txid %s.</string>
+    <string name="gift_card_rejected">De betaling is afgewezen. Neem contact op met CTX. Cadeaukaart ID %s. Betaling ID %s. Transactie ID%s.</string>
+    <string name="gift_card_redeem_url_not_supported">De betaling is gedaan voor een winkelier die een inwissel-URL levert, maar die wordt momenteel niet ondersteund. Neem contact op met CTX. Cadeaukaart ID %s. Betaling ID %s. Transactie %s.</string>
+    <string name="babachainspend_terms_conditions">accepteren algemene voorwaarden </string>
+    <string name="accept_terms_conditions">Ik accepteer de algemene voorwaarden van BabaChainSpend</string>
+    <string name="tap_link_to_proceed">Om een ​​account bij BabaChainSpend aan te maken, tik dan op de onderstaande link om verder te gaan</string>
+    <string name="accept_to_proceed">Om een ​​account aan te maken bij BabaChainSpend, accepteer de algemene voorwaarden van BabaChainSpend</string>
+    <string name="view_terms_conditions">Terms &amp; voorwaarden</string>
+    <string name="barcode_placeholder">Zodra je code is gegenereerd, wordt deze hier weergegeven</string>
+    <string name="gift_card_contact_ctx">Neem contact op met CTX</string>
+
+    <!-- ctx spend login-->
+    <string name="create_ctx_spend_account">Maak account aan</string>
+    <string name="log_in_to_ctxspend_account">Log in op je account</string>
+    <string name="log_in_to_ctxspend_account_desc">Het e-mailadres wordt alleen gebruikt om een ​​eenmalig wachtwoord te verzenden.</string>
+    <string name="buy_a_gift_card_with_your_ctx_spend_account">Koop een cadeaukaart met je BabaChainSpend account</string>
+    <string name="create_an_account_at_ctx_spend_or_log_in_to_the_existing_one">Maak een BabaChainSpend account aan of log in op een bestaand account</string>
+    <string name="temporarily_unavailable"> Tijdelijk niet beschikbaar</string>
+    <string name="token_expired_title">Je sessie is verlopen</string>
+    </resources>

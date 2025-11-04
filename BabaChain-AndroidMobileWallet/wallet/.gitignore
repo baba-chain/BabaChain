@@ -1,0 +1,7 @@
+res/drawable-*/ic_app_color_48dp.png
+res/drawable-*/stat_notify_received.png
+*.apk
+prod/release
+_testNet3/release
+staging/release
+devnet/release

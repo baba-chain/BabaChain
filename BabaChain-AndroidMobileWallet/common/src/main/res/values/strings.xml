@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">Loading…</string>
+    <string name="loading_error">An error occurred. Please try again later.</string>
+    <string name="please_wait_title">Please wait</string>
+    <string name="babachain_available">%1$s available</string>
+    <string name="network_unavailable_title">Network Unavailable</string>
+    <string name="network_unavailable_check_connection">Please check your network connection</string>
+    <string name="network_unavailable_balance_not_accurate">The balance may not be accurate because of the lost connection</string>
+    <string name="fiat_balance_with_currency" translatable="false">%s %s</string>
+    <string name="zero_fiat_balance_with_currency" translatable="false">%s 0.00</string>
+    <string name="buy_babachain">Buy BabaChain</string>
+    <string name="copied">Copied</string>
+    <string name="staking_title">Staking</string>
+    <string name="email">Email</string>
+    <string name="email_placeholder">e.g. johndoe@mail.com</string>
+    <string name="error">Error</string>
+    <string name="select_a_coin">Select a coin</string>
+    <string name="request_coins_share_dialog_title">Share request for BabaChain…</string>
+    <string name="buy_with_fiat">Buy BabaChain with fiat</string>
+    <string name="buy_and_convert">Buy and convert BabaChain with another crypto</string>
+    <string name="transfer_babachain">Transfer BabaChain</string>
+    <string name="login_error_title">Unable to log in your %s account</string>
+    <string name="login_error_message">An error occurred while logging in to your %s account.</string>
+    <string name="babachain_address">BabaChain Address</string>
+    <string name="username">Username</string>
+    <string name="balance">Balance:</string>
+    <string name="nothing_here">Nothing here</string>
+
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">Guernsey Pound</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">Jersey Pound</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">Isle of Man Pound</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">USD Coin</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">Litecoin</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">Ethereum</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">Bitcoin</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">Paxos Standard</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">Gemini Dollar</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Dismiss</string>
+    <string name="network_unavailable_return">Return to Wallet</string>
+    <string name="button_continue">Continue</string>
+    <string name="get_quote">Get Quote</string>
+    <string name="button_close">Close</string>
+    <string name="button_retry">Retry</string>
+    <string name="button_send_report">Send Report</string>
+    <string name="button_info">info</string>
+    <string name="button_copy_address">Copy address</string>
+    <string name="button_understand">I understand</string>
+    <string name="button_okay">Okay</string>
+    <string name="button_share">Share</string>
+    <string name="button_skip">Skip</string>
+    <string name="share_address">Share Address</string>
+    <string name="verify">Verify</string>
+    <string name="receive_enter_amount_button">Specify Amount</string>
+    <string name="account_create">Create Account</string>
+    <string name="submit">Submit</string>
+    <string name="try_again">Try Again</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">Search</string>
+    <string name="permission_allow">Allow</string>
+    <string name="permission_deny">Deny</string>
+    <string name="pay_with">Pay with</string>
+    <string name="choose_payment_method">Choose Payment Method</string>
+    <string name="debit_credit_card">Debit/Credit card</string>
+    <string name="max">Max</string>
+    <string name="select_the_coin">Select the coin</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">BabaChain Wallet</string>
+    <string name="from">from</string>
+    <string name="to">to</string>
+    <string name="select_currency">Select Currency</string>
+    <string name="exchange_rate_template" translatable="false">%1$s DASH = %2$s</string>
+    <string name="send_coins_error_dusty_send">The amount is too small to send</string>
+    <string name="send_coins_error_insufficient_money">Insufficient funds</string>
+    <string name="send_coins_error_insufficient_mixed_money">Insufficient mixed funds. Wait for CoinJoin mixing to finish or disable this feature in the settings to complete this transaction.</string>
+    <string name="syncing">Syncing</string>
+    <string name="no_connection">No internet connection</string>
+    <string name="rate_not_available">Not available</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">Looks like you are emptying your BabaChain Wallet</string>
+    <string name="empty_wallet_crowdnode_warning">Please note, you will not be able to withdraw your funds from CrowdNode to this wallet until you increase your balance to 0.0003 BabaChain.</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">Payment was not acknowledged</string>
+    <string name="payment_protocol_default_error_title">Payment error</string>
+    <string name="payment_request_problem_message">Your payment could not be processed by the server, please inquire with the merchant</string>
+    <string name="exchange_rate_not_found">Could not find exchange rate.</string>
+    <string name="send_coins_fragment_hint_replaying">Currently payments are not possible because the wallet is not fully synced with the network</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">Receive directly into BabaChain Wallet</string>
+    <string name="convert_crypto">Convert Crypto</string>
+    <string name="last_known_balance" >Last known balance</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="enter_amount_available">available</string>
+    <string name="transaction_row_rate_not_available">Not available</string>
+    <string name="log_in">Log In</string>
+
+    <string name="chain_syncing">The chain is syncing…</string>
+    <string name="report_issue_dialog_mail_intent_chooser">Send report using…</string>
+
+    <!-- basic formats -->
+    <string name="percent" translatable="false">%d%%</string>
+    <string name="two_lines_number_text" translatable="false">%d\n%s</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">Feil</string>
+    <string name="request_coins_share_dialog_title">Del forespørsel etter BabaChain…</string>
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Lukk</string>
+    <string name="button_retry">Prøv igjen</string>
+    <string name="button_share">Del</string>
+    </resources>

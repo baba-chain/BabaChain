@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="uphold_account">Uphold</string>
+    <string name="uphold_buy_babachain_activity_title">Купи/Продай BabaChain с Uphold</string>
+    <string name="uphold_buy_babachain_with_uphold">Купи BabaChain с Uphold акаунт</string>
+    <string name="uphold_buy_babachain_button">Купи BabaChain</string>
+    <string name="uphold_transfer_to_this_wallet_button">Прехвърляне от Uphold</string>
+    <string name="uphold_link_account">Свързване на Uphold акаунт</string>
+    <string name="uphold_withdrawal_deduct_fee_disclaimer">Таксата ще бъде приспадната от поисканата сума.</string>
+    <string name="uphold_withdrawal_instructions">Въведи сумата за прехвърляне </string>
+    <string name="uphold_withdrawal_success_title">Успешно</string>
+    <string name="uphold_withdrawal_success_message">Вашата транзакция беше изпратена и сумата трябва да се появи в портфейла Ви след няколко минути.\n\nТранзакция номер: %s</string>
+    <string name="uphold_otp_dialog_title">Въведете вашият 2FA код по-долу</string>
+    <string name="uphold_transfer">Прехвърляне</string>
+    <string name="uphold_see_on_uphold">Вижте в Uphold</string>
+    <string name="uphold_logout_title">Излез от Uphold</string>
+    <string name="uphold_logout">Изход</string>
+    <string name="uphold_logout_explanation_text">Необходимо е също да излезете от уебсайта на Uphold, чрез вашият браузър</string>
+    <string name="uphold_go_to_website">Отидете на уебсайта</string>
+    <string name="uphold_error">Uphold грешка</string>
+    <string name="uphold_error_not_available">Uphold услугите не са налични.  Моля  опитайте отново по-късно.</string>
+    <string name="uphold_error_report_issue">Моля, докладвайте за този проблем на екипа за поддръжка на  BabaChain портфейла , използвайки „Report Issue“ от главното меню.</string>
+
+    <string name="uphold_general_error_title">Грешка</string>
+    </resources>

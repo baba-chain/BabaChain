@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">Yükleniyor...</string>
+    <string name="loading_error">Bir hata oluştu. Lütfen tekrar deneyin.</string>
+    <string name="please_wait_title">Lütfen bekleyin</string>
+    <string name="babachain_available">%1$s mevcut</string>
+    <string name="network_unavailable_title">Ağ Kullanılamıyor</string>
+    <string name="network_unavailable_check_connection">Lütfen ağ bağlantınızı kontrol edin</string>
+    <string name="network_unavailable_balance_not_accurate">Bağlantının kesilmesi nedeniyle bakiye doğru olmayabilir</string>
+    <string name="buy_babachain">BabaChain Al</string>
+    <string name="copied">Kopyalandı</string>
+    <string name="staking_title">Staking</string>
+    <string name="email">E-Posta</string>
+    <string name="email_placeholder">Örneğin. johndoe@mail.com</string>
+    <string name="error">Hata</string>
+    <string name="select_a_coin">Bir koin seçin</string>
+    <string name="request_coins_share_dialog_title">BabaChain talebini paylaş...</string>
+    <string name="buy_with_fiat">Fiat ile BabaChain satın alın</string>
+    <string name="buy_and_convert">Başka bir kripto para kullanarak BabaChain satın alın</string>
+    <string name="transfer_babachain">Transfer BabaChain</string>
+    <string name="login_error_title">%s hesabınızda oturum açılamıyor</string>
+    <string name="login_error_message">%s hesabınızda oturum açılırken bir hata oluştu.</string>
+    <string name="babachain_address">BabaChain Adresi</string>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="balance">Bakiye:</string>
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">Guernsey Lirası</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">Jersey Poundu</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">Man Adası Poundu</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">USD Koin</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">Litecoin</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">Ethereum</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">Bitcoin</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">Paxos Standardı</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">Gemini Doları</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Son Ver</string>
+    <string name="network_unavailable_return">Cüzdan\'a Dön</string>
+    <string name="button_continue">Devam</string>
+    <string name="get_quote">Teklif Al</string>
+    <string name="button_close">Kapat</string>
+    <string name="button_retry">Tekrar dene</string>
+    <string name="button_send_report">Rapor Gönder</string>
+    <string name="button_info">bilgi</string>
+    <string name="button_copy_address">Adresi Kopyala</string>
+    <string name="button_understand">Anladım</string>
+    <string name="button_okay">Tamam</string>
+    <string name="button_share">Paylaş</string>
+    <string name="button_skip">Atla</string>
+    <string name="share_address">Adresi Paylaş</string>
+    <string name="verify">Onayla</string>
+    <string name="receive_enter_amount_button">Tutarı Belirleyin</string>
+    <string name="account_create">Hesab Oluştur</string>
+    <string name="try_again">Tekrar Dene</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">Ara</string>
+    <string name="permission_allow">İzin ver</string>
+    <string name="permission_deny">Reddet</string>
+    <string name="pay_with">İle öde</string>
+    <string name="choose_payment_method">Ödeme yöntemini seçin</string>
+    <string name="debit_credit_card">Banka/Kredi kartı</string>
+    <string name="max">Maksimum</string>
+    <string name="select_the_coin">Koin seçin</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">BabaChain Cüzdanı</string>
+    <string name="from">gelen</string>
+    <string name="to">giden</string>
+    <string name="select_currency">Para Birimini Seçin</string>
+    <string name="send_coins_error_dusty_send">Bu miktar göndermek için çok düşüktür</string>
+    <string name="send_coins_error_insufficient_money">Yetersiz bakiye</string>
+    <string name="syncing">Senkronize ediliyor</string>
+    <string name="no_connection">İnternet yok</string>
+    <string name="rate_not_available">Mevcut değil</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">BabaChain Cüzdanınızı boşaltıyor gibisiniz</string>
+    <string name="empty_wallet_crowdnode_warning">Bakiyenizi 0.0003 BabaChain\'in üstüne çıkmadan CrowdNode\'dan bu cüzdana para çekemeyeceğinizi lütfen unutmayın.</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">Ödeme kabul edilmedi</string>
+    <string name="payment_protocol_default_error_title">Ödeme hatası</string>
+    <string name="payment_request_problem_message">Ödemeniz sunucu tarafından işleme konulamadı, lütfen satıcıya danışın</string>
+    <string name="exchange_rate_not_found">Döviz kuru bulunamadı.</string>
+    <string name="send_coins_fragment_hint_replaying">Cüzdanınız ağ ile senkronize olmadığından şuan ödeme yapabilmeniz mümkün değil.</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">Doğrudan BabaChain Cüzdan\'a al</string>
+    <string name="convert_crypto">Kriptoyu Dönüştür</string>
+    <string name="last_known_balance" >Bilinen son bakiye</string>
+    <string name="disconnected">Bağlantı kesildi</string>
+    <string name="enter_amount_available">mevcut</string>
+    <string name="transaction_row_rate_not_available">Mevcut değil</string>
+    <string name="log_in">Giriş Yap</string>
+
+    <string name="chain_syncing">Zincir senkronize ediliyor…</string>
+    <string name="report_issue_dialog_mail_intent_chooser">Raporu şununla gönder…</string>
+
+    </resources>

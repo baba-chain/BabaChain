@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <!-- Explore screen -->
+    <string name="explore_babachain">BabaChainを探求する</string>
+    <string name="explore_title">探求する</string>
+    <string name="explore_subtitle">BabaChainを使用できる加盟店、BabaChainを購入できる場所、BabaChainで収入を得る方法を探します。</string>
+    <string name="explore_merchants_title">どこで使えますか。</string>
+    <string name="explore_merchants_subtitle">BabaChainでの支払いが可能な加盟店を探します。</string>
+    <string name="explore_atms_title">ATM</string>
+    <string name="explore_atms_subtitle">DASHやその他の仮想通貨を現金で売買できる場所を探します。</string>
+    <string name="explore_staking_subtitle">簡単にBabaChainをステークし、数回のクリックでパッシブ収入を得ます。</string>
+    <string name="explore_staking_current_apy">現在のAPY = %s%%</string>
+
+    <!-- Search -->
+    <string name="explore_search_results">検索結果</string>
+    <string name="explore_physical_merchant">フィジカル加盟店</string>
+    <string name="explore_online_merchant">オンライン</string>
+    <string name="explore_both_types_merchant">オンラインフィジカル加盟店</string>
+    <string name="explore_multiple_locations">+ 複数拠点</string>
+    <string name="explore_option_all">全て</string>
+    <string name="explore_option_buy">購入</string>
+    <string name="explore_option_sell">売却</string>
+    <string name="explore_option_buy_sell">購入・売却</string>
+    <string name="explore_where_to_spend">使用できる場所</string>
+    <string name="explore_atms">ATM</string>
+    <string name="explore_all_states">全州</string>
+    <string name="explore_no_results">検索結果が見つかりませんでした</string>
+    <string name="explore_all_merchants">全ての加盟店</string>
+    <string name="explore_in_radius">%2$s内の%1$s</string>
+    <string name="explore_no_merchants">加盟店がありません</string>
+    <string name="explore_no_atms">ATMがありません</string>
+    <string name="distance_miles">%sマイル</string>
+    <string name="distance_kilometers">%skm</string>
+    <plurals name="explore_merchant_amount">
+        <item quantity="other">%d店舗</item>
+    </plurals>
+
+    <plurals name="explore_atm_amount">
+        <item quantity="other">%dカ所</item>
+    </plurals>
+
+    <!-- Details -->
+    <string name="explore_back_to_locations">全ての店舗に戻る</string>
+    <string name="explore_back_to_nearest">最寄りの店舗に戻る</string>
+    <string name="explore_select_location">店舗を選択する</string>
+    <string name="explore_pay_with_babachain">BabaChainで支払う</string>
+    <string name="explore_pay_with_babachain_save">%.2f%%をセーブする</string>
+    <string name="explore_buy_gift_card">ギフトカードを購入する</string>
+    <string name="explore_buy_babachain">BabaChainを購入する</string>
+    <string name="explore_sell_babachain">BabaChainを売る</string>
+    <string name="explore_show_all">全ての店舗を表示する</string>
+    <string name="explore_atm_location_hint">このATMは</string>
+    <string name="explore_maps_intent_uri">http://maps.google.com/maps?daddr=%1$f,%2$fに位置しています。</string>
+
+    <!-- Filters -->
+    <string name="explore_filter">絞り込み</string>
+    <string name="explore_filters">フィルター</string>
+    <string name="explore_apply_filter">申し込み</string>
+    <string name="explore_payment_method">支払い方法</string>
+    <string name="explore_payment_babachain">BabaChain</string>
+    <string name="explore_payment_gift_card">ギフトカード</string>
+    <string name="explore_filter_gift_cards">ギフトカード</string>
+    <string name="explore_radius">Radius</string>
+    <string name="explore_location">位置</string>
+    <string name="explore_current_location">現在地</string>
+    <string name="explore_location_settings">現在地の設定</string>
+    <string name="explore_reset_filters">フィルターをリセット</string>
+    <string name="explore_reset_all_filters">全てのフィルターをリセット</string>
+    <string name="explore_filtered_by">でフィルターをかける</string>
+    <string name="explore_pay_gift_card">ギフトカード支払い</string>
+    <string name="explore_sort_by">で並び替え</string>
+    <string name="gift_card_types">ギフトカードの種類</string>
+    <string name="flexible_amount_option">フレキシブルアマウント</string>
+    <string name="fixed_denom_option">固定した指定通貨の金額</string>
+
+    <string-array name="merchants_filter_options">
+        <item>オンライン</item>
+        <item>周辺環境</item>
+        <item>全て</item>
+    </string-array>
+
+    <string-array name="atms_filter_options">
+        <item>全て</item>
+        <item>購入</item>
+        <item>売却</item>
+        <item>購入/売却</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_miles">
+        <item>1マイル</item>
+        <item>5マイル</item>
+        <item>20マイル</item>
+        <item>50マイル</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_kilometers">
+        <item>1km</item>
+        <item>5km</item>
+        <item>20km</item>
+        <item>50km</item>
+    </string-array>
+
+    <string-array name="sort_by_options_names">
+        <item>名前</item>
+        <item>距離</item>
+        <item>割引</item>
+    </string-array>
+
+    <plurals name="radius_miles">
+        <item quantity="other">%dマイル</item>
+    </plurals>
+
+    <plurals name="radius_kilometers">
+        <item quantity="other">%dkm</item>
+    </plurals>
+
+    <!-- Location Permission -->
+    <string name="explore_location_allowed">許可されました</string>
+    <string name="explore_location_denied">拒否されました</string>
+    <string name="explore_manager_permissions">GPS許可を管理する</string>
+    <string name="explore_location_request">GPSの許可を得ると、近くにある店舗を表示できます。</string>
+    <string name="explore_location_explainer">ご利用者の位置情報は、地図上のご利用者の位置や選択した距離内にある加盟店の表示、検索結果の改善に使用されます。</string>
+    <string name="explore_merchant_location_explainer_title">位置情報サービスをオンにすると、加盟店検索がより機能します。</string>
+    <string name="explore_merchant_location_explainer_message">ご利用者の位置情報は、地図上のご利用者の位置や選択した距離内にある加盟店の表示、検索結果の改善に使用されます。</string>
+    <string name="explore_atm_location_explainer_title">位置情報サービスをオンにすると、ATM検索がより機能します。</string>
+    <string name="explore_atm_location_explainer_message">ご利用者の位置情報は、地図上のご利用者の位置や選択した距離内にあるATMの表示、検索結果の改善に使用されます。</string>
+
+    <!-- Info screens -->
+    <string name="explore_info_header_text">2種類の加盟店があります。</string>
+    <string name="accept_babachain_text">DASHを直接承認します</string>
+    <string name="pay_with_babachain_text">DASHウォレットで支払い</string>
+    <string name="buy_gift_card_text">BabaChainでギフトカードを購入</string>
+    <string name="buy_gift_card_desc_text">BabaChainでギフトカードを購入し、購入金額と同額を支払います。</string>
+    <string name="learn_more_text">詳細はこちら</string>
+    <string name="buy_card_header_text">ギフトカードの使用方法</string>
+    <string name="buy_card_desc_text">全ての店舗でDASHが直接使えるとは限りませんが、BabaChainでギフトカードが購入できます。</string>
+    <string name="find_merchant_text">加盟店を探す。</string>
+    <string name="buy_gift_card_with_babachain_text">BabaChainでギフトカードを購入</string>
+    <string name="redeem_gift_card_text">ギフトカードは、オンラインで数秒以内またはレジでご利用いただけます。</string>
+
+    <!-- Explore TestNet -->
+    <string name="explore_test_subtitle">テストBabaChainは現実世界では何の価値もありませんが、他のBabaChainPayのアルファユーザーと送受金ができます。</string>
+    <string name="explore_test_babachain_title">テストBabaChainを取得するには</string>
+    <string name="explore_test_babachain_text_1">テストBabaChainは無料で、一般的にフォーセットから入手できます。</string>
+    <string name="explore_test_babachain_text_2">以下のボタンをクリックして、このウォレットからBabaChainアドレスをコピーすると、テストBabaChainを入手できます。</string>
+    <string name="explore_get_test_babachain">テストBabaChainを取得する</string>
+
+    <!-- Sync Status -->
+    <string name="sync_in_progress_not_complete">同期中... 入力結果が完了していない可能性があります。</string>
+    <string name="sync_in_progress_error">同期中... エラーが発生しました。</string>
+    <string name="sync_in_progress_canceled">同期がキャンセルされました... 後ほど再試行されます。</string>
+
+    <string name="sync_in_progress_file_not_found">ビルドエラー：データベースが見つかりません。</string>
+    <string name="sync_in_progress_network_error">同期が中断されました... ネットワークがオフラインまたはアクセス不可能です。</string>
+
+
+    <!-- purchase_gift_card -->
+    <string name="purchase_gift_card_at">で</string>
+    <string name="purchase_gift_card_min">最低金額: %s</string>
+    <string name="purchase_gift_card_max">最高金額: %s</string>
+    <string name="purchase_gift_card_discount_hint">%sのギフトカードを%sで購入します (%s割引)</string>
+    <string name="button_next">次へ</string>
+    <string name="purchase_gift_card_from">から</string>
+    <string name="purchase_gift_card_to">へ</string>
+    <string name="purchase_confirm_transaction">確認する</string>
+    <string name="purchase_gift_card_total_label">ギフトカードの合計</string>
+    <string name="purchase_gift_card_discount">割引</string>
+    <string name="purchase_gift_card_you_pay">お客様の支払額</string>
+    <string name="purchase_gift_card_confirm">確認する</string>
+    <string name="purchase_gift_card_details">ギフトカードの詳細</string>
+    <string name="purchase_original_purchase">当初の購入額</string>
+    <string name="purchase_check_current_balance">現在の残高を確認</string>
+    <string name="purchase_card_number">カード番号</string>
+    <string name="purchase_card_pin">カードの暗証番号</string>
+    <string name="purchase_view_transaction">取引明細を見る</string>
+    <string name="purchase_see_how_to_use_gift_card">ギフトカードの使い方を確認する</string>
+    <string name="purchase_how_to_use_gift_card">ギフトカードの使い方</string>
+    <string name="purchase_self_checkout">セルフレジの場合</string>
+    <string name="purchase_Request_assistance">従業員にアシストを依頼し、デジタルギフトカードと引き換えましょう。</string>
+    <string name="purchase_in_store">店舗の場合</string>
+    <string name="purchase_tell_the_cashier">キャッシャーにデジタルギフトカードで支払うことを伝えます。キャッシャーは、銀行カードの欄に合計金額を入力し、アカウントの欄にギフトカードの番号を入力してエンターを押すことになります。</string>
+    <string name="purchase_in_the_payment_section">決済セクションでは、お客様のデジタルギフトカードの番号をギフトカードの欄に入力します。</string>
+    <string name="purchase_powered_by">提供元</string>
+    <string name="insufficient_money_title">充分なコインがありません</string>
+    <string name="insufficient_money_msg">資金不足</string>
+    <string name="send_coins_error_msg">送金に問題が発生しました！</string>
+    <string name="gift_card_barcode_failed">バーコードのロードに失敗しました</string>
+    <string name="gift_card_tx_title">ギフトカード · %s</string>
+    <string name="select_amount">金額を選択する</string>
+    <string name="select_fixed_amount">この加盟店はギフトカードを固定価格で販売しています</string>
+
+    <!-- babachain spend login-->
+    <string name="enter_verification_code">認証コードを入力</string>
+    <string name="verification_check_email">メールを確認して認証コードを入力する</string>
+    <string name="buy_gift_card">BabaChainSpendアカウントでギフトカードを購入する</string>
+    <string name="babachainspend_create_account">アカウントを作成するか既存のアカウントにログインする</string>
+    <string name="create_new_account">新しいアカウントを作成</string>
+    <string name="login">ログイン</string>
+    <string name="password">パスワード</string>
+    <string name="logged_in_as">%sとしてログインしました</string>
+    <string name="log_out">ログアウト</string>
+    <string name="invaild_code">間違ったコードが入力されました。メールを確認してもう一度行ってください。</string>
+    <string name="something_wrong_title">問題が発生しました!</string>
+    <string name="retry">リトライ</string>
+    <string name="gift_card_purchase_failed">ギフトカードの購入に失敗しました</string>
+    <string name="try_again">再試行する</string>
+    <string name="cancel">キャンセル</string>
+    <string name="gift_card_error">何らかの理由でギフトカードを購入できませんでした。もう一度お試しください。</string>
+    <string name="gift_card_details_error">何らかの理由でギフトカードを購入できませんでした。サポートまでご連絡ください。</string>
+    <string name="gift_card_limit_error">この加盟店の購入限度額が変更されました。詳細については、CTXサポートまでお問い合わせください。</string>
+    <string name="gift_card_unknown_error">何らかの理由でギフトカードを購入できませんでした。タックスID%sを添えてサポートまでご連絡ください。 </string>
+    <string name="gift_card_rejected">支払いが拒否されました。ギフトカードID%s、決済ID%s、取引ID%sをCTXまでご連絡ください。</string>
+    <string name="gift_card_redeem_url_not_supported">決済は引き換えURLを提供する加盟店に対して行われましたが、そのURLは現在サポートされていません。ギフトカードID%s、決済ID%s、取引ID%sをCTXまでご連絡ください。</string>
+    <string name="babachainspend_terms_conditions">利用規約に同意する</string>
+    <string name="accept_terms_conditions">私はBabaChainSpendの利用規約に同意します</string>
+    <string name="tap_link_to_proceed">BabaChainSpendでアカウントを作成するにあたって、以下のリンクをタップして作成の手続きを進めることになります</string>
+    <string name="accept_to_proceed">BabaChainSpendでアカウントを作成するにあたって、お客様はBabaChainSpendの利用規約に同意する必要があります</string>
+    <string name="view_terms_conditions">利用規約</string>
+    <string name="barcode_placeholder">お客様のコードが生成されると、こちらに表示されます。</string>
+    <string name="gift_card_contact_ctx">CTXサポートにお問い合わせする</string>
+
+    <!-- ctx spend login-->
+    <string name="create_ctx_spend_account">アカウントを作成する</string>
+    <string name="log_in_to_ctxspend_account">アカウントにログインする</string>
+    <string name="log_in_to_ctxspend_account_desc">お客様のメールはワンタイムパスワードを送る時にのみ使用されます。</string>
+    <string name="buy_a_gift_card_with_your_ctx_spend_account">BabaChainSpendアカウントでギフトカードを購入する</string>
+    <string name="create_an_account_at_ctx_spend_or_log_in_to_the_existing_one">BabaChainSpendのアカウントを作成するか既存のアカウントにログインする</string>
+    <string name="temporarily_unavailable">現在はご利用いただけません</string>
+    <string name="token_expired_title">セッションの有効時間が切れました</string>
+    </resources>

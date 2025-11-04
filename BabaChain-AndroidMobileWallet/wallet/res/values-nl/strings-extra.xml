@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="onboarding_create_wallet">Maak een nieuwe portemonnee aan</string>
+    <string name="onboarding_recover_wallet">Herstellen met herstelzin</string>
+    <string name="onboarding_restore_wallet">Herstel portemonnee uit bestand</string>
+    <string name="onboarding_load_wallet_error">Kan portemonnee niet laden!</string>
+
+    <string name="set_pin_create_new_wallet">Maak een nieuwe portemonnee aan</string>
+    <string name="set_pin_upgrade_wallet">Upgrade portemonnee</string>
+    <string name="set_pin_restore_wallet">Herstel portemonnee</string>
+    <string name="set_pin_enter_pin">Voer oude PIN in</string>
+    <string name="set_pin_set_pin">Stel PIN in</string>
+    <string name="set_pin_confirm_pin">Bevestig PIN</string>
+    <string name="set_pin_encrypting">portemonnee aan het versleutelen</string>
+    <string name="set_pin_decrypting">Ontgrendelen van portemonnee</string>
+    <string name="set_pin_verifying_pin">Verifieer pin</string>
+    <string name="set_pin_message">Deze PIN is vereist om je app elke keer te ontgrendelen wanneer je deze gebruikt.</string>
+    <string name="set_pin_confirm_pin_incorrect">Onjuiste PIN</string>
+    
+    <string name="home_balance_hide_hint">Tik om saldo te verbergen</string>
+
+    <string name="dialog_confirm_confirm">Bevestig</string>
+    <string name="dialog_confirm_pay_to">Verstuur naar</string>
+    <string name="dialog_confirm_secured_by">Beveiligd door</string>
+    <string name="dialog_confirm_fee">Netwerk transactiekosten</string>
+    <string name="dialog_confirm_total">Totaal</string>
+    <string name="dialog_confirm_accept_contact_request">Contactverzoek accepteren</string>
+
+    <string name="shortcut_action_join_babachainpay">Word lid van BabaChainPay</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_secure_now">Backup</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_scan_to_pay">Scan QR</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_send">Verzenden</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_pay_to_contact">Stuur naar contact</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_buy_sell">Koop &amp; verkoop</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_receive">Ontvang</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_import_key">Importeer persoonlijke sleutel</string>
+
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_quick_receive">Snel Ontvangen</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_pin">Log in met pin</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_fingerprint">Log in met vingerafdruk</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_scan_to_pay">Scan om te verzenden</string>
+    <!-- Lock Screen: Text above the PIN Entry area -->
+    <string name="lock_enter_pin">Voer PIN in</string>
+    <string name="lock_unlock_with_fingerprint">Gebruik je vingerafdruk om te ontgrendelen</string>
+
+    <string name="perm_lock_info">Portemonnee permanent vergrendeld</string>
+    <string name="perm_lock_wipe_wallet">Portemonnee Verwijderen</string>
+    <string name="perm_lock_close_app">Sluiten</string>
+
+    <string name="scan_to_pay_error_dialog_title">Scan om te verzenden</string>
+    <string name="scan_to_pay_error_dialog_message">Geen geldig BabaChain adres of URL verzoek op klembord:\n\n%s</string>
+    <string name="scan_to_pay_error_dialog_message_no_data">Geen geldig BabaChain adres of URL verzoek op klembord.</string>
+
+    <string name="receive_title">Ontvangen</string>
+    <string name="receive_enter_amount_message">Specificeer het te ontvangen bedrag</string>
+
+    <string name="pay_title">Verzenden</string>
+    <string name="history_title">Geschiedenis</string>
+    <string name="more_title">Meer</string>
+    <string name="settings_title">Instellingen</string>
+    <string name="security_title">Beveiliging</string>
+    <string name="recover_wallet_title">Herstel portemonnee</string>
+    <string name="tools_title">Gereedschap</string>
+
+    <string name="payments_title">Betalingen</string>
+    <string name="payments_tab_pay_label">Verzenden</string>
+    <string name="payments_tab_receive_label">Ontvangen</string>
+    <string name="payments_pay_to_contact_title">Stuur naar een contact</string>
+    <string name="payments_pay_to_contact_sub_title">Een persoon in je contacten</string>
+    <string name="payments_pay_to_contact_button">Selecteer</string>
+    <string name="payments_pay_by_qr_title">Verstuurd door</string>
+    <string name="payments_pay_by_qr_sub_title">QR Code scannen</string>
+    <string name="payments_pay_to_clipboard_title">Versturen naar gekopieerd adres</string>
+    <string name="payments_pay_to_clipboard_sub_title">Geen adres gekopieerd</string>
+
+    <string name="forgot_pin_title">PIN vergeten?</string>
+    <string name="forgot_pin_message">Je kan een nieuwe pin instellen met behulp van je herstelzin</string>
+    <string name="forgot_pin_instruction_1">Voer herstelzin in om je wallet te herstellen</string>
+    <string name="forgot_pin_instruction_2">Stel een nieuwe pin in</string>
+    <string name="forgot_pin_instruction_3">Log in met je nieuwe PIN om toegang te krijgen tot jpuw portemonnee</string>
+    <string name="forgot_pin_warning">Als je je PIN bent vergeten en je herstelzin bent kwijtgeraakt, kunt je geen toegang meer krijgen tot je portemonnee en het saldo.</string>
+    <string name="forgot_pin_recover">Voer herstelzin in</string>
+    <string name="forgot_pin_passphrase_doesnt_match">De herstelzin komt niet overeen met waar deze portemonnee mee is ingesteld.</string>
+
+    <string name="send_coins_auto_lock_feasible">Deze transactie wordt direct afgehandeld en zonder extra transactiekosten</string>
+    <string name="send_coins_auto_lock_not_feasible">Het uitvoeren van deze transactie kan enkele minuten duren. Direct uitvoeren voor %1$s%2$s?</string>
+    <string name="send_coins_instant_send_not_feasible">Het uitvoeren van deze transactie kan enkele minuten duren. </string>
+
+    <string name="options_paste_from_clipboard_title">Plakken vanuit klembord</string>
+
+    <string name="transaction_row_message_own_instantx_lock_request_notsent">Deze betaling is nog niet verzonden.</string>
+    <string name="transaction_row_message_sent_to_single_peer">Deze betaling is verzonden.</string>
+
+    <string name="regular_transaction_info_message">Deze transactie is niet direct uitgevoerd.</string>
+
+    <string name="wallet_options_disconnect">Verbreek verbinding</string>
+
+    <string name="network_monitor_masternodes_title">Masternodes</string>
+    <string name="export_keys_dialog_title_to_seed">Toon herstelzin</string>
+    <string name="import_keys_dialog_title_from_seed">Herstel met herstelzin</string>
+    <string name="backup_to_seed_wallet_dialog_message">Dit is je herstelzin. Schrijf deze a.u.b. op.</string>
+    <string name="backup_wallet_to_seed_dialog_warning">Laat NIEMAND je herstelzin zien, anders kunnen anderen je BabaChain uitgeven.</string>
+    <string name="backup_to_seed_wallet_dialog_enter_pin_message">Betalingen vanuit je portemonnee zijn beschermd met een pin. Voer je pin in en kies Toon om je herstelzin te bekijken.</string>
+    <string name="import_keys_from_seed_dialog_message">Voer je herstelzin hier in.</string>
+    <string name="import_export_keys_dialog_password_phrase">Voer hier je herstelzin in.</string>
+    <string name="preferences_report_issue_summary">Vergaar informatie over je probleem en verstuur via e-mail een melding aan de ontwikkelaars.</string>
+    <string name="navigation_configuration">Configuratie</string>
+    <string name="request_coins_clipboard_address_msg">BabaChain-adres is gekopieerd naar het klembord</string>
+    <string name="backup_wallet_to_seed_show_recovery_phrase">Toon</string>
+    <string name="restore_wallet_from_invalid_seed_warning_message">\"%s\" is geen herstelzinwoord</string>
+    <string name="restore_wallet_from_invalid_seed_not_twelve_words">Herstelzin moet 12 of 24 woorden bevatten</string>
+    <string name="restore_wallet_from_invalid_seed_bad_checksum">Incorrecte herstelzin</string>
+    <string name="restore_wallet_from_invalid_seed_failure">Portemonnee kon niet worden hersteld:\n\n%s\n\nVerkeerde herstelzin?</string>
+
+    <string name="send_coins_options_fee_category_zero">Geen kosten</string>
+    <string name="send_coins_fragment_hint_fee_zero">Geen kosten zullen worden betaald. Gebruik \'geen kosten\' alleen als de bevestigingstijd niet van belang is.</string>
+
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_public_key_request_dialog_msg">Applicatie %s wil je Master Public Key verkrijgen. Deze kan worden gebruikt om je portemonnee te volgen, maar kan niet gebruikt worden om BabaChain over te maken.</string>
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_address_request_dialog_msg">Applicatie %s verzoekt een adres om je op te betalen. Wil je dit autoriseren?</string>
+
+    <string name="wallet_lock_unlock">Ontgrendel</string>
+    <string name="wallet_lock_unlock_wallet">Ontgrendel portemonnee</string>
+    <string name="wallet_lock_unlock_to_see_txs_title">Portemonnee vergrendeld.</string>
+    <string name="wallet_lock_unlock_to_see_txs_txt">Druk op het slot icoon hierboven om je portemonnee te ontgrendelen en de transactiegeschiedenis te bekijken.</string>
+    <string name="wallet_lock_unlock_dialog_title">Ontgrendel je portemonnee</string>
+    <string name="wallet_lock_unlock_dialog_message">Betalingen vanuit je portemonnee zijn beschermd met een pin. Voer je pin in en kies Ontgrendel om verder te gaan.</string>
+    <string name="wallet_lock_reset_wallet_title">Portemonnee resetten</string>
+    <string name="wallet_lock_reset_wallet_message">Weet je het zeker? Je portemonnee wordt verwijderd en al je BabaChain gaat verloren.\n\nDe enige manier om je BabaChain te herstellen is met een back-upbestand of herstelzin.</string>
+
+    <string name="wallet_lock_wallet_disabled">Portemonnee uitgeschakeld</string>
+    <string name="wallet_lock_try_again">Probeer nogmaals over %1$d %2$s</string>
+    <string name="wallet_lock_reset">Reset</string>
+    <string name="wallet_lock_wrong_pin">Verkeerde pin! %s</string>
+    <string name="wallet_last_attempt">Laatste PIN poging</string>
+    <string name="wallet_last_attempt_message">Nog een mislukte poging vereist mijn wachtwoordzin om mijn portemonnee te herstellen</string>
+
+    <plurals name="wallet_lock_attempts_remaining">
+        <item quantity="one">%d resterende poging</item>
+        <item quantity="other">%d resterende pogingen</item>
+    </plurals>
+
+    <plurals name="minute">
+        <item quantity="one">minuut</item>
+        <item quantity="other">minuten</item>
+    </plurals>
+
+    <plurals name="hour">
+        <item quantity="one">uur</item>
+        <item quantity="other">uren</item>
+    </plurals>
+
+    <string name="encrypt_new_key_chain_upgrade_button">Upgrade</string>
+    <string name="encrypt_new_key_chain_dialog_title">Doe een upgrade van je portemonnee</string>
+    <string name="encrypt_new_key_chain_dialog_message">Je portemonnee krijgt een upgrade om importeren van en exporteren naar meerdere apps mogelijk te maken.</string>
+    <string name="encrypt_new_key_chain_enter_pin_dialog_message">Je moet je pin invoeren om het upgradeproces te voltooien.</string>
+    <string name="pin_code_required_dialog_message">Deze app heeft nu een pin nodig om transacties te doen of je saldo of transacties te bekijken.</string>
+    <string name="backup_wallet_seed_private_key_written_down_box">Ik heb de herstelzin opgeschreven</string>
+
+    <string name="change_exchange_currency_code_message">Je lokale munteenheid is %1$s, maar in deze app is de standaard munteenheid ingesteld als %2$s. Wil je dit wijzigen naar %1$s of %2$s behouden?</string>
+    <string name="change_to">Verander naar %s</string>
+    <string name="leave_as">%s behouden</string>
+
+    <string name="remind_later">Herinner mij later</string>
+    <string name="backup_now">Maak nu back-up</string>
+
+    <string name="notification_transactions_channel_name">Transacties</string>
+    <string name="notification_transactions_channel_description">Ontvang notificaties over binnenkomende transacties.</string>
+    <string name="notification_synchronization_channel_name">Synchronisatie</string>
+    <string name="notification_synchronization_channel_description">Toont een notificatie als de app met het netwerk aan het synchroniseren is.</string>
+    <string name="notification_generic_channel_name">Algemene meldingen</string>
+    <string name="notification_generic_channel_description">Andere BabaChainportemonnee-evenementen</string>
+    <string name="notification_push_channel_name">Push notificaties</string>
+    <string name="notification_push_channel_description">Toont push meldingen die door BabaChain naar je zijn verzonden</string>
+    <string name="notification_settings_title">Notificaties</string>
+    <string name="notification_explainer_title">BabaChain Wallet wil je graag meldingen sturen</string>
+    <string name="notification_explainer_message">Meldingen kunnen waarschuwingen, geluiden en pictogrambadges bevatten. Deze kunnen worden geconfigureerd in de telefooninstellingen.</string>
+    <string name="notification_babachainpay_channel_name">BabaChainPay</string>
+    <string name="notification_babachainpay_channel_description">Status van de lopende BabaChainPay activiteiten.</string>
+
+    <string name="net_type_indicator" />
+
+    <string name="unlock_with_fingerprint">Gebruik je vingerafdruk om te ontgrendelen.</string>
+    <string name="unlock_with_fingerprint_error">Vingerafdruk niet herkend. Probeer het a.u.b. opnieuw.</string>
+    <string name="unlock_with_fingerprint_error_max_attempts">Maximum aantal vingerafdruk pogingen overschreden. Probeer het a.u.b. later opnieuw.</string>
+    <string name="or_unlock_with_fingerprint">Of gebruik je vingerafdruk om te ontgrendelen.</string>
+    <string name="enable_fingerprint">Vingerafdruk activeren</string>
+    <string name="touch_fingerprint_sensor">Raak de vingerafdruk sensor aan.</string>
+    <string name="touch_fingerprint_to_enable">Raak de vingerafdruk sensor aan om ontgrendelen met vingerafdruk te activeren.</string>
+    <string name="fingerprint_changed_title">Vingerafdruk gegevens gewijzigd</string>
+    <string name="fingerprint_changed_message">We hebben een wijziging in je vingerafdrukverificatie gedetecteerd. Je moet deze keer je PIN gebruiken.</string>
+    <string name="exchange_rate_missing">Deze betaling is te oud om de fiatwaarde te verkrijgen.</string>
+
+    <string name="preferences_enable_payment_request_summary">Gebruik betalingsprotocol voor QR-code geïnitieerde betalingen</string>
+    <string name="preferences_enable_payment_request_title">BIP70 voor scan-to-pay</string>
+
+    <string name="verify_continue">Doorgaan</string>
+    <string name="verify_backup_wallet">Back-up portemonnee</string>
+    <string name="verify_show_recovery_phrase">Toon herstelzin</string>
+    <string name="verify_info_title">Maak een back-up van je herstelzin</string>
+    <string name="verify_info_subtitle">Je hebt deze herstelzin nodig om toegang te krijgen tot je saldo als dit apparaat is verloren of beschadigd, of als de BabaChain Portemonnee app van dit apparaat is verwijderd.</string>
+    <string name="verify_info_title_1">Je herstelzin wordt NIET opgeslagen door BabaChain Core Group</string>
+    <string name="verify_info_subtitle_1">Iedereen die je herstelzin heeft, heeft toegang tot je geld.</string>
+    <string name="verify_info_title_2">Je kunt de portemonnee NIET herstellen zonder een herstelzin</string>
+    <string name="verify_info_subtitle_2">Schrijf het op en bewaar op een veilige plaats en laat het niemand zien.</string>
+    <string name="verify_seed_buttons_tip">Tik a.u.b. op de woorden van je herstelzin in de juiste volgorde</string>
+    <string name="verify_seed_success_title">Succesvol geverifieerd </string>
+    <string name="verify_seed_success_message">Je portemonnee is nu beveiligd. U kunt je herstelzin op elk gewenst moment gebruiken om je account op een ander apparaat te herstellen.</string>
+    <string name="verify_no_screenshot_title">Maak geen screenshot</string>
+    <string name="verify_no_screenshot_message">noteer de herstelzin en berg hem goed op</string>
+    <string name="verify_why_no_screenshot">Waarom moet ik geen screenshot maken?</string>
+    <string name="verify_warning_title">Waarschuwing</string>
+    <string name="verify_warning_message">Deze herstelzin is je toegang tot het geld in je portemonnee.</string>
+    <string name="verify_warning_screenshots_title">neem GEEN schermafbeeldingen</string>
+    <string name="verify_warning_screenshots_message">Schermafbeeldingen zijn zichtbaar voor andere apps en apparaten.</string>
+    <string name="verify_warning_do_not_show">Laat je herstelzin aan NIEMAND zien.</string>
+    <string name="verify_warning_do_not_type">Sla je herstelzin nooit op in een password manager of via andere methodieken.</string>
+    <string name="view_seed_done">Klaar</string>
+    <string name="view_seed_title">Herstelzin</string>
+    <string name="transaction_result_view_on_explorer">Bekijk in Block Explorer</string>
+    <string name="transaction_result_tax_category">Belastingcategorie</string>
+    <string name="transaction_result_tax_category_loading">Laden...</string>
+    <string name="tax_category_income">Inkomen</string>
+    <string name="tax_category_expense">Uitgaven</string>
+    <string name="tax_category_transfer_in">Inkomend</string>
+    <string name="tax_category_transfer_out">Uitgaand</string>
+    <string name="transaction_result_paid_successfully">Succesvol verzonden</string>
+    <string name="transaction_result_sent_to">Verzonden naar</string>
+    <string name="transaction_date_and_time">Datum</string>
+    <string name="transaction_close">Sluiten</string>
+    <string name="transaction_details_amount_received">Ontvangen bedrag</string>
+    <string name="transaction_details_amount_sent">Verzonden bedrag</string>
+    <string name="transaction_details_amount_sent_successfully">Succesvol verzonden</string>
+    <string name="transaction_details_sent_from">Verzonden vanaf</string>
+    <string name="transaction_details_sent_to">Verzonden naar</string>
+    <string name="transaction_details_received_at">Ontvangen met</string>
+    <string name="transaction_details_received_from">Ontvangen van</string>
+    <string name="transaction_details_moved_from">Verplaatst van</string>
+    <string name="transaction_details_moved_internally_to">Intern verplaatst naar</string>
+    <string name="transaction_failed_details">Transactie mislukt</string>
+    <string name="transaction_failed_resolve">Dit kan opgelost worden door</string>
+    <string name="transaction_failed_rescan">Blockchain opnieuw aan het scannen</string>
+    <string name="transaction_failed_in_conflict">Dit kan als de portemonnee op twee apparaten is geïnstalleerd.</string>
+
+    <string name="authenticate_fingerprint_title">Verifieer</string>
+    <string name="authenticate_fingerprint_message">Bevestig vingerafdruk om door te gaan</string>
+    <string name="authenticate_pin_message">Voer PIN in om door te gaan</string>
+    <string name="authenticate_switch_to_fingerprint">Vingerafdruk gebruiken</string>
+    <string name="authenticate_switch_to_pin">gebruik PIN</string>
+
+    <string name="menu_invite_title">Nodig uit</string>
+    <string name="menu_invite_subtitle">Help je vrienden en familie lid te worden van BabaChain</string>
+    <string name="menu_buy_and_sell_title">Koop &amp; verkoop BabaChain</string>
+    <string name="menu_buy_and_sell_subtitle">Verbind met beurzen van derden</string>
+    <string name="liquid_unavailable">Liquid integratie met BabaChain portemonnee is niet langer beschikbaar</string>
+    <string name="liquid_unavailable_details">Als je vragen heeft over je bezit in BabaChain bij Liquid, neem dan contact op met het ondersteuningscentrum van Liquid </string>
+    <string name="menu_security_title">Beveiliging</string>
+    <string name="menu_security_subtitle">Bekijk wachtwoord, maak back-up van portemonnee...</string>
+    <string name="menu_settings_title">Instellingen</string>
+    <string name="menu_settings_subtitle">Standaard valuta, snelkoppelingen, over... </string>
+    <string name="menu_tools_title">Gereedschap</string>
+    <string name="menu_tools_subtitle">Importeer persoonlijke sleutel…</string>
+    <string name="menu_local_currency">lokale valuta</string>
+    <string name="menu_rescan_blockchain">Blockchain opnieuw scannen</string>
+    <string name="menu_contact_support_title">Neem contact op</string>
+    <string name="menu_contact_support_subtitle">Meld een probleem</string>
+    <string name="menu_explore_title">Verken</string>
+    <string name="menu_explore_subtitle">Vind winkeliers die BabaChain accepteren</string>
+
+    <string name="tools_address_book">Adresboek</string>
+    <string name="tools_import_private_key">Importeer persoonlijke sleutel</string>
+    <string name="tools_network_monitor">Netwerk monitor</string>
+    <string name="tools_show_xpub">Uitgebreide publieke sleutel</string>
+
+    <string name="about_help_us_improve">Help ons je ervaring te verbeteren</string>
+    <string name="about_review_and_rate">Schrijf een recensie en beoordeel de app</string>
+    <string name="about_contact_support">Neem contact op</string>
+    <string name="about_fork_disclaimer">Dit is een open source app afgesplitst van de Bitcoin portemonnee</string>
+    <string name="about_copyright">Copyright © 2025 BabaChain Core Group</string>
+    <string name="about_license">GNU General Public License v3.0</string>
+    <string name="about_version_name">BabaChainPay Portemonnee %s</string>
+    <string name="about_last_explore_device_sync">Laatste Explore-apparaatsynchronisatie</string>
+    <string name="about_last_explore_server_update">Laatste Explore-serverupdate</string>
+    <string name="about_firebase_installation_id">Firebase-installatie-ID</string>
+    <string name="about_fcm_token">Firebase-cloudmessagingtoken</string>
+    <string name="about_last_explore_babachain_update_error">kan niet ophalen</string>
+    <string name="about_last_explore_babachain_sync_never">nooit</string>
+    <string name="about_explore_failed_sync">Mislukt te synchroniseren op %s</string>
+    <string name="about_explore_preloaded_on">Voorgeladen op %s</string>
+
+    <string name="block">Block</string>
+    <string name="time">Tijd</string>
+    <string name="hash">Hash</string>
+    <string name="block_info">Block info</string>
+
+    <string name="scan_private_key">Scan persoonlijke sleutel</string>
+    <string name="scan_private_key_intro_1">U staat op het punt het saldo van een papieren BabaChain portemonnee op te nemen.</string>
+    <string name="scan_private_key_intro_2">Hiermee worden het saldo van die portemonnee naar je portemonnee op dit apparaat verplaatst.</string>
+    <string name="scan_private_key_intro_3">Wanneer de transactie is bevestigd, is de andere portemonnee waardeloos en mag deze om veiligheidsredenen niet opnieuw worden gebruikt.</string>
+    <string name="confirm">Bevestig</string>
+
+    <string name="advanced_security_security_level">Beveiligingsniveau</string>
+    <string name="auto_logout">Automatisch uitloggen</string>
+    <string name="spending_confirmation">Bevestiging van de uitgaven</string>
+    <string name="logout_after">Uitloggen na</string>
+    <string name="immediately">Onmiddellijk</string>
+    <string name="twenty_four_hours">24 uur</string>
+    <string name="one_minute">1 min</string>
+    <string name="five_minute">5 min</string>
+    <string name="one_hour">1 uur</string>
+    <string name="biometric_limit">Biometrische limiet</string>
+    <string name="spending_confirmation_hint_zero">De PIN is altijd vereist om een betaling uit te voeren</string>
+    <string name="spending_confirmation_hint_above_zero">Je kan hieronder authenticeren met Biometrische authenticatie voor betalingen</string>
+
+    <string name="security_none">Geen</string>
+    <string name="security_low">Laag</string>
+    <string name="security_medium">Medium</string>
+    <string name="security_high">Hoog</string>
+    <string name="security_very_high">Heel hoog</string>
+    <string name="max">Max</string>
+
+    <string name="skip">Overslaan</string>
+    <string name="get_started">Ga aan de slag</string>
+    <string name="welcome_screen_title_1_new_install">Welkom</string>
+    <string name="welcome_screen_title_1_upgrade">We hebben een upgrade uitgevoerd</string>
+    <string name="welcome_screen_subtitle_1">Een intuïtieve en vertrouwde ervaring op al je apparaten</string>
+    <string name="welcome_screen_title_2">Betaal met gemak</string>
+    <string name="welcome_screen_subtitle_2">Betaal en word betaald met eenvoudig te gebruiken betaalverkeer</string>
+    <string name="welcome_screen_title_3">Meer controle</string>
+    <string name="welcome_screen_subtitle_3">Heb volledige controle en pas je portemonnee aan op basis van je behoeften</string>
+
+    <string-array name="history_filter">
+        <item>Alles</item>
+        <item>Ontvangen</item>
+        <item>Verzonden</item>
+    </string-array>
+
+    <string name="sync_status_wait">Wacht a.u.b. tot de synchronisatie is voltooid</string>
+    <string name="sync_status_syncing_sub_title">met BabaChain blockchain</string>
+    <string name="sync_status_unable_to_connect">Kan geen verbinding maken</string>
+    <string name="sync_status_check_connection">Controleer je verbinding</string>
+    <string name="sync_status_sync_title">Synchorniseer</string>
+    <string name="sync_status_sync_completed">Voltooid</string>
+
+    <string name="appwidget_wallet_not_ready">Stel a.u.b. je portemonnee in</string>
+
+    <string name="payment_request_please_wait_message">Verbinding maken met betalingsserver</string>
+    <string name="payment_request_unable_to_connect">Kan geen verbinding maken</string>
+    <string name="payment_request_unable_to_send">Verzenden niet mogelijk</string>
+    <string name="payment_request_please_try_again">Probeer a.u.b. opnieuw</string>
+    <string name="payment_request_try_again">Probeer opnieuw</string>
+    <string name="payment_request_expired_title">Betaalverzoek is verlopen</string>
+    <string name="payment_request_close">Sluiten</string>
+    <string name="payment_request_skip">Overslaan</string>
+    <string name="payment_request_paid_to">Betaald aan</string>
+
+    <string name="import_image_not_valid_qr_code">Ongeldige QR-code</string>
+    <string name="import_image_please_use_valid_qr_code">Gebruik a.u.b. een geldige QR-code</string>
+    <string name="import_image_no_private_key_copied">persoonlijke sleutel niet gekopieerd</string>
+    <string name="import_image_import_valid_private_key">Kopieer een geldige persoonlijke sleutel om de BabaChain er van te importeren</string>
+    <string name="import_image_invalid_private">Ongeldige persoonlijke sleutel</string>
+    <string name="okay">Oké</string>
+
+    <string name="onboard_from_invite_title">Laten we beginnen</string>
+    <string name="onboard_from_invite_subtitle">Welkom bij BabaChainPay</string>
+    <string name="onboard_from_invite_step1">Stap 1</string>
+    <string name="onboard_from_invite_step2">Stap 2</string>
+    <string name="onboard_from_invite_step3">Stap 3</string>
+    <string name="onboard_from_invite_step1_title">Kies je gebruikersnaam</string>
+    <string name="onboard_from_invite_step2_title">Stel je pincode in</string>
+    <string name="onboard_from_invite_step3_title">Beveilig je portemonnee</string>
+
+    <string name="restore_wallet_please_wait">Even wachten a.u.b.</string>
+    <string name="restore_wallet_restoring">Je portemonnee wordt hersteld</string>
+
+
+
+    <string name="network_unavailable">Netwerk niet beschikbaar</string>
+    <string name="network_error_contact_details">Kan contactgegevens niet ophalen</string>
+    <string name="network_error_user_search">Kan niet naar een gebruiker zoeken</string>
+    <string name="network_error_contact_suggestions">Kan geen suggesties geven</string>
+    <string name="network_error_unable_to_update_profile">Kan je profiel niet bijwerken</string>
+
+
+
+    <string name="today">Vandaag</string>
+    <string name="yesterday">Gisteren</string>
+
+    <string name="syncing">synchroniseren</string>
+    <string name="syncing_balance">Saldo aan het synchroniseren</string>
+    <string name="transaction_count">%d transacties</string>
+    <string name="all_transactions">Alles</string>
+    <string name="received_transactions">Ontvangen</string>
+    <string name="sent_transactions">Verzonden</string>
+    <string name="serious_error_title">Ernstige fout</string>
+    <string name="serious_error_unknown">Neem contact op met support.</string>
+    <string name="set_pin_error_missing_wallet_title">Fout missende portemonnee</string>
+    <string name="set_pin_error_missing_wallet_message">De portemonnee is zoek. Meld dit bij de Support Desk.</string>
+    <string name="wallet_encryption_error_title">Fout bij aanmaken portemonnee</string>
+    <string name="wallet_encryption_error_message">Er is een probleem opgetreden bij het maken van de portemonnee. Meld dit bij de Support Desk.</string>
+    <string name="wallet_not_encrypted_error_message">Er is een probleem met je portemonnee.\n\nAls je geen BabaChain in deze portemonnee hebt, verwijder dan deze app en installeer hem opnieuw. Maak vervolgens een nieuwe portemonnee.\n\nAls je een herstelzin of een back-upbestand hebt, verwijder dan deze app en installeer hem opnieuw.\n\nAnders meld je dit bij de Support Desk.</string>
+
+    <string name="reset_wallet_title">Weet je zeker dat je je portemonnee wil resetten?</string>
+    <string name="reset_wallet_message">Als je je portemonnee reset is de enige manier om er nog toegang tot te krijgen is om die te herstellen met de herstelzin.</string>
+    <string name="positive_reset_text">Ja, reset portemonnee</string>
+    <string name="launch_reset_wallet_title">Je hebt een positief saldo</string>
+    <string name="launch_reset_wallet_message">Als je je portemonnee reset raak je al je fondsen kwijt als je niet je herstelzin niet hebt geback-upt.</string>
+    <string name="continue_reset">Doorgaan</string>
+    <string name="launch_reset_wallet_extra_message">Back-up je herstelzin</string>
+    <string name="start_reset_wallet_title">Je kan %s kwijtraken</string>
+    <string name="reset_wallet_text">Portemonnee resetten</string>
+
+
+
+    <!-- Tax category -->
+    <string name="reclassify_transactions_title">Herclassificeer je transacties</string>
+    <string name="reclassify_transactions_title_message">Deze classificaties worden gexporteerd naar CSV bestand. Deze kan worden geïmporteerd in belastingservices of -software.</string>
+    <string name="reclassify_transactions_question">Waar kan ik de belastingcategorie wijzigen?</string>
+    <string name="reclassify_transactions_outgoing_title">Uitgaande transacties</string>
+    <string name="reclassify_transactions_by_default_message">wordt standaard gemarkeerd als</string>
+    <string name="reclassify_transactions_incoming_title">Inkomende transacties</string>
+    <string name="reclassify_transactions_change_it_message">Je kunt het veranderen in</string>
+    <string name="reclassify_transactions_linked_accounts_title">Gekoppelde accounts</string>
+    <string name="reclassify_transactions_linked_accounts_message">Standaard worden alle transacties van of naar je gekoppelde rekeningen gemarkeerd als overboekingen.</string>
+    <string name="reclassify_transactions_change_explanation">Kies een transactie op de startpagina en wijzig de categorie in de transactiedetails.</string>
+
+    <string name="masternode_keys_title">Masternode sleutels</string>
+    <string name="masternode_key_type_owner">Eigenaar sleutels</string>
+    <string name="masternode_key_type_voting">Stem sleutels</string>
+    <string name="masternode_key_type_operator">Operator sleutels</string>
+    <string name="masternode_key_type_platform">Evolution Node ID sleutels</string>
+    <string name="masternode_key_type_total">%d sleutels</string>
+    <string name="masternode_key_type_used">%dgebruikt</string>
+    <string name="masternode_key_pair_index">Sleutelpaar %d</string>
+    <string name="masternode_key_address">Adres</string>
+    <string name="masternode_key_id">Sleutel ID</string>
+    <string name="masternode_key_public">Publieke sleutel</string>
+    <string name="masternode_key_public_legacy">Publieke sleutel (verouderd)</string>
+    <string name="masternode_key_private_hex">Persoonlijke sleutel</string>
+    <string name="masternode_key_private_wif">Persoonlijke sleutel WIF</string>
+    <string name="masternode_key_used">IP: %s</string>
+    <string name="masternode_key_ip_address_unknown">Onbekend</string>
+    <string name="masternode_key_not_used">Niet gebruikt</string>
+    <string name="masternode_key_revoked">Ingetrokken</string>
+    <string name="masternode_key_private_public_base64">persoonlijke / publieke sleutels (base64)</string>
+    <string name="timeskew_ahead">voor</string>
+    <string name="timeskew_behind">achter</string>
+
+    <!-- stale rates messages -->
+    <string name="stale_exchange_rates_error">Prijzen zijn niet opgehaald. Fiat waarden kunnen onjuist zijn.</string>
+    <string name="stale_exchange_rates_stale">Prijzen zijn minstens 30 minuten oud. Fiat waarden kunnen onjuist zijn.</string>
+    <string name="stale_exchange_rates_volatile">Sinds de laatste update zijn de prijzen meer dan 50% veranderd.</string>
+    <string name="select_security_level_title">Kies beveiligingsniveau</string>
+    <string name="select_security_level_message">Je kunt je portemonnee beveiligen met een herstelzin van 12 of 24 woorden.</string>
+    <string name="select_security_level_12_words_title">Veilig</string>
+    <string name="select_security_level_12_words_message">Herstelzin met 12 woorden</string>
+    <string name="select_security_level_24_words_title">Heel veilig</string>
+    <string name="select_security_level_24_words_message">Herstelzin met 24 woorden</string>
+</resources>

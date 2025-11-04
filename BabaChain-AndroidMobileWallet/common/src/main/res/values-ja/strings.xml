@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">読み込み中…</string>
+    <string name="loading_error">エラーが発生しました。後でもう一度お試しください。</string>
+    <string name="please_wait_title">お待ちください</string>
+    <string name="babachain_available">%1$s 利用可能</string>
+    <string name="network_unavailable_title">ネットワークが利用できません</string>
+    <string name="network_unavailable_check_connection">ネットワーク接続を確認してください</string>
+    <string name="network_unavailable_balance_not_accurate">切断されているため、残高が正確でない可能性があります</string>
+    <string name="buy_babachain">BabaChainを購入する</string>
+    <string name="copied">コピーされた</string>
+    <string name="staking_title">ステーキング</string>
+    <string name="email">Eメール</string>
+    <string name="email_placeholder">例：johndoe@mail.com</string>
+    <string name="error">エラー</string>
+    <string name="select_a_coin">通貨を選ぶ</string>
+    <string name="request_coins_share_dialog_title">BabaChainのリクエストを共有…</string>
+    <string name="buy_with_fiat">BabaChainをフィアットで購入する</string>
+    <string name="buy_and_convert">BabaChainを他の仮想通貨で購入して変換する</string>
+    <string name="transfer_babachain">BabaChainを送金する</string>
+    <string name="login_error_title">お客様の%sアカウントにログインできません</string>
+    <string name="login_error_message">お客様の%sアカウントへのログイン中にエラーが発生しました。</string>
+    <string name="babachain_address">BabaChainアドレス</string>
+    <string name="username">ユーザー名</string>
+    <string name="balance">残高:</string>
+    <string name="nothing_here">こちらにはありません</string>
+
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">ガーンジー・ポンド</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">ジャージー・ポンド</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">マンクス・ポンド</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">米ドル硬貨</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">ライトコイン</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">イーサリアム</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">ビットコイン</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">パクソス</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">ジェミニドル</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">閉じる</string>
+    <string name="network_unavailable_return">ウォレットに返金</string>
+    <string name="button_continue">続ける</string>
+    <string name="get_quote">見積もりを得る</string>
+    <string name="button_close">閉じる</string>
+    <string name="button_retry">リトライ</string>
+    <string name="button_send_report">レポートを送信</string>
+    <string name="button_info">情報</string>
+    <string name="button_copy_address">アドレスをコピーする</string>
+    <string name="button_understand">どれでも有効</string>
+    <string name="button_okay">OK</string>
+    <string name="button_share">共有</string>
+    <string name="button_skip">スキップする</string>
+    <string name="share_address">アドレスを共有する</string>
+    <string name="verify">検証する</string>
+    <string name="receive_enter_amount_button">金額を指定する</string>
+    <string name="account_create">アカウントの作成</string>
+    <string name="submit">提出する</string>
+    <string name="try_again">再試行する</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">検索</string>
+    <string name="permission_allow">許可する</string>
+    <string name="permission_deny">拒否する</string>
+    <string name="pay_with">支払う</string>
+    <string name="choose_payment_method">支払い方法を選ぶ</string>
+    <string name="debit_credit_card">デビットカード/クレジットカード</string>
+    <string name="max">最大</string>
+    <string name="select_the_coin">通貨を選ぶ</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">BabaChainウォレット</string>
+    <string name="from">から</string>
+    <string name="to">へ</string>
+    <string name="select_currency">通貨を選択する</string>
+    <string name="send_coins_error_dusty_send">送金額が小さすぎます</string>
+    <string name="send_coins_error_insufficient_money">資金不足</string>
+    <string name="send_coins_error_insufficient_mixed_money">ミキシング資金が不足しています。CoinJoinのミキシングが完了するまで待つか、設定でこの機能を無効にしてこの取引を完了してください。</string>
+    <string name="syncing">同期中</string>
+    <string name="no_connection">インターネット接続がありません</string>
+    <string name="rate_not_available">ご利用できません</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">お客様のBabaChain Walletに資金がありません</string>
+    <string name="empty_wallet_crowdnode_warning">残高を0.0003BabaChainまで増額しないと、CrowdNodeからこのウォレットに出金できませんのでご注意ください。</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">お支払いが確認されませんでした</string>
+    <string name="payment_protocol_default_error_title">支払いエラー</string>
+    <string name="payment_request_problem_message">お客様のお支払いがサーバーで処理されませんでしたので、加盟店にお問い合わせください。</string>
+    <string name="exchange_rate_not_found">為替レートが見つかりません。</string>
+    <string name="send_coins_fragment_hint_replaying">ウォレットがネットワークと完全に同期されていないため、現在支払いはできません</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">BabaChainウォレットに直接入金する</string>
+    <string name="convert_crypto">仮想通貨を変換</string>
+    <string name="last_known_balance" >直近の残高</string>
+    <string name="disconnected">切断されました</string>
+    <string name="enter_amount_available">ご利用可能</string>
+    <string name="transaction_row_rate_not_available">ご利用できません</string>
+    <string name="log_in">ログイン</string>
+
+    <string name="chain_syncing">チェーンを同期中</string>
+    <string name="report_issue_dialog_mail_intent_chooser">報告を送信中…</string>
+
+    </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="buy_babachain">BabaChain Vétel</string>
+    <string name="error">Hiba</string>
+    <string name="request_coins_share_dialog_title">BabaChain kérelem megosztása…</string>
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Elvet</string>
+    <string name="button_retry">Újra</string>
+    <string name="button_share">Megosztás</string>
+    <string name="babachain">BabaChain</string>
+    <string name="enter_amount_available">rendelkezésre áll</string>
+    </resources>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <!-- Explore screen -->
+    <string name="explore_babachain">Objavte BabaChain</string>
+    <string name="explore_title">Objaviť</string>
+    <string name="explore_subtitle">Nájdite obchodníkov, ktorí akceptujú BabaChain, kde ho kúpiť a ako s ním zarobiť.</string>
+    <string name="explore_merchants_title">Kde minúť?</string>
+    <string name="explore_merchants_subtitle">Nájsť obchodníkov, ktorí akceptujú BabaChain ako platbu.</string>
+    <string name="explore_atms_title">Bankomaty</string>
+    <string name="explore_atms_subtitle">Zistiť, kde za hotovosť kúpiť alebo predať DASH a iné kryptomeny.</string>
+    <string name="explore_staking_subtitle">Jednoducho stávkujte BabaChain a získajte pasívny príjem niekoľkými jednoduchými kliknutiami.</string>
+    <string name="explore_staking_current_apy">Aktuálne APY = %s%%</string>
+
+    <!-- Search -->
+    <string name="explore_search_results">Výsledky vyhľadávania</string>
+    <string name="explore_physical_merchant">Kamenný obchod</string>
+    <string name="explore_online_merchant">Online</string>
+    <string name="explore_both_types_merchant">Online, kamenný obchod</string>
+    <string name="explore_multiple_locations">+ viaceré miesta</string>
+    <string name="explore_option_all">Všetko</string>
+    <string name="explore_option_buy">Kúpiť</string>
+    <string name="explore_option_sell">Predať</string>
+    <string name="explore_option_buy_sell">Kúpiť a predať</string>
+    <string name="explore_where_to_spend">Kde minúť</string>
+    <string name="explore_atms">Bankomaty</string>
+    <string name="explore_all_states">Všetky štáty</string>
+    <string name="explore_no_results">Neboli nájdené žiadne výsledky</string>
+    <string name="explore_all_merchants">Všetci obchodníci</string>
+    <string name="explore_in_radius">%1$s v %2$s</string>
+    <string name="explore_no_merchants">Žiadni obchodníci</string>
+    <string name="explore_no_atms">Žiadne bankomaty</string>
+    <string name="distance_miles">%s míľ</string>
+    <string name="distance_kilometers">%s kilometrov</string>
+    <plurals name="explore_merchant_amount">
+        <item quantity="one">%d obchodník</item>
+        <item quantity="few">%d obchodníci</item>
+        <item quantity="many">%d obchodníkov</item>
+        <item quantity="other">%d obchodníkov</item>
+    </plurals>
+
+    <plurals name="explore_atm_amount">
+        <item quantity="one">%d bankomat</item>
+        <item quantity="few">%d bankomaty</item>
+        <item quantity="many">%d bankomatov</item>
+        <item quantity="other">%d bankomatov</item>
+    </plurals>
+
+    <!-- Details -->
+    <string name="explore_back_to_locations">Späť na všetky miesta</string>
+    <string name="explore_back_to_nearest">Späť na najbližšie miesto</string>
+    <string name="explore_select_location">Vyberte umiestnenie</string>
+    <string name="explore_pay_with_babachain">Plaťte pomocou BabaChain</string>
+    <string name="explore_pay_with_babachain_save">Uložiť %.2f%%</string>
+    <string name="explore_buy_gift_card">Kúpiť darčekovú kartu</string>
+    <string name="explore_buy_babachain">Kúpiť BabaChain</string>
+    <string name="explore_sell_babachain">Predať BabaChain</string>
+    <string name="explore_show_all">Zobraziť všetky miesta</string>
+    <string name="explore_atm_location_hint">Tento bankomat sa nachádza v</string>
+    <string name="explore_maps_intent_uri">http://maps.google.com/maps?daddr=%1$f,%2$f</string>
+
+    <!-- Filters -->
+    <string name="explore_filter">Filter platieb</string>
+    <string name="explore_filters">Filtre</string>
+    <string name="explore_apply_filter">Použiť</string>
+    <string name="explore_payment_method">Spôsob platby</string>
+    <string name="explore_payment_babachain">BabaChain</string>
+    <string name="explore_payment_gift_card">Darčeková karta</string>
+    <string name="explore_filter_gift_cards">Darčekové karty</string>
+    <string name="explore_radius">Okruh</string>
+    <string name="explore_location">Miesto</string>
+    <string name="explore_current_location">Súčasná poloha</string>
+    <string name="explore_location_settings">Aktuálne nastavenia polohy</string>
+    <string name="explore_reset_filters">Obnoviť filtre</string>
+    <string name="explore_reset_all_filters">Obnoviť všetky filtre</string>
+    <string name="explore_filtered_by">Filtrované podľa:</string>
+    <string name="explore_pay_gift_card">Plaťte darčekovou kartou</string>
+    <string name="explore_sort_by">Zoradiť podľa</string>
+    <string name="gift_card_types">Typy darčekových kariet</string>
+    <string name="flexible_amount_option">Flexibilné sumy</string>
+    <string name="fixed_denom_option">Fixné denominované sumy</string>
+
+    <string-array name="merchants_filter_options">
+        <item>Online</item>
+        <item>V blízkosti</item>
+        <item>Všetko</item>
+    </string-array>
+
+    <string-array name="atms_filter_options">
+        <item>Všetko</item>
+        <item>Kúpiť</item>
+        <item>Predať</item>
+        <item>Kúpiť/Predať</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_miles">
+        <item>1 míľa</item>
+        <item>5 míľ</item>
+        <item>20 míľ</item>
+        <item>50 míľ</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_kilometers">
+        <item>1 kilometer</item>
+        <item>5 kilometrov</item>
+        <item>20 kilometrov</item>
+        <item>50 kilometrov</item>
+    </string-array>
+
+    <string-array name="sort_by_options_names">
+        <item>Meno</item>
+        <item>Vzdialenosť</item>
+        <item>Zľava</item>
+    </string-array>
+
+    <plurals name="radius_miles">
+        <item quantity="one">%d míľa</item>
+        <item quantity="few">%d míle</item>
+        <item quantity="many">%d míľ</item>
+        <item quantity="other">%d míľ</item>
+    </plurals>
+
+    <plurals name="radius_kilometers">
+        <item quantity="one">%d kilometer</item>
+        <item quantity="few">%d kilometre</item>
+        <item quantity="many">%d kilometrov</item>
+        <item quantity="other">%d kilometrov</item>
+    </plurals>
+
+    <!-- Location Permission -->
+    <string name="explore_location_allowed">Povolené</string>
+    <string name="explore_location_denied">Odmietnuté</string>
+    <string name="explore_manager_permissions">Spravovať povolenie GPS</string>
+    <string name="explore_location_request">Udeľte povolenia GPS, aby sme vám mohli zobrazovať miesta vo vašej blízkosti.</string>
+    <string name="explore_location_explainer">Vaša poloha sa používa na zobrazenie vašej polohy na mape, obchodníkov vo vybranom okruhu a zlepšenie výsledkov vyhľadávania.</string>
+    <string name="explore_merchant_location_explainer_title">Vyhľadávanie obchodníkov funguje lepšie so zapnutými službami určovania polohy.</string>
+    <string name="explore_merchant_location_explainer_message">Vaša poloha sa používa na zobrazenie vašej polohy na mape, obchodníkov vo vybranom okruhu a zlepšenie výsledkov vyhľadávania.</string>
+    <string name="explore_atm_location_explainer_title">Vyhľadávanie bankomatov funguje lepšie so zapnutými službami určovania polohy.</string>
+    <string name="explore_atm_location_explainer_message">Vaša poloha sa používa na zobrazenie polohy na mape, bankomatov vo vybranom okruhu a zlepšenie výsledkov vyhľadávania.</string>
+
+    <!-- Info screens -->
+    <string name="explore_info_header_text">Máme dva typy obchodníkov</string>
+    <string name="accept_babachain_text">Prijímajte priamo DASH</string>
+    <string name="pay_with_babachain_text">Plaťte pomocou peňaženky DASH.</string>
+    <string name="buy_gift_card_text">Kúpte si darčekové poukážky s BabaChainom</string>
+    <string name="buy_gift_card_desc_text">Kúpte si darčekové karty s BabaChainom za presnú sumu vášho nákupu.</string>
+    <string name="learn_more_text">Ďalšie informácie</string>
+    <string name="buy_card_header_text">Ako používať darčekovú poukážku</string>
+    <string name="buy_card_desc_text">Nie všetky obchody akceptujú priamo DASH, ale môžete si kúpiť darčekovú kartu s BabaChainom.</string>
+    <string name="find_merchant_text">Nájsť obchodníka.</string>
+    <string name="buy_gift_card_with_babachain_text">Kúpte si darčekovú kartu s BabaChainom.</string>
+    <string name="redeem_gift_card_text">Uplatnite svoju darčekovú kartu online v priebehu niekoľkých sekúnd alebo pri pokladni.</string>
+
+    <!-- Explore TestNet -->
+    <string name="explore_test_subtitle">Testovací BabaChain nemá v skutočnom svete žiadnu hodnotu, ale môžete ho odosielať a prijímať s ostatnými používateľmi BabaChainPay Alpha.</string>
+    <string name="explore_test_babachain_title">Ako získať testovací BabaChain?</string>
+    <string name="explore_test_babachain_text_1">Testovací BabaChain je zadarmo a možno ho získať z toho, čo sa nazýva faucet.</string>
+    <string name="explore_test_babachain_text_2">Kliknutím na tlačidlo nižšie skopírujete adresu BabaChain z tejto peňaženky, aby ste mohli získať svoj testovací BabaChain.</string>
+    <string name="explore_get_test_babachain">Získajte testovací BabaChain</string>
+
+    <!-- Sync Status -->
+    <string name="sync_in_progress_not_complete">Prebieha synchronizácia… Výsledky nemusia byť úplné.</string>
+    <string name="sync_in_progress_error">Prebieha synchronizácia… Vyskytla sa chyba.</string>
+    <string name="sync_in_progress_canceled">Synchronizácia bola zrušená… Ďalší pokus sa uskutoční neskôr.</string>
+
+    <string name="sync_in_progress_file_not_found">Chyba zostavy: Databáza sa nenašla!</string>
+    <string name="sync_in_progress_network_error">Synchronizácia bola prerušená… Sieť je offline alebo nedostupná</string>
+
+
+    <!-- purchase_gift_card -->
+    <string name="purchase_gift_card_at">v</string>
+    <string name="purchase_gift_card_min">Min: %s</string>
+    <string name="purchase_gift_card_max">Max: %s</string>
+    <string name="purchase_gift_card_discount_hint">Kupujete darčekovú kartu v hodnote %s pre %s (%s zľava)</string>
+    <string name="button_next">Ďalej</string>
+    <string name="purchase_gift_card_from">Od</string>
+    <string name="purchase_gift_card_to">Komu</string>
+    <string name="purchase_confirm_transaction">Potvrdiť</string>
+    <string name="purchase_gift_card_total_label">Darčeková karta spolu</string>
+    <string name="purchase_gift_card_discount">Zľava</string>
+    <string name="purchase_gift_card_you_pay">Platíte</string>
+    <string name="purchase_gift_card_confirm">Potvrdiť</string>
+    <string name="purchase_gift_card_details">Podrobnosti darčekovej karty</string>
+    <string name="purchase_original_purchase">Pôvodná kúpa</string>
+    <string name="purchase_check_current_balance">Skontrolujte aktuálny zostatok</string>
+    <string name="purchase_card_number">Číslo karty</string>
+    <string name="purchase_card_pin">PIN karty</string>
+    <string name="purchase_view_transaction">Zobraziť podrobnosti transakcie</string>
+    <string name="purchase_see_how_to_use_gift_card">Pozrite si, ako použiť darčekovú kartu</string>
+    <string name="purchase_how_to_use_gift_card">Ako používať darčekovú kartu</string>
+    <string name="purchase_self_checkout">Samoobslužná pokladňa</string>
+    <string name="purchase_Request_assistance">Požiadajte zamestnanca o pomoc pri uplatnení digitálnej darčekovej karty.</string>
+    <string name="purchase_in_store">V obchode</string>
+    <string name="purchase_tell_the_cashier">Povedzte pokladníkovi, že platíte digitálnou darčekovou kartou. Pokladňa: do poľa Banková karta zadajte celkovú sumu, potom do poľa Účet zadajte číslo darčekovej karty a stlačte kláves Enter.</string>
+    <string name="purchase_in_the_payment_section">V sekcii platby zadajte do poľa darčekovej karty číslo digitálnej darčekovej karty.</string>
+    <string name="purchase_powered_by">Používa technológiu</string>
+    <string name="insufficient_money_title">Nedostatok mincí</string>
+    <string name="insufficient_money_msg">Nedostatok prostriedkov</string>
+    <string name="send_coins_error_msg">Problém pri odosielaní!</string>
+    <string name="gift_card_barcode_failed">Čiarový kód sa nepodarilo načítať</string>
+    <string name="gift_card_tx_title">Darčeková karta %s</string>
+    <string name="select_amount">Vyberte sumu</string>
+    <string name="select_fixed_amount">Tento obchodník predáva darčekové karty za fixné ceny</string>
+
+    <!-- babachain spend login-->
+    <string name="enter_verification_code">Zadajte overovací kód</string>
+    <string name="verification_check_email">Skontrolujte svoj e-mail a zadajte overovací kód</string>
+    <string name="buy_gift_card">Kúpte si darčekovú kartu pomocou účtu BabaChainSpend</string>
+    <string name="babachainspend_create_account">Vytvorte si účet alebo sa prihláste do existujúceho</string>
+    <string name="create_new_account">Vytvoriť nový účet</string>
+    <string name="login">Prihlásiť sa</string>
+    <string name="password">Heslo</string>
+    <string name="logged_in_as">Prihlásený ako %s</string>
+    <string name="log_out">Odhlásiť sa</string>
+    <string name="invaild_code">Zadali ste nesprávny kód. Skontrolujte svoj e-mail a skúste to znova.</string>
+    <string name="something_wrong_title">Niečo sa pokazilo!</string>
+    <string name="retry">Znovu</string>
+    <string name="gift_card_purchase_failed">Nákup darčekovej karty zlyhal</string>
+    <string name="try_again">Skúsiť znova</string>
+    <string name="cancel">Zrušiť</string>
+    <string name="gift_card_error">Z nejakého dôvodu sa nám nepodarilo kúpiť darčekovú kartu. Prosím skúste znova.</string>
+    <string name="gift_card_details_error">Z nejakého dôvodu sa nám nepodarilo kúpiť darčekovú kartu. Kontaktujte podporu.</string>
+    <string name="gift_card_limit_error">Limity nákupov pre tohto obchodníka sa zmenili. Pre viac informácií kontaktujte podporu CTX.</string>
+    <string name="gift_card_unknown_error">Z nejakého dôvodu sa nám nepodarilo kúpiť darčekovú kartu. Kontaktujte podporu s txid %s.</string>
+    <string name="gift_card_rejected">Platba bola odmietnutá. Obráťte sa na CTX s ID darčekovej karty %s, ID platby %s a ID transakcie %s.</string>
+    <string name="gift_card_redeem_url_not_supported">Platba bola uskutočnená u obchodníka, ktorý poskytuje adresu URL na uplatnenie, ale táto nie je momentálne podporovaná. Obráťte sa na CTX s ID darčekovej karty %s, ID platby %s a ID transakcie %s.</string>
+    <string name="babachainspend_terms_conditions">Prijmite zmluvné podmienky</string>
+    <string name="accept_terms_conditions">Prijímam zmluvné podmienky BabaChainSpend</string>
+    <string name="tap_link_to_proceed">Ak si chcete vytvoriť účet na BabaChainSpend, musíte klepnúť na odkaz nižšie, aby ste mohli pokračovať</string>
+    <string name="accept_to_proceed">Ak si chcete vytvoriť účet na BabaChainSpend, musíte prijať zmluvné podmienky BabaChainSpend</string>
+    <string name="view_terms_conditions">Zmluvné podmienky</string>
+    <string name="barcode_placeholder">Hneď ako bude váš kód vygenerovaný, zobrazí sa tu.</string>
+    <string name="gift_card_contact_ctx">Kontaktovať podporu CTX</string>
+
+    <!-- ctx spend login-->
+    <string name="create_ctx_spend_account">Vytvoriť účet</string>
+    <string name="log_in_to_ctxspend_account">Prihlásiť sa do svojho účtu</string>
+    <string name="log_in_to_ctxspend_account_desc">Váš email slúži len na zaslanie jednorazového hesla.</string>
+    <string name="buy_a_gift_card_with_your_ctx_spend_account">Kúpte si darčekovú kartu pomocou svojho účtu na výdavky v BabaChain</string>
+    <string name="create_an_account_at_ctx_spend_or_log_in_to_the_existing_one">Vytvorte si účet BabaChainSpend alebo sa prihláste do existujúceho účtu</string>
+    <string name="temporarily_unavailable">Dočasne nedostupné</string>
+    <string name="token_expired_title">Platnosť vašej relácie vypršala</string>
+    </resources>

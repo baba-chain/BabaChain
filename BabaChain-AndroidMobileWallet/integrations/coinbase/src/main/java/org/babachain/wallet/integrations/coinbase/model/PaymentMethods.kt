@@ -1,0 +1,44 @@
+/*
+ * Copyright 2021 Dash Core Group.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.babachain.wallet.integrations.coinbase.model
+
+import com.google.gson.annotations.SerializedName
+
+data class PaymentMethodsResponse(
+    @SerializedName("payment_methods")
+    val paymentMethods: List<PaymentMethodsData>?
+)
+
+data class PaymentMethodsData(
+    val id: String,
+    val type: String,
+    val name: String,
+    val currency: String,
+    @SerializedName("created_at")
+    val createdAt: String? = null,
+    @SerializedName("updated_at")
+    val updatedAt: String? = null,
+    @SerializedName("allow_buy")
+    val isBuyingAllowed: Boolean? = null,
+    @SerializedName("allow_deposit")
+    val isDepositAllowed: Boolean? = null,
+    @SerializedName("allow_sell")
+    val isSellingAllowed: Boolean? = null,
+    @SerializedName("allow_withdraw")
+    val isWithdrawalAllowed: Boolean? = null,
+    val verified: Boolean? = null
+)

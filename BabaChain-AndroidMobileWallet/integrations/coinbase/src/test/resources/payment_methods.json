@@ -1,0 +1,43 @@
+{
+  "payment_methods" : [
+    {
+      "updated_at" : "2022-06-30T14:04:13Z",
+      "allow_deposit" : false,
+      "id" : "bfb4c087-b26d-5058-b614-4c6f9e411aaf",
+      "allow_withdraw" : false,
+      "allow_buy" : false,
+      "verified" : true,
+      "created_at" : "2022-06-30T14:04:13Z",
+      "type" : "COINBASE_FIAT_ACCOUNT",
+      "currency" : "USD",
+      "name" : "Cash (USD)",
+      "allow_sell" : false
+    },
+    {
+      "updated_at" : "2022-12-09T06:15:10Z",
+      "allow_deposit" : false,
+      "id" : "018b3577-47ce-5d15-8b25-2931166088db",
+      "allow_withdraw" : false,
+      "allow_buy" : false,
+      "verified" : true,
+      "created_at" : "2022-12-08T09:36:36Z",
+      "type" : "APPLE_PAY",
+      "currency" : "USD",
+      "name" : "Apple Pay",
+      "allow_sell" : false
+    },
+    {
+      "updated_at" : null,
+      "allow_deposit" : false,
+      "id" : "662eec93-2862-438a-b7e1-6b52c01b81b6",
+      "allow_withdraw" : false,
+      "allow_buy" : false,
+      "verified" : true,
+      "created_at" : "2022-12-09T06:15:02Z",
+      "type" : "GOOGLE_PAY",
+      "currency" : "USD",
+      "name" : "Google Pay",
+      "allow_sell" : false
+    }
+  ]
+}

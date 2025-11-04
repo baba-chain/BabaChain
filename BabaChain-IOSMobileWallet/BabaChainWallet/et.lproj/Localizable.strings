@@ -1,0 +1,3182 @@
+/* No comment provided by engineer. */
+" " = " ";
+
+/* CrowdNode */
+" Privacy Policy " = " Privacy Policy ";
+
+/* CrowdNode */
+" Terms of Use " = " Terms of Use ";
+
+/* No comment provided by engineer. */
+"%@ has accepted your contact request" = "%@ has accepted your contact request";
+
+/* Username has sent you a contact request */
+"%@ has sent you a contact request" = "%@ has sent you a contact request";
+
+/* No comment provided by engineer. */
+"%@ is not allowed to access Face ID. Allow Face ID access in Settings" = "%@ is not allowed to access Face ID. Allow Face ID access in Settings";
+
+/* No comment provided by engineer. */
+"%@ is not allowed to access the camera" = " %@ pole kaamerale ligipääsu";
+
+/* No comment provided by engineer. */
+"%@ is not allowed to access Touch ID. Allow Touch ID access in Settings" = "%@ is not allowed to access Touch ID. Allow Touch ID access in Settings";
+
+/* Credits */
+"%@ ~ %lu contacts / %lu profile updates" = "%1$@ ~ %2$lu contacts / %3$lu profile updates";
+
+/* Voting - multiple keys warning */
+"%d votes will be cast as you have multiple voting keys stored in the wallet" = "%d votes will be cast as you have multiple voting keys stored in the wallet";
+
+/* Voting */
+"%ld duplicates" = "%ld duplicates";
+
+/* Voting */
+"%ld requests" = "%ld requests";
+
+/* 10/20 Characters */
+"%ld/%ld Characters" = "%1$ld/%2$ld Characters";
+
+/* No comment provided by engineer. */
+"(1/3) Processing Payment" = "(1/3) Processing Payment";
+
+/* No comment provided by engineer. */
+"(1/3) Unable to process payment" = "(1/3) Unable to process payment";
+
+/* No comment provided by engineer. */
+"(2/3) Creating Dash Identity" = "(2/3) Creating Dash Identity";
+
+/* No comment provided by engineer. */
+"(2/3) Unable to create Dash Identity" = "(2/3) Unable to create Dash Identity";
+
+/* No comment provided by engineer. */
+"(3/3) Can't register username" = "(3/3) Can't register username";
+
+/* No comment provided by engineer. */
+"(3/3) Registering Username" = "(3/3) Registering Username";
+
+/* No comment provided by engineer. */
+"1 hour" = "1 hour";
+
+/* Explore Dash: Filters */
+"1 mile" = "1 mile";
+
+/* Shorten version of minute */
+"1 min" = "1 min";
+
+/* Explore Dash: Filters */
+"2 km" = "2 km";
+
+/* Explore Dash: Filters */
+"20 miles" = "20 miles";
+
+/* No comment provided by engineer. */
+"24 hours" = "24 hours";
+
+/* Explore Dash: Filters */
+"32 km" = "32 km";
+
+/* Explore Dash: Filters */
+"5 miles" = "5 miles";
+
+/* Shorten version of minutes */
+"5 min" = "5 min";
+
+/* Explore Dash: Filters */
+"50 miles" = "50 miles";
+
+/* Explore Dash: Filters */
+"8 km" = "8 km";
+
+/* Explore Dash: Filters */
+"80 km" = "80 km";
+
+/* No comment provided by engineer. */
+"\"%@\" is not a recovery phrase word" = "\"%@\" ei ole taastamis-lause sõna";
+
+/* No comment provided by engineer. */
+"\"%@\" is not a recovery phrase word. Would you like to try to recover the correct word that should be in its place?" = "\"%@\" is not a recovery phrase word. Would you like to try to recover the correct word that should be in its place?";
+
+/* No comment provided by engineer. */
+"\ntry again in %@" = "\nproovi uuesti %@";
+
+/* No comment provided by engineer. */
+"A device passcode is needed to safeguard your wallet. Go to settings and turn passcode on to continue." = "Rahakoti turvamiseks on seadmele tarvis pääsukoodi. Jätkamiseks mine seadetesse ja lülita pääsukoodi küsimine sisse.";
+
+/* CrowdNode */
+"A Masternode needs 1000 Dash as collateral and each Masternode is currently rewarded approximately %@ per year." = "A Masternode needs 1000 Dash as collateral and each Masternode is currently rewarded approximately %@ per year.";
+
+/* No comment provided by engineer. */
+"About" = "Teave";
+
+/* No comment provided by engineer. */
+"About me" = "About me";
+
+/* No comment provided by engineer. */
+"Accept" = "Accept";
+
+/* Explore */
+"Accept Dash directly" = "Accept Dash directly";
+
+/* DashSpend */
+"Accept terms and\nconditions" = "Accept terms and\nconditions";
+
+/* CrowdNode */
+"Accept Terms Of Use" = "Accept Terms Of Use";
+
+/* CrowdNode */
+"Accepting terms of use…" = "Accepting terms of use…";
+
+/* CrowdNode */
+"Account Recovery" = "Account Recovery";
+
+/* No comment provided by engineer. */
+"Activity" = "Activity";
+
+/* No comment provided by engineer. */
+"Add" = "Add";
+
+/* Add <username> as your contact... */
+"Add %@ as your contact to Pay Directly to Username and Retain Mutual Transaction History" = "Add %@ as your contact to Pay Directly to Username and Retain Mutual Transaction History";
+
+/* No comment provided by engineer. */
+"Add a New Contact" = "Add a New Contact";
+
+/* No comment provided by engineer. */
+"Add your Friends & Family" = "Add your Friends & Family";
+
+/* Usernames */
+"Add your friends & family" = "Add your friends & family";
+
+/* No comment provided by engineer. */
+"Address" = "Address";
+
+/* CoinJoin */
+"Advanced" = "Advanced";
+
+/* CoinJoin */
+"Advanced privacy level requires a reliable internet connection" = "Advanced privacy level requires a reliable internet connection";
+
+/* No comment provided by engineer. */
+"Advanced Security" = "Advanced Security";
+
+/* Coinbase */
+"Advanced users who have a very high level of technical expertise can determine your transaction history" = "Advanced users who have a very high level of technical expertise can determine your transaction history";
+
+/* Usernames */
+"After the voting ends we will notify you about its results" = "After the voting ends we will notify you about its results";
+
+/* No comment provided by engineer. */
+"Agree" = "Agree";
+
+/* TimeSkew */
+"ahead" = "ahead";
+
+/* No comment provided by engineer. */
+"All" = "All";
+
+/* No comment provided by engineer. */
+"All payments will be considered as an Expense and all incoming transactions will be Income. The owner of this wallet is responsible for making any cost basis adjustments in their chosen tax reporting system." = "All payments will be considered as an Expense and all incoming transactions will be Income. The owner of this wallet is responsible for making any cost basis adjustments in their chosen tax reporting system.";
+
+/* CrowdNode */
+"All transfers to and from CrowdNode from this device will be performed with the below Dash address from this device." = "All transfers to and from CrowdNode from this device will be performed with the below Dash address from this device.";
+
+/* ZenLedger */
+"Allow" = "Allow";
+
+/* No comment provided by engineer. */
+"Allow camera access in Settings" = "Allow camera access in Settings";
+
+/* ZenLedger */
+"Allow sending all transactions from Dash Wallet to Zenledger?" = "Allow sending all transactions from Dash Wallet to Zenledger?";
+
+/* Coinbase/Buy Dash */
+"Amount in Dash" = "Amount in Dash";
+
+/* No comment provided by engineer. */
+"Amount received" = "Amount received";
+
+/* No comment provided by engineer. */
+"Amount Sent" = "Amount Sent";
+
+/* An error occurred */
+"An error occurred" = "An error occurred";
+
+/* No comment provided by engineer. */
+"An intuitive and familiar experience across all your devices" = "An intuitive and familiar experience across all your devices";
+
+/* CTXSpend error */
+"An unknown error occurred. Please try again later." = "An unknown error occurred. Please try again later.";
+
+/* CrowdNode */
+"and" = "and";
+
+/* CoinJoin */
+"Any funds that have been mixed will be combined with your un mixed funds" = "Any funds that have been mixed will be combined with your un mixed funds";
+
+/* Usernames */
+"Any username that has a number 2-9, is more than 20 characters or that has a hyphen will be automatically approved" = "Any username that has a number 2-9, is more than 20 characters or that has a hyphen will be automatically approved";
+
+/* Coinbase/Payment Methods */
+"Apple Pay" = "Apple Pay";
+
+/* No comment provided by engineer. */
+"Application %@ is requesting a payment to" = "%@ rakendus soovib teha kannet";
+
+/* No comment provided by engineer. */
+"Application %@ is requesting an address so it can pay you.  Would you like to authorize this?" = "Rakendus %@ küsib aadressi, et sulle kannet teha. Kas lubad seda?";
+
+/* No comment provided by engineer. */
+"Application %@ would like to receive your Master Public Key.  This can be used to keep track of your wallet, this can not be used to move your Dash." = "Rakendus %@ soovib saada sinu Master Public Key'd. Kasuta Master Public Key'd ja jälgi oma rahakoti, kuid Dashi kandeid sellega teha ei saa.";
+
+/* No comment provided by engineer. */
+"Apply" = "Apply";
+
+/* Coinbase/Buy Dash/Cancel Order     */
+"Are you sure you want to cancel this order?" = "Are you sure you want to cancel this order?";
+
+/* Coinbase/Buy Dash/Cancel Order */
+"Are you sure you want to cancel this transaction?" = "Are you sure you want to cancel this transaction?";
+
+/* CoinJoin */
+"Are you sure you want to change the privacy level?" = "Are you sure you want to change the privacy level?";
+
+/* CoinJoin */
+"Are you sure you want to stop mixing?" = "Are you sure you want to stop mixing?";
+
+/* No comment provided by engineer. */
+"Are you sure?" = "Oled kindel?";
+
+/* Voting */
+"As a masternode owner you can vote to approve requested usernames before users will be able to create it.\nYou can block the creation of the usernames that you feel inappropriate." = "As a masternode owner you can vote to approve requested usernames before users will be able to create it.\nYou can block the creation of the usernames that you feel inappropriate.";
+
+/* CrowdNode */
+"As most people do not have exactly 1000 Dash at hand, Crowdnode has made a service where, by pooling deposits from members, they can achieve the benefits of owning a Masternode." = "As most people do not have exactly 1000 Dash at hand, Crowdnode has made a service where, by pooling deposits from members, they can achieve the benefits of owning a Masternode.";
+
+/* DashSpend */
+"at" = "at";
+
+/* No comment provided by engineer. */
+"ATM search works better with Location Services turned on." = "ATM search works better with Location Services turned on";
+
+/* No comment provided by engineer. */
+"ATMs" = "ATMs";
+
+/* No comment provided by engineer. */
+"Authentication is unvailable" = "Authentication is unvailable";
+
+/* Location Service Status */
+"Authorized" = "Authorized";
+
+/* No comment provided by engineer. */
+"Auto Logout" = "Auto Logout";
+
+/* No comment provided by engineer. */
+"Autohide Balance" = "Autohide Balance";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Backup" = "Backup";
+
+/* No comment provided by engineer. */
+"Backup Passphrase" = "Backup Passphrase";
+
+/* A noun. Used as a title. */
+"Backup Wallet" = "Backup Wallet";
+
+/* No comment provided by engineer. */
+"Backup your passphrase to create a CrowdNode account" = "Backup your passphrase to create a CrowdNode account";
+
+/* Back up wallet */
+"Backup your recovery phrase" = "Backup your recovery phrase";
+
+/* No comment provided by engineer. */
+"Bad recovery phrase" = "Bad recovery phrase";
+
+/* Send Screen: to address */
+"Balance" = "Jääk";
+
+/* CrowdNode */
+"Balance On CrowdNode" = "Balance On CrowdNode";
+
+/* CrowdNode */
+"Balance: " = "Balance: ";
+
+/* Coinbase/Payment Methods */
+"Bank Account" = "Bank Account";
+
+/* Coinbase/Payment Methods */
+"Bank Wire" = "Bank Wire";
+
+/* No comment provided by engineer. */
+"Barcode placeholder" = "Barcode placeholder";
+
+/* CrowdNode */
+"Become part of a Dash Masternode with CrowdNode" = "Become part of a Dash Masternode with CrowdNode";
+
+/* TimeSkew */
+"behind" = "behind";
+
+/* Validation rule: Between 3 and 24 characters */
+"Between %ld and %ld characters" = "Between %1$ld and %2$ld characters";
+
+/* Usernames */
+"Between 3 and 23 characters" = "Between 3 and 23 characters";
+
+/* Coinbase Entry Point */
+"Between Dash Wallet and Coinbase" = "Between Dash Wallet and Coinbase";
+
+/* Dash Service Overview */
+"Between Dash Wallet and your Coinbase account" = "Between Dash Wallet and your Coinbase account";
+
+/* No comment provided by engineer. */
+"Biometrics Access Required" = "Biometrics Access Required";
+
+/* Voting */
+"Block" = "Block";
+
+/* No comment provided by engineer. */
+"block #%d of %d" = "blokeeri #%1$d %2$d";
+
+/* No comment provided by engineer. */
+"Block #%d of %d" = "Block #%1$d of %2$d";
+
+/* Voting */
+"Blocked '%@' username" = "Blocked '%@' username";
+
+/* Buy
+   buy */
+"Buy" = "Buy";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Buy & Sell" = "Buy & Sell";
+
+/* No comment provided by engineer. */
+"Buy & Sell Dash" = "Buy & Sell Dash";
+
+/* Buy a Gift Card */
+"Buy a Gift Card" = "Buy a Gift Card";
+
+/* Dash Service Overview */
+"Buy and convert Dash with another crypto" = "Buy and convert Dash with another crypto";
+
+/* No comment provided by engineer. */
+"Buy credits" = "Buy credits";
+
+/* No comment provided by engineer. */
+"Buy Dash" = "Osta Dashi";
+
+/* Dash Service Overview */
+"Buy Dash with fiat" = "Buy Dash with fiat";
+
+/* Dash Portal */
+"Buy Dash · No account needed" = "Buy Dash · No account needed";
+
+/* DashSpend */
+"Buy gift card" = "Buy gift card";
+
+/* No comment provided by engineer. */
+"Buy gift cards with your Dash" = "Buy gift cards with your Dash";
+
+/* No comment provided by engineer. */
+"Buy gift cards with your Dash for the exact amount of your purchase." = "Buy gift cards with your Dash for the exact amount of your purchase.";
+
+/* Buy/Sell */
+"Buy/Sell" = "Buy/Sell";
+
+/* Voting */
+"By tapping the \"Vote for All\" button, you will automatically vote for all of the filtered usernames (%ld) that were submitted first" = "By tapping the \"Vote for All\" button, you will automatically vote for all of the filtered usernames (%ld) that were submitted first";
+
+/* No comment provided by engineer. */
+"By wiping this device you will no longer have access to funds on this device. This should only be done if you no longer have access to your passphrase and have also forgotten your PIN code." = "By wiping this device you will no longer have access to funds on this device. This should only be done if you no longer have access to your passphrase and have also forgotten your PIN code.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Katkesta";
+
+/* Voting */
+"Cancel Approval" = "Cancel Approval";
+
+/* No comment provided by engineer. */
+"Cancel Request" = "Cancel Request";
+
+/* Coinbase/Buy Dash/Cancel Order */
+"Canceling this transaction does not cancel the trade order. You will receive DASH on your Coinbase account shortly." = "Canceling this transaction does not cancel the trade order. You will receive DASH on your Coinbase account shortly.";
+
+/* DashSpend */
+"Card number" = "Card number";
+
+/* No comment provided by engineer. */
+"Card PIN" = "Card PIN";
+
+/* A verb. Action button title for an alert 'Change payment amount?' */
+"Change" = "Change";
+
+/* No comment provided by engineer. */
+"Change payment amount?" = "Change payment amount?";
+
+/* No comment provided by engineer. */
+"Change PIN" = "Change PIN";
+
+/* CoinJoin */
+"Change to Advanced" = "Change to Advanced";
+
+/* CoinJoin */
+"Change to Intermediate" = "Change to Intermediate";
+
+/* No comment provided by engineer. */
+"Check current balance" = "Check current balance";
+
+/* TimeSkew */
+"Check date & time settings" = "Check date & time settings";
+
+/* No comment provided by engineer. */
+"Check your connection" = "Check your connection";
+
+/* DashSpend */
+"Check your email and enter the verification code." = "Check your email and enter the verification code.";
+
+/* Choose your Dash username */
+"Choose your" = "Choose your";
+
+/* No comment provided by engineer. */
+"Choose Your Username" = "Choose Your Username";
+
+/* No comment provided by engineer. */
+"Claimed" = "Claimed";
+
+/* No comment provided by engineer. */
+"Clear" = "Clear";
+
+/* No comment provided by engineer. */
+"Clear trusted node?" = "Clear trusted node?";
+
+/* No comment provided by engineer. */
+"Close" = "Close";
+
+/* CrowdNode */
+"Close and notify when it’s done" = "Close and notify when it’s done";
+
+/* No comment provided by engineer. */
+"Close App" = "Close App";
+
+/* Dash Portal */
+"Coinbase" = "Coinbase";
+
+/* Coinbase Two Factor Auth */
+"Coinbase 2FA code" = "Coinbase 2FA code";
+
+/* Coinbase/Buy Dash */
+"Coinbase Fee" = "Coinbase Fee";
+
+/* CoinJoin */
+"CoinJoin" = "CoinJoin";
+
+/* CoinJoin */
+"CoinJoin Collateral Inputs" = "CoinJoin Collateral Inputs";
+
+/* CoinJoin */
+"CoinJoin Create Denominations" = "CoinJoin Create Denominations";
+
+/* CoinJoin */
+"CoinJoin Mixing" = "CoinJoin Mixing";
+
+/* CoinJoin */
+"CoinJoin Mixing Fee" = "CoinJoin Mixing Fee";
+
+/* No comment provided by engineer. */
+"Confirm" = "Kinnita";
+
+/* Coinbase/Buy Dash/Confirm Order */
+"Confirm (%d%@)" = "Confirm (%1$d%2$@)";
+
+/* No comment provided by engineer. */
+"Confirm PIN" = "Confirm PIN";
+
+/* No comment provided by engineer. */
+"Confirming" = "Confirming";
+
+/* ZenLedger */
+"Connect your crypto wallets to the ZenLedger platform. Learn more and get started with your Dash Wallet transactions." = "Connect your crypto wallets to the ZenLedger platform. Learn more and get started with your Dash Wallet transactions.";
+
+/* Buy Sell Portal
+   Coinbase Entry Point */
+"Connected" = "Connected";
+
+/* CrowdNode */
+"Connected Dash address" = "Connected Dash address";
+
+/* No comment provided by engineer. */
+"Connected peers: %d" = "Connected peers: %d";
+
+/* No comment provided by engineer. */
+"Connecting to payment server" = "Connecting to payment server";
+
+/* Coinbase
+   Coinbase Two Factor Auth */
+"Contact Coinbase Support" = "Contact Coinbase Support";
+
+/* DashSpend */
+"Contact CTX Support" = "Contact CTX Support";
+
+/* No comment provided by engineer. */
+"Contact Request Pending" = "Contact Request Pending";
+
+/* No comment provided by engineer. */
+"Contact Requests" = "Contact Requests";
+
+/* No comment provided by engineer. */
+"Contact Support" = "Contact Support";
+
+/* No comment provided by engineer. */
+"Contacts" = "Contacts";
+
+/* No comment provided by engineer. */
+"Continue" = "Continue";
+
+/* No comment provided by engineer. */
+"Continue Anyway" = "Continue Anyway";
+
+/* Coinbase Entry Point */
+"Convert Crypto" = "Convert Crypto";
+
+/* No comment provided by engineer. */
+"Copied" = "Copied";
+
+/* No comment provided by engineer. */
+"Copy" = "Copy";
+
+/* No comment provided by engineer. */
+"Copy Invitation Link" = "Copy Invitation Link";
+
+/* No comment provided by engineer. */
+"Copy Logs" = "Copy Logs";
+
+/* No comment provided by engineer. */
+"Copy text" = "Copy text";
+
+/* No comment provided by engineer. */
+"Copyright © 2023 Dash Core" = "Copyright © 2023 Dash Core";
+
+/* No comment provided by engineer. */
+"Could not automatically recover missing or incorrect words" = "Could not automatically recover missing or incorrect words";
+
+/* No comment provided by engineer. */
+"Could not connect to the Dash network, please check that you are connected to the internet." = "Could not connect to the Dash network, please check that you are connected to the internet.";
+
+/* No comment provided by engineer. */
+"Could not find exchange rate." = "Could not find exchange rate.";
+
+/* No comment provided by engineer. */
+"Couldn't make payment" = "Couldn't make payment";
+
+/* No comment provided by engineer. */
+"Couldn't sweep balance" = "Couldn't sweep balance";
+
+/* No comment provided by engineer. */
+"Couldn't transmit payment to Dash network" = "Couldn't transmit payment to Dash network";
+
+/* No comment provided by engineer. */
+"Create a new Invitation" = "Create a new Invitation";
+
+/* No comment provided by engineer. */
+"Create a new invitation" = "Create a new invitation";
+
+/* No comment provided by engineer. */
+"Create a New Wallet" = "Create a New Wallet";
+
+/* Usernames */
+"Create a username" = "Create a username";
+
+/* CrowdNode */
+"Create Account" = "Create Account";
+
+/* Create DashSpend account */
+"Create account" = "Create account";
+
+/* DashSpend account title */
+"Create an account or log into an existing one" = "Create an account or log into an existing one";
+
+/* CrowdNode */
+"Create an online CrowdNode account" = "Create an online CrowdNode account";
+
+/* No comment provided by engineer. */
+"Create invitation" = "Create invitation";
+
+/* Create new account */
+"Create new account" = "Create new account";
+
+/* CrowdNode
+   CrowdNode Portal */
+"Create Online Account" = "Create Online Account";
+
+/* Usernames */
+"Create your username" = "Create your username";
+
+/* No comment provided by engineer. */
+"Create your Username, find friends & family with their usernames and add them to your contacts" = "Create your Username, find friends & family with their usernames and add them to your contacts";
+
+/* Coinbase/Payment Methods */
+"Credit Card" = "Credit Card";
+
+/* CrowdNode */
+"CrowdNode benefits" = "CrowdNode benefits";
+
+/* CrowdNode Portal */
+"CrowdNode Support" = "CrowdNode Support";
+
+/* CrowdNode */
+"CrowdNode uses this address as your account ID. You will lose access to your funds within this wallet and your CrowdNode account if you lose the passphrase associated to this address." = "CrowdNode uses this address as your account ID. You will lose access to your funds within this wallet and your CrowdNode account if you lose the passphrase associated to this address.";
+
+/* CrowdNode */
+"CrowdNode withdrawal limits" = "CrowdNode withdrawal limits";
+
+/* No comment provided by engineer. */
+"CrowdNode · Account" = "CrowdNode · Account";
+
+/* CrowdNode Portal */
+"CrowdNode ➝ DashWallet" = "CrowdNode ➝ DashWallet";
+
+/* No comment provided by engineer. */
+"CSV Export" = "CSV Export";
+
+/* Explore Dash/Filters */
+"CTX gift card" = "CTX gift card";
+
+/* Explore Dash: Filters */
+"CTX gift cards" = "CTX gift cards";
+
+/* Crowdnode */
+"Current APY = %@" = "Current APY = %@";
+
+/* CrowdNode */
+"Current APY is %@" = "Current APY is %@";
+
+/* Explore Dash: Filters */
+"Current location" = "Current location";
+
+/* Explore Dash/Merchants/Filters */
+"Current Location Settings" = "Current Location Settings";
+
+/* No comment provided by engineer. */
+"Current user: %@" = "Current user: %@";
+
+/* Explore Dash: Filters */
+"Dash" = "Dash";
+
+/* No comment provided by engineer. */
+"Dash address" = "Dashi aadress";
+
+/* CrowdNode */
+"Dash address designated for your CrowdNode account in the Dash Wallet on this device " = "Dash address designated for your CrowdNode account in the Dash Wallet on this device ";
+
+/* No comment provided by engineer. */
+"Dash balance" = "Dash balance";
+
+/* Coinbase Entry Point */
+"Dash balance on Coinbase" = "Dash balance on Coinbase";
+
+/* Uphold Entry Point */
+"Dash balance on Uphold" = "Dash balance on Uphold";
+
+/* No comment provided by engineer. */
+"Dash payments can't be less than %@" = "Dash payments can't be less than %@";
+
+/* No comment provided by engineer. */
+"Dash username" = "Dash username";
+
+/* DashSpend confirmation */
+"Dash Wallet" = "Dash Wallet";
+
+/* Buy Dash */
+"Dash Wallet on this device" = "Dash Wallet on this device";
+
+/* No comment provided by engineer. */
+"DashPay Invitation" = "DashPay Invitation";
+
+/* No comment provided by engineer. */
+"DashPay Upgrade Fee" = "DashPay Upgrade Fee";
+
+/* CrowdNode Portal */
+"DashWallet ➝ CrowdNode" = "DashWallet ➝ CrowdNode";
+
+/* No comment provided by engineer. */
+"Date" = "Date";
+
+/* Voting */
+"Date: New to old" = "Date: New to old";
+
+/* Voting */
+"Date: Old to new" = "Date: Old to new";
+
+/* Voting */
+"Default filter setting" = "Default filter setting";
+
+/* Location Service Status */
+"Denied" = "Denied";
+
+/* CrowdNode
+   CrowdNode Portal */
+"Deposit" = "Deposit";
+
+/* CrowdNode Portal */
+"Deposit %@ to start earning" = "Deposit %@ to start earning";
+
+/* CrowdNode */
+"Deposit at least %@ Dash on your Dash Wallet to complete a withdrawal" = "Deposit at least %@ Dash on your Dash Wallet to complete a withdrawal";
+
+/* CrowdNode Portal */
+"Deposit at least %@ to start earning" = "Deposit at least %@ to start earning";
+
+/* CrowdNode */
+"Deposit sent" = "Deposit sent";
+
+/* No comment provided by engineer. */
+"DEVICE SECURITY COMPROMISED\nAny 'jailbreak' app can access any other app's keychain data (and steal your Dash)." = "DEVICE SECURITY COMPROMISED\nAny 'jailbreak' app can access any other app's keychain data (and steal your Dash).";
+
+/* No comment provided by engineer. */
+"DEVICE SECURITY COMPROMISED\nAny 'jailbreak' app can access any other app's keychain data (and steal your Dash). Wipe this wallet immediately and restore on a secure device." = "DEVICE SECURITY COMPROMISED\nAny 'jailbreak' app can access any other app's keychain data (and steal your Dash). Wipe this wallet immediately and restore on a secure device.";
+
+/* Coinbase Entry Point */
+"Disconnect Coinbase Account" = "Disconnect Coinbase Account";
+
+/* Uphold Entry Point */
+"Disconnect Uphold Account" = "Disconnect Uphold Account";
+
+/* Buy Sell Portal
+   Coinbase Entry Point */
+"Disconnected" = "Disconnected";
+
+/* DashSpend confirmation */
+"Discount" = "Discount";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Display Name" = "Display Name";
+
+/* Explore Dash: Filters */
+"Distance" = "Distance";
+
+/* No comment provided by engineer. */
+"Do not take a screenshot" = "Do not take a screenshot";
+
+/* Usernames */
+"Do you really want to cancel the username request?" = "Do you really want to cancel the username request?";
+
+/* No comment provided by engineer. */
+"Done" = "Tehtud";
+
+/* ex., Download peer: 127.0.0.1:9999 */
+"Download peer: %@" = "Download peer: %@";
+
+/* CrowdNode */
+"Due to CrowdNode’s terms of service users can withdraw no more than:" = "Due to CrowdNode’s terms of service users can withdraw no more than:";
+
+/* Geoblock */
+"Due to regulatory constraints, we need to verify that you are not in the UK.  We only check your location when you enter the Coinbase features." = "Due to regulatory constraints, we need to verify that you are not in the UK.  We only check your location when you enter the Coinbase features.";
+
+/* Geoblock */
+"Due to regulatory constraints, you cannot use the Coinbase features while you are in the UK" = "Due to regulatory constraints, you cannot use the Coinbase features while you are in the UK";
+
+/* Usernames */
+"Due to the voting process, the Dash Network has decided to assign the username '%@' to someone else. Please try again by requesting another username." = "Due to the voting process, the Dash Network has decided to assign the username '%@' to someone else. Please try again by requesting another username.";
+
+/* CrowdNode */
+"e.g. johndoe@mail.com" = "e.g. johndoe@mail.com";
+
+/* No comment provided by engineer. */
+"Each invitation will be funded with this amount so that the receiver can quickly create their username on the Dash Network" = "Each invitation will be funded with this amount so that the receiver can quickly create their username on the Dash Network";
+
+/* (List of notifications happened) Earlier (some time ago) */
+"Earlier" = "Earlier";
+
+/* No comment provided by engineer. */
+"Easily stake Dash and earn passive income with a few simple clicks." = "Easily stake Dash and earn passive income with a few simple clicks.";
+
+/* No comment provided by engineer. */
+"Edit Profile" = "Edit Profile";
+
+/* No comment provided by engineer. */
+"Edit profile" = "Edit profile";
+
+/* Invitation tag placeholder */
+"eg: Dad" = "eg: Dad";
+
+/* Input username textfield placeholder */
+"eg: johndoe" = "eg: johndoe";
+
+/* CrowdNode */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Enable Face ID" = "Enable Face ID";
+
+/* No comment provided by engineer. */
+"Enable Receive Notifications" = "Enable Receive Notifications";
+
+/* No comment provided by engineer. */
+"Enable Touch ID" = "Enable Touch ID";
+
+/* No comment provided by engineer. */
+"Enter" = "Enter";
+
+/* Coinbase Two Factor Auth */
+"Enter Coinbase 2FA code" = "Enter Coinbase 2FA code";
+
+/* No comment provided by engineer. */
+"Enter PIN" = "Enter PIN";
+
+/* No comment provided by engineer. */
+"Enter Recovery Phrase" = "Enter Recovery Phrase";
+
+/* Enter verification code */
+"Enter verification code" = "Enter verification code";
+
+/* No comment provided by engineer. */
+"Enter your 2FA code below" = "Enter your 2FA code below";
+
+/* No comment provided by engineer. */
+"Enter your Gravatar Email ID" = "Enter your Gravatar Email ID";
+
+/* Voting */
+"Enter your voting key" = "Enter your voting key";
+
+/* No comment provided by engineer. */
+"Error" = "Error";
+
+/* CTXSpend error */
+"Error processing server response. Please try again later." = "Error processing server response. Please try again later.";
+
+/* No comment provided by engineer. */
+"Error updating your profile" = "Error updating your profile";
+
+/* CoinJoin */
+"Error ·" = "Error ·";
+
+/* No comment provided by engineer. */
+"Exit" = "Exit";
+
+/* No comment provided by engineer. */
+"Expense" = "Expense";
+
+/* No comment provided by engineer. */
+"Explore" = "Explore";
+
+/* No comment provided by engineer. */
+"Explore Dash" = "Explore Dash";
+
+/* ZenLedger */
+"Export all transactions" = "Export all transactions";
+
+/* No comment provided by engineer. */
+"Export CSV" = "Export CSV";
+
+/* No comment provided by engineer. */
+"Extended Public Keys" = "Extended Public Keys";
+
+/* No comment provided by engineer. */
+"Face ID limit" = "Face ID limiit";
+
+/* No comment provided by engineer. */
+"Failed to load barcode" = "Failed to load barcode";
+
+/* Coinbase */
+"Failed to start auth session" = "Failed to start auth session";
+
+/* Buy Sell Portal */
+"Failed to sync" = "Failed to sync";
+
+/* Explore Dash */
+"Failed to sync on" = "Failed to sync on";
+
+/* No comment provided by engineer. */
+"Failed wallet update" = "Rahakoti uuendamine ebaõnnestus";
+
+/* No comment provided by engineer. */
+"Fee" = "Fee";
+
+/* No comment provided by engineer. */
+"Fee is greater than balance" = "Fee is greater than balance";
+
+/* No comment provided by engineer. */
+"Fee will be deducted from requested amount." = "Fee will be deducted from requested amount.";
+
+/* Coinbase/Fee info */
+"Fees in crypto purchases" = "Fees in crypto purchases";
+
+/* No comment provided by engineer. */
+"Fetching Image" = "Fetching Image";
+
+/* Explore Dash */
+"Fetching Info" = "Fetching Info";
+
+/* Balance */
+"Fetching rates…" = "Fetching rates…";
+
+/* Coinbase/Payment Methods */
+"Fiat Account" = "Fiat Account";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter transactions" = "Filter transactions";
+
+/* No comment provided by engineer. */
+"Filtered by" = "Filtered by";
+
+/* Explore Dash/Merchants/Filters */
+"Filtered by:" = "Filtered by:";
+
+/* Explore Dash */
+"Filters" = "Filters";
+
+/* No comment provided by engineer. */
+"Find a user on the Dash Network" = "Find a user on the Dash Network";
+
+/* No comment provided by engineer. */
+"Find ATMs where you can buy or sell Dash." = "Find ATMs where you can buy or sell Dash.";
+
+/* No comment provided by engineer. */
+"Find merchants that accept Dash payments." = "Find merchants that accept Dash payments.";
+
+/* No comment provided by engineer. */
+"Find merchants that accept Dash, where to buy it and how to earn income with it." = "Find merchants that accept Dash, where to buy it and how to earn income with it.";
+
+/* CrowdNode */
+"First deposit should be more than %@" = "First deposit should be more than %@";
+
+/* CrowdNode */
+"First minimum deposit" = "First minimum deposit";
+
+/* DashSpend */
+"Fixed amounts" = "Fixed amounts";
+
+/* Explore Dash: Filters */
+"Fixed denominated amounts" = "Fixed denominated amounts";
+
+/* Explore Dash: Filters */
+"Flexible amounts" = "Flexible amounts";
+
+/* Usernames */
+"For some reason, the request for the username '%@' has failed." = "For some reason, the request for the username '%@' has failed.";
+
+/* Coinbase */
+"For your security, you have been signed out." = "For your security, you have been signed out.";
+
+/* No comment provided by engineer. */
+"Forget about long crypto addresses, create the username, find friends and add them to your contacts" = "Forget about long crypto addresses, create the username, find friends and add them to your contacts";
+
+/* No comment provided by engineer. */
+"Forgot PIN?" = "Forgot PIN?";
+
+/* No comment provided by engineer. */
+"Found missing word:\n%@" = "Found missing word:\n%@";
+
+/* No comment provided by engineer. */
+"Found missing words:\n%@" = "Found missing words:\n%@";
+
+/* No comment provided by engineer. */
+"Found potential missing words:\n%@" = "Found potential missing words:\n%@";
+
+/* DashSpend confirmation */
+"From" = "From";
+
+/* from CrowdNode */
+"from CrowdNode" = "from CrowdNode";
+
+/* from Dash Wallet */
+"from Dash Wallet" = "from Dash Wallet";
+
+/* Uphold Entry Point */
+"From Uphold to Dash Wallet" = "From Uphold to Dash Wallet";
+
+/* Dash Service Overview */
+"From Uphold to your Dash Wallet" = "From Uphold to your Dash Wallet";
+
+/* Coinbase */
+"from your Coinbase account" = "from your Coinbase account";
+
+/* No comment provided by engineer. */
+"Full Resync" = "Full Resync";
+
+/* CoinJoin */
+"Fully mixed" = "Fully mixed";
+
+/* CrowdNode */
+"Gain rewards from deposits in Dash Masternodes with as little as 0.5 Dash." = "Gain rewards from deposits in Dash Masternodes with as little as 0.5 Dash.";
+
+/* No comment provided by engineer. */
+"Generate extended public keys?" = "Generate extended public keys?";
+
+/* Coinbase/Convert Crypto */
+"Get Quote" = "Get Quote";
+
+/* CrowdNode */
+"Get Rewards Instantly" = "Get Rewards Instantly";
+
+/* No comment provided by engineer. */
+"Get Started" = "Get Started";
+
+/* Usernames */
+"Get started by setting up your profile picture and other information." = "Get started by setting up your profile picture and other information.";
+
+/* No comment provided by engineer. */
+"Get Test Dash" = "Get Test Dash";
+
+/* No comment provided by engineer. */
+"Get your Username" = "Get your Username";
+
+/* CrowdNode */
+"Getting started with CrowdNode" = "Getting started with CrowdNode";
+
+/* No comment provided by engineer. */
+"Gift card" = "Gift card";
+
+/* DashSpend */
+"Gift card purchase successful" = "Gift card purchase successful";
+
+/* No comment provided by engineer. */
+"Gift card purchase was rejected" = "Gift card purchase was rejected";
+
+/* DashSpend confirmation */
+"Gift card total" = "Gift card total";
+
+/* Explore Dash/Merchants/Filters */
+"Gift card types" = "Gift card types";
+
+/* DashSpend */
+"Gift card · %@" = "Gift card · %@";
+
+/* No comment provided by engineer. */
+"Go to CrowdNode website" = "Go to CrowdNode website";
+
+/* No comment provided by engineer. */
+"Go to Website" = "Go to Website";
+
+/* Coinbase/Payment Methods */
+"Google Pay" = "Google Pay";
+
+/* No comment provided by engineer. */
+"Grant GPS permissions so we can show you locations near you." = "Grant GPS permissions so we can show you locations near you.";
+
+/* Voting */
+"Has blocked votes" = "Has blocked votes";
+
+/* Username has requested to be your friend */
+"has requested to be your friend" = "has requested to be your friend";
+
+/* No comment provided by engineer. */
+"Have complete control and customize your wallet based on your needs" = "Have complete control and customize your wallet based on your needs";
+
+/* No comment provided by engineer. */
+"header #%d of %d" = "header #%1$d of %2$d";
+
+/* No comment provided by engineer. */
+"Help us improve your experience" = "Help us improve your experience";
+
+/* CrowdNode */
+"Here is a Dash address designated for your CrowdNode account in the Dash Wallet on this device" = "Here is a Dash address designated for your CrowdNode account in the Dash Wallet on this device";
+
+/* No comment provided by engineer. */
+"Hide" = "Hide";
+
+/* adjective, security level */
+"High" = "High";
+
+/* Voting */
+"High to low" = "High to low";
+
+/* No comment provided by engineer. */
+"History" = "History";
+
+/* CrowdNode */
+"How CrowdNode staking works" = "How CrowdNode staking works";
+
+/* No comment provided by engineer. */
+"How do I get Test Dash?" = "How do I get Test Dash?";
+
+/* CrowdNode */
+"How to confirm your API Dash address" = "How to confirm your API Dash address";
+
+/* No comment provided by engineer. */
+"How to use your gift card" = "How to use your gift card";
+
+/* No comment provided by engineer. */
+"HPMN Operator Keys" = "Evolution Node ID Keys";
+
+/* No comment provided by engineer. */
+"I Accept" = "I Accept";
+
+/* No comment provided by engineer. */
+"I accept" = "I accept";
+
+/* Accept terms checkbox */
+"I accept %@ terms and conditions" = "I accept %@ terms and conditions";
+
+/* No comment provided by engineer. */
+"I accept that I will lose my coins if I no longer possess the recovery phrase" = "Nõustun, et kui kaotan rahakoti taastamise sala-lause, siis jään oma coinidest ilma";
+
+/* CrowdNode */
+"I agree to CrowdNode" = "I agree to CrowdNode";
+
+/* Voting */
+"I have approved" = "I have approved";
+
+/* Voting */
+"I have not voted" = "I have not voted";
+
+/* No comment provided by engineer. */
+"I wrote it down" = "Ma kirjutasin endale välja";
+
+/* Voting */
+"Identity" = "Identity";
+
+/* Usernames */
+"If enough of the network feels that a username is inappropriate, they can block it" = "If enough of the network feels that a username is inappropriate, they can block it";
+
+/* Usernames */
+"If somebody else requests the same username as you, we will let the network decide whom to give this username" = "If somebody else requests the same username as you, we will let the network decide whom to give this username";
+
+/* Geoblock */
+"If you choose to grant permissions at a later time and you are not in the UK, you can use Coinbase" = "If you choose to grant permissions at a later time and you are not in the UK, you can use Coinbase";
+
+/* CrowdNode */
+"If you ever lose your passphrase, you can verify yourself by other means to regain access to your CrowdNode funds." = "If you ever lose your passphrase, you can verify yourself by other means to regain access to your CrowdNode funds.";
+
+/* No comment provided by engineer. */
+"If you lose your passphrase for this wallet and lose this device or uninstall Dash Wallet, you will lose access to your funds on CrowdNode and the funds within this wallet." = "If you lose your passphrase for this wallet and lose this device or uninstall Dash Wallet, you will lose access to your funds on CrowdNode and the funds within this wallet.";
+
+/* No comment provided by engineer. */
+"If you still would like to wipe it please input: \"%@\"" = "Kui sa endiselt soovid seda puhastada, siis palun sisesta: \"%@\"";
+
+/* Usernames */
+"If you tap “Cancel Request”, you will still have a chance to request another username without paying again" = "If you tap “Cancel Request”, you will still have a chance to request another username without paying again";
+
+/* No comment provided by engineer. */
+"If you would like to save manually reclassified types for transactions you should export a CSV transaction file." = "If you would like to save manually reclassified types for transactions you should export a CSV transaction file.";
+
+/* No comment provided by engineer. */
+"Ignore" = "Ignore";
+
+/* No comment provided by engineer. */
+"Image uploaded can be viewed publicly by anyone." = "Image uploaded can be viewed publicly by anyone.";
+
+/* No comment provided by engineer. */
+"Image URL can't be longer than %ld characters." = "Image URL can't be longer than %ld characters.";
+
+/* No comment provided by engineer. */
+"Images Privacy Policy" = "Images Privacy Policy";
+
+/* No comment provided by engineer. */
+"Immediately" = "Immediately";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Import Private Key" = "Import Private Key";
+
+/* Coinbase/Fee info */
+"In addition to the displayed Coinbase fee, we include a spread in the price. When using Advanced Trade, no spread is included because you are interacting directly with the order book.\n\nCryptocurrency markets are volatile, and this allows us to temporarily lock in a price for trade execution." = "In addition to the displayed Coinbase fee, we include a spread in the price. When using Advanced Trade, no spread is included because you are interacting directly with the order book.\n\nCryptocurrency markets are volatile, and this allows us to temporarily lock in a price for trade execution.";
+
+/* CrowdNode */
+"In case of larger withdrawals CrowdNode will pay withdrawals within two weeks. This is due to their security protocols and will most often be handled much faster." = "In case of larger withdrawals CrowdNode will pay withdrawals within two weeks. This is due to their security protocols and will most often be handled much faster.";
+
+/* Usernames */
+"In case you lose your passphrase you will lose your right to your requested username." = "In case you lose your passphrase you will lose your right to your requested username.";
+
+/* CrowdNode Portal */
+"In process…" = "In process…";
+
+/* No comment provided by engineer. */
+"In store" = "In store";
+
+/* No comment provided by engineer. */
+"In the payment section of your checkout, select \"gift card\" and enter your card number and pin." = "In the payment section of your checkout, select \"gift card\" and enter your card number and pin.";
+
+/* No comment provided by engineer. */
+"Income" = "Income";
+
+/* CrowdNode */
+"Information about your online account" = "Information about your online account";
+
+/* Buy Sell Portal */
+"Initializing" = "Initializing";
+
+/* No comment provided by engineer. */
+"Insufficient funds" = "Insufficient funds";
+
+/* Send screen */
+"Insufficient mixed funds. Wait for CoinJoin mixing to finish or disable this feature in the settings to complete this transaction." = "Insufficient mixed funds. Wait for CoinJoin mixing to finish or disable this feature in the settings to complete this transaction.";
+
+/* No comment provided by engineer. */
+"Insufficient Wallet Balance" = "Insufficient Wallet Balance";
+
+/* Coinbase/Payment Methods */
+"Interac" = "Interac";
+
+/* CoinJoin */
+"Intermediate" = "Intermediate";
+
+/* CoinJoin */
+"Intermediate privacy level requires a reliable internet connection" = "Intermediate privacy level requires a reliable internet connection";
+
+/* Transaction within the wallet, transfer of own funds */
+"Internal Transfer" = "Internal Transfer";
+
+/* No comment provided by engineer. */
+"Internally moved to" = "Internally moved to";
+
+/* CrowdNode */
+"Introducing Staking" = "Introducing Staking";
+
+/* Invalid transaction */
+"Invalid" = "Invalid";
+
+/* Balance */
+"Invalid amount" = "Invalid amount";
+
+/* CTXSpend error */
+"Invalid amount. Please check merchant limits." = "Invalid amount. Please check merchant limits.";
+
+/* No comment provided by engineer. */
+"Invalid Dash address" = "Invalid Dash address";
+
+/* CrowdNode Online */
+"Invalid Email" = "Invalid Email";
+
+/* DashSpend */
+"Invalid email or password." = "Invalid email or password.";
+
+/* Invalid Amount Input */
+"Invalid Input" = "Invalid Input";
+
+/* No comment provided by engineer. */
+"Invalid Inviation" = "Invalid Inviation";
+
+/* No comment provided by engineer. */
+"Invalid Payment Request" = "Invalid Payment Request";
+
+/* No comment provided by engineer. */
+"Invalid QR Code" = "Invalid QR Code";
+
+/* CTXSpend error */
+"Invalid verification code. Please try again." = "Invalid verification code. Please try again.";
+
+/* No comment provided by engineer. */
+"Invitation" = "Invitation";
+
+/* Invitation #3 */
+"Invitation %ld" = "Invitation %ld";
+
+/* No comment provided by engineer. */
+"Invitation already claimed" = "Invitation already claimed";
+
+/* No comment provided by engineer. */
+"Invitation Created Successfully" = "Invitation Created Successfully";
+
+/* No comment provided by engineer. */
+"Invitation Fee" = "Invitation Fee";
+
+/* No comment provided by engineer. */
+"Invitation used by" = "Invitation used by";
+
+/* No comment provided by engineer. */
+"Invitations History" = "Invitations History";
+
+/* No comment provided by engineer. */
+"Invite" = "Invite";
+
+/* No comment provided by engineer. */
+"Invite Someone to join the Dash Network" = "Invite Someone to join the Dash Network";
+
+/* No comment provided by engineer. */
+"Invite your family, find your friends by searching their usernames" = "Invite your family, find your friends by searching their usernames";
+
+/* Usernames */
+"Invite your family, find your friends by searching their usernames." = "Invite your family, find your friends by searching their usernames.";
+
+/* No comment provided by engineer. */
+"Invite your friends & family" = "Invite your friends & family";
+
+/* No comment provided by engineer. */
+"Invite your friends and family to join the Dash Network." = "Invite your friends and family to join the Dash Network.";
+
+/* No comment provided by engineer. */
+"Invite your friends and family to the Dash Network" = "Invite your friends and family to the Dash Network";
+
+/* No comment provided by engineer. */
+"iOS Dash Wallet: %@ Reported issue" = "iOS Dash Wallet: %@ Reported issue";
+
+/* CrowdNode */
+"It can take a minute for your balance to be updated." = "It can take a minute for your balance to be updated.";
+
+/* CrowdNode */
+"It can take a minute for your funds to arrive." = "It can take a minute for your funds to arrive.";
+
+/* Coinbase Two Factor Auth */
+"It could be the code from the SMS on your phone. If not, enter the code from the authentication app." = "It could be the code from the SMS on your phone. If not, enter the code from the authentication app.";
+
+/* Coinbase */
+"It could take up to 10 minutes to transfer Dash from Coinbase to Dash Wallet on this device" = "It could take up to 10 minutes to transfer Dash from Coinbase to Dash Wallet on this device";
+
+/* CoinJoin */
+"It is recommended to be on a Wi-Fi network to avoid incurring additional mixing fees" = "It is recommended to be on a Wi-Fi network to avoid incurring additional mixing fees";
+
+/* DashSpend */
+"It looks like you haven’t used DashSpend in a while. For security reasons, you’ve been logged out.\n\nPlease sign in again to continue exploring where to spend your Dash." = "It looks like you haven’t used DashSpend in a while. For security reasons, you’ve been logged out.\n\nPlease sign in again to continue exploring where to spend your Dash.";
+
+/* Coinbase */
+"It would be very difficult for advanced users with any level of technical expertise to determine your transaction history" = "It would be very difficult for advanced users with any level of technical expertise to determine your transaction history";
+
+/* No comment provided by engineer. */
+"It would seem like you are attempting to restore your wallet a using a 12 word recovery phrase, however you have only entered 10 words, would you like to automatically recover missing words? This might take around an hour. We recommend plugging in your device." = "It would seem like you are attempting to restore your wallet a using a 12 word recovery phrase, however you have only entered 10 words, would you like to automatically recover missing words? This might take around an hour. We recommend plugging in your device.";
+
+/* No comment provided by engineer. */
+"It would seem like you are attempting to restore your wallet a using a 12 word recovery phrase, however you have only entered 11 words, would you like to automatically recover the missing word?" = "It would seem like you are attempting to restore your wallet a using a 12 word recovery phrase, however you have only entered 11 words, would you like to automatically recover the missing word?";
+
+/* No comment provided by engineer. */
+"Join DashPay" = "Join DashPay";
+
+/* No comment provided by engineer. */
+"Join Evolution" = "Join Evolution";
+
+/* No comment provided by engineer. */
+"Join Now" = "Join Now";
+
+/* CrowdNode */
+"Joining the pool" = "Joining the pool";
+
+/* Usernames */
+"Keep your passphrase safe" = "Keep your passphrase safe";
+
+/* No comment provided by engineer. */
+"Key Id" = "Key Id";
+
+/* No comment provided by engineer. */
+"Keypair" = "Keypair";
+
+/* Explore Dash */
+"Last device sync" = "Last device sync";
+
+/* Buy Sell Portal
+   Coinbase Entry Point */
+"Last known balance" = "Last known balance";
+
+/* Explore Dash */
+"Last server update" = "Last server update";
+
+/* Info Screen */
+"Learn More..." = "Learn More...";
+
+/* CrowdNode */
+"Leaving the pool" = "Leaving the pool";
+
+/* No comment provided by engineer. */
+"Let me know when it’s done" = "Let me know when it’s done";
+
+/* No comment provided by engineer. */
+"Let your friends and family to join the Dash Network. Invite them to the world of social banking." = "Let your friends and family to join the Dash Network. Invite them to the world of social banking.";
+
+/* Usernames */
+"Letter, numbers and hyphens only" = "Letter, numbers and hyphens only";
+
+/* Validation rule */
+"Letters, numbers and hyphens only" = "Letters, numbers and hyphens only";
+
+/* No comment provided by engineer. */
+"Let’s Get Started" = "Let’s Get Started";
+
+/* Voting */
+"Link" = "Link";
+
+/* Dash Service Overview */
+"Link Coinbase Account" = "Link Coinbase Account";
+
+/* CrowdNode */
+"Link Existing Account" = "Link Existing Account";
+
+/* CrowdNode */
+"Link Existing CrowdNode Account" = "Link Existing CrowdNode Account";
+
+/* No comment provided by engineer. */
+"Link Uphold Account" = "Link Uphold Account";
+
+/* Dash Service Overview */
+"Link Uphold account" = "Link Uphold account";
+
+/* Buy Sell Portal */
+"Link your account" = "Link your account";
+
+/* Dash Service Overview */
+"Link your Coinbase account" = "Link your Coinbase account";
+
+/* Dash Service Overview */
+"Link your Uphold account" = "Link your Uphold account";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Local Currency" = "Local Currency";
+
+/* No comment provided by engineer. */
+"Local requested amount: %@" = "Local requested amount: %@";
+
+/* Explore Dash/Merchants/Filters */
+"Location" = "Location";
+
+/* No comment provided by engineer. */
+"Locked" = "Locked";
+
+/* Log in */
+"Log in" = "Log in";
+
+/* CrowdNode WebView */
+"Log in to CrowdNode" = "Log in to CrowdNode";
+
+/* DashSpend */
+"Log in to your account" = "Log in to your account";
+
+/* Log out button */
+"Log Out" = "Log Out";
+
+/* No comment provided by engineer. */
+"Log out from Uphold" = "Log out from Uphold";
+
+/* Logged in status */
+"Logged in" = "Logged in";
+
+/* DashSpend */
+"Logged in as %@" = "Logged in as %@";
+
+/* DashSpend */
+"Logged in to DashSpend account" = "Logged in to DashSpend account";
+
+/* No comment provided by engineer. */
+"Login with Face ID" = "Login with Face ID";
+
+/* No comment provided by engineer. */
+"Login with Touch ID" = "Login with Touch ID";
+
+/* a verb, Logout Immediately */
+"Logout" = "Logout";
+
+/* Logout after 5 min */
+"Logout after" = "Logout after";
+
+/* Leftover balance warning */
+"Looks like you are emptying your Dash Wallet" = "Looks like you are emptying your Dash Wallet";
+
+/* adjective, security level */
+"Low" = "Low";
+
+/* Voting */
+"Low to high" = "Low to high";
+
+/* No comment provided by engineer. */
+"Mainnet" = "Mainnet";
+
+/* Usernames */
+"Make a post with the text above on a well known social media or messaging platform to verify that you are the original owner of the requested username and paste the link bellow" = "Make a post with the text above on a well known social media or messaging platform to verify that you are the original owner of the requested username and paste the link bellow";
+
+/* No comment provided by engineer. */
+"Manage GPS Permission" = "Manage GPS Permission";
+
+/* No comment provided by engineer. */
+"Manage Trusted Node" = "Manage Trusted Node";
+
+/* Map */
+"Map" = "Map";
+
+/* Voting */
+"Masternode IP address" = "Masternode IP address";
+
+/* No comment provided by engineer. */
+"Masternode Keys" = "Masternode Keys";
+
+/* No comment provided by engineer. */
+"masternode list #%d of %d" = "masternode list #%1$d of %2$d";
+
+/* No comment provided by engineer. */
+"Masternode Registration" = "Masternode Registration";
+
+/* No comment provided by engineer. */
+"Masternode Revocation" = "Masternode Revocation";
+
+/* No comment provided by engineer. */
+"Masternode Update" = "Masternode Update";
+
+/* Voting */
+"Masternode Voting Key" = "Masternode Voting Key";
+
+/* Contracted variant of 'Maximum' word */
+"Max" = "Max";
+
+/* DashSpend */
+"Max: %@" = "Max: %@";
+
+/* Usernames */
+"Maximum 75 characters" = "Maximum 75 characters";
+
+/* No comment provided by engineer. */
+"Maybe later" = "Maybe later";
+
+/* adjective, security level */
+"Medium" = "Medium";
+
+/* CrowdNode */
+"Members are free to leave the pool and can most often leave immediately." = "Members are free to leave the pool and can most often leave immediately.";
+
+/* No comment provided by engineer. */
+"Merchant search works better with Location Services turned on." = "Merchant search works better with Location Services turned on.";
+
+/* DashSpend */
+"Min: %@" = "Min: %@";
+
+/* CoinJoin */
+"Mix coins" = "Mix coins";
+
+/* CoinJoin */
+"Mix your Dash Coins" = "Mix your Dash Coins";
+
+/* No comment provided by engineer. */
+"Mixed balance" = "Mixed balance";
+
+/* CoinJoin */
+"Mixing" = "Mixing";
+
+/* CoinJoin */
+"Mixing Finishing…" = "Mixing Finishing…";
+
+/* CoinJoin */
+"Mixing is only possible with the app open" = "Mixing is only possible with the app open";
+
+/* CoinJoin */
+"Mixing Paused ·" = "Mixing Paused ·";
+
+/* CoinJoin */
+"Mixing Transactions" = "Mixing Transactions";
+
+/* CoinJoin */
+"Mixing your Dash coins will make your transactions more private" = "Mixing your Dash coins will make your transactions more private";
+
+/* CoinJoin */
+"Mixing ·" = "Mixing ·";
+
+/* No comment provided by engineer. */
+"More" = "More";
+
+/* No comment provided by engineer. */
+"More Control" = "More Control";
+
+/* No comment provided by engineer. */
+"More Suggestions" = "More Suggestions";
+
+/* No comment provided by engineer. */
+"Move and Zoom your photo to find the perfect fit" = "Move and Zoom your photo to find the perfect fit";
+
+/* No comment provided by engineer. */
+"Moved from" = "Moved from";
+
+/* No comment provided by engineer. */
+"Moved to Address" = "Moved to Address";
+
+/* CoinJoin */
+"Multiple hours" = "Multiple hours";
+
+/* Validation rule */
+"Must start and end with a letter or number" = "Must start and end with a letter or number";
+
+/* No comment provided by engineer. */
+"My Contacts" = "My Contacts";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
+
+/* Nearby */
+"Nearby" = "Nearby";
+
+/* Coinbase Two Factor Auth */
+"Need help? " = "Need help? ";
+
+/* No comment provided by engineer. */
+"Network" = "Network";
+
+/* CTXSpend error */
+"Network error. Please check your connection and try again." = "Network error. Please check your connection and try again.";
+
+/* No comment provided by engineer. */
+"Network fee" = "Network fee";
+
+/* Network Unavailable */
+"Network Unavailable" = "Network Unavailable";
+
+/* (List of) New (notifications) */
+"New" = "New";
+
+/* CrowdNode */
+"New CrowdNode Account" = "New CrowdNode Account";
+
+/* Voting */
+"New to old" = "New to old";
+
+/* Coinbase */
+"Newly received Dash will be automatically mixed when the wallet is opened" = "Newly received Dash will be automatically mixed when the wallet is opened";
+
+/* No comment provided by engineer. */
+"NFC device" = "NFC device";
+
+/* No comment provided by engineer. */
+"NFC device didn't transmit a valid Dash address" = "NFC device didn't transmit a valid Dash address";
+
+/* No comment provided by engineer. */
+"No" = "No";
+
+/* Coinbase */
+"No active user" = "No active user";
+
+/* Coinbase */
+"No cash account found" = "No cash account found";
+
+/* Coinbase/Buy Dash */
+"No payment methods" = "No payment methods";
+
+/* Coinbase/Buy Dash */
+"No payment methods found" = "No payment methods found";
+
+/* Explore Dash/Merchants/Filters */
+"No Results Found" = "No Results Found";
+
+/* Voting */
+"No votes left" = "No votes left";
+
+/* No comment provided by engineer. */
+"Node IP" = "Node IP";
+
+/* adjective, security level */
+"None" = "None";
+
+/* No comment provided by engineer. */
+"Not a Dash QR code" = "Not a Dash QR code";
+
+/* No comment provided by engineer. */
+"Not a Dash URL" = "Not a Dash URL";
+
+/* No comment provided by engineer. */
+"Not a valid Dash address" = "Not a valid Dash address";
+
+/* Usernames */
+"Not a valid URL" = "Not a valid URL";
+
+/* Fiat amount */
+"Not available" = "Not available";
+
+/* Location Service Status */
+"Not Determined" = "Not Determined";
+
+/* CoinJoin */
+"Not started" = "Not started";
+
+/* No comment provided by engineer. */
+"Not yet used" = "Not yet used";
+
+/* No comment provided by engineer. */
+"Notifications" = "Notifications";
+
+/* Coinbase */
+"oAuth failed" = "oAuth failed";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Ok" = "Ok";
+
+/* Voting */
+"Old to new" = "Old to new";
+
+/* Once <username> accepts your request... */
+"Once %@ accepts your request you can Pay Directly to Username" = "Once %@ accepts your request you can Pay Directly to Username";
+
+/* Voting */
+"One vote left" = "One vote left";
+
+/* Online */
+"Online" = "Online";
+
+/* CrowdNode Portal */
+"Online Account" = "Online Account";
+
+/* Online Merchant */
+"Online Merchant" = "Online Merchant";
+
+/* Voting */
+"Only duplicates" = "Only duplicates";
+
+/* No comment provided by engineer. */
+"Only requests with links" = "Only requests with links";
+
+/* Voting */
+"Only with links" = "Only with links";
+
+/* No comment provided by engineer. */
+"Operator Keys" = "Operator Keys";
+
+/* No comment provided by engineer. */
+"or" = "or";
+
+/* Coinbase/Buy Dash/Confirm Order */
+"Order Preview" = "Order Preview";
+
+/* DashSpend */
+"Original purchase" = "Original purchase";
+
+/* No comment provided by engineer. */
+"Owner Address" = "Owner Address";
+
+/* No comment provided by engineer. */
+"Owner Keys" = "Owner Keys";
+
+/* DashSpend */
+"Password" = "Password";
+
+/* Usernames */
+"Paste link here" = "Paste link here";
+
+/* No comment provided by engineer. */
+"Paste your image URL" = "Paste your image URL";
+
+/* No comment provided by engineer. */
+"Pay" = "Pay";
+
+/* No comment provided by engineer. */
+"Pay and get paid instantly with easy to use payment flows" = "Pay and get paid instantly with easy to use payment flows";
+
+/* emphasized text in: Add <username> as your contact to Pay Directly to Username and Retain Mutual Transaction History */
+"Pay Directly to Username" = "Pay Directly to Username";
+
+/* No comment provided by engineer. */
+"Pay to usernames. No more alphanumeric addresses" = "Pay to usernames. No more alphanumeric addresses";
+
+/* Usernames */
+"Pay to usernames. No more alphanumeric addresses." = "Pay to usernames. No more alphanumeric addresses.";
+
+/* Coinbase/Buy Dash */
+"Pay with" = "Pay with";
+
+/* Pay with Dash */
+"Pay with Dash" = "Pay with Dash";
+
+/* No comment provided by engineer. */
+"Pay with Ease" = "Pay with Ease";
+
+/* 1 out of 4 in the Paying Animation */
+"Paying" = "Paying";
+
+/* 2 out of 4 in the Paying Animation */
+"Paying." = "Paying.";
+
+/* 3 out of 4 in the Paying Animation */
+"Paying.." = "Paying..";
+
+/* 4 out of 4 in the Paying Animation */
+"Paying..." = "Paying...";
+
+/* No comment provided by engineer. */
+"Payment failed" = "Payment failed";
+
+/* Coinbase/Buy Dash */
+"Payment method" = "Payment method";
+
+/* CTXSpend error */
+"Payment processing error: %@" = "Payment processing error: %@";
+
+/* No comment provided by engineer. */
+"Payments made directly to addresses won’t be retained in activity." = "Payments made directly to addresses won’t be retained in activity.";
+
+/* CrowdNode */
+"Payout Options" = "Payout Options";
+
+/* Coinbase/Payment Methods */
+"PayPal" = "PayPal";
+
+/* No comment provided by engineer. */
+"Pending" = "Pending";
+
+/* CrowdNode */
+"per 24 hours" = "per 24 hours";
+
+/* CrowdNode */
+"per hour" = "per hour";
+
+/* CrowdNode */
+"per transaction" = "per transaction";
+
+/* Usernames */
+"Personalise profile" = "Personalise profile";
+
+/* No comment provided by engineer. */
+"Personalize" = "Personalize";
+
+/* No comment provided by engineer. */
+"Phone" = "Phone";
+
+/* Explore Dash: Filters */
+"Piggy Cards gift cards" = "Piggy Cards gift cards";
+
+/* Explore Dash/Filters */
+"PiggyCards gift card" = "PiggyCards gift card";
+
+/* No comment provided by engineer. */
+"PIN is always required to make a payment" = "PIN is always required to make a payment";
+
+/* Coinbase/Buy Dash */
+"Please add a payment method on Coinbase" = "Please add a payment method on Coinbase";
+
+/* Network Unavailable */
+"Please check your network connection" = "Please check your network connection";
+
+/* Uphold */
+"Please contact Uphold to update your proof of address." = "Please contact Uphold to update your proof of address.";
+
+/* No comment provided by engineer. */
+"Please enter a valid gravatar email ID." = "Please enter a valid gravatar email ID.";
+
+/* No comment provided by engineer. */
+"Please enter a valid image URL." = "Please enter a valid image URL.";
+
+/* No comment provided by engineer. */
+"Please enter PIN to upgrade wallet" = "Please enter PIN to upgrade wallet";
+
+/* Uphold */
+"Please go to your Uphold account to answer some questions about yourself." = "Please go to your Uphold account to answer some questions about yourself.";
+
+/* Uphold */
+"Please go to your Uphold account to verify your identity." = "Please go to your Uphold account to verify your identity.";
+
+/* CrowdNode */
+"Please note that the email is not saved by the Dash Wallet and is only sent to CrowdNode" = "Please note that the email is not saved by the Dash Wallet and is only sent to CrowdNode";
+
+/* Usernames */
+"Please note that the username can NOT be changed once it is registered." = "Please note that the username can NOT be changed once it is registered.";
+
+/* Usernames */
+"Please note that you will not be able to change it in future" = "Please note that you will not be able to change it in future";
+
+/* Leftover balance warning */
+"Please note, you will not be able to withdraw your funds from CowdNode to this wallet until you increase your balance to %@ Dash." = "Please note, you will not be able to withdraw your funds from CowdNode to this wallet until you increase your balance to %@ Dash.";
+
+/* No comment provided by engineer. */
+"Please place your phone near NFC device." = "Please place your phone near NFC device.";
+
+/* CTXSpend error */
+"Please sign in to your DashSpend account." = "Please sign in to your DashSpend account.";
+
+/* No comment provided by engineer. */
+"Please tap on the words from your recovery phrase in the right order" = "Please tap on the words from your recovery phrase in the right order";
+
+/* No comment provided by engineer. */
+"Please try again" = "Please try again";
+
+/* No comment provided by engineer. */
+"Please try scanning again" = "Please try scanning again";
+
+/* Usernames */
+"Please vote to approve my requested Dash username - %@" = "Please vote to approve my requested Dash username - %@";
+
+/* No comment provided by engineer. */
+"Please Wait" = "Please Wait";
+
+/* No comment provided by engineer. */
+"Please wait" = "Please wait";
+
+/* CrowdNode */
+"Please wait before initiating the next withdrawal" = "Please wait before initiating the next withdrawal";
+
+/* No comment provided by engineer. */
+"Please wait until the wallet is fully synced before exporting your transaction history" = "Please wait until the wallet is fully synced before exporting your transaction history";
+
+/* No comment provided by engineer. */
+"Please write it down" = "Palun kirjuta see üles";
+
+/* No comment provided by engineer. */
+"Powered by" = "Powered by";
+
+/* No comment provided by engineer. */
+"Preview" = "Preview";
+
+/* No comment provided by engineer. */
+"Preview Invitation" = "Preview Invitation";
+
+/* No comment provided by engineer. */
+"Previously used at: " = "Previously used at: ";
+
+/* Stale rates */
+"Prices are at least 30 minutes old. Fiat values may be incorrect." = "Prices are at least 30 minutes old. Fiat values may be incorrect.";
+
+/* Stale rates */
+"Prices have fluctuated more than 50% since the last update." = "Prices have fluctuated more than 50% since the last update.";
+
+/* Stale rates */
+"Prices weren't retrieved. Fiat values may be incorrect." = "Prices weren't retrieved. Fiat values may be incorrect.";
+
+/* CrowdNode */
+"Primary Dash address" = "Primary Dash address";
+
+/* No comment provided by engineer. */
+"Private / Public Keys (base64)" = "Private / Public Keys (base64)";
+
+/* No comment provided by engineer. */
+"Private key" = "Private key";
+
+/* No comment provided by engineer. */
+"Processing" = "Processing";
+
+/* CrowdNode Portal */
+"Protect your savings" = "Protect your savings";
+
+/* Usernames */
+"Prove your identity" = "Prove your identity";
+
+/* DashSpend */
+"Provider" = "Provider";
+
+/* No comment provided by engineer. */
+"Provider Address" = "Provider Address";
+
+/* No comment provided by engineer. */
+"Public key" = "Public key";
+
+/* No comment provided by engineer. */
+"Public key (legacy)" = "Public key (legacy)";
+
+/* No comment provided by engineer. */
+"Public URL" = "Public URL";
+
+/* Coinbase/Buy Dash */
+"Purchase" = "Purchase";
+
+/* Alert title */
+"Purchase Failed" = "Purchase Failed";
+
+/* No comment provided by engineer. */
+"Quick Receive" = "Quick Receive";
+
+/* Voting */
+"Quick Voting" = "Quick Voting";
+
+/* No comment provided by engineer. */
+"Quorums validated: %d/%d" = "Quorums validated: %1$d/%2$d";
+
+/* Explore Dash/Merchants/Filters */
+"Radius" = "Radius";
+
+/* ex., Rate 1 US $ = 0.000009 Dash */
+"Rate: %@ = %@" = "Rate: %1$@ = %2$@";
+
+/* CrowdNode */
+"Read Withdrawal Policy" = "Read Withdrawal Policy";
+
+/* No comment provided by engineer. */
+"Receive" = "Receive";
+
+/* Coinbase Entry Point */
+"Receive directly into Coinbase" = "Receive directly into Coinbase";
+
+/* Coinbase Entry Point */
+"Receive directly into Dash Wallet" = "Receive directly into Dash Wallet";
+
+/* CrowdNode */
+"Receive your share of rewards daily." = "Receive your share of rewards daily.";
+
+/* Received transaction */
+"Received" = "Received";
+
+/* No comment provided by engineer. */
+"Received %@ (%@)" = "Received %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Received at" = "Received at";
+
+/* No comment provided by engineer. */
+"Received from" = "Received from";
+
+/* CrowdNode */
+"Receiving rewards" = "Receiving rewards";
+
+/* No comment provided by engineer. */
+"Recover" = "Recover";
+
+/* No comment provided by engineer. */
+"Recover Wallet" = "Taasta Rahakott";
+
+/* No comment provided by engineer. */
+"Recovering..." = "Recovering...";
+
+/* No comment provided by engineer. */
+"Recovery Phrase" = "Recovery Phrase";
+
+/* No comment provided by engineer. */
+"Recovery phrase doesn't match" = "Recovery phrase doesn't match";
+
+/* No comment provided by engineer. */
+"Recovery phrase must have 12, 15, 18, 21 or 24 words" = "Recovery phrase must have 12, 15, 18, 21 or 24 words";
+
+/* Button title, Register (username) */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Register?" = "Register?";
+
+/* No comment provided by engineer. */
+"Registered from" = "Registered from";
+
+/* No comment provided by engineer. */
+"Registered Masternode" = "Registered Masternode";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Report an Issue" = "Report an Issue";
+
+/* No comment provided by engineer. */
+"Request a username and say goodbye to numerical addresses" = "Request a username and say goodbye to numerical addresses";
+
+/* No comment provided by engineer. */
+"Request assistance and show the barcode on your screen for scanning." = "Request assistance and show the barcode on your screen for scanning.";
+
+/* Voting */
+"Request details" = "Request details";
+
+/* Voting */
+"Request your username" = "Request your username";
+
+/* Usernames */
+"Requested username has been blocked" = "Requested username has been blocked";
+
+/* Usernames */
+"Requested username has been given to someone else" = "Requested username has been given to someone else";
+
+/* An action */
+"Rescan" = "Rescan";
+
+/* No comment provided by engineer. */
+"Rescan Blockchain" = "Rescan Blockchain";
+
+/* No comment provided by engineer. */
+"Rescan Transactions (Suggested)" = "Rescan Transactions (Suggested)";
+
+/* No comment provided by engineer. */
+"Reset" = "Reset";
+
+/* Explore Dash: Filters */
+"Reset Filters" = "Reset Filters";
+
+/* No comment provided by engineer. */
+"Reset to Default" = "Reset to Default";
+
+/* No comment provided by engineer. */
+"Reset Wallet" = "Reset Wallet";
+
+/* Location Service Status */
+"Restricted" = "Restricted";
+
+/* Usernames */
+"Results" = "Results";
+
+/* No comment provided by engineer. */
+"Resync Masternode List" = "Resync Masternode List";
+
+/* emphasized text in: Add <username> as your contact to Pay Directly to Username and Retain Mutual Transaction History */
+"Retain Mutual Transaction History" = "Retain Mutual Transaction History";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Review & Rate the app" = "Review & Rate the app";
+
+/* Voting */
+"Review the posting below to verify the ownership of this username" = "Review the posting below to verify the ownership of this username";
+
+/* No comment provided by engineer. */
+"Reward" = "Reward";
+
+/* No comment provided by engineer. */
+"Save" = "Save";
+
+/* No comment provided by engineer. */
+"Save Changes" = "Save Changes";
+
+/* No comment provided by engineer. */
+"Scan" = "Scan";
+
+/* No comment provided by engineer. */
+"Scan Private Key" = "Scan Private Key";
+
+/* No comment provided by engineer. */
+"Scan QR" = "Scan QR";
+
+/* No comment provided by engineer. */
+"Scan QR Code" = "Skanneeri QR Kood";
+
+/* (Send by) Scanning QR code */
+"Scan QR code" = "Scan QR code";
+
+/* A title of the quick receive screen */
+"Scan this to Pay" = "Scan this to Pay";
+
+/* No comment provided by engineer. */
+"Scan to Send" = "Scan to Send";
+
+/* No comment provided by engineer. */
+"Screenshot detected. New recovery phrase:" = "Screenshot detected. New recovery phrase:";
+
+/* No comment provided by engineer. */
+"Screenshots are visible to other apps and devices. Generate a new recovery phrase and keep it secret." = "Screenshots are visible to other apps and devices. Generate a new recovery phrase and keep it secret.";
+
+/* No comment provided by engineer. */
+"Search" = "Search";
+
+/* No comment provided by engineer. */
+"Search for a contact" = "Search for a contact";
+
+/* No comment provided by engineer. */
+"Search for a contact request" = "Search for a contact request";
+
+/* No comment provided by engineer. */
+"Search for a User on the Dash Network" = "Search for a User on the Dash Network";
+
+/* No comment provided by engineer. */
+"Search for a username" = "Search for a username";
+
+/* Search results for \"John Doe\" */
+"Search results for \"" = "Search results for \"";
+
+/* No comment provided by engineer. */
+"Search territories" = "Search territories";
+
+/* No comment provided by engineer. */
+"Searching for username %@ on the Dash Network" = "Searching for username %@ on the Dash Network";
+
+/* No comment provided by engineer. */
+"Secure Your Wallet" = "Secure Your Wallet";
+
+/* No comment provided by engineer. */
+"Security" = "Security";
+
+/* No comment provided by engineer. */
+"Security Level" = "Security Level";
+
+/* No comment provided by engineer. */
+"See how to use this gift card" = "See how to use this gift card";
+
+/* No comment provided by engineer. */
+"See on Uphold" = "See on Uphold";
+
+/* No comment provided by engineer. */
+"Select" = "Select";
+
+/* Coinbase */
+"Select a coin" = "Select a coin";
+
+/* Buy Sell Dash */
+"Select a service" = "Select a service";
+
+/* DashSpend denomination selection */
+"Select amount" = "Select amount";
+
+/* Block explorer picker
+   Block explorer selection title */
+"Select block explorer" = "Select block explorer";
+
+/* No comment provided by engineer. */
+"Select from Gallery" = "Select from Gallery";
+
+/* DashSpend */
+"Select gift card provider" = "Select gift card provider";
+
+/* CoinJoin */
+"Select mixing level" = "Select mixing level";
+
+/* Coinbase */
+"Select the coin" = "Select the coin";
+
+/* No comment provided by engineer. */
+"Self-checkout" = "Self-checkout";
+
+/* Sell */
+"Sell" = "Sell";
+
+/* Buy Dash */
+"Sell Dash" = "Sell Dash";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
+"Send %@ (%@) from this private key into your wallet? The Dash network will receive a fee of %@ (%@)." = "Send %1$@ (%2$@) from this private key into your wallet? The Dash network will receive a fee of %3$@ (%4$@).";
+
+/* CrowdNode Confirm */
+"Send %@ from your primary Dash address that you currently use for your CrowdNode account" = "Send %@ from your primary Dash address that you currently use for your CrowdNode account";
+
+/* No comment provided by engineer. */
+"Send again" = "Send again";
+
+/* No comment provided by engineer. */
+"Send Contact Request" = "Send Contact Request";
+
+/* No comment provided by engineer. */
+"Send Invitation" = "Send Invitation";
+
+/* Coinbase
+   CrowdNode */
+"Send Report" = "Send Report";
+
+/* No comment provided by engineer. */
+"Send to" = "Send to";
+
+/* No comment provided by engineer. */
+"Send to a Contact" = "Send to a Contact";
+
+/* No comment provided by engineer. */
+"Send to contact" = "Send to contact";
+
+/* No comment provided by engineer. */
+"Send to copied address or QR code" = "Send to copied address or QR code";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Send with NFC" = "Send with NFC";
+
+/* 1 out of 4 in the Sending Animation */
+"Sending" = "Sending";
+
+/* No comment provided by engineer. */
+"Sending Contact Request" = "Sending Contact Request";
+
+/* No comment provided by engineer. */
+"Sending to" = "Sending to";
+
+/* CrowdNode */
+"Sending to CrowdNode account" = "Sending to CrowdNode account";
+
+/* CrowdNode */
+"Sending to Dash Wallet on this device" = "Sending to Dash Wallet on this device";
+
+/* Buy Dash */
+"Sending to:" = "Sending to:";
+
+/* 2 out of 4 in the Sending Animation */
+"Sending." = "Sending.";
+
+/* 3 out of 4 in the Sending Animation */
+"Sending.." = "Sending..";
+
+/* 4 out of 4 in the Sending Animation */
+"Sending..." = "Sending...";
+
+/* Sent transaction */
+"Sent" = "Sent";
+
+/* No comment provided by engineer. */
+"Sent from" = "Sent from";
+
+/* No comment provided by engineer. */
+"Sent to" = "Sent to";
+
+/* DashSpend */
+"Server error occurred. Please try again later." = "Server error occurred. Please try again later.";
+
+/* No comment provided by engineer. */
+"Set a trusted node" = "Set a trusted node";
+
+/* No comment provided by engineer. */
+"Set PIN" = "Set PIN";
+
+/* No comment provided by engineer. */
+"Set Your PIN" = "Set Your PIN";
+
+/* No comment provided by engineer. */
+"Settings" = "Seaded";
+
+/* No comment provided by engineer. */
+"Setup Wallet" = "Setup Wallet";
+
+/* CrowdNode */
+"Share" = "Jaga";
+
+/* Receive screen */
+"Share address" = "Share address";
+
+/* Explore Dash */
+"Show all locations" = "Show all locations";
+
+/* Enter Address Screen */
+"Show content in the clipboard" = "Show content in the clipboard";
+
+/* No comment provided by engineer. */
+"Show Masternode Keys" = "Show Masternode Keys";
+
+/* CrowdNode */
+"Show QR" = "Show QR";
+
+/* No comment provided by engineer. */
+"Show Recovery Phrase" = "Show Recovery Phrase";
+
+/* Alert title */
+"Sign in required" = "Sign in required";
+
+/* CrowdNode */
+"Sign the message" = "Sign the message";
+
+/* CrowdNode */
+"Sign up error" = "Sign up error";
+
+/* CrowdNode */
+"Sign up to CrowdNode" = "Sign up to CrowdNode";
+
+/* CrowdNode Portal */
+"Sign up to finish setting up account" = "Sign up to finish setting up account";
+
+/* ZenLedger */
+"Simplify your crypto taxes" = "Simplify your crypto taxes";
+
+/* No comment provided by engineer. */
+"Skip" = "Skip";
+
+/* Usernames */
+"Some usernames can be blocked" = "Some usernames can be blocked";
+
+/* No comment provided by engineer. */
+"Something went wrong" = "Something went wrong";
+
+/* No comment provided by engineer. */
+"Sort by" = "Sort by";
+
+/* No comment provided by engineer. */
+"Sort Contacts" = "Sort Contacts";
+
+/* Explore Dash/Filters */
+"Sorted by discount" = "Sorted by discount";
+
+/* Explore Dash/Filters */
+"Sorted by distance" = "Sorted by distance";
+
+/* Explore Dash/Filters */
+"Sorted by name" = "Sorted by name";
+
+/* No comment provided by engineer. */
+"Specify Amount" = "Specify Amount";
+
+/* No comment provided by engineer. */
+"Spending Confirmation" = "Spending Confirmation";
+
+/* Explore Dash/Merchants/Filters */
+"Spending options" = "Spending options";
+
+/* No comment provided by engineer. */
+"Staking" = "Staking";
+
+/* CoinJoin */
+"Start Mixing" = "Start Mixing";
+
+/* Step 1 */
+"Step %ld" = "Step %ld";
+
+/* CoinJoin */
+"Stop Mixing" = "Stop Mixing";
+
+/* Voting */
+"Submit" = "Submit";
+
+/* No comment provided by engineer. */
+"Successful purchase" = "Successful purchase";
+
+/* No comment provided by engineer. */
+"Support" = "Support";
+
+/* No comment provided by engineer. */
+"Swept!" = "Swept!";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Switch to Mainnet" = "Switch to Mainnet";
+
+/* Translate it as short as possible! (24 symbols max) */
+"Switch to Testnet" = "Switch to Testnet";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Sync Failed";
+
+/* Explore Dash */
+"Sync in progress… Results may not be complete." = "Sync in progress… Results may not be complete.";
+
+/* CrowdNode Portal */
+"Synced with current Dash Wallet" = "Synced with current Dash Wallet";
+
+/* No comment provided by engineer. */
+"Syncing" = "Syncing";
+
+/* No comment provided by engineer. */
+"Syncing Balance" = "Syncing Balance";
+
+/* Explore Dash */
+"Syncing..." = "Syncing...";
+
+/* Balance */
+"Syncing…" = "Syncing…";
+
+/* No comment provided by engineer. */
+"Tag for your reference" = "Tag for your reference";
+
+/* No comment provided by engineer. */
+"Take a Photo from Camera" = "Take a Photo from Camera";
+
+/* Enter Address Screen */
+"Tap the address from the clipboard to paste it" = "Tap the address from the clipboard to paste it";
+
+/* No comment provided by engineer. */
+"Tap to hide balance" = "Tap to hide balance";
+
+/* No comment provided by engineer. */
+"Tax Category" = "Tax Category";
+
+/* No comment provided by engineer. */
+"Tell the cashier that you'd like to pay with a gift card and share the card number and pin." = "Tell the cashier that you'd like to pay with a gift card and share the card number and pin.";
+
+/* Terms & conditions */
+"Terms & conditions" = "Terms & conditions";
+
+/* No comment provided by engineer. */
+"Test Dash is free and can be obtained from what is called a faucet." = "Test Dash is free and can be obtained from what is called a faucet.";
+
+/* No comment provided by engineer. */
+"Test Dash is free and can be obtained from what is called a faucet.\nCopy an address from the Receive screen of your wallet and click on the button bellow to get your Dash." = "Test Dash is free and can be obtained from what is called a faucet.\nCopy an address from the Receive screen of your wallet and click on the button bellow to get your Dash.";
+
+/* No comment provided by engineer. */
+"Testnet" = "Testnet";
+
+/* No comment provided by engineer. */
+"The chain is syncing…" = "The chain is syncing…";
+
+/* Coinbase Two Factor Auth */
+"The code is incorrect. Please check and try again!" = "The code is incorrect. Please check and try again!";
+
+/* Usernames */
+"The Dash network has to vote to approve some usernames before they are created" = "The Dash network has to vote to approve some usernames before they are created";
+
+/* CrowdNode */
+"The Dash Network is driven by a number of Masternodes which are an essential part of facilitating payments." = "The Dash Network is driven by a number of Masternodes which are an essential part of facilitating payments.";
+
+/* Usernames */
+"The Dash network will vote on this username. We will notify you of the results on March 14, 2024." = "The Dash network will vote on this username. We will notify you of the results on March 14, 2024.";
+
+/* Coinbase/Buy Dash/Confirm Order */
+"The Dash was successfully deposited to your Coinbase account. But there was a problem transfering it to Dash Wallet on this device." = "The Dash was successfully deposited to your Coinbase account. But there was a problem transfering it to Dash Wallet on this device.";
+
+/* Voting */
+"The default filter shows only duplicate usernames that you have NOT voted on, but you can see and vote on any contested username by changing the filter." = "The default filter shows only duplicate usernames that you have NOT voted on, but you can see and vote on any contested username by changing the filter.";
+
+/* Explore */
+"The first one accepts Dash directly. The other ones accept gift cards that you can buy with Dash for the exact amount of your purchase in two taps." = "The first one accepts Dash directly. The other ones accept gift cards that you can buy with Dash for the exact amount of your purchase in two taps.";
+
+/* Don't translate 'Imgur' */
+"The image you select will be uploaded to Imgur anonymously." = "The image you select will be uploaded to Imgur anonymously.";
+
+/* Usernames */
+"The link you send will be visible only to the network owners" = "The link you send will be visible only to the network owners";
+
+/* Coinbase */
+"The minimum amount you can send is %@" = "The minimum amount you can send is %@";
+
+/* DashSpend */
+"The purchase limits for this merchant have changed. Please contact CTX Support for more information." = "The purchase limits for this merchant have changed. Please contact CTX Support for more information.";
+
+/* Usernames */
+"The username '%@' was blocked by the Dash Network. Please try again by requesting another username." = "The username '%@' was blocked by the Dash Network. Please try again by requesting another username.";
+
+/* No comment provided by engineer. */
+"them (Fetching Info)" = "them (Fetching Info)";
+
+/* No comment provided by engineer. */
+"There are no new notifications" = "There are no new notifications";
+
+/* No comment provided by engineer. */
+"There are no transactions to display" = "There are no transactions to display";
+
+/* No comment provided by engineer. */
+"There are no users that match with the name %@" = "There are no users that match with the name %@";
+
+/* No comment provided by engineer. */
+"There are no users that match with the name %@ in your contacts" = "There are no users that match with the name %@ in your contacts";
+
+/* ZenLedger */
+"There was an error when exporting your transaction history to ZenLedger" = "There was an error when exporting your transaction history to ZenLedger";
+
+/* Coinbase */
+"There was an error while obtaining new address" = "There was an error while obtaining new address";
+
+/* Coinbase */
+"There was an error, please try again later" = "There was an error, please try again later";
+
+/* No comment provided by engineer. */
+"This app is open source:" = "This app is open source:";
+
+/* Coinbase Two Factor Auth */
+"This extra step shows it’s really you trying to make a transaction." = "This extra step shows it’s really you trying to make a transaction.";
+
+/* CTXSpend error */
+"This merchant is currently unavailable." = "This merchant is currently unavailable.";
+
+/* DashSpend */
+"This merchant is currently unavailable. Please try again later or choose a different merchant." = "This merchant is currently unavailable. Please try again later or choose a different merchant.";
+
+/* DashSpend */
+"This merchant sells gift cards at fixed prices" = "This merchant sells gift cards at fixed prices";
+
+/* No comment provided by engineer. */
+"This PIN will be required to unlock your app every time when you use it." = "This PIN will be required to unlock your app every time when you use it.";
+
+/* CrowdNode Confirm */
+"This QR already contains the payment request for %@" = "This QR already contains the payment request for %@";
+
+/* CrowdNode */
+"This represents the current Annual Percentage Yield of a full Masternode less the 15% CrowdNode fee. It is not a guaranteed rate of return and may go up or down based on the size of the CrowdNode pools and the Dash price." = "This represents the current Annual Percentage Yield of a full Masternode less the 15% CrowdNode fee. It is not a guaranteed rate of return and may go up or down based on the size of the CrowdNode pools and the Dash price.";
+
+/* Usernames */
+"This username is already created by someone else" = "This username is already created by someone else";
+
+/* Usernames */
+"This username is blocked by the Dash Network" = "This username is blocked by the Dash Network";
+
+/* No comment provided by engineer. */
+"This wallet is not empty or sync has not finished, you may not wipe it without the recovery phrase" = "This wallet is not empty or sync has not finished, you may not wipe it without the recovery phrase";
+
+/* No comment provided by engineer. */
+"This will move all coins from that wallet to your wallet on this device." = "This will move all coins from that wallet to your wallet on this device.";
+
+/* Send Screen: to address */
+"to" = "to";
+
+/* DashSpend confirmation */
+"To" = "To";
+
+/* Coinbase */
+"to Dash Wallet on this device" = "to Dash Wallet on this device";
+
+/* CoinJoin */
+"To help prevent other people from seeing who you make payments to, it is recommended to mix your balance before you create your username." = "To help prevent other people from seeing who you make payments to, it is recommended to mix your balance before you create your username.";
+
+/* CrowdNode */
+"To start staking, create an account on CrowdNode or connect to an existing one." = "To start staking, create an account on CrowdNode or connect to an existing one.";
+
+/* CrowdNode */
+"to the Dash address designated for your CrowdNode account in the Dash Wallet on this device" = "to the Dash address designated for your CrowdNode account in the Dash Wallet on this device";
+
+/* No comment provided by engineer. */
+"Today" = "Today";
+
+/* No comment provided by engineer. */
+"Tools" = "Tools";
+
+/* No comment provided by engineer. */
+"Top-up your credits to continue making changes to your profile and adding contacts" = "Top-up your credits to continue making changes to your profile and adding contacts";
+
+/* Dash Portal */
+"Topper" = "Topper";
+
+/* No comment provided by engineer. */
+"Total" = "Total";
+
+/* No comment provided by engineer. */
+"Touch ID limit" = "Touch ID limit";
+
+/* No comment provided by engineer. */
+"Transaction cancelled" = "Transaction cancelled";
+
+/* CrowdNode */
+"Transaction History" = "Transaction History";
+
+/* No comment provided by engineer. */
+"Transaction id" = "Transaction id";
+
+/* A verb, button title. */
+"Transfer" = "Transfer";
+
+/* Coinbase
+   Coinbase Entry Point
+   Dash Service Overview */
+"Transfer Dash" = "Transfer Dash";
+
+/* CrowdNode */
+"Transfer Error" = "Transfer Error";
+
+/* Coinbase */
+"Transfer Failed" = "Transfer Failed";
+
+/* No comment provided by engineer. */
+"Transfer from Uphold" = "Transfer from Uphold";
+
+/* No comment provided by engineer. */
+"Transfer In" = "Transfer In";
+
+/* No comment provided by engineer. */
+"Transfer Out" = "Transfer Out";
+
+/* Coinbase */
+"Transfer successful" = "Transfer successful";
+
+/* An action */
+"Try again" = "Try again";
+
+/* Alert title */
+"Turn device passcode on" = "Turn device passcode on";
+
+/* CoinJoin */
+"Turned off" = "Turned off";
+
+/* Coinbase */
+"Turning this feature on will result a higher battery usage" = "Turning this feature on will result a higher battery usage";
+
+/* Coinbase */
+"Two factor auth required" = "Two factor auth required";
+
+/* Voting */
+"Type" = "Type";
+
+/* No comment provided by engineer. */
+"Unable to accept contact request" = "Unable to accept contact request";
+
+/* No comment provided by engineer. */
+"Unable to connect" = "Unable to connect";
+
+/* No comment provided by engineer. */
+"Unable to fetch contact details" = "Unable to fetch contact details";
+
+/* No comment provided by engineer. */
+"Unable to fetch image. Please enter a valid image URL or check your connection." = "Unable to fetch image. Please enter a valid image URL or check your connection.";
+
+/* No comment provided by engineer. */
+"Unable to fetch your Gravatar. Please enter a valid gravatar email ID." = "Unable to fetch your Gravatar. Please enter a valid gravatar email ID.";
+
+/* No comment provided by engineer. */
+"Unable to get new QR code" = "Unable to get new QR code";
+
+/* No comment provided by engineer. */
+"Unable to provide suggestions" = "Unable to provide suggestions";
+
+/* No comment provided by engineer. */
+"Unable to send contact request" = "Unable to send contact request";
+
+/* No comment provided by engineer. */
+"Unable to upload your picture. Please try again." = "Unable to upload your picture. Please try again.";
+
+/* Voting */
+"Unblock" = "Unblock";
+
+/* Voting */
+"Unblocked '%@' username" = "Unblocked '%@' username";
+
+/* No comment provided by engineer. */
+"Unknown" = "Unknown";
+
+/* Coinbase */
+"Unknown Balance" = "Unknown Balance";
+
+/* No comment provided by engineer. */
+"Unsupported or corrupted document" = "Unsupported or corrupted document";
+
+/* No comment provided by engineer. */
+"Unsupported URL" = "Unsupported URL";
+
+/* CoinJoin */
+"up to 30 minutes" = "up to 30 minutes";
+
+/* ex., Updated: 27.12, 8:30 */
+"Updated: %@" = "Updated: %@";
+
+/* Updating Price */
+"Updating Price" = "Updating Price";
+
+/* No comment provided by engineer. */
+"Updating Profile on Dash Network" = "Updating Profile on Dash Network";
+
+/* No comment provided by engineer. */
+"Upgrade" = "Upgrade";
+
+/* No comment provided by engineer. */
+"Upgrade to DashPay" = "Upgrade to DashPay";
+
+/* No comment provided by engineer. */
+"Upgrade to Evolution" = "Upgrade to Evolution";
+
+/* No comment provided by engineer. */
+"Uphold" = "Uphold";
+
+/* Uphold */
+"Uphold error" = "Uphold error";
+
+/* No comment provided by engineer. */
+"Upload Error" = "Upload Error";
+
+/* No comment provided by engineer. */
+"Upload your picture, personalize your identity" = "Upload your picture, personalize your identity";
+
+/* Usernames */
+"Upload your picture, personalize your identity." = "Upload your picture, personalize your identity.";
+
+/* No comment provided by engineer. */
+"Uploading your picture to the network" = "Uploading your picture to the network";
+
+/* No comment provided by engineer. */
+"Used" = "Used";
+
+/* No comment provided by engineer. */
+"Used at: " = "Used at: ";
+
+/* No comment provided by engineer. */
+"User (Fetching Info)" = "User (Fetching Info)";
+
+/* Voting */
+"Username" = "Username";
+
+/* Usernames */
+"Username %@ has been requested on the Dash network. After the voting ends (%@) we will notify you about its results" = "Username %1$@ has been requested on the Dash network. After the voting ends (%2$@) we will notify you about its results";
+
+/* No comment provided by engineer. */
+"Username already found" = "Username already found";
+
+/* No comment provided by engineer. */
+"Username available" = "Username available";
+
+/* Usernames */
+"Username is available" = "Username is available";
+
+/* Usernames */
+"Username request failed" = "Username request failed";
+
+/* No comment provided by engineer. */
+"Username taken" = "Username taken";
+
+/* Voting */
+"Username voting" = "Username voting";
+
+/* Usernames */
+"Username was successfully requested" = "Username was successfully requested";
+
+/* No comment provided by engineer. */
+"Users that matches %@ who are currently not in your contacts" = "Users that matches %@ who are currently not in your contacts";
+
+/* CrowdNode Portal */
+"Validating address…" = "Validating address…";
+
+/* No comment provided by engineer. */
+"Validating username failed" = "Validating username failed";
+
+/* No comment provided by engineer. */
+"Validating username…" = "Validating username…";
+
+/* CrowdNode Portal */
+"Verification Required" = "Verification Required";
+
+/* No comment provided by engineer. */
+"Verified Successfully" = "Verified Successfully";
+
+/* No comment provided by engineer. */
+"Verify" = "Verify";
+
+/* CrowdNode */
+"Verify your API Dash address" = "Verify your API Dash address";
+
+/* Usernames */
+"Verify your identity" = "Verify your identity";
+
+/* Usernames */
+"Verify your identity to enhance your chances of getting your requested username" = "Verify your identity to enhance your chances of getting your requested username";
+
+/* adjective, security level */
+"Very High" = "Very High";
+
+/* CrowdNode */
+"Very small amounts of Dash will be sent to and from CrowdNode to verify that you are the owner of this wallet address." = "Very small amounts of Dash will be sent to and from CrowdNode to verify that you are the owner of this wallet address.";
+
+/* No comment provided by engineer. */
+"View All" = "View All";
+
+/* No comment provided by engineer. */
+"View in Block Explorer" = "View in Explorer";
+
+/* No comment provided by engineer. */
+"View Recovery Phrase" = "View Recovery Phrase";
+
+/* No comment provided by engineer. */
+"View transaction details" = "View transaction details";
+
+/* Voting */
+"Vote for All" = "Vote for All";
+
+/* Voting */
+"Vote to Approve" = "Vote to Approve";
+
+/* Voting */
+"Votes: High to low" = "Votes: High to low";
+
+/* Voting */
+"Votes: Low to high" = "Votes: Low to high";
+
+/* No comment provided by engineer. */
+"Voting" = "Voting";
+
+/* No comment provided by engineer. */
+"Voting Address" = "Voting Address";
+
+/* Voting */
+"Voting ends in %dd" = "Voting ends in %dd";
+
+/* Usernames */
+"Voting is only required in some cases" = "Voting is only required in some cases";
+
+/* No comment provided by engineer. */
+"Voting Keys" = "Voting Keys";
+
+/* ZenLedger */
+"Wait until the chain is fully synced, so we can review your transaction history." = "Wait until the chain is fully synced, so we can review your transaction history.";
+
+/* No comment provided by engineer. */
+"Wait until the chain is fully synced, so we can review your transaction history. Visit CrowdNode website to log in or sign up." = "Wait until the chain is fully synced, so we can review your transaction history. Visit CrowdNode website to log in or sign up.";
+
+/* Send screen */
+"Wait until wallet is synced to complete the transaction" = "Wait until wallet is synced to complete the transaction";
+
+/* Enter Address Screen */
+"Wallet Address" = "Wallet Address";
+
+/* No comment provided by engineer. */
+"Wallet disabled" = "Wallet disabled";
+
+/* No comment provided by engineer. */
+"Warning" = "Warning";
+
+/* No comment provided by engineer. */
+"WARNING" = "HOIATUS";
+
+/* CrowdNode */
+"We couldn’t create your CrowdNode account." = "We couldn’t create your CrowdNode account.";
+
+/* CrowdNode */
+"We couldn’t make a deposit to your CrowdNode account." = "We couldn’t make a deposit to your CrowdNode account.";
+
+/* CrowdNode */
+"We couldn’t withdraw from your CrowdNode account." = "We couldn’t withdraw from your CrowdNode account.";
+
+/* No comment provided by engineer. */
+"We have detected that Dash Wallet crashed during migration. Rescanning the blockchain will solve this issue or you may try again. Rescanning should preferably be performed on wifi and will take up to half an hour. Your funds will be available once the sync process is complete." = "We have detected that Dash Wallet crashed during migration. Rescanning the blockchain will solve this issue or you may try again. Rescanning should preferably be performed on wifi and will take up to half an hour. Your funds will be available once the sync process is complete.";
+
+/* Explore */
+"We have two types of merchants" = "We have two types of merchants";
+
+/* No comment provided by engineer. */
+"We Upgraded" = "We Upgraded";
+
+/* CrowdNode */
+"We will automatically detect this transaction and transfer the same amount to your CrowdNode account. After that you will be able to make deposits and withdrawals in Dash Wallet on this device." = "We will automatically detect this transaction and transfer the same amount to your CrowdNode account. After that you will be able to make deposits and withdrawals in Dash Wallet on this device.";
+
+/* Website */
+"Website" = "Website";
+
+/* No comment provided by engineer. */
+"Welcome" = "Welcome";
+
+/* No comment provided by engineer. */
+"Welcome to DashPay" = "Welcome to DashPay";
+
+/* Usernames */
+"What is username voting?" = "What is username voting?";
+
+/* No comment provided by engineer. */
+"When the transaction is confirmed, the other wallet will be worthless and should not be re-used for safety reasons." = "When the transaction is confirmed, the other wallet will be worthless and should not be re-used for safety reasons.";
+
+/* CoinJoin */
+"When you close the app or lock the screen, the mixing process stops. It will resume when you reopen the app." = "When you close the app or lock the screen, the mixing process stops. It will resume when you reopen the app.";
+
+/* No comment provided by engineer. */
+"Where to Spend" = "Where to Spend";
+
+/* No comment provided by engineer. */
+"Where to Spend?" = "Where to Spend?";
+
+/* Crowdnode */
+"Why do I see all these transactions?" = "Why do I see all these transactions?";
+
+/* CrowdNode */
+"Why do you need an online account?" = "Why do you need an online account?";
+
+/* No comment provided by engineer. */
+"Why I should not take a screenshot?" = "Why I should not take a screenshot?";
+
+/* No comment provided by engineer. */
+"WIF Private key" = "WIF Private key";
+
+/* No comment provided by engineer. */
+"Wipe" = "Wipe";
+
+/* No comment provided by engineer. */
+"Wipe Wallet" = "Wipe Wallet";
+
+/* No comment provided by engineer. */
+"with Dash blockchain" = "with Dash blockchain";
+
+/* CrowdNode
+   CrowdNode Portal */
+"Withdraw" = "Withdraw";
+
+/* CrowdNode */
+"Withdraw without limits with an online account on CrowdNode website." = "Withdraw without limits with an online account on CrowdNode website.";
+
+/* CrowdNode */
+"Withdrawal requested" = "Withdrawal requested";
+
+/* No comment provided by engineer. */
+"Would you like to accept the invitation?" = "Would you like to accept the invitation?";
+
+/* Coinbase */
+"Would you like to make a deposit for your purchase using a linked bank account?" = "Would you like to make a deposit for your purchase using a linked bank account?";
+
+/* No comment provided by engineer. */
+"Would you like to save the changes you made to your profile?" = "Would you like to save the changes you made to your profile?";
+
+/* No comment provided by engineer. */
+"Yes" = "Yes";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Yesterday";
+
+/* No comment provided by engineer. */
+"You accepted the contact request from %@" = "You accepted the contact request from %@";
+
+/* No comment provided by engineer. */
+"You are about to sweep funds from another Dash Wallet." = "You are about to sweep funds from another Dash Wallet.";
+
+/* No comment provided by engineer. */
+"You are about to wipe this wallet from this device. Funds associated with this wallet can only be retrieved if you have your recovery phrase." = "You are about to wipe this wallet from this device. Funds associated with this wallet can only be retrieved if you have your recovery phrase.";
+
+/* DashSpend */
+"You are buying a %@ gift card for %@ (%d%% discount)" = "You are buying a %1$@ gift card for %2$@ (%3$d%% discount)";
+
+/* No comment provided by engineer. */
+"You can always delete the image uploaded, as long as you have access to this wallet." = "You can always delete the image uploaded, as long as you have access to this wallet.";
+
+/* No comment provided by engineer. */
+"You can authenticate with Face ID for payments below" = "You can authenticate with Face ID for payments below";
+
+/* No comment provided by engineer. */
+"You can authenticate with Touch ID for payments below" = "You can authenticate with Touch ID for payments below";
+
+/* CrowdNode */
+"You can change how / when your reward earnings are paid to you." = "You can change how / when your reward earnings are paid to you.";
+
+/* No comment provided by engineer. */
+"You can continue to use DashPay for payments but you cannot update your profile or add more contacts until you top up your credit balance" = "You can continue to use DashPay for payments but you cannot update your profile or add more contacts until you top up your credit balance";
+
+/* Voting */
+"You can enter your key in any of the following formats: WIF/base58/base64/hex" = "You can enter your key in any of the following formats: WIF/base58/base64/hex";
+
+/* Explore */
+"You can pay with Dash at the cashier." = "You can pay with Dash at the cashier.";
+
+/* CrowdNode */
+"You can see detailed information about your deposits, withdrawals and reward earnings." = "You can see detailed information about your deposits, withdrawals and reward earnings.";
+
+/* No comment provided by engineer. */
+"You can specify any URL which is publicly available on the internet so other users can see it on the Dash network." = "You can specify any URL which is publicly available on the internet so other users can see it on the Dash network.";
+
+/* No comment provided by engineer. */
+"You cannot claim this invite since you already have a Dash username" = "You cannot claim this invite since you already have a Dash username";
+
+/* Usernames */
+"You chose “%@” as your username." = "You chose “%@” as your username.";
+
+/* CoinJoin */
+"Your Dash was mixed using these transactions." = "Your Dash was mixed using these transactions.";
+
+/* No comment provided by engineer. */
+"You do not have any contacts at the moment" = "You do not have any contacts at the moment";
+
+/* DashSpend */
+"You do not have sufficient funds to complete this transaction" = "You do not have sufficient funds to complete this transaction";
+
+/* Coinbase */
+"You don’t have enough balance" = "You don’t have enough balance";
+
+/* Coinbase */
+"You exceeded the authorization limit on Coinbase." = "You exceeded the authorization limit on Coinbase.";
+
+/* Usernames */
+"You have %@ Dash.\nSome usernames cost up to %@ Dash." = "You have %1$@ Dash.\nSome usernames cost up to %2$@ Dash.";
+
+/* Voting */
+"You have already voted for this username %ld times. You can only cast one more vote for this username." = "You have already voted for this username %ld times. You can only cast one more vote for this username.";
+
+/* Voting */
+"You have already voted for this username %ld times. You cannot vote for it anymore." = "You have already voted for this username %ld times. You cannot vote for it anymore.";
+
+/* No comment provided by engineer. */
+"You have been invited by %@. Start using Dash cryptocurrency." = "You have been invited by %@. Start using Dash cryptocurrency.";
+
+/* No comment provided by engineer. */
+"You have chose \"%@\" as your username. Username cannot be changed once it is registered." = "You have chose \"%@\" as your username. Username cannot be changed once it is registered.";
+
+/* Voting */
+"You have entered an invalid key" = "You have entered an invalid key";
+
+/* No comment provided by engineer. */
+"You have insufficient funds to proceed" = "You have insufficient funds to proceed";
+
+/* CrowdNode */
+"You have to backup your passphrase in Dash Wallet" = "You have to backup your passphrase in Dash Wallet";
+
+/* No comment provided by engineer. */
+"You must enter your PIN in order to enter Dash Wallet" = "You must enter your PIN in order to enter Dash Wallet";
+
+/* No comment provided by engineer. */
+"You need at least %@ Dash to create an invitation" = "You need at least %@ Dash to create an invitation";
+
+/* CrowdNode */
+"You need at least %@ on your Dash Wallet" = "You need at least %@ on your Dash Wallet";
+
+/* Usernames */
+"You need to have more %@ Dash to create this username" = "You need to have more %@ Dash to create this username";
+
+/* Usernames */
+"You need to have more than %@ Dash to create a username" = "You need to have more than %@ Dash to create a username";
+
+/* DashSpend */
+"You need to sign in to DashSpend to purchase gift cards." = "You need to sign in to DashSpend to purchase gift cards.";
+
+/* CrowdNode */
+"You need to wait 5 minutes before initiating another withdrawal" = "You need to wait 5 minutes before initiating another withdrawal";
+
+/* CrowdNode */
+"You only need %@ to join the pool." = "You only need %@ to join the pool.";
+
+/* DashSpend confirmation */
+"You pay" = "You pay";
+
+/* Coinbase */
+"You receive" = "You receive";
+
+/* Coinbase */
+"You send" = "You send";
+
+/* No comment provided by engineer. */
+"You sent the contact request to %@" = "You sent the contact request to %@";
+
+/* CrowdNode */
+"You should have a positive balance on Dash Wallet" = "You should have a positive balance on Dash Wallet";
+
+/* No comment provided by engineer. */
+"You should have at least %@ to proceed with the CrowdNode verification." = "You should have at least %@ to proceed with the CrowdNode verification.";
+
+/* No comment provided by engineer. */
+"You will also need to log out from the Uphold website using your browser" = "You will also need to log out from the Uphold website using your browser";
+
+/* No comment provided by engineer. */
+"You will lose all your manually reclassified transactions types" = "You will lose all your manually reclassified transactions types";
+
+/* Back up wallet */
+"You will need this recovery phrase to access your funds if this device is lost, damaged or if Dash Wallet is uninstalled from this device." = "You will need this recovery phrase to access your funds if this device is lost, damaged or if Dash Wallet is uninstalled from this device.";
+
+/* Coinbase */
+"You will only be able to spend Dash that has been mixed when this is turned on. This can be turned off at any time." = "You will only be able to spend Dash that has been mixed when this is turned on. This can be turned off at any time.";
+
+/* Coinbase/Buy Dash/Confirm Order */
+"You will receive %@ Dash on your Dash Wallet on this device. Please note that it can take up to 2-3 minutes to complete a transfer." = "You will receive %@ Dash on your Dash Wallet on this device. Please note that it can take up to 2-3 minutes to complete a transfer.";
+
+/* CrowdNode */
+"You will receive fractional payments automatically and they will by default be reinvested, however, it is also easy to set up automatic withdrawals to receive recurring payouts." = "You will receive fractional payments automatically and they will by default be reinvested, however, it is also easy to set up automatic withdrawals to receive recurring payouts.";
+
+/* No comment provided by engineer. */
+"Your credit balance has been fully depleted" = "Your credit balance has been fully depleted";
+
+/* No comment provided by engineer. */
+"Your credit balance is low" = "Your credit balance is low";
+
+/* CrowdNode */
+"Your CrowdNode account is creating…" = "Your CrowdNode account is creating…";
+
+/* CrowdNode */
+"Your CrowdNode account is set up and ready to use!" = "Your CrowdNode account is set up and ready to use!";
+
+/* Crowdnode */
+"Your CrowdNode account was created using these transactions." = "Your CrowdNode account was created using these transactions.";
+
+/* CrowdNode */
+"Your CrowdNode address has been confirmed." = "Your CrowdNode address has been confirmed.";
+
+/* CrowdNode */
+"Your CrowdNode address has been validated, but verification is required." = "Your CrowdNode address has been validated, but verification is required.";
+
+/* No comment provided by engineer. */
+"Your DashPay Username is ready to use" = "Your DashPay Username is ready to use";
+
+/* CrowdNode */
+"Your deposit to CrowdNode is received." = "Your deposit to CrowdNode is received.";
+
+/* TimeSkew */
+"Your device time is %@ by %d seconds. You cannot use CoinJoin due to this difference.\n\nThe time settings on your device needs to be changed to “Set time automatically” to use CoinJoin." = "Your device time is %1$@ by %2$d seconds. You cannot use CoinJoin due to this difference.\n\nThe time settings on your device needs to be changed to “Set time automatically” to use CoinJoin.";
+
+/* TimeSkew */
+"Your device time is off by %d minutes. You probably cannot send or receive Dash due to this problem.\n\nYou should check and if necessary correct your date, time and timezone settings." = "Your device time is off by %d minutes. You probably cannot send or receive Dash due to this problem.\n\nYou should check and if necessary correct your date, time and timezone settings.";
+
+/* TimeSkew */
+"Your device time is off by more than 5 seconds. You cannot use CoinJoin due to this difference.\n\nThe time settings on your device needs to be changed to “Set time automatically” before using CoinJoin." = "Your device time is off by more than 5 seconds. You cannot use CoinJoin due to this difference.\n\nThe time settings on your device needs to be changed to “Set time automatically” before using CoinJoin.";
+
+/* No comment provided by engineer. */
+"Your Email is not stored in the DashPay wallet nor on any servers. It is used once to get your Gravatar account details and then discarded." = "Your Email is not stored in the DashPay wallet nor on any servers. It is used once to get your Gravatar account details and then discarded.";
+
+/* Email is only used for OTP */
+"Your email is only used to send a one-time password." = "Your email is only used to send a one-time password.";
+
+/* No comment provided by engineer. */
+"Your invitation from %@ has been already claimed" = "Your invitation from %@ has been already claimed";
+
+/* No comment provided by engineer. */
+"Your invitation from %@ is not valid" = "Your invitation from %@ is not valid";
+
+/* No comment provided by engineer. */
+"Your location is used to show your position on the map, ATMs in the selected redius and improve search results." = "Your location is used to show your position on the map, ATMs in the selected redius and improve search results.";
+
+/* No comment provided by engineer. */
+"Your location is used to show your position on the map, merchants in the selected redius and improve search results." = "Your location is used to show your position on the map, merchants in the selected redius and improve search results.";
+
+/* CrowdNode */
+"Your primary Dash address that you currently use for your CrowdNode account" = "Your primary Dash address that you currently use for your CrowdNode account";
+
+/* Usernames */
+"Your request was cancelled" = "Your request was cancelled";
+
+/* DashSpend */
+"Your session expired" = "Your session expired";
+
+/* DashSpend */
+"Your transaction was rejected. Please try again or contact support if the problem persists." = "Your transaction was rejected. Please try again or contact support if the problem persists.";
+
+/* No comment provided by engineer. */
+"Your transaction was sent and the amount should appear in your wallet in a few minutes." = "Your transaction was sent and the amount should appear in your wallet in a few minutes.";
+
+/* No comment provided by engineer. */
+"Your username %@ has been successfully created on the Dash Network" = "Your username %@ has been successfully created on the Dash Network";
+
+/* No comment provided by engineer. */
+"Your username %@ is being created on the Dash Network" = "Your username %@ is being created on the Dash Network";
+
+/* Usernames */
+"Your username has been successfully created" = "Your username has been successfully created";
+
+/* No comment provided by engineer. */
+"Your vote was cancelled" = "Your vote was cancelled";
+
+/* Voting */
+"Your vote was submitted" = "Your vote was submitted";
+
+/* No comment provided by engineer. */
+"Your wallet is secured now. You can use your recovery phrase anytime to recover your account on another device." = "Your wallet is secured now. You can use your recovery phrase anytime to recover your account on another device.";
+
+/* No comment provided by engineer. */
+"ZenLedger" = "ZenLedger";
+
+/* Savings percentage */
+"~%.0f%%" = "~%.0f%%";

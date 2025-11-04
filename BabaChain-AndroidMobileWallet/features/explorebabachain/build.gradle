@@ -1,0 +1,139 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'com.google.devtools.ksp'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'org.jlleitschuh.gradle.ktlint'
+    id 'org.jetbrains.kotlin.plugin.compose'
+}
+
+android {
+    defaultConfig {
+        compileSdk 35
+        minSdkVersion 24
+        targetSdkVersion 35
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding true
+        compose = true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+    sourceSets {
+        test.resources.srcDirs += 'test/resources'
+    }
+    namespace 'org.babachain.wallet.features.exploredash'
+}
+
+hilt {
+    enableAggregatingTask = true
+}
+
+dependencies {
+    implementation project(path: ':common')
+
+    // Core
+    implementation "androidx.core:core-ktx:$jetpackVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutinesVersion"
+    implementation "androidx.work:work-runtime-ktx:$workRuntimeVersion"
+    implementation "org.babachainj:babachainj-core:$babachainjVersion"
+
+    // Architecture
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.datastore:datastore-preferences:$datastoreVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
+
+    // Database
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-paging:$roomVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    ksp "androidx.room:room-compiler:$roomVersion"
+
+    // DI
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    ksp "com.google.dagger:hilt-compiler:$hiltVersion"
+    ksp "androidx.hilt:hilt-compiler:$hiltCompilerVersion"
+    implementation "androidx.hilt:hilt-work:$hiltWorkVersion"
+
+    // UI
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    api 'androidx.paging:paging-runtime-ktx:3.1.1'
+    implementation "io.coil-kt:coil:$coilVersion"
+    implementation "io.coil-kt:coil-compose:$coilVersion"
+    //noinspection GradleDependency
+    implementation "com.google.zxing:core:$zxingVersion"
+
+    // Compose
+    implementation(platform("androidx.compose:compose-bom:$composeBom"))
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.ui:ui-tooling"
+    implementation "androidx.compose.material3:material3"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion"
+
+    // Maps & Location
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'com.google.maps.android:maps-ktx:3.2.0'
+    implementation 'com.google.maps.android:android-maps-utils:2.2.6'
+
+    // Logs
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-common-ktx'
+
+    // Tools
+    implementation 'net.lingala.zip4j:zip4j:2.9.1'
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaringLibraryVersion"
+
+
+    // Tests
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "androidx.test:core-ktx:$testCoreVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoVersion"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    testImplementation "org.robolectric:robolectric:4.15.1"
+    testImplementation "androidx.room:room-testing:$roomVersion"
+
+    androidTestImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoVersion"
+    androidTestImplementation "org.mockito:mockito-android:4.6.1"
+    androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+}

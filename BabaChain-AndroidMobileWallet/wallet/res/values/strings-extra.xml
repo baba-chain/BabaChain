@@ -1,0 +1,480 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="onboarding_create_wallet">Create a New Wallet</string>
+    <string name="onboarding_recover_wallet">Restore Wallet From Recovery Phrase</string>
+    <string name="onboarding_restore_wallet">Restore Wallet From File</string>
+    <string name="onboarding_load_wallet_error">Unable to load wallet!</string>
+
+    <string name="set_pin_create_new_wallet">Create a New Wallet</string>
+    <string name="set_pin_upgrade_wallet">Upgrade Wallet</string>
+    <string name="set_pin_restore_wallet">Restore Wallet</string>
+    <string name="set_pin_enter_pin">Enter old PIN</string>
+    <string name="set_pin_set_pin">Set PIN</string>
+    <string name="set_pin_confirm_pin">Confirm PIN</string>
+    <string name="set_pin_encrypting">Encrypting wallet</string>
+    <string name="set_pin_decrypting">Decrypting wallet</string>
+    <string name="set_pin_verifying_pin">Verifying PIN</string>
+    <string name="set_pin_message">This PIN will be required to unlock your app every time when you use it.</string>
+    <string name="set_pin_confirm_pin_incorrect">Incorrect PIN</string>
+    
+    <string name="home_balance_hide_hint">Tap to hide balance</string>
+
+    <string name="dialog_confirm_confirm">Confirm</string>
+    <string name="dialog_confirm_pay_to">Send to</string>
+    <string name="dialog_confirm_secured_by">Secured by</string>
+    <string name="dialog_confirm_fee">Network fee</string>
+    <string name="dialog_confirm_total">Total</string>
+    <string name="dialog_confirm_accept_contact_request">Accept contact request</string>
+
+    <string name="shortcut_action_join_babachainpay">Join BabaChainPay</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_secure_now">Backup</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_scan_to_pay">Scan QR</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_send">Send</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_pay_to_contact">Send to Contact</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_buy_sell">Buy &amp; Sell</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_receive">Receive</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_import_key">Import Private Key</string>
+
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_quick_receive">Quick Receive</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_pin">Login with PIN</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_fingerprint">Login with Fingerprint</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_scan_to_pay">Scan to Send</string>
+    <!-- Lock Screen: Text above the PIN Entry area -->
+    <string name="lock_enter_pin">Enter PIN</string>
+    <string name="lock_unlock_with_fingerprint">Use your fingerprint to unlock</string>
+
+    <string name="perm_lock_info">Wallet permanently locked</string>
+    <string name="perm_lock_wipe_wallet">Wipe Wallet</string>
+    <string name="perm_lock_close_app">Close</string>
+
+    <string name="scan_to_pay_error_dialog_title">Scan to Send</string>
+    <string name="scan_to_pay_error_dialog_message">Not a valid BabaChain Address or URL request in clipboard:\n\n%s</string>
+    <string name="scan_to_pay_error_dialog_message_no_data">Not a valid BabaChain Address or URL request in clipboard.</string>
+
+    <string name="receive_title">Receive</string>
+    <string name="receive_enter_amount_message">Specify the amount to be received</string>
+
+    <string name="pay_title">Send</string>
+    <string name="history_title">History</string>
+    <string name="more_title">More</string>
+    <string name="settings_title">Settings</string>
+    <string name="security_title">Security</string>
+    <string name="recover_wallet_title">Recover Wallet</string>
+    <string name="tools_title">Tools</string>
+
+    <string name="payments_title">Payments</string>
+    <string name="payments_tab_pay_label">Send</string>
+    <string name="payments_tab_receive_label">Receive</string>
+    <string name="payments_pay_to_contact_title">Send to a Contact</string>
+    <string name="payments_pay_to_contact_sub_title">A person in your contacts</string>
+    <string name="payments_pay_to_contact_button">Select</string>
+    <string name="payments_pay_by_qr_title">Send by</string>
+    <string name="payments_pay_by_qr_sub_title">Scanning QR code</string>
+    <string name="payments_pay_to_clipboard_title">Send to copied address</string>
+    <string name="payments_pay_to_clipboard_sub_title">No address copied</string>
+
+    <string name="forgot_pin_title">Forgot PIN?</string>
+    <string name="forgot_pin_message">You can set a new PIN with the help of your recovery phrase.</string>
+    <string name="forgot_pin_instruction_1">Enter recovery phrase to recover your wallet</string>
+    <string name="forgot_pin_instruction_2">Set up a new PIN</string>
+    <string name="forgot_pin_instruction_3">Login with your new PIN to access your wallet</string>
+    <string name="forgot_pin_warning">If you have forgot your PIN and lost your recover phrase, you cannot get back access to your wallet and funds.</string>
+    <string name="forgot_pin_recover">Enter recovery phrase</string>
+    <string name="forgot_pin_passphrase_doesnt_match">The recovery phrase does not match what this wallet was set up with.</string>
+
+    <string name="send_coins_auto_lock_feasible">This transaction should settle instantly at no extra fee</string>
+    <string name="send_coins_auto_lock_not_feasible">This transaction may take several minutes to settle. Complete instantly for %1$s%2$s?</string>
+    <string name="send_coins_instant_send_not_feasible">This transaction may take several minutes to settle.</string>
+
+    <string name="options_paste_from_clipboard_title">Paste from clipboard</string>
+
+    <string name="transaction_row_message_own_instantx_lock_request_notsent">This payment has not been transmitted yet.</string>
+    <string name="transaction_row_message_sent_to_single_peer">This payment has been sent.</string>
+
+    <string name="regular_transaction_info_message">This transaction was not settled instantly.</string>
+
+    <string name="wallet_options_disconnect">Disconnect</string>
+
+    <string name="network_monitor_masternodes_title">Masternodes</string>
+    <string name="export_keys_dialog_title_to_seed">View Recovery Phrase</string>
+    <string name="import_keys_dialog_title_from_seed">Restore from recovery phrase</string>
+    <string name="backup_to_seed_wallet_dialog_message">This is your recovery phrase.  Please write it down.</string>
+    <string name="backup_wallet_to_seed_dialog_warning">DO NOT let anyone see your recovery phrase or they can spend your BabaChain.</string>
+    <string name="backup_to_seed_wallet_dialog_enter_pin_message">Your wallet is protected by a spending PIN.  Enter your PIN and press Show to view your recovery phrase.</string>
+    <string name="import_keys_from_seed_dialog_message">Enter your recovery phrase here.</string>
+    <string name="import_export_keys_dialog_password_phrase">Recovery phrase goes here.</string>
+    <string name="preferences_report_issue_summary">Collect information about your issue and email your report to the developers.</string>
+    <string name="navigation_configuration">Configuration</string>
+    <string name="request_coins_clipboard_address_msg">BabaChain address copied to clipboard</string>
+    <string name="backup_wallet_to_seed_show_recovery_phrase">Show</string>
+    <string name="restore_wallet_from_invalid_seed_warning_message">\"%s\" is not a recovery phrase word</string>
+    <string name="restore_wallet_from_invalid_seed_not_twelve_words">Recovery phrase must have 12 or 24 words</string>
+    <string name="restore_wallet_from_invalid_seed_bad_checksum">Bad recovery phrase</string>
+    <string name="restore_wallet_from_invalid_seed_failure">Wallet could not be restored:\n\n%s\n\nBad recovery phrase?</string>
+
+    <string name="send_coins_options_fee_category_zero">No Fee</string>
+    <string name="send_coins_fragment_hint_fee_zero">No fee of will be paid. Use \'no fee\' only if you don\'t care about confirmation time.</string>
+
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_public_key_request_dialog_msg">Application %s would like to receive your Master Public Key.  This can be used to keep track of your wallet, this can not be used to move your BabaChain.</string>
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_address_request_dialog_msg">Application %s is requesting an address so it can pay you.  Would you like to authorize this?</string>
+
+    <string name="wallet_lock_unlock">Unlock</string>
+    <string name="wallet_lock_unlock_wallet">Unlock wallet</string>
+    <string name="wallet_lock_unlock_to_see_txs_title">Wallet locked.</string>
+    <string name="wallet_lock_unlock_to_see_txs_txt">Tap the lock icon above to unlock your wallet and see the transaction history.</string>
+    <string name="wallet_lock_unlock_dialog_title">Unlock your wallet</string>
+    <string name="wallet_lock_unlock_dialog_message">Your wallet is protected by a spending PIN. Enter your PIN and press Unlock to continue.</string>
+    <string name="wallet_lock_reset_wallet_title">Reset Wallet</string>
+    <string name="wallet_lock_reset_wallet_message">Are you sure? Your wallet will be deleted and all your BabaChain will be lost.\n\nThe only way to recover your BabaChain is with a backup file or recovery phrase.</string>
+
+    <string name="wallet_lock_wallet_disabled">Wallet disabled</string>
+    <string name="wallet_lock_try_again">Try again in %1$d %2$s</string>
+    <string name="wallet_lock_reset">Reset</string>
+    <string name="wallet_lock_wrong_pin">Wrong PIN! %s</string>
+    <string name="wallet_last_attempt">Last PIN attempt</string>
+    <string name="wallet_last_attempt_message">Another failed attempt will require my passphrase to recover my wallet</string>
+
+    <plurals name="wallet_lock_attempts_remaining">
+        <item quantity="one">%d attempt remaining</item>
+        <item quantity="other">%d attempts remaining</item>
+    </plurals>
+
+    <plurals name="minute">
+        <item quantity="one">minute</item>
+        <item quantity="other">minutes</item>
+    </plurals>
+
+    <plurals name="hour">
+        <item quantity="one">hour</item>
+        <item quantity="other">hours</item>
+    </plurals>
+
+    <string name="encrypt_new_key_chain_upgrade_button">Upgrade</string>
+    <string name="encrypt_new_key_chain_dialog_title">Upgrade your wallet</string>
+    <string name="encrypt_new_key_chain_dialog_message">Your wallet will be upgraded to support importing from and exporting to more apps.</string>
+    <string name="encrypt_new_key_chain_enter_pin_dialog_message">You must enter your PIN to finish the upgrade process.</string>
+    <string name="pin_code_required_dialog_message">This app now requires a PIN to spend and view the balance and transactions.</string>
+    <string name="backup_wallet_seed_private_key_written_down_box">I have written down the recovery phrase</string>
+
+    <string name="change_exchange_currency_code_message">Your local currency is %1$s, but in this app your default currency is set to %2$s. Would you like to change it to %1$s or leave it as %2$s?</string>
+    <string name="change_to">Change to %s</string>
+    <string name="leave_as">Leave as %s</string>
+
+    <string name="protocol_version" translatable="false">%1$s\nprotocol: %2$d</string>
+
+    <string name="remind_later">Remind later</string>
+    <string name="backup_now">Backup now</string>
+
+    <string name="notification_transactions_channel_name">Transactions</string>
+    <string name="notification_transactions_channel_description">Receive alerts about incoming transactions.</string>
+    <string name="notification_synchronization_channel_name">Synchronization</string>
+    <string name="notification_synchronization_channel_description">Shows a notification when the app is synchronizing with the network.</string>
+    <string name="notification_generic_channel_name">Generic notifications</string>
+    <string name="notification_generic_channel_description">Other BabaChain Wallet events</string>
+    <string name="notification_push_channel_name">Push Notifications</string>
+    <string name="notification_push_channel_description">Shows push notifications sent to you by BabaChain</string>
+    <string name="notification_settings_title">Notifications</string>
+    <string name="notification_explainer_title">BabaChain Wallet would like to send you notifications</string>
+    <string name="notification_explainer_message">Notifications may include alerts, sounds, and icon badges. These can be configured in phone Settings.</string>
+    <string name="notification_babachainpay_channel_name">BabaChainPay</string>
+    <string name="notification_babachainpay_channel_description">Status of ongoing BabaChainPay operations.</string>
+
+    <string name="net_type_indicator" />
+
+    <string name="unlock_with_fingerprint">Use your fingerprint to unlock.</string>
+    <string name="unlock_with_fingerprint_error">Failed to recognize fingerprint, please try again.</string>
+    <string name="unlock_with_fingerprint_error_max_attempts">Maximum fingerprint attempts exceeded. Please try again later.</string>
+    <string name="or_unlock_with_fingerprint">Or use your fingerprint to unlock.</string>
+    <string name="enable_fingerprint">Enable fingerprint</string>
+    <string name="touch_fingerprint_sensor">Touch fingerprint sensor</string>
+    <string name="touch_fingerprint_to_enable">Touch the fingerprint sensor to enable unlocking with fingerprint.</string>
+    <string name="fingerprint_changed_title">Fingerprint data changed</string>
+    <string name="fingerprint_changed_message">We detected a change in your fingerprint authentication data. You need to use PIN this time.</string>
+    <string name="exchange_rate_missing">This payment is too old to get the fiat value.</string>
+
+    <string name="preferences_enable_payment_request_summary">Use payment protocol for QR-code initiated payments</string>
+    <string name="preferences_enable_payment_request_title">BIP70 for scan-to-pay</string>
+
+    <string name="verify_continue">Continue</string>
+    <string name="verify_backup_wallet">Backup Wallet</string>
+    <string name="verify_show_recovery_phrase">Show Recovery Phrase</string>
+    <string name="verify_info_title">Backup your recovery phrase</string>
+    <string name="verify_info_subtitle">You will need this recovery phrase to access your funds if this device is lost, damaged or if BabaChain Wallet is uninstalled from this device.</string>
+    <string name="verify_info_title_1">BabaChain Core Group does NOT store this recovery phrase</string>
+    <string name="verify_info_subtitle_1">Anyone that has your recovery phrase can access your funds.</string>
+    <string name="verify_info_title_2">You will NOT be able to restore the wallet without a recovery phrase</string>
+    <string name="verify_info_subtitle_2">Write it in a safe place and don\'t show it to anyone.</string>
+    <string name="verify_seed_buttons_tip">Please tap on the words from your recovery phrase in the right order</string>
+    <string name="verify_seed_success_title">Verified Successfully</string>
+    <string name="verify_seed_success_message">Your wallet is secured now. You can use your recovery phrase anytime to recover your account on another device.</string>
+    <string name="verify_no_screenshot_title">Do not take a screenshot</string>
+    <string name="verify_no_screenshot_message">Instead, write the recovery phrase in a secure place.</string>
+    <string name="verify_why_no_screenshot">Why I should not take a screenshot?</string>
+    <string name="verify_warning_title">Warning</string>
+    <string name="verify_warning_message">This recovery phrase is your access to the funds in your wallet.</string>
+    <string name="verify_warning_screenshots_title">Do NOT take screenshots</string>
+    <string name="verify_warning_screenshots_message">Screenshots are visible to other apps and devices.</string>
+    <string name="verify_warning_do_not_show">Do NOT let anyone see your recovery phrase.</string>
+    <string name="verify_warning_do_not_type">Never type your recovery phrase into password managers or elsewhere.</string>
+    <string name="view_seed_done">Done</string>
+    <string name="view_seed_title">Recovery Phrase</string>
+    <string name="transaction_result_view_on_explorer">View in Block Explorer</string>
+    <string name="transaction_result_tax_category">Tax Category</string>
+    <string name="transaction_result_tax_category_loading">Loading…</string>
+    <string name="tax_category_income">Income</string>
+    <string name="tax_category_expense">Expense</string>
+    <string name="tax_category_transfer_in">Transfer-in</string>
+    <string name="tax_category_transfer_out">Transfer-out</string>
+    <string name="transaction_result_paid_successfully">Sent successfully</string>
+    <string name="transaction_result_sent_to">Sent to</string>
+    <string name="transaction_date_and_time">Date</string>
+    <string name="transaction_close">Close</string>
+    <string name="transaction_details_amount_received">Amount Received</string>
+    <string name="transaction_details_amount_sent">Amount Sent</string>
+    <string name="transaction_details_amount_sent_successfully">Sent Successfully</string>
+    <string name="transaction_details_sent_from">Sent from</string>
+    <string name="transaction_details_sent_to">Sent to</string>
+    <string name="transaction_details_received_at">Received at</string>
+    <string name="transaction_details_received_from">Received from</string>
+    <string name="transaction_details_moved_from">Moved from</string>
+    <string name="transaction_details_moved_internally_to">Internally moved to</string>
+    <string name="transaction_failed_details">Transaction failed</string>
+    <string name="transaction_failed_resolve">This could be resolved by</string>
+    <string name="transaction_failed_rescan">rescanning the blockchain</string>
+    <string name="transaction_failed_in_conflict">This is possible if the wallet is installed on two devices.</string>
+
+    <string name="authenticate_fingerprint_title">Authenticate</string>
+    <string name="authenticate_fingerprint_message">Confirm fingerprint to continue</string>
+    <string name="authenticate_pin_message">Enter your PIN to continue</string>
+    <string name="authenticate_switch_to_fingerprint">Use Fingerprint</string>
+    <string name="authenticate_switch_to_pin">Use PIN</string>
+
+    <string name="menu_invite_title">Invite</string>
+    <string name="menu_invite_subtitle">Help your friends and family join BabaChain</string>
+    <string name="menu_buy_and_sell_title">Buy &amp; Sell BabaChain</string>
+    <string name="menu_buy_and_sell_subtitle">Connect with third party exchanges</string>
+    <string name="liquid" translatable="false">Liquid</string>
+    <string name="liquid_unavailable">Liquid integration with BabaChain Wallet is no longer available</string>
+    <string name="liquid_unavailable_details">If you have any questions regarding your BabaChain holdings at Liquid, please contact Liquid support center</string>
+    <string name="menu_security_title">Security</string>
+    <string name="menu_security_subtitle">View passphrase, backup wallet…</string>
+    <string name="menu_settings_title">Settings</string>
+    <string name="menu_settings_subtitle">Default currency, shortcuts, about…</string>
+    <string name="menu_tools_title">Tools</string>
+    <string name="menu_tools_subtitle">Import private key…</string>
+    <string name="menu_local_currency">Local currency</string>
+    <string name="menu_rescan_blockchain">Rescan blockchain</string>
+    <string name="menu_contact_support_title">Contact Support</string>
+    <string name="menu_contact_support_subtitle">Report an issue</string>
+    <string name="menu_explore_title">Explore</string>
+    <string name="menu_explore_subtitle">Find merchants that accept DASH</string>
+
+    <string name="tools_address_book">Address Book</string>
+    <string name="tools_import_private_key">Import Private Key</string>
+    <string name="tools_network_monitor">Network Monitor</string>
+    <string name="tools_show_xpub">Extended Public Key</string>
+
+    <string name="about_help_us_improve">Help us improve your experience</string>
+    <string name="about_review_and_rate">Review and rate the app</string>
+    <string name="about_contact_support">Contact Support</string>
+    <string name="about_fork_disclaimer">This is an open source app forked from Bitcoin Wallet</string>
+    <string name="about_copyright">Copyright © 2025 BabaChain Core Group</string>
+    <string name="about_license">GNU General Public License v3.0</string>
+    <string name="about_github_link" translatable="false">https://github.com/babachainevo/babachain-wallet</string>
+    <string name="about_version_name">BabaChainPay Wallet %s</string>
+    <string name="about_build_number" translatable="false">(%d)</string>
+    <string name="about_last_explore_device_sync">Last Explore device sync</string>
+    <string name="about_last_explore_server_update">Last Explore server update</string>
+    <string name="about_firebase_installation_id">Firebase installation ID</string>
+    <string name="about_fcm_token">Firebase cloud messaging token</string>
+    <string name="about_last_explore_babachain_update_error">cannot fetch</string>
+    <string name="about_last_explore_babachain_sync_never">never</string>
+    <string name="about_explore_failed_sync">Failed to sync on %s</string>
+    <string name="about_explore_preloaded_on">Pre-loaded on %s</string>
+
+    <string name="block">Block</string>
+    <string name="time">Time</string>
+    <string name="hash">Hash</string>
+    <string name="block_info">Block Info</string>
+
+    <string name="scan_private_key">Scan Private Key</string>
+    <string name="scan_private_key_intro_1">You are about to sweep funds from a BabaChain paper wallet.</string>
+    <string name="scan_private_key_intro_2">This will move all coins from that wallet to your wallet on this device.</string>
+    <string name="scan_private_key_intro_3">When the transaction is confirmed, the other wallet will be worthless and should not be re-used for safety reasons.</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="advanced_security_security_level">Security Level</string>
+    <string name="auto_logout">Auto Logout</string>
+    <string name="spending_confirmation">Spending Confirmation</string>
+    <string name="logout_after">Logout after</string>
+    <string name="immediately">Immediately</string>
+    <string name="twenty_four_hours">24 hours</string>
+    <string name="one_minute">1 min</string>
+    <string name="five_minute">5 min</string>
+    <string name="one_hour">1 hour</string>
+    <string name="biometric_limit">Biometric Limit</string>
+    <string name="spending_confirmation_hint_zero">PIN is always required to make a payment</string>
+    <string name="spending_confirmation_hint_above_zero">You can authenticate with Biometric Authentication for payments below</string>
+
+    <string name="security_none">None</string>
+    <string name="security_low">Low</string>
+    <string name="security_medium">Medium</string>
+    <string name="security_high">High</string>
+    <string name="security_very_high">Very High</string>
+    <string name="max">Max</string>
+
+    <string name="skip">skip</string>
+    <string name="get_started">Get Started</string>
+    <string name="welcome_screen_title_1_new_install">Welcome</string>
+    <string name="welcome_screen_title_1_upgrade">We Upgraded</string>
+    <string name="welcome_screen_subtitle_1">An intuitive and familiar experience across all your devices</string>
+    <string name="welcome_screen_title_2">Pay with Ease</string>
+    <string name="welcome_screen_subtitle_2">Pay and get paid instantly with easy to use payment flows</string>
+    <string name="welcome_screen_title_3">More Control</string>
+    <string name="welcome_screen_subtitle_3">Have complete control and customize your wallet based on your needs</string>
+
+    <string-array name="history_filter">
+        <item>All</item>
+        <item>Received</item>
+        <item>Sent</item>
+    </string-array>
+
+    <string name="sync_status_wait">Please wait for the sync to complete</string>
+    <string name="sync_status_syncing_sub_title">with BabaChain blockchain</string>
+    <string name="sync_status_unable_to_connect">Unable to connect</string>
+    <string name="sync_status_check_connection">Check your connection</string>
+    <string name="sync_status_sync_title">Sync</string>
+    <string name="sync_status_sync_completed">Completed</string>
+
+    <string name="appwidget_wallet_not_ready">Please setup your wallet</string>
+
+    <string name="payment_request_please_wait_message">Connecting to Payment Server</string>
+    <string name="payment_request_unable_to_connect">Unable to Connect</string>
+    <string name="payment_request_unable_to_send">Unable to Send</string>
+    <string name="payment_request_please_try_again">Please try again</string>
+    <string name="payment_request_try_again">Try Again</string>
+    <string name="payment_request_expired_title">Payment Request Expired</string>
+    <string name="payment_request_close">Close</string>
+    <string name="payment_request_skip">Skip</string>
+    <string name="payment_request_paid_to">Paid to</string>
+
+    <string name="import_image_not_valid_qr_code">Not a valid QR Code</string>
+    <string name="import_image_please_use_valid_qr_code">Please use a valid BabaChain QR Code</string>
+    <string name="import_image_no_private_key_copied">No private key copied</string>
+    <string name="import_image_import_valid_private_key">Copy a valid private key to import BabaChain from it</string>
+    <string name="import_image_invalid_private">Invalid Private Key</string>
+    <string name="okay">Okay</string>
+
+    <string name="onboard_from_invite_title">Let\'s Get Started</string>
+    <string name="onboard_from_invite_subtitle">Welcome to BabaChainPay</string>
+    <string name="onboard_from_invite_step1">Step 1</string>
+    <string name="onboard_from_invite_step2">Step 2</string>
+    <string name="onboard_from_invite_step3">Step 3</string>
+    <string name="onboard_from_invite_step1_title">Choose Your Username</string>
+    <string name="onboard_from_invite_step2_title">Set Your PIN</string>
+    <string name="onboard_from_invite_step3_title">Secure Your Wallet</string>
+
+    <string name="restore_wallet_please_wait">Please Wait</string>
+    <string name="restore_wallet_restoring">Your wallet is being restored</string>
+
+
+
+    <string name="network_unavailable">Network Unavailable</string>
+    <string name="network_error_contact_details">Unable to fetch contact details</string>
+    <string name="network_error_user_search">Unable to search for a user</string>
+    <string name="network_error_contact_suggestions">Unable to provide suggestions</string>
+    <string name="network_error_unable_to_update_profile">Unable to update your profile</string>
+
+
+
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+
+    <string name="syncing">Syncing</string>
+    <string name="syncing_balance">Syncing balance</string>
+    <string name="transaction_count">%d transactions</string>
+    <string name="all_transactions">All</string>
+    <string name="received_transactions">Received</string>
+    <string name="sent_transactions">Sent</string>
+    <string name="services_portal_subtitle_error" translatable="false">Keys are missing for these services. See CONFIGURATION FOR UPHOLD AND COINBASE in README.md for more information.</string>
+    <string name="serious_error_title">Serious Error</string>
+    <string name="serious_error_unknown">Please contact support.</string>
+    <string name="serious_error_security_missing_iv" translatable="false">Invalid security state detected.\n\nSee if you can view your recovery phrase under the Security Settings. After that send a report to the support desk with Contact Support.\n\nLastly, restart this app and try again.</string>
+    <string name="set_pin_error_missing_wallet_title">Missing Wallet Error</string>
+    <string name="set_pin_error_missing_wallet_message">The wallet is missing.  Please report this to the Support Desk.</string>
+    <string name="wallet_encryption_error_title">Wallet Creation Error</string>
+    <string name="wallet_encryption_error_message">There is a problem creating the wallet.  Please report this to the Support Desk.</string>
+    <string name="wallet_not_encrypted_error_message">There is a problem with your wallet.\n\nIf you have no BabaChain in this wallet, then uninstall and reinstall this app. Then create a new wallet.\n\nIf you have a recovery phrase or a backup file, then uninstall this app and reinstall it.\n\nOtherwise, please report this to the Support Desk.</string>
+
+    <string name="fcm_notification_channel_id" translatable="false">babachain.notifications.push</string>
+    <string name="reset_wallet_title">Are you sure you want to reset the wallet?</string>
+    <string name="reset_wallet_message"> If you reset your wallet the only way to get access to it is to recover the wallet with the recovery phrase.</string>
+    <string name="positive_reset_text">Yes, Reset Wallet</string>
+    <string name="launch_reset_wallet_title">You have a positive balance</string>
+    <string name="launch_reset_wallet_message">If you reset your wallet you will lose all your funds if you have not backed up your recovery phrase.</string>
+    <string name="continue_reset">Continue</string>
+    <string name="launch_reset_wallet_extra_message">Back up your recovery phrase</string>
+    <string name="start_reset_wallet_title">You may lose %s</string>
+    <string name="reset_wallet_text">Reset Wallet</string>
+
+
+
+    <!-- Tax category -->
+    <string name="reclassify_transactions_title">Reclassify Your Transactions</string>
+    <string name="reclassify_transactions_title_message">These classifications will be reflected in the CSV Export that can be used to import into tax reporting services.</string>
+    <string name="reclassify_transactions_question">Where can I change the tax category?</string>
+    <string name="reclassify_transactions_outgoing_title">Outgoing transactions</string>
+    <string name="reclassify_transactions_by_default_message">by default will be marked as</string>
+    <string name="reclassify_transactions_incoming_title">Incoming transactions</string>
+    <string name="reclassify_transactions_change_it_message">You can change it to</string>
+    <string name="reclassify_transactions_linked_accounts_title">Linked accounts</string>
+    <string name="reclassify_transactions_linked_accounts_message">by default all transactions to or from your linked accounts (exchanges, staking, etc) will be marked as transfers.</string>
+    <string name="reclassify_transactions_change_explanation">Choose any transaction from the homepage and change the category on the transaction details page.</string>
+
+    <string name="masternode_keys_title">Masternode Keys</string>
+    <string name="masternode_key_type_owner">Owner Keys</string>
+    <string name="masternode_key_type_voting">Voting Keys</string>
+    <string name="masternode_key_type_operator">Operator Keys</string>
+    <string name="masternode_key_type_platform">Evolution Node ID Keys</string>
+    <string name="masternode_key_type_total">%d keys</string>
+    <string name="masternode_key_type_used">%d used</string>
+    <string name="masternode_key_pair_index">Keypair %d</string>
+    <string name="masternode_key_address">Address</string>
+    <string name="masternode_key_id">Key Id</string>
+    <string name="masternode_key_public">Public Key</string>
+    <string name="masternode_key_public_legacy">Public Key (legacy)</string>
+    <string name="masternode_key_private_hex">Private Key</string>
+    <string name="masternode_key_private_wif">Private Key WIF</string>
+    <string name="masternode_key_used">IP: %s</string>
+    <string name="masternode_key_ip_address_unknown">Unknown</string>
+    <string name="masternode_key_not_used">Not used</string>
+    <string name="masternode_key_revoked">Revoked</string>
+    <string name="masternode_key_private_public_base64">Private / Public Keys (base64)</string>
+    <string name="timeskew_ahead">ahead</string>
+    <string name="timeskew_behind">behind</string>
+
+    <!-- stale rates messages -->
+    <string name="stale_exchange_rates_error">Prices weren\'t retrieved. Fiat values may be incorrect.</string>
+    <string name="stale_exchange_rates_stale">Prices are at least 30 minutes old. Fiat values may be incorrect.</string>
+    <string name="stale_exchange_rates_volatile">Prices have fluctuated more than 50% since the last update.</string>
+    <string name="select_security_level_title">Select Security Level</string>
+    <string name="select_security_level_message">You can secure your wallet with a 12 or 24 word recovery phrase.</string>
+    <string name="select_security_level_12_words_title">Secure</string>
+    <string name="select_security_level_12_words_message">12 word recovery phrase</string>
+    <string name="select_security_level_24_words_title">Very secure</string>
+    <string name="select_security_level_24_words_message">24 word recovery phrase</string>
+</resources>

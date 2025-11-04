@@ -1,0 +1,478 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="onboarding_create_wallet">Создать новый кошелёк</string>
+    <string name="onboarding_recover_wallet">Восстановить кошелёк из фразы восстановления</string>
+    <string name="onboarding_restore_wallet">Восстановить кошелёк из файла</string>
+    <string name="onboarding_load_wallet_error">Не удалось загрузить кошелёк!</string>
+
+    <string name="set_pin_create_new_wallet">Создать новый кошелёк</string>
+    <string name="set_pin_upgrade_wallet">Обновить кошелёк</string>
+    <string name="set_pin_restore_wallet">Восстановить кошелёк</string>
+    <string name="set_pin_enter_pin">Введите старый PIN</string>
+    <string name="set_pin_set_pin">Установите PIN</string>
+    <string name="set_pin_confirm_pin">Подтвердите PIN</string>
+    <string name="set_pin_encrypting">Шифрование кошелька</string>
+    <string name="set_pin_decrypting">Расшифровка кошелька</string>
+    <string name="set_pin_verifying_pin">Подтверждение PIN-кода</string>
+    <string name="set_pin_message">Этот PIN нужно будет вводить для разблокировки приложения при каждом его использовании.</string>
+    <string name="set_pin_confirm_pin_incorrect">Неверный PIN</string>
+    
+    <string name="home_balance_hide_hint">Нажмите, чтобы скрыть баланс</string>
+
+    <string name="dialog_confirm_confirm">Подтвердить</string>
+    <string name="dialog_confirm_pay_to">Отправить</string>
+    <string name="dialog_confirm_secured_by">Защищено</string>
+    <string name="dialog_confirm_fee">Комиссия сети</string>
+    <string name="dialog_confirm_total">Итого</string>
+    <string name="dialog_confirm_accept_contact_request">Принять запрос на добавление в контакты</string>
+
+    <string name="shortcut_action_join_babachainpay">Войти в BabaChainPay</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_secure_now">Сохранить</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_scan_to_pay">Сканировать QR</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_send">Отправить</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_pay_to_contact">Отправить человеку в списке контактов</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_buy_sell">Купить и Продать</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_receive">Получить</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_import_key">Импорт ключа</string>
+
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_quick_receive">Получить быстро</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_pin">Войти с помощью PIN-кода</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_fingerprint">Войти с помощью Отпечатка</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_scan_to_pay">Сканировать</string>
+    <!-- Lock Screen: Text above the PIN Entry area -->
+    <string name="lock_enter_pin">Введите PIN-код</string>
+    <string name="lock_unlock_with_fingerprint">Используйте свой отпечаток пальца, чтобы разблокировать</string>
+
+    <string name="perm_lock_info">Кошелёк заблокирован навсегда</string>
+    <string name="perm_lock_wipe_wallet">Удалить кошелёк</string>
+    <string name="perm_lock_close_app">Закрыть</string>
+
+    <string name="scan_to_pay_error_dialog_title">Сканировать</string>
+    <string name="scan_to_pay_error_dialog_message">Некорректный адрес BabaChain или URL запрос в буфере обмена:\n\n%s</string>
+    <string name="scan_to_pay_error_dialog_message_no_data">Некорректный адрес BabaChain или URL запрос в буфере обмена.</string>
+
+    <string name="receive_title">Получить</string>
+    <string name="receive_enter_amount_message">Введите сумму для получения</string>
+
+    <string name="pay_title">Отправить</string>
+    <string name="history_title">История</string>
+    <string name="more_title">Больше</string>
+    <string name="settings_title">Настройки</string>
+    <string name="security_title">Безопасность</string>
+    <string name="recover_wallet_title">Восстановить кошелёк</string>
+    <string name="tools_title">Инструменты</string>
+
+    <string name="payments_title">Платежи</string>
+    <string name="payments_tab_pay_label">Отправить</string>
+    <string name="payments_tab_receive_label">Получить</string>
+    <string name="payments_pay_to_contact_title">Отправить человеку в списке контактов</string>
+    <string name="payments_pay_to_contact_sub_title">Человек в списке контактов</string>
+    <string name="payments_pay_to_contact_button">Выбрать</string>
+    <string name="payments_pay_by_qr_title">Оплатить по</string>
+    <string name="payments_pay_by_qr_sub_title">QR-коду</string>
+    <string name="payments_pay_to_clipboard_title">Отправить на скопированный адрес</string>
+    <string name="payments_pay_to_clipboard_sub_title">Нет адреса</string>
+
+    <string name="forgot_pin_title">Забыли PIN-код?</string>
+    <string name="forgot_pin_message">Вы можете задать новый PIN-код с помощью фразы восстановления.</string>
+    <string name="forgot_pin_instruction_1">Введите фразу восстановления для восстановления вашего кошелька</string>
+    <string name="forgot_pin_instruction_2">Задайте новый PIN-код</string>
+    <string name="forgot_pin_instruction_3">Войдите в кошелёк, используя новый PIN-код</string>
+    <string name="forgot_pin_warning">Если Вы забыли PIN-код и потеряли фразу восстановления, Вы не сможете получить доступ к кошельку и средствам. </string>
+    <string name="forgot_pin_recover">Введите фразу восстановления</string>
+    <string name="forgot_pin_passphrase_doesnt_match">Эта фраза восстановления не совпадает с заданной при создании этого кошелька.</string>
+
+    <string name="send_coins_auto_lock_feasible">Эту транзакция будет подтверждена немедленно без дополнительной комиссии</string>
+    <string name="send_coins_auto_lock_not_feasible">Подтверждение может занять несколько минут. Провести мгновенно за %1$s%2$s?</string>
+    <string name="send_coins_instant_send_not_feasible">Подтверждение может занять несколько минут.</string>
+
+    <string name="options_paste_from_clipboard_title">Вставить из буфера обмена</string>
+
+    <string name="transaction_row_message_own_instantx_lock_request_notsent">Платёж ещё не был передан в сеть.</string>
+    <string name="transaction_row_message_sent_to_single_peer">Платёж был передан в сеть.</string>
+
+    <string name="regular_transaction_info_message">Транзакция не была подтверждена мгновенно.</string>
+
+    <string name="wallet_options_disconnect">Отключить</string>
+
+    <string name="network_monitor_masternodes_title">Мастерноды</string>
+    <string name="export_keys_dialog_title_to_seed">Посмотреть фразу восстановления</string>
+    <string name="import_keys_dialog_title_from_seed">Восстановить из фразы восстановления</string>
+    <string name="backup_to_seed_wallet_dialog_message">Это Ваша фраза восстановления. Пожалуйста, запишите и сохраните её.</string>
+    <string name="backup_wallet_to_seed_dialog_warning">НЕ РАСКРЫВАЙТЕ никому свою фразу восстановления: она даёт доступ ко всем Вашим средствам.</string>
+    <string name="backup_to_seed_wallet_dialog_enter_pin_message">Ваш кошелёк защищён ПИН-кодом. Введите свой ПИН и нажмите "Показать" для просмотра фразы восстановления.</string>
+    <string name="import_keys_from_seed_dialog_message">Введите свою фразу восстановления.</string>
+    <string name="import_export_keys_dialog_password_phrase">Ваша фраза восстановления.</string>
+    <string name="preferences_report_issue_summary">Изложите в подробностях вашу проблему и отправьте на электронный адрес разработчиков.</string>
+    <string name="navigation_configuration">Конфигурация</string>
+    <string name="request_coins_clipboard_address_msg">Адрес скопирован в буфер обмена</string>
+    <string name="backup_wallet_to_seed_show_recovery_phrase">Показать</string>
+    <string name="restore_wallet_from_invalid_seed_warning_message">«%s» не является словом из фразы восстановления</string>
+    <string name="restore_wallet_from_invalid_seed_not_twelve_words">Фраза восстановления должна состоять из 12 или 24 слов</string>
+    <string name="restore_wallet_from_invalid_seed_bad_checksum">Некорректная фраза восстановления</string>
+    <string name="restore_wallet_from_invalid_seed_failure">Кошелёк не может быть восстановлен:\n\n%s\n\nПроверьте правильность фразы восстановления.</string>
+
+    <string name="send_coins_options_fee_category_zero">Бесплатно</string>
+    <string name="send_coins_fragment_hint_fee_zero">Без комиссии. Используйте эту опцию, только если Вас не волнует время прохождения транзакции.</string>
+
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_public_key_request_dialog_msg">Приложение %s просит Вас предоставить свой публичный мастер-ключ. Этот ключ может быть использован для слежения за Вашим кошельком, но его нельзя использовать для перемещения Ваших средств.</string>
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_address_request_dialog_msg">Приложение %s запрашивает адрес чтобы заплатить Вам. Вы разрешаете это?</string>
+
+    <string name="wallet_lock_unlock">Открыть</string>
+    <string name="wallet_lock_unlock_wallet">Открыть кошелёк</string>
+    <string name="wallet_lock_unlock_to_see_txs_title">Кошелёк закрыт</string>
+    <string name="wallet_lock_unlock_to_see_txs_txt">Коснитесь иконки сверху, чтобы открыть свой кошелёк и увидеть историю транзакций.</string>
+    <string name="wallet_lock_unlock_dialog_title">Открыть ваш кошелёк</string>
+    <string name="wallet_lock_unlock_dialog_message">Ваш кошелёк защищён ПИН-кодом. Введите свой ПИН-код и нажмите "Открыть".</string>
+    <string name="wallet_lock_reset_wallet_title">Сброс кошелька</string>
+    <string name="wallet_lock_reset_wallet_message">Вы уверены? Ваш кошелёк будет удалён, а доступ к средствам утерян.\n\nВаш кошелёк BabaChain можно будет восстановить только с помощью файла восстановления или фразы восстановления.</string>
+
+    <string name="wallet_lock_wallet_disabled">Кошелёк отключён</string>
+    <string name="wallet_lock_try_again">Попробуйте снова через %1$d%2$s</string>
+    <string name="wallet_lock_reset">Сброс</string>
+    <string name="wallet_lock_wrong_pin">Неправильный ПИН-код! %s</string>
+    <string name="wallet_last_attempt">Последняя попытка ввести PIN</string>
+    <string name="wallet_last_attempt_message">После ещё одной неудачной попытки для восстановления кошелька потребуется фраза восстановления</string>
+
+    <plurals name="wallet_lock_attempts_remaining">
+        <item quantity="one">Осталось попыток: %d</item>
+        <item quantity="few">Осталось попыток: %d</item>
+        <item quantity="many">Осталось попыток: %d</item>
+        <item quantity="other">Осталось попыток: %d</item>
+    </plurals>
+
+    <plurals name="minute">
+        <item quantity="one">мин</item>
+        <item quantity="few">мин</item>
+        <item quantity="many">мин</item>
+        <item quantity="other">минуты</item>
+    </plurals>
+
+    <plurals name="hour">
+        <item quantity="one">ч</item>
+        <item quantity="few">ч</item>
+        <item quantity="many">ч</item>
+        <item quantity="other">часы</item>
+    </plurals>
+
+    <string name="encrypt_new_key_chain_upgrade_button">Обновление</string>
+    <string name="encrypt_new_key_chain_dialog_title">Обновление Вашего кошелька</string>
+    <string name="encrypt_new_key_chain_dialog_message">Ваш кошелёк получит обновление, чтобы поддерживать обмен данными с другими приложениями.</string>
+    <string name="encrypt_new_key_chain_enter_pin_dialog_message">Вам необходимо ввести свой ПИН-код для завершения процедуры обновления.</string>
+    <string name="pin_code_required_dialog_message">Это приложение требует ПИН-код для проведения транзакций и просмотра истории платежей.</string>
+    <string name="backup_wallet_seed_private_key_written_down_box">Я записал фразу восстановления</string>
+
+    <string name="change_exchange_currency_code_message">Ваша локальная валюта %1$s, но в этом приложении в качестве Вашей валюты по умолчанию выбрана %2$s. Вы хотите поменять выбор на %1$s или оставить %2$s?</string>
+    <string name="change_to">Поменять на %s</string>
+    <string name="leave_as">Оставить %s</string>
+
+    <string name="remind_later">Напомнить позже</string>
+    <string name="backup_now">Восстановить сейчас</string>
+
+    <string name="notification_transactions_channel_name">Транзакции</string>
+    <string name="notification_transactions_channel_description">Получать оповещения о входящих транзакциях.</string>
+    <string name="notification_synchronization_channel_name"> Синхронизация</string>
+    <string name="notification_synchronization_channel_description">Показывает уведомление, когда приложение синхронизируется с сетью.</string>
+    <string name="notification_generic_channel_name">Общие уведомления</string>
+    <string name="notification_generic_channel_description">Прочие события BabaChain Wallet</string>
+    <string name="notification_push_channel_name">Пуш-уведомления</string>
+    <string name="notification_push_channel_description">Показывать пуш-уведомления от BabaChain</string>
+    <string name="notification_settings_title">Уведомления</string>
+    <string name="notification_explainer_title">BabaChain Wallet хочет отправлять вам уведомления</string>
+    <string name="notification_explainer_message">В уведомлениях могут быть оповещения, звуки или иконки. Их можно настроить в Настройках телефона.</string>
+    <string name="notification_babachainpay_channel_name">BabaChainPay</string>
+    <string name="notification_babachainpay_channel_description">Статус текущих операций BabaChainPay.</string>
+
+    <string name="net_type_indicator" />
+
+    <string name="unlock_with_fingerprint">Используйте свой отпечаток пальца, чтобы разблокировать.</string>
+    <string name="unlock_with_fingerprint_error">Не удалось распознать отпечаток пальца, пожалуйста, повторите попытку.</string>
+    <string name="unlock_with_fingerprint_error_max_attempts">Превышено максимальное количество попыток разблокировки с помощью отпечатка пальцев. Пожалуйста, попробуйте позже.</string>
+    <string name="or_unlock_with_fingerprint">Или используйте свой отпечаток пальца, чтобы разблокировать.</string>
+    <string name="enable_fingerprint">Включить разблокировку с помощью отпечатка пальца.</string>
+    <string name="touch_fingerprint_sensor">Коснитесь датчика отпечатков пальцев.</string>
+    <string name="touch_fingerprint_to_enable">Коснитесь датчика отпечатков пальцев, чтобы разблокировать с помощью отпечатка пальца.</string>
+    <string name="fingerprint_changed_title">Данные об отпечатке изменены</string>
+    <string name="fingerprint_changed_message">Мы обнаружили изменение данных об отпечатке. В этот раз для входа нужно ввести PIN-код. </string>
+    <string name="exchange_rate_missing">Это давний платёж, фиатный эквивалент недоступен.</string>
+
+    <string name="preferences_enable_payment_request_summary">Используйте платёжный протокол для платежей через QR-код</string>
+    <string name="preferences_enable_payment_request_title">BIP70 для функции "сканируй и плати"</string>
+
+    <string name="verify_continue">Продолжить</string>
+    <string name="verify_backup_wallet">Резервное копирование кошелька</string>
+    <string name="verify_show_recovery_phrase">Показать фразу восстановления</string>
+    <string name="verify_info_title">Сохранить фразу восстановления</string>
+    <string name="verify_info_subtitle">Вам понадобится эта фраза восстановления для доступа к Вашим средствам, если это устройство будет утеряно, повреждено или приложение BabaChain Wallet будет случайно удалено.</string>
+    <string name="verify_info_title_1">BabaChain Core Group НЕ хранит эту фразу восстановления</string>
+    <string name="verify_info_subtitle_1">Любой, у кого есть ваша фраза восстановления, может получить доступ к вашим средствам.</string>
+    <string name="verify_info_title_2">Вы НЕ сможете восстановить кошелёк без фразы восстановления</string>
+    <string name="verify_info_subtitle_2">Запишите её в надёжном месте и никому не показывайте.</string>
+    <string name="verify_seed_buttons_tip">Пожалуйста, нажмите на слова из Вашей фразы восстановления в правильном порядке</string>
+    <string name="verify_seed_success_title">Успешно подтверждено</string>
+    <string name="verify_seed_success_message">Сейчас Ваш кошелёк защищён. Вы можете использовать фразу восстановления в любое время, чтобы получить доступ к Вашему аккаунту на другом устройстве.</string>
+    <string name="verify_no_screenshot_title">Не делайте скриншот</string>
+    <string name="verify_no_screenshot_message">Пожалуйста, запишите фразу восстановления в надёжном месте.</string>
+    <string name="verify_why_no_screenshot">Почему я не могу сделать скриншот?</string>
+    <string name="verify_warning_title">Предупреждение</string>
+    <string name="verify_warning_message">Эта фраза восстановления - Ваш доступ к средствам на этом кошельке.</string>
+    <string name="verify_warning_screenshots_title">НЕ ДЕЛАЙТЕ скриншоты</string>
+    <string name="verify_warning_screenshots_message">Скриншоты видны другим приложениям и устройствам.</string>
+    <string name="verify_warning_do_not_show">НЕ ПОКАЗЫВАЙТЕ никому вашу фразу восстановления.</string>
+    <string name="verify_warning_do_not_type">НИКОГДА не вводите Вашу фразу восстановления в менеджеры паролей или другие приложения.</string>
+    <string name="view_seed_done">Готово</string>
+    <string name="view_seed_title">Фраза восстановления</string>
+    <string name="transaction_result_view_on_explorer">Посмотреть в Block Explorer</string>
+    <string name="transaction_result_tax_category">Категория</string>
+    <string name="transaction_result_tax_category_loading">Загрузка…</string>
+    <string name="tax_category_income">Доходы</string>
+    <string name="tax_category_expense">Расходы</string>
+    <string name="tax_category_transfer_in">Входящие переводы</string>
+    <string name="tax_category_transfer_out">Исходящие переводы</string>
+    <string name="transaction_result_paid_successfully">Успешно отправлено</string>
+    <string name="transaction_result_sent_to">Отправить</string>
+    <string name="transaction_date_and_time">Дата</string>
+    <string name="transaction_close">Закрыть</string>
+    <string name="transaction_details_amount_received">Полученная сумма</string>
+    <string name="transaction_details_amount_sent">Отправленная сумма</string>
+    <string name="transaction_details_amount_sent_successfully">Успешно отправлено</string>
+    <string name="transaction_details_sent_from">Отправлено с</string>
+    <string name="transaction_details_sent_to">Отправлено</string>
+    <string name="transaction_details_received_at">Получено на</string>
+    <string name="transaction_details_received_from">Получено от</string>
+    <string name="transaction_details_moved_from">Перемещено из</string>
+    <string name="transaction_details_moved_internally_to">Перемещено в </string>
+    <string name="transaction_failed_details">Ошибка транзакции</string>
+    <string name="transaction_failed_resolve">Это может быть решено путём</string>
+    <string name="transaction_failed_rescan">повторной синхронизации блокчейна</string>
+    <string name="transaction_failed_in_conflict">Это возможно, если кошелёк установлен на два устройства.</string>
+
+    <string name="authenticate_fingerprint_title">Аутентифицировать</string>
+    <string name="authenticate_fingerprint_message">Подтвердите отпечаток пальца, чтобы продолжить</string>
+    <string name="authenticate_pin_message">Введите PIN-код, чтобы продолжить</string>
+    <string name="authenticate_switch_to_fingerprint">Использовать отпечаток пальца</string>
+    <string name="authenticate_switch_to_pin">Используйте PIN-код</string>
+
+    <string name="menu_invite_title">Пригласить</string>
+    <string name="menu_invite_subtitle">Помогите друзьям и семье присоединиться к BabaChain</string>
+    <string name="menu_buy_and_sell_title">Купить &amp; Продать BabaChain</string>
+    <string name="menu_buy_and_sell_subtitle">Подключиться к сторонним биржам</string>
+    <string name="liquid_unavailable">Интеграция Liquid с BabaChain Wallet больше не доступна</string>
+    <string name="liquid_unavailable_details">Если у вас есть вопросы о ваших средствах в BabaChain на Liquid, пожалуйста свяжитесь со службой поддержки Liquid</string>
+    <string name="menu_security_title">Безопасность</string>
+    <string name="menu_security_subtitle">Показать кодовую фразу, сделать резервную копию кошелька...</string>
+    <string name="menu_settings_title">Настройки</string>
+    <string name="menu_settings_subtitle">Валюта по умолчанию, ярлыки, о программе…</string>
+    <string name="menu_tools_title">Инструменты</string>
+    <string name="menu_tools_subtitle">Импортировать приватный ключ…</string>
+    <string name="menu_local_currency">Местная валюта</string>
+    <string name="menu_rescan_blockchain">Пересканировать цепочку блоков</string>
+    <string name="menu_contact_support_title">Связаться с поддержкой</string>
+    <string name="menu_contact_support_subtitle">Сообщить о проблеме</string>
+    <string name="menu_explore_title">Исследовать</string>
+    <string name="menu_explore_subtitle">Найти магазины, где принимают DASH</string>
+
+    <string name="tools_address_book">Адресная книга</string>
+    <string name="tools_import_private_key">Импортировать приватный ключ</string>
+    <string name="tools_network_monitor">Сетевой монитор</string>
+    <string name="tools_show_xpub">Расширенный  публичный ключ</string>
+
+    <string name="about_help_us_improve">Помогите нам стать лучше</string>
+    <string name="about_review_and_rate">Напишите отзыв и оцените приложение</string>
+    <string name="about_contact_support">Связаться с поддержкой</string>
+    <string name="about_fork_disclaimer">Это приложение с открытым кодом, основанное на Bitcoin Wallet</string>
+    <string name="about_copyright">Авторские права © 2025 BabaChain Core Group</string>
+    <string name="about_license">GNU General Public License v3.0</string>
+    <string name="about_version_name">Кошелёк BabaChainPay %s</string>
+    <string name="about_last_explore_device_sync">Последняя синхронизация с Explore</string>
+    <string name="about_last_explore_server_update">Последнее обновление сервера Explore</string>
+    <string name="about_firebase_installation_id">Идентификатор установки Firebase</string>
+    <string name="about_fcm_token">Токен Firebase Cloud Messaging</string>
+    <string name="about_last_explore_babachain_update_error">Невозможно получить</string>
+    <string name="about_last_explore_babachain_sync_never">никогда</string>
+    <string name="about_explore_failed_sync">Не удалось синхронизироваться c %s</string>
+    <string name="about_explore_preloaded_on">Предварительно загружена %s</string>
+
+    <string name="block">Блок</string>
+    <string name="time">Время</string>
+    <string name="hash">Хэш</string>
+    <string name="block_info">Информация о блоке</string>
+
+    <string name="scan_private_key">Сканировать приватный ключ</string>
+    <string name="scan_private_key_intro_1">Вы собираетесь перенести все средства из другого кошелька BabaChain.</string>
+    <string name="scan_private_key_intro_2">Все средства будут перемещены на Ваш кошелёк на этом устройстве.</string>
+    <string name="scan_private_key_intro_3">Когда эта транзакция будет подтверждена, кошелёк будет бесполезен и не должен быть повторно использован в целях безопасности.</string>
+    <string name="confirm">Подтвердить</string>
+
+    <string name="advanced_security_security_level">Уровень безопасности</string>
+    <string name="auto_logout">Авто-выход</string>
+    <string name="spending_confirmation">Подтверждения</string>
+    <string name="logout_after">Выходить через</string>
+    <string name="immediately">Немедленно</string>
+    <string name="twenty_four_hours">24 часа</string>
+    <string name="one_minute">1 мин</string>
+    <string name="five_minute">5 мин</string>
+    <string name="one_hour">1 час</string>
+    <string name="biometric_limit">Биометрический лимит</string>
+    <string name="spending_confirmation_hint_zero">Всегда требовать PIN для совершения платежа</string>
+    <string name="spending_confirmation_hint_above_zero">Вы можете использовать биометрическую аутентификацию для переводов меньше</string>
+
+    <string name="security_none">Отсутствует</string>
+    <string name="security_low">Низкий</string>
+    <string name="security_medium">Средний</string>
+    <string name="security_high">Высокий</string>
+    <string name="security_very_high">Очень высокий</string>
+    <string name="max">Макс</string>
+
+    <string name="skip">пропустить</string>
+    <string name="get_started">Начать</string>
+    <string name="welcome_screen_title_1_new_install">Добро пожаловать</string>
+    <string name="welcome_screen_title_1_upgrade">Мы обновились</string>
+    <string name="welcome_screen_subtitle_1">Интуитивный и привычный интерфейс на всех Ваших устройствах</string>
+    <string name="welcome_screen_title_2">Платите с легкостью</string>
+    <string name="welcome_screen_subtitle_2">Платите и получайте переводы мгновенно с помощью простых в использовании механизмов платежей</string>
+    <string name="welcome_screen_title_3">Больше контроля</string>
+    <string name="welcome_screen_subtitle_3">Полный контроль и настройки кошелька для Ваших нужд</string>
+
+    <string-array name="history_filter">
+        <item>Все</item>
+        <item>Получено</item>
+        <item>Отправлено</item>
+    </string-array>
+
+    <string name="sync_status_wait">Пожалуйста, подождите завершения синхронизации</string>
+    <string name="sync_status_syncing_sub_title">с BabaChain блокчейн</string>
+    <string name="sync_status_unable_to_connect">Не удалось подключиться</string>
+    <string name="sync_status_check_connection">Проверьте ваше интернет-соединение</string>
+    <string name="sync_status_sync_title">Синхронизация</string>
+    <string name="sync_status_sync_completed">Завершено</string>
+
+    <string name="appwidget_wallet_not_ready">Пожалуйста, настройте свой кошелек</string>
+
+    <string name="payment_request_please_wait_message">Подключение к платёжному серверу</string>
+    <string name="payment_request_unable_to_connect">Невозможно подключиться</string>
+    <string name="payment_request_unable_to_send">Невозможно отправить</string>
+    <string name="payment_request_please_try_again">Попробуйте еще раз</string>
+    <string name="payment_request_try_again">Попробуйте ещё раз</string>
+    <string name="payment_request_expired_title">Запрос на оплату истёк</string>
+    <string name="payment_request_close">Закрыть</string>
+    <string name="payment_request_skip">Пропустить</string>
+    <string name="payment_request_paid_to">Оплатить</string>
+
+    <string name="import_image_not_valid_qr_code">Недействительный QR-код</string>
+    <string name="import_image_please_use_valid_qr_code">Пожалуйста, используйте корректный QR-код BabaChain</string>
+    <string name="import_image_no_private_key_copied">Приватный ключ не скопирован</string>
+    <string name="import_image_import_valid_private_key">Скопируйте действующий приватный ключ, чтобы с его помощью импортировать BabaChain</string>
+    <string name="import_image_invalid_private">Неверный приватный ключ</string>
+    <string name="okay">Да</string>
+
+    <string name="onboard_from_invite_title">Давайте начнём</string>
+    <string name="onboard_from_invite_subtitle">Добро пожаловать в BabaChainPay</string>
+    <string name="onboard_from_invite_step1">Шаг 1</string>
+    <string name="onboard_from_invite_step2">Шаг 2</string>
+    <string name="onboard_from_invite_step3">Шаг 3</string>
+    <string name="onboard_from_invite_step1_title">Выберите имя пользователя</string>
+    <string name="onboard_from_invite_step2_title">Установите PIN</string>
+    <string name="onboard_from_invite_step3_title">Сохранить кошелёк</string>
+
+    <string name="restore_wallet_please_wait">Пожалуйста, подождите</string>
+    <string name="restore_wallet_restoring">Ваш кошелёк был восстановлен</string>
+
+
+
+    <string name="network_unavailable">Сеть недоступна</string>
+    <string name="network_error_contact_details">Не удалось получить контактные данные</string>
+    <string name="network_error_user_search">Не удалось найти пользователя</string>
+    <string name="network_error_contact_suggestions">Не удалось представить рекомендации</string>
+    <string name="network_error_unable_to_update_profile">Невозможно обновить профиль</string>
+
+
+
+    <string name="today">Сегодня</string>
+    <string name="yesterday">Вчера</string>
+
+    <string name="syncing">Синхронизация</string>
+    <string name="syncing_balance">Синхронизация баланса</string>
+    <string name="transaction_count">%dтранзакций</string>
+    <string name="all_transactions">Все</string>
+    <string name="received_transactions">Получено</string>
+    <string name="sent_transactions">Отправлено</string>
+    <string name="serious_error_title">Серьёзная ошибка</string>
+    <string name="serious_error_unknown">Пожалуйста, свяжитесь с поддержкой.</string>
+    <string name="set_pin_error_missing_wallet_title">Ошибка: отсутствует кошелёк</string>
+    <string name="set_pin_error_missing_wallet_message">Кошелёк отсутствует. Пожалуйста, обратитесь в Службу поддержки.</string>
+    <string name="wallet_encryption_error_title">Ошибка при создании кошелька</string>
+    <string name="wallet_encryption_error_message">При создании кошелька возникла проблема. Пожалуйста, обратитесь в Службу поддержки.</string>
+    <string name="wallet_not_encrypted_error_message">С вашим кошельком возникла проблема.\n\nЕсли в вашем кошельке нет BabaChain, тогда удалите и установите это приложение заново. Затем создайте новый кошелёк.\n\nЕсли у вас есть фраза восстановления или резервная копия, тогда удалите это приложение и установите его заново.\n\nВ иных случаях обратитесь в Службу поддержки.</string>
+
+    <string name="reset_wallet_title">Вы уверены, что хотите сбросить кошелёк?</string>
+    <string name="reset_wallet_message">Если вы переустановите кошелёк, то сможете восстановить доступ к нему только с помощью фразы восстановления.</string>
+    <string name="positive_reset_text">Да, сбросить кошелёк</string>
+    <string name="launch_reset_wallet_title">У вас есть средства на счете</string>
+    <string name="launch_reset_wallet_message">При сбросе кошелька вы потеряете все эти средства, если не сохранили фразу восстановления.</string>
+    <string name="continue_reset">Продолжить</string>
+    <string name="launch_reset_wallet_extra_message">Сохранить фразу восстановления</string>
+    <string name="start_reset_wallet_title">Вы можете потерять %s</string>
+    <string name="reset_wallet_text">Сбросить кошелек</string>
+
+
+
+    <!-- Tax category -->
+    <string name="reclassify_transactions_title">Переклассифицировать транзакции</string>
+    <string name="reclassify_transactions_title_message">Эти классификации будут отражены при экспорте в CSV-файл, который в дальнейшем можно использовать для передачи в налоговые службы.</string>
+    <string name="reclassify_transactions_question">Где можно сменить категорию?</string>
+    <string name="reclassify_transactions_outgoing_title">Исходящие транзакции</string>
+    <string name="reclassify_transactions_by_default_message">по умолчанию будут отмечены как</string>
+    <string name="reclassify_transactions_incoming_title">Входящие транзакции</string>
+    <string name="reclassify_transactions_change_it_message">Можно изменить на</string>
+    <string name="reclassify_transactions_linked_accounts_title">Привязанные аккаунты</string>
+    <string name="reclassify_transactions_linked_accounts_message">по умолчанию все транзакции с привязанных аккаунтов или на них (биржи, стейкинг и т.д.) будут отмечены как переводы.</string>
+    <string name="reclassify_transactions_change_explanation">Выберите любую транзакцию на домашней странице и измените категорию на странице сведений о транзакции.</string>
+
+    <string name="masternode_keys_title">Masternode ключи</string>
+    <string name="masternode_key_type_owner">Ключи владельца</string>
+    <string name="masternode_key_type_voting">Ключи голосования</string>
+    <string name="masternode_key_type_operator">Ключи оператора</string>
+    <string name="masternode_key_type_platform">Ключи идентификаторов Evolution нод</string>
+    <string name="masternode_key_type_total">ключи</string>
+    <string name="masternode_key_type_used">%d использовано</string>
+    <string name="masternode_key_pair_index">Ключи %d</string>
+    <string name="masternode_key_address">Адрес</string>
+    <string name="masternode_key_id">Ключ Id</string>
+    <string name="masternode_key_public">Публичный ключ</string>
+    <string name="masternode_key_public_legacy">Публичный ключ (legacy)</string>
+    <string name="masternode_key_private_hex">Приватный ключ</string>
+    <string name="masternode_key_private_wif">Приватный ключ WIF</string>
+    <string name="masternode_key_used">IP: %s</string>
+    <string name="masternode_key_ip_address_unknown">Неизвестный</string>
+    <string name="masternode_key_not_used">не использован</string>
+    <string name="masternode_key_revoked">Аннулирован</string>
+    <string name="masternode_key_private_public_base64">Приватные / Публичные ключи (base64)</string>
+    <string name="timeskew_ahead">спешит</string>
+    <string name="timeskew_behind">отстаёт</string>
+
+    <!-- stale rates messages -->
+    <string name="stale_exchange_rates_error">Данные о курсе не были получены. Курс валют может быть неточным.</string>
+    <string name="stale_exchange_rates_stale">Данные о курсе были получены не менее 30 минут назад. Курс валют может быть неточным.</string>
+    <string name="stale_exchange_rates_volatile">Курс изменился более чем на 50% с момента последнего обновления.</string>
+    <string name="select_security_level_title">Выбрать уровень безопасности</string>
+    <string name="select_security_level_message">Вы можете защитить свой кошелёк фразой восстановления, состоящей из 12 или 24 слов</string>
+    <string name="select_security_level_12_words_title">Безопасно</string>
+    <string name="select_security_level_12_words_message">Фраза восстановления из 12 слов</string>
+    <string name="select_security_level_24_words_title">Очень безопасно</string>
+    <string name="select_security_level_24_words_message">Фраза восстановления из 24 слов</string>
+</resources>

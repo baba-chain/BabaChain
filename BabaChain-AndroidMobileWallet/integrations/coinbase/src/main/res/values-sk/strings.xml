@@ -1,0 +1,120 @@
+<!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <string name="coinbase">Coinbase</string>
+    <string name="coinbase_link_title">Prepojiť váš účet na Coinbase</string>
+    <string name="coinbase_link">Prepojiť účet na Coinbase</string>
+    <string name="coinbase_transfer_details">Medzi BabaChain peňaženkou a vaším účtom na Coinbase</string>
+    <string name="coinbase_babachain_wallet_error_title">Na vašom účte Coinbase sme nenašli BabaChain peňaženku.</string>
+    <string name="coinbase_babachain_wallet_error_message">Ak chcete pokračovať, vytvorte si BabaChain peňaženku na Coinbase.</string>
+    <string name="create_babachain_account">Vytvoriť BabaChain účet</string>
+    <string name="close">Zatvoriť</string>
+    <string name="retry">Znovu</string>
+    <string name="connected">Pripojené</string>
+    <string name="disconnect_coinbase_account">Odpojte Coinbase účet</string>
+    <string name="receive_directly_into_babachain_wallet">Prijímajte priamo do BabaChain peňaženky.</string>
+    <string name="buy_babachain">Kúpiť BabaChain</string>
+    <string name="balance_on_coinbase">Zostatok BabaChain na Coinbase</string>
+    <string name="sending_to">Posiela sa</string>
+    <string name="babachain_wallet_device">Peňaženka BabaChain v tomto zariadení</string>
+    <string name="exchange_rate_template">%1$s DASH = %2$s</string>
+    <string name="payment_method">Spôsob platby</string>
+    <string name="purchase">Nákup</string>
+    <string name="coinbase_fee">Poplatok Coinbase</string>
+    <string name="total">Celkovo</string>
+    <string name="order_preview">Ukážka objednávky</string>
+    <string name="you_will_receive_babachain_on_your_babachain_wallet">Do svojej peňaženky BabaChain na tomto zariadení dostanete zhruba %s BabaChain. Upozorňujeme, že dokončenie prevodu môže trvať 2 až 3 minúty</string>
+    <string name="amount_in_babachain">Suma v BabaChain</string>
+    <string name="cancel">Zrušiť</string>
+    <string name="confirm_sec">Potvrďte (%ss)</string>
+    <string name="confirm">Potvrdiť</string>
+    <string name="coinbase_no_payment_methods_error_title">Nenašli sme žiadne spôsoby platby.</string>
+    <string name="coinbase_no_payment_methods_error_message">Ak chcete pokračovať, aktualizujte svoj účet na Coinbase.</string>
+    <string name="coinbase_unusable_payment_method_error_title">Tento spôsob platby nie je možné použiť.</string>
+    <string name="coinbase_unusable_payment_method_error_message">Povoľte nákup prostredníctvom tohto spôsobu platby vo svojom účte na Coinbase.</string>
+    <string name="coinbase_open_account">Otvorte si účet na Coinbase</string>
+    <string name="add_payment_method">Pridať spôsob platby</string>
+    <string name="error">Chyba</string>
+    <string name="cancel_transaction">Zrušiť transakciu?</string>
+    <string name="yes_cancel">Áno, zrušiť</string>
+    <string name="no_keep_it">Nie, zachovať</string>
+    <string name="purchase_successful">Nákup bol úspešný</string>
+    <string name="conversion_successful">Konverzia úspešná</string>
+    <string name="purchase_failed">Nákup zlyhal</string>
+    <string name="transfer_failed">Prenos zlyhal</string>
+    <string name="conversion_failed">Konverzia zlyhala</string>
+    <string name="transfer_failed_msg">BabaChain bol úspešne vložený na váš Coinbase účet. Pri prenose do BabaChain Wallet na tomto zariadení sa však vyskytol problém.</string>
+    <string name="it_could_take_up_to_2_3_minutes">Prenos BabaChain do vašej peňaženky na tomto zariadení môže trvať 2 až 3 minúty.</string>
+    <string name="it_could_take_up_to_5_minutes">Prevod %s z Coinbase účtu na BabaChain vo vašej BabaChain peňaženke na tomto zariadení,  môže trvať až 5 minút.</string>
+    <string name="it_could_take_up_to_5_minutes_to_coinbase">Prevod BabaChain z BabaChain Wallet na tomto zariadení na váš účet Coinbase %s môže trvať až 5 minút.</string>
+    <string name="contact_coinbase_support">Kontaktujte podporu Coinbase</string>
+    <string name="fees_in_crypto_purchase">Poplatky pri nákupoch kryptomien</string>
+    <string name="coinbase_fee_info_msg_content">Okrem zobrazeného poplatku za Coinbase  započítavame aj rozpätie v cene. Trhy s kryptomenami sú volatilné, čo nám umožňuje dočasne zablokovať cenu za realizáciu obchodu.</string>
+    <string name="learn_more">Ďalšie informácie</string>
+    <string name="something_wrong_title">Niečo sa pokazilo!</string>
+    <string name="retry_later_message">Skúste to znova o niečo neskôr alebo kontaktujte naše centrum podpory a požiadajte o pomoc</string>
+    <string name="between_babachain_wallet_and_coinbase">Medzi BabaChain peňaženkou a Coinbase</string>
+    <string name="conversion_preview">Ukážka konverzie</string>
+    <string name="you_send">vy posielate</string>
+    <string name="from_your_coinbase_account">Z vášho Coinbase účtu</string>
+    <string name="you_receive">dostanete</string>
+    <string name="to_babachain_wallet_on_this_device">Do peňaženky BabaChain na tomto zariadení</string>
+    <string name="to_your_coinbase_account">na váš Coinbase účet</string>
+    <string name="from_babachain_wallet_on_this_device">Z peňaženky BabaChain na tomto zariadení</string>
+    <string name="you_will_receive">Dostanete</string>
+    <string name="we_didnt_find_any_assets">Na vašom Coinbase účte sme nenašli žiadne aktíva.</string>
+    <string name="you_dont_own_any_crypto">Nevlastníte žiadne kryptomeny. Ak chcete začať, kúpte si nejaké kryptomeny.</string>
+    <string name="buy_crypto_on_coinbase">Kúpte si kryptomeny na Coinbase</string>
+    <string name="auth_limit_description">Prekročili ste autorizačný limit na Coinbase.</string>
+    <string name="debit_money">Zaplatiť z vášho účtu</string>
+    <string name="change_limit">Zmeniť tento limit</string>
+    <string name="set_auth_limit">Uistite sa, že ste nastavili správny autorizačný limit na Coinbase</string>
+    <string name="change_withdrawal_limit">Môžete ho kedykoľvek zmeniť odhlásením sa zo svojho účtu Coinbase v BabaChain peňaženke a opätovným prihlásením.</string>
+    <string name="got_it">Chápem</string>
+    <string name="send_to_wallet_error">Túto sumu nie je možné odoslať bez prekročenia limitu aplikácie</string>
+    <string name="dont_have_any_babachain">V BabaChain peňaženke nemáte žiadny BabaChain.</string>
+    <string name="transfer_wallet_not_synced">Prevody z BabaChain peňaženky do Coinbase nie sú možné, kým nie je dokončená synchronizácia peňaženky.</string>
+
+    <string name="insufficient_money_title">Nedostatok mincí</string>
+    <string name="insufficient_money_msg">Počet mincí v peňaženke je pre načítanie príliš nízky.</string>
+    <string name="send_coins_error_msg">Problém pri odosielaní!</string>
+    <string name="entered_amount_is_too_low">Minimálna suma transakcie je</string>
+    <string name="entered_amount_is_too_high">Maximálna suma transakcie je</string>
+    <string name="verify_continue">Overiť</string>
+    <string name="enter_auth_code">Zadajte Coinbase 2FA kód</string>
+    <string name="extra_steps_label">Tento dodatočný krok potvrdzuje, že ste to skutočne vy kto sa pokúša uskutočniť transakciu.</string>
+    <string name="need_help">Potrebujete pomoc?</string>
+    <string name="coinbase_fa_code_hint">Coinbase 2FA kód</string>
+    <string name="enter_code_details">Môže to byť kód z SMS vo vašom telefóne. Ak nie, zadajte kód z overovacej aplikácie.</string>
+    <string name="two_fa_code_incorrect">Kód je nesprávny. Skontrolujte a skúste to znova!</string>
+    <string name="verify_code">Overiť</string>
+    <string name="you_dont_have_enough_balance">Váš zostatok je nedostatočný</string>
+    <string name="transfer_amount">Presun</string>
+    <string name="babachain_wallet_limit_description">Suma je vyššia ako váš zostatok</string>
+    <string name="address_creation_failed">Nepodarilo sa nám vytvoriť adresu pre váš účet na dokončenie transakcie. Prosím, skúste neskôr.</string>
+    <string name="transaction_row_rate_not_available">Nie je k dispozícií</string>
+    <string name="transfer_babachain_successful">Prevod bol úspešný</string>
+    <string name="it_could_take_up_to_10_minutes">Prenos BabaChain z Coinbase do BabaChain peňaženky tohto zariadenia môže trvať až 10 minút.</string>
+    <string name="it_could_take_up_to_10_minutes_to_coinbase">Prenos BabaChain z BabaChain peňaženky na tomto zariadení do vášho účtu Coinbase môže trvať až 10 minút.</string>
+    <string name="transfer_babachain_failed_msg"> Pri prenose do BabaChain peňaženky na tomto zariadení sa vyskytol problém.</string>
+    <string name="insufficient_money_to_transfer">Na prevod je množstvo mincí v peňaženke príliš malé.</string>
+    <string name="amount_to_transfer">Dostanete %s %s%s</string>
+    <string name="amount_to_transfer_babachain">Dostanete %s</string>
+    <string name="your_coinbase_session_has_expired">Vaša relácia s Coinbase vypršala</string>
+    <string name="please_log_in_to_your_coinbase_account">Prihláste sa do svojho Coinbase účtu</string>
+    <string name="coinbase_use_bank_account">Chceli by ste vložiť zálohu za svoj nákup pomocou prepojeného bankového účtu?</string>
+    </resources>

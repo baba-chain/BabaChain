@@ -1,0 +1,469 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="onboarding_create_wallet">Buat Dompet Baru</string>
+    <string name="onboarding_recover_wallet">Pulihkan dari frasa pemulihan</string>
+    <string name="onboarding_restore_wallet">Kembalikan Dompet Dari File</string>
+    <string name="onboarding_load_wallet_error">Tidak dapat memuat dompet!</string>
+
+    <string name="set_pin_create_new_wallet">Buat Dompet Baru</string>
+    <string name="set_pin_upgrade_wallet">Tingkatkan Dompet</string>
+    <string name="set_pin_restore_wallet">Pulihkan dompet</string>
+    <string name="set_pin_enter_pin">Masukkan PIN lama</string>
+    <string name="set_pin_set_pin">tetapkan PIN</string>
+    <string name="set_pin_confirm_pin">Konfirmasikan PIN</string>
+    <string name="set_pin_encrypting">Enkripsi dompet</string>
+    <string name="set_pin_decrypting">Mendekripsi dompet</string>
+    <string name="set_pin_verifying_pin">Memverifikasi PIN</string>
+    <string name="set_pin_message">PIN ini akan diperlukan untuk membuka kunci aplikasi Anda setiap kali saat Anda menggunakannya.</string>
+    <string name="set_pin_confirm_pin_incorrect">PIN salah</string>
+    
+    <string name="home_balance_hide_hint">Ketuk untuk menyembunyikan saldo</string>
+
+    <string name="dialog_confirm_confirm">Memastikan</string>
+    <string name="dialog_confirm_pay_to">Kirim ke</string>
+    <string name="dialog_confirm_secured_by">Diamankan oleh</string>
+    <string name="dialog_confirm_fee">Biaya jaringan</string>
+    <string name="dialog_confirm_total">Total</string>
+    <string name="dialog_confirm_accept_contact_request">Terima permintaan kontak</string>
+
+    <string name="shortcut_action_join_babachainpay">Gabung BabaChainPay</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_secure_now">Cadangan</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_scan_to_pay">Pindai QR</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_send">Kirim</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_pay_to_contact">Kirim ke Kontak</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_buy_sell">Beli &amp; Jual</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_receive">Terima</string>
+    <!-- Home Screen: Shortcut Button: 2 lines, 9 characters across -->
+    <string name="shortcut_import_key">Impor kunci pribadi</string>
+
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_quick_receive">Terima Cepat</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_pin">Masuk dengan PIN</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_login_with_fingerprint">Masuk dengan Sidik Jari</string>
+    <!-- Lock Screen: Button: 2 lines, 9 characters across -->
+    <string name="lock_action_scan_to_pay">Pindai untuk mengirim</string>
+    <!-- Lock Screen: Text above the PIN Entry area -->
+    <string name="lock_enter_pin">Masukkan PIN</string>
+    <string name="lock_unlock_with_fingerprint">Gunakan sidik jari Anda untuk membuka kunci.</string>
+
+    <string name="perm_lock_info">Dompet terkunci secara permanen</string>
+    <string name="perm_lock_wipe_wallet">Sapu Dompet</string>
+    <string name="perm_lock_close_app">Tutup</string>
+
+    <string name="scan_to_pay_error_dialog_title">Pindai untuk mengirim</string>
+    <string name="scan_to_pay_error_dialog_message">Bukan Alamat BabaChain atau permintaan URL di clipboard yang valid:\n\n%s</string>
+    <string name="scan_to_pay_error_dialog_message_no_data">Bukan Alamat BabaChain atau permintaan URL di clipboard yang valid.</string>
+
+    <string name="receive_title">Terima</string>
+    <string name="receive_enter_amount_message">Tentukan jumlah yang akan diterima</string>
+
+    <string name="pay_title">Kirim</string>
+    <string name="history_title">Riwayat</string>
+    <string name="more_title">Lebih</string>
+    <string name="settings_title">Pengaturan</string>
+    <string name="security_title">Keamanan</string>
+    <string name="recover_wallet_title">Pulihkan Dompet</string>
+    <string name="tools_title">Alat</string>
+
+    <string name="payments_title">Pembayaran</string>
+    <string name="payments_tab_pay_label">Kirim</string>
+    <string name="payments_tab_receive_label">Terima</string>
+    <string name="payments_pay_to_contact_title">Kirim Ke Kontak</string>
+    <string name="payments_pay_to_contact_sub_title">Seseorang di kontak Anda</string>
+    <string name="payments_pay_to_contact_button">Pilih</string>
+    <string name="payments_pay_by_qr_title">Dikirim oleh</string>
+    <string name="payments_pay_by_qr_sub_title">Memindai kode QR</string>
+    <string name="payments_pay_to_clipboard_title">Kirim ke alamat yang disalin</string>
+    <string name="payments_pay_to_clipboard_sub_title">Tak ada alamat tersalin</string>
+
+    <string name="forgot_pin_title">Lupa PIN?</string>
+    <string name="forgot_pin_message">Anda dapat mengatur PIN baru dengan bantuan frasa pemulihan Anda.</string>
+    <string name="forgot_pin_instruction_1">Masukkan Frasa pemulihan untuk memulihakan dompet anda</string>
+    <string name="forgot_pin_instruction_2">Siapkan PIN baru</string>
+    <string name="forgot_pin_instruction_3">Masuk dengan PIN baru Anda untuk mengakses dompet Anda</string>
+    <string name="forgot_pin_warning">Jika Anda lupa PIN dan kehilangan frasa pemulihan, Anda tidak bisa mendapatkan kembali akses ke dompet dan dana Anda.</string>
+    <string name="forgot_pin_recover">Masukkan Frasa pemulihan</string>
+    <string name="forgot_pin_passphrase_doesnt_match">Frasa pemulihan tidak cocok dengan apa yang telah disiapkan untuk dompet ini.</string>
+
+    <string name="send_coins_auto_lock_feasible">Transaksi ini harus diselesaikan secara instan tanpa biaya tambahan</string>
+    <string name="send_coins_auto_lock_not_feasible">Transaksi ini mungkin perlu beberapa menit untuk diselesaikan. Selesaikan instan untuk %1$s%2$s?</string>
+    <string name="send_coins_instant_send_not_feasible">Transaksi ini mungkin perlu beberapa menit untuk diselesaikan.</string>
+
+    <string name="options_paste_from_clipboard_title">Tempelkan</string>
+
+    <string name="transaction_row_message_own_instantx_lock_request_notsent">Pembayaran ini belum disiarkan.</string>
+    <string name="transaction_row_message_sent_to_single_peer">Pembayaran ini telah dikirim.</string>
+
+    <string name="regular_transaction_info_message">Transaksi ini tidak diselesaikan secara instan.</string>
+
+    <string name="wallet_options_disconnect">Terputus</string>
+
+    <string name="network_monitor_masternodes_title">Masternode</string>
+    <string name="export_keys_dialog_title_to_seed">Lihat frasa pemulihan</string>
+    <string name="import_keys_dialog_title_from_seed">Pulihkan dari frasa pemulihan</string>
+    <string name="backup_to_seed_wallet_dialog_message">Ini adalah frasa pemulihan anda. Tolong Catat.</string>
+    <string name="backup_wallet_to_seed_dialog_warning">JANGAN biarkan siapa pun melihat frasa pemulihan Anda atau mereka dapat menghabiskan BabaChain Anda.</string>
+    <string name="backup_to_seed_wallet_dialog_enter_pin_message">Dompet Anda dilindungi oleh PIN. Masukkan PIN Anda dan tekan Tampil untuk melihat frasa pemulihan Anda.</string>
+    <string name="import_keys_from_seed_dialog_message">Masukkan frasa pemulihan anda disini.</string>
+    <string name="import_export_keys_dialog_password_phrase">Frasa pemulihan ada di sini.</string>
+    <string name="preferences_report_issue_summary">Kumpulkan informasi masalah Anda dan kirimkan laporan Anda ke pengembang.</string>
+    <string name="navigation_configuration">Konfigurasi</string>
+    <string name="request_coins_clipboard_address_msg">Alamat BabaChain disalin</string>
+    <string name="backup_wallet_to_seed_show_recovery_phrase">Tunjukkan</string>
+    <string name="restore_wallet_from_invalid_seed_warning_message">\"%s\" bukan kata frasa pemulihan</string>
+    <string name="restore_wallet_from_invalid_seed_not_twelve_words">Frasa pemulihan harus memiliki 12 atau 24 kata</string>
+    <string name="restore_wallet_from_invalid_seed_bad_checksum">Frasa pemulihan yang buruk</string>
+    <string name="restore_wallet_from_invalid_seed_failure">Kunci pribadi tidak dapat dipulihkan:\n\n%s\n\nKata sandi salah?</string>
+
+    <string name="send_coins_options_fee_category_zero">Tanpa Biaya</string>
+    <string name="send_coins_fragment_hint_fee_zero">Tidak ada biaya yang akan dibayarkan. Gunakan \'tanpa biaya\' hanya jika Anda tidak peduli tentang waktu konfirmasi.</string>
+
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_public_key_request_dialog_msg">Aplikasi %s  ingin menerima Master Public Key Anda. Ini dapat digunakan untuk melacak dompet Anda, ini tidak dapat digunakan untuk memindahkan BabaChain Anda.</string>
+    <!-- Deep Links:  Message pops up when another app requests information from this app -->
+    <string name="wallet_uri_handler_address_request_dialog_msg">Aplikasi %s  meminta alamat agar dapat membayar Anda. Apakah Anda ingin mengesahkan ini?</string>
+
+    <string name="wallet_lock_unlock">Terbuka</string>
+    <string name="wallet_lock_unlock_wallet">Buka kunci dompet</string>
+    <string name="wallet_lock_unlock_to_see_txs_title">Dompet terkunci.</string>
+    <string name="wallet_lock_unlock_to_see_txs_txt">Ketuk ikon kunci di atas untuk membuka kunci dompet Anda dan lihat riwayat transaksi.</string>
+    <string name="wallet_lock_unlock_dialog_title">Buka kunci dompet Anda</string>
+    <string name="wallet_lock_unlock_dialog_message">Dompet Anda dilindungi oleh PIN. Masukkan PIN Anda dan tekan Buka Kunci untuk melanjutkan.</string>
+    <string name="wallet_lock_reset_wallet_title">Atur ulang dompet</string>
+    <string name="wallet_lock_reset_wallet_message">Apakah kamu yakin? Dompet Anda akan dihapus dan semua BabaChain Anda akan hilang.\n\n Satu-satunya cara untuk memulihkan BabaChain Anda adalah dengan file cadangan atau frasa pemulihan.</string>
+
+    <string name="wallet_lock_wallet_disabled">Dompet dinonaktifkan</string>
+    <string name="wallet_lock_try_again">Coba lagi dalam %1$d %2$s</string>
+    <string name="wallet_lock_reset">Atur-ulang</string>
+    <string name="wallet_lock_wrong_pin">PIN salah! %s</string>
+    <string name="wallet_last_attempt">Upaya PIN terakhir</string>
+    <string name="wallet_last_attempt_message">Upaya lain yang gagal akan membutuhkan frasa sandi saya untuk memulihkan dompet</string>
+
+    <plurals name="wallet_lock_attempts_remaining">
+        <item quantity="other">%d upaya tersisa </item>
+    </plurals>
+
+    <plurals name="minute">
+        <item quantity="other">menit</item>
+    </plurals>
+
+    <plurals name="hour">
+        <item quantity="other">jam</item>
+    </plurals>
+
+    <string name="encrypt_new_key_chain_upgrade_button">Tingkatkan</string>
+    <string name="encrypt_new_key_chain_dialog_title">Tingkatkan dompet anda</string>
+    <string name="encrypt_new_key_chain_dialog_message">Dompet Anda akan ditingkatkan untuk mendukung pengimporan dan mengekspor ke lebih banyak aplikasi.</string>
+    <string name="encrypt_new_key_chain_enter_pin_dialog_message">Anda harus memasukkan PIN Anda untuk menyelesaikan proses peningkatan.</string>
+    <string name="pin_code_required_dialog_message">Aplikasi ini sekarang membutuhkan PIN untuk menggunakan dan melihat saldo dan transaksi.</string>
+    <string name="backup_wallet_seed_private_key_written_down_box">Saya telah menuliskan frasa pemulihan</string>
+
+    <string name="change_exchange_currency_code_message">Mata uang lokal Anda adalah %1$s, tetapi dalam aplikasi ini mata uang default Anda disetel ke%2$s. Apakah Anda ingin mengubahnya menjadi%1$s atau membiarkannya sebagai%2$s?</string>
+    <string name="change_to">Ubah ke %s</string>
+    <string name="leave_as">tinggalkan sebagai %s</string>
+
+    <string name="remind_later">Ingatkan nanti</string>
+    <string name="backup_now">Cadangkan sekarang</string>
+
+    <string name="notification_transactions_channel_name">Transaksi</string>
+    <string name="notification_transactions_channel_description">Terima peringatan untuk transaksi masuk.</string>
+    <string name="notification_synchronization_channel_name">Sinkronisasi</string>
+    <string name="notification_synchronization_channel_description">Perlihatkan pemberitahuan saat aplikasi menyinkronkan dengan jaringan.</string>
+    <string name="notification_generic_channel_name">Pemberitahuan umum</string>
+    <string name="notification_generic_channel_description">Acara BabaChain Wallet lainnya</string>
+    <string name="notification_push_channel_name">Notifikasi Dorong</string>
+    <string name="notification_push_channel_description">Menunjukkan pemberitahuan push yang dikirimkan kepada Anda oleh BabaChain</string>
+    <string name="notification_settings_title">Pemberitahuan</string>
+    <string name="notification_explainer_title">BabaChain Wallet ingin mengirimi Anda pemberitahuan</string>
+    <string name="notification_explainer_message">Pemberitahuan dapat mencakup peringatan, suara, dan lencana ikon. Ini dapat dikonfigurasi di Pengaturan telepon.</string>
+    <string name="notification_babachainpay_channel_name">BabaChainPay</string>
+    <string name="notification_babachainpay_channel_description">Status operasi BabaChainPay yang sedang berlangsung.</string>
+
+    <string name="net_type_indicator" />
+
+    <string name="unlock_with_fingerprint">Gunakan sidik jari Anda untuk membuka kunci.</string>
+    <string name="unlock_with_fingerprint_error">Gagal mengenali sidik jari, silakan coba lagi.</string>
+    <string name="unlock_with_fingerprint_error_max_attempts">Upaya sidik jari maksimum terlampaui. Silakan coba lagi nanti.</string>
+    <string name="or_unlock_with_fingerprint">Atau gunakan sidik jari Anda untuk membuka kunci.</string>
+    <string name="enable_fingerprint">Aktifkan sidik jari</string>
+    <string name="touch_fingerprint_sensor">Sentuh sensor sidik jari</string>
+    <string name="touch_fingerprint_to_enable">Sentuh sensor sidik jari untuk mengaktifkan membuka kunci dengan sidik jari.</string>
+    <string name="fingerprint_changed_title">Data sidik jari berubah</string>
+    <string name="fingerprint_changed_message">Kami mendeteksi perubahan dalam data otentikasi sidik jari Anda. Anda perlu menggunakan PIN saat ini.</string>
+    <string name="exchange_rate_missing">Pembayaran ini terlalu lama untuk mendapatkan nilai fiat.</string>
+
+    <string name="preferences_enable_payment_request_summary">Gunakan protokol pembayaran untuk pembayaran yang dimulai dengan kode-QR</string>
+    <string name="preferences_enable_payment_request_title">BIP70 untuk pindai-untuk-bayar</string>
+
+    <string name="verify_continue">Teruskan</string>
+    <string name="verify_backup_wallet">Cadangkan Dompet</string>
+    <string name="verify_show_recovery_phrase">Tampilkan Frasa pemulihan</string>
+    <string name="verify_info_title">Cadangkan frasa pemulihan anda</string>
+    <string name="verify_info_subtitle">Anda memerlukan frasa pemulihan ini untuk mengakses dana Anda jika perangkat ini hilang, rusak, atau jika BabaChain Wallet dihapus dari perangkat ini.</string>
+    <string name="verify_info_title_1">BabaChain Core Group TIDAK menyimpan frasa pemulihan ini</string>
+    <string name="verify_info_subtitle_1">Siapa saja yang mempunyai frasa pemulihan anda dapat mengakses dana anda.</string>
+    <string name="verify_info_title_2">Anda TIDAK akan bisa memulihkan dompet tanpa frasa pemulihan</string>
+    <string name="verify_info_subtitle_2">Tuliskan di tempat yang aman dan jangan perlihatkan kepada siapa pun.</string>
+    <string name="verify_seed_buttons_tip">Ketuk kata-kata dari frasa pemulihan Anda dalam urutan yang benar</string>
+    <string name="verify_seed_success_title">Berhasil Diverifikasi</string>
+    <string name="verify_seed_success_message">Dompet Anda aman sekarang. Anda dapat menggunakan frasa pemulihan kapan saja untuk memulihkan akun di perangkat lain.</string>
+    <string name="verify_no_screenshot_title">Jangan mengambil tangkapan layar</string>
+    <string name="verify_no_screenshot_message">Sebaliknya, tulis frasa pemulihan di tempat yang aman.</string>
+    <string name="verify_why_no_screenshot">Mengapa saya harus tidak mengambil tangkapan layar?</string>
+    <string name="verify_warning_title">Peringatan</string>
+    <string name="verify_warning_message">Frasa pemulihan ini adalah akses Anda ke dana di dompet Anda.</string>
+    <string name="verify_warning_screenshots_title">JANGAN ambil tangkapan layar</string>
+    <string name="verify_warning_screenshots_message">Tangkapan layar dapat dilihat oleh aplikasi dan perangkat lain.</string>
+    <string name="verify_warning_do_not_show">JANGAN biarkan siapa pun melihat frasa pemulihan Anda.</string>
+    <string name="verify_warning_do_not_type">Jangan pernah mengetik frasa pemulihan Anda ke pengelola kata sandi atau di tempat lain.</string>
+    <string name="view_seed_done">Selesai</string>
+    <string name="view_seed_title">Frasa pemulihan</string>
+    <string name="transaction_result_view_on_explorer">Lihat di Blok Explorer</string>
+    <string name="transaction_result_tax_category">Kategori Pajak</string>
+    <string name="transaction_result_tax_category_loading">Memuat...</string>
+    <string name="tax_category_income">Pemasukan</string>
+    <string name="tax_category_expense">pengeluaran</string>
+    <string name="tax_category_transfer_in">Transfer masuk</string>
+    <string name="tax_category_transfer_out">Transfer keluar</string>
+    <string name="transaction_result_paid_successfully">Pengiriman berhasil</string>
+    <string name="transaction_result_sent_to">Terkirim ke</string>
+    <string name="transaction_date_and_time">Tanggal</string>
+    <string name="transaction_close">Tutup</string>
+    <string name="transaction_details_amount_received">Jumlah Diterima</string>
+    <string name="transaction_details_amount_sent">Jumlah Dikirim</string>
+    <string name="transaction_details_amount_sent_successfully">Pengiriman berhasil</string>
+    <string name="transaction_details_sent_from">Terkirim dari</string>
+    <string name="transaction_details_sent_to">Terkirim ke</string>
+    <string name="transaction_details_received_at">Diterima di</string>
+    <string name="transaction_details_received_from">Diterima dari</string>
+    <string name="transaction_details_moved_from">Pindah dari</string>
+    <string name="transaction_details_moved_internally_to">Pindah ke internal</string>
+    <string name="transaction_failed_details">Transaksi  gagal</string>
+    <string name="transaction_failed_resolve">Hal ini dapat diatasi dengan</string>
+    <string name="transaction_failed_rescan">memindai ulang blockchain</string>
+    <string name="transaction_failed_in_conflict">Hal ini dimungkinkan jika dompet dipasang pada dua perangkat.</string>
+
+    <string name="authenticate_fingerprint_title">Membuktikan</string>
+    <string name="authenticate_fingerprint_message">Konfirmasikan sidik jari untuk melanjutkan</string>
+    <string name="authenticate_pin_message">Masukkan PIN Anda untuk melanjutkan</string>
+    <string name="authenticate_switch_to_fingerprint">Gunakan sidik jari </string>
+    <string name="authenticate_switch_to_pin">Gunakan PIN</string>
+
+    <string name="menu_invite_title">Undang</string>
+    <string name="menu_invite_subtitle">Bantu teman dan keluarga anda bergabung dengam BabaChain</string>
+    <string name="menu_buy_and_sell_title">Beli &amp; Jual BabaChain</string>
+    <string name="menu_buy_and_sell_subtitle">Terhubung dengan pertukaran pihak ketiga</string>
+    <string name="liquid_unavailable">Integrasi Liquid dengan BabaChain Wallet tidak lagi tersedia</string>
+    <string name="liquid_unavailable_details">Jika Anda memiliki pertanyaan tentang kepemilikan BabaChain Anda di Liquid, silakan hubungi pusat dukungan Liquid</string>
+    <string name="menu_security_title">Keamanan</string>
+    <string name="menu_security_subtitle">Lihat frasa sandi, cadangkan domept...</string>
+    <string name="menu_settings_title">Pengaturan</string>
+    <string name="menu_settings_subtitle">Mata uang standar, pintasan, tentang ...</string>
+    <string name="menu_tools_title">Alat</string>
+    <string name="menu_tools_subtitle">Impor kunci pribadi…</string>
+    <string name="menu_local_currency">Mata uang lokal</string>
+    <string name="menu_rescan_blockchain">memindai ulang blockchain</string>
+    <string name="menu_contact_support_title">Hubungi Dukungan</string>
+    <string name="menu_contact_support_subtitle">Laporkan masalah</string>
+    <string name="menu_explore_title">Jelajahi</string>
+    <string name="menu_explore_subtitle">Temukan toko yang menerima BabaChain</string>
+
+    <string name="tools_address_book">Buku alamat</string>
+    <string name="tools_import_private_key">Impor kunci pribadi</string>
+    <string name="tools_network_monitor">Monitor jaringan</string>
+    <string name="tools_show_xpub">Kunci Publik Diperpanjang</string>
+
+    <string name="about_help_us_improve">Bantu kami meningkatkan pengalaman Anda</string>
+    <string name="about_review_and_rate">Tinjau dan beri peringkat aplikasi</string>
+    <string name="about_contact_support">Hubungi Dukungan</string>
+    <string name="about_fork_disclaimer">Ini adalah aplikasi open source yang bercabang dari Bitcoin Wallet</string>
+    <string name="about_copyright">Hak Cipta © 2025 BabaChain Core Group</string>
+    <string name="about_license">GNU General Public License v3.0</string>
+    <string name="about_version_name">Dompet BabaChainPay %s</string>
+    <string name="about_last_explore_device_sync">Sinkronisasi perangkat Explore Terakhir</string>
+    <string name="about_last_explore_server_update">Pembaruan server Explore terakhir</string>
+    <string name="about_firebase_installation_id">ID penginstalan Firebase</string>
+    <string name="about_fcm_token">Token perpesanan cloud Firebase</string>
+    <string name="about_last_explore_babachain_update_error">tidak bisa mengambil</string>
+    <string name="about_last_explore_babachain_sync_never">tak pernah</string>
+    <string name="about_explore_failed_sync">Gagal menyinkronkan %s</string>
+    <string name="about_explore_preloaded_on">Pra-muat dalam %s</string>
+
+    <string name="block">Blok</string>
+    <string name="time">Waktu</string>
+    <string name="hash">Hash</string>
+    <string name="block_info">Info Blok</string>
+
+    <string name="scan_private_key">Pindai Kunci Pribadi</string>
+    <string name="scan_private_key_intro_1">Anda akan menyapu dana dari dompet kertas BabaChain.</string>
+    <string name="scan_private_key_intro_2">Ini akan memindahkan semua koin dari dompet itu ke dompet Anda di perangkat ini.</string>
+    <string name="scan_private_key_intro_3">Ketika transaksi dikonfirmasi, dompet lainnya tidak akan berharga dan tidak boleh digunakan kembali untuk alasan keamanan.</string>
+    <string name="confirm">Memastikan</string>
+
+    <string name="advanced_security_security_level">Tingkat keamanan</string>
+    <string name="auto_logout">Keluar Otomatis</string>
+    <string name="spending_confirmation">Konfirmasi Pengiriman</string>
+    <string name="logout_after">Keluar setelah</string>
+    <string name="immediately">Segera</string>
+    <string name="twenty_four_hours">24 jam</string>
+    <string name="one_minute">1 menit</string>
+    <string name="five_minute">5 menit</string>
+    <string name="one_hour">1 jam</string>
+    <string name="biometric_limit">Batas biometrik</string>
+    <string name="spending_confirmation_hint_zero">PIN selalu diperlukan untuk melakukan pembayaran</string>
+    <string name="spending_confirmation_hint_above_zero">Anda dapat mengautentikasi dengan Otentikasi Biometrik untuk pembayaran di bawah ini</string>
+
+    <string name="security_none">Tidak ada</string>
+    <string name="security_low">Rendah</string>
+    <string name="security_medium">Sedang</string>
+    <string name="security_high">Tinggi</string>
+    <string name="security_very_high">Sangat tinggi</string>
+    <string name="max">Max</string>
+
+    <string name="skip">lewati</string>
+    <string name="get_started">Memulai</string>
+    <string name="welcome_screen_title_1_new_install">Selamat Datang</string>
+    <string name="welcome_screen_title_1_upgrade">Kami meningkatkan</string>
+    <string name="welcome_screen_subtitle_1">Pengalaman intuitif dan akrab di semua perangkat Anda</string>
+    <string name="welcome_screen_title_2">Bayar dengan Mudah</string>
+    <string name="welcome_screen_subtitle_2">Bayar dan dapatkan bayaran instan dengan aliran pembayaran yang mudah digunakan</string>
+    <string name="welcome_screen_title_3">Kontrol lebih lanjut</string>
+    <string name="welcome_screen_subtitle_3">Memiliki kendali penuh dan sesuaikan dompet Anda berdasarkan kebutuhan Anda</string>
+
+    <string-array name="history_filter">
+        <item>Semua</item>
+        <item>Diterima</item>
+        <item>Terkirim</item>
+    </string-array>
+
+    <string name="sync_status_wait">Harap tunggu sampai sinkronisasi selesai</string>
+    <string name="sync_status_syncing_sub_title">dengan BabaChain blockchain</string>
+    <string name="sync_status_unable_to_connect">Tidak dapat terhubung</string>
+    <string name="sync_status_check_connection">Periksa koneksi anda</string>
+    <string name="sync_status_sync_title">Sync</string>
+    <string name="sync_status_sync_completed">Lengkap</string>
+
+    <string name="appwidget_wallet_not_ready">Harap siapkan dompet Anda</string>
+
+    <string name="payment_request_please_wait_message">Mengghubungkan ke server pembayaran</string>
+    <string name="payment_request_unable_to_connect">Tidak dapat terhubung</string>
+    <string name="payment_request_unable_to_send">Tidak dapat mengirim</string>
+    <string name="payment_request_please_try_again">Silakan coba lagi</string>
+    <string name="payment_request_try_again">Coba lagi</string>
+    <string name="payment_request_expired_title">Permintaan pembayaran kedaluwarsa</string>
+    <string name="payment_request_close">Tutup</string>
+    <string name="payment_request_skip">Lewati</string>
+    <string name="payment_request_paid_to">Dibayarkan kepada</string>
+
+    <string name="import_image_not_valid_qr_code">Bukan Kode QR yang valid</string>
+    <string name="import_image_please_use_valid_qr_code">Harap gunakan Kode QR BabaChain yang valid</string>
+    <string name="import_image_no_private_key_copied">Tidak ada kunci pribadi yang disalin</string>
+    <string name="import_image_import_valid_private_key">Salin kunci pribadi yang valid untuk mengimpor BabaChain darinya</string>
+    <string name="import_image_invalid_private">Kunci Pribadi Tidak Valid</string>
+    <string name="okay">Oke</string>
+
+    <string name="onboard_from_invite_title">Ayo Mulai</string>
+    <string name="onboard_from_invite_subtitle">Selamat datang di BabaChainPay</string>
+    <string name="onboard_from_invite_step1">Langkah 1</string>
+    <string name="onboard_from_invite_step2">Langkah 2</string>
+    <string name="onboard_from_invite_step3">Langkah 3</string>
+    <string name="onboard_from_invite_step1_title">Pilih Nama pengguna</string>
+    <string name="onboard_from_invite_step2_title">Setel PIN Anda</string>
+    <string name="onboard_from_invite_step3_title">Amankan Dompet Anda</string>
+
+    <string name="restore_wallet_please_wait">Silahkan tunggu</string>
+    <string name="restore_wallet_restoring">Dompet Anda sedang dipulihkan</string>
+
+
+
+    <string name="network_unavailable">Jaringan tak tersedia</string>
+    <string name="network_error_contact_details">Tidak dapat mengambil detail kontak</string>
+    <string name="network_error_user_search">Tidak dapat mencari pengguna</string>
+    <string name="network_error_contact_suggestions">Tidak dapat memberikan saran</string>
+    <string name="network_error_unable_to_update_profile">Tidak dapat memperbarui profil Anda</string>
+
+
+
+    <string name="today">Hari ini</string>
+    <string name="yesterday">Kemarin</string>
+
+    <string name="syncing">Menyingkronkan:</string>
+    <string name="syncing_balance">Menyinkronkan Saldo</string>
+    <string name="transaction_count">%dtransaksi</string>
+    <string name="all_transactions">Semua</string>
+    <string name="received_transactions">Diterima</string>
+    <string name="sent_transactions">Terkirim</string>
+    <string name="serious_error_title">Kesalahan serius</string>
+    <string name="serious_error_unknown">Silahkan hubungi Dukungan</string>
+    <string name="set_pin_error_missing_wallet_title">Kesalahan Dompet Hilang</string>
+    <string name="set_pin_error_missing_wallet_message">Dompetnya hilang. Harap laporkan hal ini ke Bagian Dukungan.</string>
+    <string name="wallet_encryption_error_title">Kesalahan Pembuatan Dompet</string>
+    <string name="wallet_encryption_error_message">Ada masalah saat membuat dompet. Harap laporkan hal ini ke Bagian Dukungan.</string>
+    <string name="wallet_not_encrypted_error_message">Ada masalah dengan dompet Anda.\n\nJika Anda tidak memiliki BabaChain di dompet ini, copot dan instal ulang aplikasi ini. Kemudian buat dompet baru.\n\nJika Anda memiliki frasa pemulihan atau file cadangan, hapus instalan aplikasi ini dan instal ulang.\n\nJika tidak, laporkan hal ini ke Bagian Dukungan.</string>
+
+    <string name="reset_wallet_title">Apakah Anda yakin ingin mengatur ulang dompet?</string>
+    <string name="reset_wallet_message">Jika Anda mengatur ulang dompet Anda, satu-satunya cara untuk mendapatkan aksesnya adalah memulihkan dompet dengan frasa pemulihan.</string>
+    <string name="positive_reset_text">Ya, Setel Ulang Dompet</string>
+    <string name="launch_reset_wallet_title">Anda memiliki saldo positif</string>
+    <string name="launch_reset_wallet_message">Jika Anda mengatur ulang dompet Anda, Anda akan kehilangan semua dana  jika Anda belum mencadangkan frase pemulihan.</string>
+    <string name="continue_reset">Teruskan</string>
+    <string name="launch_reset_wallet_extra_message">Cadangkan frasa pemulihan Anda</string>
+    <string name="start_reset_wallet_title">Anda mungkin kehilangan %s</string>
+    <string name="reset_wallet_text">Atur ulang dompet</string>
+
+
+
+    <!-- Tax category -->
+    <string name="reclassify_transactions_title">Klasifikasi Ulang Transaksi Anda</string>
+    <string name="reclassify_transactions_title_message">Klasifikasi ini akan tercermin dalam Ekspor CSV yang dapat digunakan untuk mengimpor ke dalam layanan pelaporan pajak.</string>
+    <string name="reclassify_transactions_question">Di mana saya dapat mengubah kategori pajak?</string>
+    <string name="reclassify_transactions_outgoing_title">Transaksi keluar</string>
+    <string name="reclassify_transactions_by_default_message">secara default akan ditandai sebagai</string>
+    <string name="reclassify_transactions_incoming_title">Transaksi masuk</string>
+    <string name="reclassify_transactions_change_it_message">Anda dapat mengubahnya menjadi</string>
+    <string name="reclassify_transactions_linked_accounts_title">Akun terhubung</string>
+    <string name="reclassify_transactions_linked_accounts_message">secara default semua transaksi ke atau dari akun tertaut Anda (pertukaran, staking, dll) akan ditandai sebagai transfer.</string>
+    <string name="reclassify_transactions_change_explanation">Pilih transaksi apa pun dari beranda dan ubah kategori di halaman detail transaksi.</string>
+
+    <string name="masternode_keys_title">Kunci Masternode</string>
+    <string name="masternode_key_type_owner">Kunci Pemilik</string>
+    <string name="masternode_key_type_voting">Kunci pemungutan suara</string>
+    <string name="masternode_key_type_operator">Kunci Operator</string>
+    <string name="masternode_key_type_platform">Kunci Evolution Node ID</string>
+    <string name="masternode_key_type_total">%d kunci</string>
+    <string name="masternode_key_type_used">%d digunakan</string>
+    <string name="masternode_key_pair_index">Keypair %d</string>
+    <string name="masternode_key_address">Alamat</string>
+    <string name="masternode_key_id">Id Kunci</string>
+    <string name="masternode_key_public">Kunci publik</string>
+    <string name="masternode_key_public_legacy">Kunci publik (legacy)</string>
+    <string name="masternode_key_private_hex">Kunci pribadi</string>
+    <string name="masternode_key_private_wif">Kunci pribadi WIF</string>
+    <string name="masternode_key_used">IP: %s</string>
+    <string name="masternode_key_ip_address_unknown">Tidak diketahui</string>
+    <string name="masternode_key_not_used">Tidak digunakan</string>
+    <string name="masternode_key_revoked">Dicabut</string>
+    <string name="masternode_key_private_public_base64">Kunci private / publik (base64)</string>
+    <string name="timeskew_ahead">lebih awal</string>
+    <string name="timeskew_behind">dibelakang</string>
+
+    <!-- stale rates messages -->
+    <string name="stale_exchange_rates_error">Harga tidak diambil. Nilai Fiat mungkin salah.</string>
+    <string name="stale_exchange_rates_stale">Harga setidaknya berumur 30 menit. Nilai Fiat mungkin salah.</string>
+    <string name="stale_exchange_rates_volatile">Harga telah berfluktuasi lebih dari 50% sejak pembaruan terakhir.</string>
+    <string name="select_security_level_title">Pilih Tingkat Keamanan</string>
+    <string name="select_security_level_message">Anda dapat mengamankan dompet Anda dengan frasa pemulihan 12 atau 24 kata.</string>
+    <string name="select_security_level_12_words_title">Aman</string>
+    <string name="select_security_level_12_words_message">12 kata frasa pemulihan</string>
+    <string name="select_security_level_24_words_title">Sangat aman</string>
+    <string name="select_security_level_24_words_message">24 kata frasa pemulihan</string>
+</resources>

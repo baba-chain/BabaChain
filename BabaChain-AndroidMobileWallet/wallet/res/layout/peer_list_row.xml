@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/round_corners_white_bg"
+    android:clipToPadding="false"
+    android:elevation="1dp"
+    android:paddingLeft="@dimen/space_medium"
+    android:paddingTop="14dp"
+    android:paddingRight="@dimen/space_medium"
+    android:paddingBottom="18dp">
+
+    <TextView
+        android:id="@+id/peer_list_row_ip"
+        style="@style/Body2.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        app:layout_constraintEnd_toStartOf="@id/peer_list_row_height"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="45.12.345.678:9999" />
+
+    <TextView
+        android:id="@+id/peer_list_row_height"
+        style="@style/Overline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/peer_list_row_ip"
+        tools:text="935826 blocks" />
+
+    <TextView
+        android:id="@+id/peer_list_row_version"
+        style="@style/Overline.Tertiary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/peer_list_row_height"
+        tools:text="/BabaChain Core:0.12.3.2/\nprotocol: 70210" />
+
+    <TextView
+        android:id="@+id/peer_list_row_ping"
+        style="@style/Overline.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/peer_list_row_version"
+        tools:text="123 ms" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

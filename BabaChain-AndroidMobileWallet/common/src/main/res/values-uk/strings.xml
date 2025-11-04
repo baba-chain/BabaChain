@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">Завантаження...</string>
+    <string name="loading_error">Виникла помилка. Спробуйте ще раз пізніше.</string>
+    <string name="please_wait_title">Будь ласка, зачекайте</string>
+    <string name="babachain_available">%1$s доступно</string>
+    <string name="network_unavailable_title">Мережа Недоступна</string>
+    <string name="network_unavailable_check_connection">Будь ласка, перевірте підключення до мережі</string>
+    <string name="network_unavailable_balance_not_accurate">Баланс може відображатись некоректно через втрату зв\'язку</string>
+    <string name="buy_babachain">Купити BabaChain</string>
+    <string name="copied">Скопійовано</string>
+    <string name="staking_title">Стейкінг</string>
+    <string name="email">Електронна адреса</string>
+    <string name="email_placeholder">e.g. johndoe@mail.com</string>
+    <string name="error">Помилка</string>
+    <string name="select_a_coin">Виберіть монету</string>
+    <string name="request_coins_share_dialog_title">Поділитись запитом BabaChain-монет…</string>
+    <string name="buy_with_fiat">Купити BabaChain за фіат</string>
+    <string name="buy_and_convert">Купуйте та конвертуйте BabaChain за допомогою іншої криптовалюти</string>
+    <string name="transfer_babachain">Переказати BabaChain</string>
+    <string name="login_error_title">Навдалося ввійти в ваш %s акаунт</string>
+    <string name="login_error_message">Сталася помилка під час входу до вашого %s акаунту.</string>
+    <string name="babachain_address">Адреса BabaChain</string>
+    <string name="username">Ім\'я користувача</string>
+    <string name="balance">Баланс:</string>
+    <string name="nothing_here">Тут нічого немає</string>
+
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">Гернсійський фунт</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">Джерсійський фунт</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">Фунт острова Мен</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">USD Coin</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">Litecoin</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">Ethereum</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">Bitcoin</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">Paxos Standard</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">Gemini Dollar</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Відхилити</string>
+    <string name="network_unavailable_return">Повернутися до гаманця</string>
+    <string name="button_continue">Продовжити</string>
+    <string name="get_quote">Отримати пропозицію</string>
+    <string name="button_close">Закрити</string>
+    <string name="button_retry">Повторити</string>
+    <string name="button_send_report">Надіслати Звіт</string>
+    <string name="button_info">інформація</string>
+    <string name="button_copy_address">Скопіювати адресу</string>
+    <string name="button_understand">Я розумію</string>
+    <string name="button_okay">Згода</string>
+    <string name="button_share">Поділитися</string>
+    <string name="button_skip">Пропустити</string>
+    <string name="share_address">Поділитися адресою</string>
+    <string name="verify">Підтвердити</string>
+    <string name="receive_enter_amount_button">Вкажіть суму</string>
+    <string name="account_create">Створити обліковий запис</string>
+    <string name="submit">Надіслати</string>
+    <string name="try_again">Спробуйте ще раз</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">Пошук</string>
+    <string name="permission_allow">Дозволити</string>
+    <string name="permission_deny">Відмовитись</string>
+    <string name="pay_with">Платіть з</string>
+    <string name="choose_payment_method">Виберіть спосіб оплати</string>
+    <string name="debit_credit_card">Дебетова/кредитна картка</string>
+    <string name="max">Макс</string>
+    <string name="select_the_coin">Виберіть монету</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">BabaChain Wallet</string>
+    <string name="from">з</string>
+    <string name="to">до</string>
+    <string name="select_currency">Вибрати Валюту</string>
+    <string name="send_coins_error_dusty_send">Сума надто мала для відправки</string>
+    <string name="send_coins_error_insufficient_money">Недостатньо коштів</string>
+    <string name="send_coins_error_insufficient_mixed_money">Недостатньо змішаних фондів. Зачекайте, поки змішування CoinJoin завершиться, або вимкніть цю функцію в налаштуваннях, щоб завершити цю транзакцію.</string>
+    <string name="syncing">Синхронізація</string>
+    <string name="no_connection">Немає підключення до Інтернету</string>
+    <string name="rate_not_available">Недоступний</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">Схоже ви спустошуєте свій гаманець</string>
+    <string name="empty_wallet_crowdnode_warning">Пам\'ятайте, що ви не зможете вивести кошти з CrowdNode на цей гаманець, доки на балансі не буде хоча б 0.0003 BabaChain.</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">Платіж не підтверджено</string>
+    <string name="payment_protocol_default_error_title">Помилка платежу</string>
+    <string name="payment_request_problem_message">Ваш платіж не може бути оброблений сервером, будь ласка, зверніться до продавця</string>
+    <string name="exchange_rate_not_found">Не вдалося знайти обмінний курс.</string>
+    <string name="send_coins_fragment_hint_replaying">Наразі платежі неможливі, оскільки гаманець не повністю синхронізовано з мережею</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">Отримуйте безпосередньо в BabaChain Wallet.</string>
+    <string name="convert_crypto">Конвертувати криптовалюту</string>
+    <string name="last_known_balance" >Останній відомий баланс</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="enter_amount_available">доступно</string>
+    <string name="transaction_row_rate_not_available">Недоступний</string>
+    <string name="log_in">Увійти</string>
+
+    <string name="chain_syncing">Блокчейн синхронізується...</string>
+    <string name="report_issue_dialog_mail_intent_chooser">Відправити звіт використовуючи…</string>
+
+    </resources>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <!-- Explore screen -->
+    <string name="explore_babachain">BabaChain\'i Keşfet</string>
+    <string name="explore_title">Keşfet</string>
+    <string name="explore_subtitle">BabaChain\'i kabul eden satıcıları bulun. Nereden satın alınır ve onunla nasıl gelir elde edilir.</string>
+    <string name="explore_merchants_title">Nerede Harcamalı?</string>
+    <string name="explore_merchants_subtitle">BabaChain\'i ödeme olarak kabul eden satıcıları bulun.</string>
+    <string name="explore_atms_title">ATMler</string>
+    <string name="explore_atms_subtitle">DASH ve diğer kripto para birimlerini nakit olarak nereden alıp satabileceğinizi bulun.</string>
+    <string name="explore_staking_subtitle">BabaChain\'i kolayca stake edin ve birkaç basit tıklamayla pasif gelir elde edin.</string>
+    <string name="explore_staking_current_apy">Güncel YFG = %s%%</string>
+
+    <!-- Search -->
+    <string name="explore_search_results">Arama Sonuçları</string>
+    <string name="explore_physical_merchant">Fiziki Tüccar</string>
+    <string name="explore_online_merchant">Çevrimiçi</string>
+    <string name="explore_both_types_merchant">Çevrimiçi, Fiziki Tüccar</string>
+    <string name="explore_multiple_locations">+ birden fazla konum</string>
+    <string name="explore_option_all">Hepsi</string>
+    <string name="explore_option_buy">Al</string>
+    <string name="explore_option_sell">Sat</string>
+    <string name="explore_option_buy_sell">Al &amp; Sat</string>
+    <string name="explore_where_to_spend">Nerede Harcamalı</string>
+    <string name="explore_atms">ATMler</string>
+    <string name="explore_all_states">Tüm eyaletler</string>
+    <string name="explore_no_results">Sonuç bulunamadı</string>
+    <string name="explore_all_merchants">Tüm Tüccarlar</string>
+    <string name="explore_in_radius">%2$s den %1$s</string>
+    <string name="explore_no_merchants">Tüccar yok</string>
+    <string name="explore_no_atms">ATMler Yok</string>
+    <string name="distance_miles">%s mil</string>
+    <string name="distance_kilometers">%s kilometre</string>
+    <plurals name="explore_merchant_amount">
+        <item quantity="one">%d tüccarlar</item>
+        <item quantity="other">%d tüccarlar</item>
+    </plurals>
+
+    <plurals name="explore_atm_amount">
+        <item quantity="one">%d ATMler</item>
+        <item quantity="other">%d ATMler</item>
+    </plurals>
+
+    <!-- Details -->
+    <string name="explore_back_to_locations">Tüm konumlara geri dön</string>
+    <string name="explore_back_to_nearest">En yakın konuma geri dön</string>
+    <string name="explore_select_location">Konum seçin</string>
+    <string name="explore_pay_with_babachain">BabaChain ile öde</string>
+    <string name="explore_buy_gift_card">Hediye Kartı Satın Alın</string>
+    <string name="explore_buy_babachain">BabaChain Al</string>
+    <string name="explore_sell_babachain">BabaChain Sat</string>
+    <string name="explore_show_all">Tüm Konumları Göster</string>
+    <string name="explore_atm_location_hint">Bu ATM şurada yer almaktadır</string>
+    <string name="explore_maps_intent_uri">http://maps.google.com/maps?daddr=%1$f,%2$f</string>
+
+    <!-- Filters -->
+    <string name="explore_filter">Filtre</string>
+    <string name="explore_filters">Filtreler</string>
+    <string name="explore_apply_filter">Uygula</string>
+    <string name="explore_payment_method">Ödeme Şekli</string>
+    <string name="explore_payment_babachain">BabaChain</string>
+    <string name="explore_payment_gift_card">Hediye Kartı</string>
+    <string name="explore_filter_gift_cards">Hediye Kartları</string>
+    <string name="explore_radius">Yarıçap</string>
+    <string name="explore_location">Konum</string>
+    <string name="explore_current_location">Mevcut Konum</string>
+    <string name="explore_location_settings">Mevcut Konum Ayarları</string>
+    <string name="explore_reset_filters">Filtreleri Sıfırla</string>
+    <string name="explore_reset_all_filters">Tüm Filtreleri Sıfırla</string>
+    <string name="explore_filtered_by">Şuna göre filtrelendi:</string>
+    <string name="explore_pay_gift_card">Hediye kartıyla öde</string>
+    <string name="explore_sort_by">Göre sırala</string>
+    <string-array name="merchants_filter_options">
+        <item>Çevrimiçi</item>
+        <item>Yakında</item>
+        <item>Hepsi</item>
+    </string-array>
+
+    <string-array name="atms_filter_options">
+        <item>Hepsi</item>
+        <item>Al</item>
+        <item>Sat</item>
+        <item>Al/Sat</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_miles">
+        <item>1 mil</item>
+        <item>5 mil</item>
+        <item>20 mil</item>
+        <item>50 mil</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_kilometers">
+        <item>1 kilometre</item>
+        <item>5 kilometre</item>
+        <item>20 kilometre</item>
+        <item>50 kilometre</item>
+    </string-array>
+
+    <string-array name="sort_by_options_names">
+        <item>İsim</item>
+        <item>Mesafe</item>
+        <item>İndirim</item>
+    </string-array>
+
+    <plurals name="radius_miles">
+        <item quantity="one">%d miller</item>
+        <item quantity="other">%d miller</item>
+    </plurals>
+
+    <plurals name="radius_kilometers">
+        <item quantity="one">%d kilometreler</item>
+        <item quantity="other">%d kilometreler</item>
+    </plurals>
+
+    <!-- Location Permission -->
+    <string name="explore_location_allowed">İzin verildi</string>
+    <string name="explore_location_denied">Reddedildi</string>
+    <string name="explore_manager_permissions">GPS İznini Yönet</string>
+    <string name="explore_location_request">Size yakın konumları gösterebilmemiz için GPS izinleri verin.</string>
+    <string name="explore_location_explainer">Konumunuz, haritada konumunuzu ve seçilen yarıçaptaki tüccarları gösterip arama sonuçlarını iyileştirmek için kullanılır.</string>
+    <string name="explore_merchant_location_explainer_title">Tüccar araması, Konum Servisleri açıkken daha iyi çalışır.</string>
+    <string name="explore_merchant_location_explainer_message">Konumunuz, haritada konumunuzu ve seçilen yarıçaptaki tüccarları gösterip arama sonuçlarını iyileştirmek için kullanılır.</string>
+    <string name="explore_atm_location_explainer_title">ATM araması, Konum Servisleri açıkken daha iyi çalışır.</string>
+    <string name="explore_atm_location_explainer_message">Konumunuz, haritada konumunuzu ve seçilen yarıçaptaki ATMleri gösterip arama sonuçlarını iyileştirmek için kullanılır.</string>
+
+    <!-- Info screens -->
+    <string name="explore_info_header_text">2 tip tüccarımız var</string>
+    <string name="accept_babachain_text">DASH\'i doğrudan kabul eden</string>
+    <string name="pay_with_babachain_text">DASH cüzdanı ile ödeme yapın.</string>
+    <string name="buy_gift_card_text">BabaChain\'iniz ile hediye kartları satın alın</string>
+    <string name="buy_gift_card_desc_text">Satın alma işleminizin tam tutarı için BabaChain\'ınızla hediye kartları satın alın.</string>
+    <string name="learn_more_text">Daha fazla bilgi edin</string>
+    <string name="buy_card_header_text">Hediye Kartı Nasıl Kullanılır</string>
+    <string name="buy_card_desc_text">Tüm mağazalar DASH\'i doğrudan kabul etmez, ancak BabaChain\'inizle bir hediye kartı satın alabilirsiniz.</string>
+    <string name="find_merchant_text">Bir tüccar bulun.</string>
+    <string name="buy_gift_card_with_babachain_text">BabaChain ile bir hediye kartı satın alın.</string>
+    <string name="redeem_gift_card_text">Hediye kartınızı saniyeler içinde çevrimiçi olarak veya kasiyerde kullanın.</string>
+
+    <!-- Explore TestNet -->
+    <string name="explore_test_subtitle">Test BabaChain\'in gerçek dünyada hiçbir değeri yoktur ancak onu diğer BabaChainPay Alpha kullanıcılarıyla gönderip alabilirsiniz.</string>
+    <string name="explore_test_babachain_title">Test BabaChain\'ı nasıl edinebilirim?</string>
+    <string name="explore_get_test_babachain">Test BabaChain\'ı edinin</string>
+
+    <!-- Sync Status -->
+    <string name="sync_in_progress_not_complete">Senkronizasyon devam ediyor... Sonuçlar tamamlanmayabilir.</string>
+    <string name="sync_in_progress_error">Senkronizasyon devam ediyor… Bir hata oluştu.</string>
+    <string name="sync_in_progress_canceled">Senkronizasyon iptal edildi… Daha sonra başka bir deneme yapılacak.</string>
+
+    <string name="sync_in_progress_file_not_found">Derleme Hatası: Veritabanı bulunamadı!</string>
+    <string name="sync_in_progress_network_error">Senkronizasyon kesintiye uğradı… Ağ çevrimdışı veya ulaşılamıyor</string>
+
+
+    <!-- purchase_gift_card -->
+    <string name="purchase_gift_card_at">de</string>
+    <string name="purchase_gift_card_min">Min: %s</string>
+    <string name="purchase_gift_card_max">Max: %s</string>
+    <string name="purchase_gift_card_discount_hint">%s (%s indirim) karşılığında %s hediye kartı satın alıyorsunuz</string>
+    <string name="button_next">Sonraki</string>
+    <string name="purchase_gift_card_from">Gönderen</string>
+    <string name="purchase_gift_card_to">Alıcı</string>
+    <string name="purchase_confirm_transaction">Onayla</string>
+    <string name="purchase_gift_card_total_label">Hediye kartı toplamı</string>
+    <string name="purchase_gift_card_discount">İndirim</string>
+    <string name="purchase_gift_card_you_pay">Ödeyeceğiniz</string>
+    <string name="purchase_gift_card_confirm">Onayla</string>
+    <string name="purchase_gift_card_details">Hediye kartı ayrıntıları</string>
+    <string name="purchase_original_purchase">Orijinal satın alma</string>
+    <string name="purchase_check_current_balance">Mevcut bakiyeyi kontrol edin</string>
+    <string name="purchase_card_number">Kart Numarası</string>
+    <string name="purchase_card_pin">Kart PIN\'i</string>
+    <string name="purchase_view_transaction">İşlem Detaylarını Görüntüle</string>
+    <string name="purchase_see_how_to_use_gift_card">Hediye kartının nasıl kullanılacağını görün</string>
+    <string name="purchase_how_to_use_gift_card">Hediye kartı nasıl kullanılır?</string>
+    <string name="purchase_self_checkout">Otomatik ödeme</string>
+    <string name="purchase_Request_assistance">Dijital hediye kartını kullanmak için bir çalışandan yardım isteyin.</string>
+    <string name="purchase_in_store">Mağazada</string>
+    <string name="purchase_tell_the_cashier">Kasiyere dijital hediye kartıyla ödeme yaptığınızı söyleyin. Kasiyer: Banka Kartı alanına toplam tutarı yazın, ardından Hesap alanına hediye kartı numarasını yazın ve Enter tuşuna basın.</string>
+    <string name="purchase_in_the_payment_section">Ödeme bölümünde hediye kartı alanına dijital hediye kartı numaranızı girin.</string>
+    <string name="purchase_powered_by">Tarafından desteklenmektedir</string>
+    <string name="insufficient_money_title">Bakiye yetersiz</string>
+    <string name="insufficient_money_msg">Yetersiz bakiye</string>
+    <string name="send_coins_error_msg">BabaChain gönderim problemi!</string>
+    <string name="gift_card_barcode_failed">Barkod yüklenemedi</string>
+    <string name="gift_card_tx_title">Hediye Kartı · %s</string>
+    <!-- babachain spend login-->
+    <string name="enter_verification_code">dogrulama kodunu giriniz</string>
+    <string name="verification_check_email">E-postanızı kontrol edin ve doğrulama kodunu girin</string>
+    <string name="buy_gift_card">BabaChainSpend hesabınızla bir hediye kartı satın alın</string>
+    <string name="create_new_account">Yeni hesap oluştur</string>
+    <string name="password">Şifre</string>
+    <string name="logged_in_as">%s olarak oturum açıldı</string>
+    <string name="log_out">Çıkış Yap</string>
+    <string name="invaild_code">Yanlış kodu girdiniz. Lütfen e-postanızı kontrol edip tekrar deneyin.</string>
+    <string name="something_wrong_title">Bir şeyler yanlış gitti!</string>
+    <string name="retry">Tekrar dene</string>
+    <string name="gift_card_purchase_failed">Hediye kartı satın alma işlemi başarısız oldu</string>
+    <string name="try_again">Tekrar Dene</string>
+    <string name="cancel">İptal et</string>
+    <string name="gift_card_error">Bazı nedenlerden dolayı hediye kartı alamadık. Lütfen tekrar deneyin.</string>
+    <string name="gift_card_details_error">Bazı nedenlerden dolayı hediye kartı alamadık. Lütfen desteğe başvurun.</string>
+    <string name="gift_card_unknown_error">Bazı nedenlerden dolayı hediye kartı alamadık. Lütfen %s txid\'si ile destek ekibiyle iletişime geçin.</string>
+    <string name="gift_card_rejected">Ödeme reddedildi. Lütfen hediye kartı kimliği %s, ödeme kimliği %s ve işlem kimliği %s ile CTX ile iletişime geçin.</string>
+    <string name="gift_card_redeem_url_not_supported">The payment has was made for merchant that supplies a redeem URL, but that is not currently supported. Please contact CTX with gift card id %s and payment id %s and transaction id %s.</string>
+    <string name="accept_terms_conditions">BabaChainSpend şartlar ve koşullarını kabul ediyorum</string>
+    <string name="tap_link_to_proceed">BabaChainSpend\'de bir hesap oluşturmak için devam etmek üzere aşağıdaki bağlantıya dokunmalısınız</string>
+    <string name="accept_to_proceed">BabaChainSpend\'de bir hesap oluşturmak için BabaChainSpend hüküm ve koşullarını kabul etmeniz gerekir</string>
+    <string name="log_in_to_ctxspend_account_desc">E-postanız yalnızca tek kullanımlık şifre göndermek için kullanılır.</string>
+    <string name="buy_a_gift_card_with_your_ctx_spend_account">BabaChainSpend hesabınızla bir hediye kartı satın alın</string>
+    <string name="create_an_account_at_ctx_spend_or_log_in_to_the_existing_one">Bir BabaChainSpend hesabı oluşturun veya mevcut hesaba giriş yapın</string>
+    </resources>

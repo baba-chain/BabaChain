@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic titles/messages -->
+    <string name="loading">Memuat...</string>
+    <string name="loading_error">Terjadi kesalahan. Silakan coba lagi nanti.</string>
+    <string name="please_wait_title">Silahkan tunggu</string>
+    <string name="babachain_available">%1$stersedia </string>
+    <string name="network_unavailable_title">Jaringan tak tersedia</string>
+    <string name="network_unavailable_check_connection">Silakan periksa koneksi jaringan Anda</string>
+    <string name="network_unavailable_balance_not_accurate">Saldo mungkin tidak akurat karena koneksi terputus</string>
+    <string name="buy_babachain">Beli BabaChain</string>
+    <string name="copied">Disalin</string>
+    <string name="staking_title">Staking</string>
+    <string name="email">Email</string>
+    <string name="email_placeholder">misalnya johndoe@mail.com</string>
+    <string name="error">Kesalahan</string>
+    <string name="select_a_coin">Pilih koin</string>
+    <string name="request_coins_share_dialog_title">Berbagi permintaan BabaChain…</string>
+    <string name="buy_with_fiat">Beli BabaChain dengan fiat</string>
+    <string name="buy_and_convert">Beli dan konversikan BabaChain dengan crypto lain</string>
+    <string name="transfer_babachain">Transfer BabaChain</string>
+    <string name="login_error_title">Tidak dapat masuk ke akun  %s Anda</string>
+    <string name="login_error_message">Terjadi kesalahan saat masuk ke akun %s Anda.</string>
+    <string name="babachain_address">Alamat BabaChain</string>
+    <string name="username">Nama pengguna</string>
+    <string name="balance">Saldo:</string>
+    <string name="nothing_here">Tidak ada apa pun di sini</string>
+
+    <!-- Local Currency List: GGP -->
+    <string name="currency_GGP">Pound Guernsey</string>
+    <!-- Local Currency List: JEP -->
+    <string name="currency_JEP">Pound Jersey</string>
+    <!-- Local Currency List: IMP -->
+    <string name="currency_IMP">Pound Pulau Man</string>
+    <!-- Local Currency List: USDC is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_USDC">USD Coin</string>
+    <!-- Local Currency List: Litecoin cryptocurrency -->
+    <string name="currency_LTC">Litecoin</string>
+    <!-- Local Currency List: Ethereum cryptocurrency -->
+    <string name="currency_ETH">Ethereum</string>
+    <!-- Local Currency List: Bitcoin cryptocurrency -->
+    <string name="currency_BTC">Bitcoin</string>
+    <!-- Local Currency List: PAX is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_PAX">Paxos Standard</string>
+    <!-- Local Currency List: GUSD is a stablecoin that is pegged to the United States dollar -->
+    <string name="currency_GUSD">Gemini Dollar</string>
+
+    <!-- Generic buttons -->
+    <string name="button_dismiss">Tolak</string>
+    <string name="network_unavailable_return">Kembali ke dompet</string>
+    <string name="button_continue">Teruskan</string>
+    <string name="get_quote">Dapatkan Penawaran</string>
+    <string name="button_close">Tutup</string>
+    <string name="button_retry">Coba lagi</string>
+    <string name="button_send_report">Kirim Laporan</string>
+    <string name="button_info">info</string>
+    <string name="button_copy_address">Salin alamat</string>
+    <string name="button_understand">Saya Mengerti</string>
+    <string name="button_okay">Oke</string>
+    <string name="button_share">Berbagi</string>
+    <string name="button_skip">Lewati</string>
+    <string name="share_address">Bagikan Alamat</string>
+    <string name="verify">Memeriksa</string>
+    <string name="receive_enter_amount_button">Tentukan Jumlah</string>
+    <string name="account_create">Buat Akun</string>
+    <string name="submit">Kirim</string>
+    <string name="try_again">Coba lagi</string>
+
+    <!-- Design system UI elements -->
+    <string name="search_hint">Cari</string>
+    <string name="permission_allow">Izinkan</string>
+    <string name="permission_deny">Tolak</string>
+    <string name="pay_with">Bayar dengan</string>
+    <string name="choose_payment_method">Pilih metode pembayaran</string>
+    <string name="debit_credit_card">Kartu Debit/Credit</string>
+    <string name="max">Max</string>
+    <string name="select_the_coin">Pilih koin</string>
+    <string name="babachain">BabaChain</string>
+    <string name="babachain_wallet_name">Dompet BabaChain</string>
+    <string name="from">dari</string>
+    <string name="to">ke</string>
+    <string name="select_currency">Pilih mata uang</string>
+    <string name="send_coins_error_dusty_send">Jumlah yang terlalu kecil untuk dikirim</string>
+    <string name="send_coins_error_insufficient_money">Dana tidak mencukupi</string>
+    <string name="send_coins_error_insufficient_mixed_money">Dana campuran tidak mencukupi. Tunggu hingga pencampuran CoinJoin selesai atau nonaktifkan fitur ini di pengaturan untuk menyelesaikan transaksi ini.</string>
+    <string name="syncing">Menyingkronkan:</string>
+    <string name="no_connection">Tidak ada koneksi internet</string>
+    <string name="rate_not_available">Tak tersedia</string>
+
+    <!-- CrowdNode warning -->
+    <string name="empty_wallet_warning_title">Sepertinya Anda sedang mengosongkan Dompet BabaChain Anda</string>
+    <string name="empty_wallet_crowdnode_warning">Harap dicatat, Anda tidak akan dapat menarik dana Anda dari CrowdNode ke dompet ini sampai saldo Anda meningkat menjadi 0,0003 BabaChain.</string>
+
+    <!-- Send coins -->
+    <string name="payment_request_problem_title">Pembayaran tidak diakui</string>
+    <string name="payment_protocol_default_error_title">Kesalahan pembayaran</string>
+    <string name="payment_request_problem_message">Pembayaran Anda tidak dapat diproses oleh server, harap tanyakan kepada pedagang</string>
+    <string name="exchange_rate_not_found">Tidak dapat menemukan nilai tukar. </string>
+    <string name="send_coins_fragment_hint_replaying">Saat ini pembayaran tidak dimungkinkan karena dompet tidak sepenuhnya disinkronkan dengan jaringan</string>
+
+    <!-- Integrations -->
+    <string name="buy_babachain_subtitle">Terima langsung ke BabaChain Wallet</string>
+    <string name="convert_crypto">Konversi Kripto</string>
+    <string name="last_known_balance" >Saldo terakhir yang diketahui</string>
+    <string name="disconnected">Terputus</string>
+    <string name="enter_amount_available">tersedia</string>
+    <string name="transaction_row_rate_not_available">Tak tersedia</string>
+    <string name="log_in">masuk</string>
+
+    <string name="chain_syncing">Rantai sedang menyinkronkan…</string>
+    <string name="report_issue_dialog_mail_intent_chooser">Kirim laporan dgn…</string>
+
+    </resources>

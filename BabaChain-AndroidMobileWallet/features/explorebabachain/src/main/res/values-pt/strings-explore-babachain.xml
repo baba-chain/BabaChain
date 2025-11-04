@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 BabaChain Core Group.
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<resources>
+    <!-- Explore screen -->
+    <string name="explore_babachain">Explorar BabaChain</string>
+    <string name="explore_title">Explorar</string>
+    <string name="explore_subtitle">Encontre comerciantes que aceitem BabaChain, descubra onde comprar e como gerar renda com ele. </string>
+    <string name="explore_merchants_title">Onde gastar?</string>
+    <string name="explore_merchants_subtitle">Encontre comércios que aceitam BabaChain como pagamento.</string>
+    <string name="explore_atms_title">Caixas Eletrônicos</string>
+    <string name="explore_atms_subtitle">Encontre onde comprar ou vender DASH e outras criptomoedas por dinheiro.</string>
+    <string name="explore_staking_subtitle">Realize facilmente operações de stake no BabaChain e ganhe renda passiva com apenas alguns cliques.</string>
+    <string name="explore_staking_current_apy">APY atual = %s%%</string>
+
+    <!-- Search -->
+    <string name="explore_search_results">Procurar resultados</string>
+    <string name="explore_physical_merchant">Comércio Físico</string>
+    <string name="explore_online_merchant">Online</string>
+    <string name="explore_both_types_merchant">Comércio Físico e Online</string>
+    <string name="explore_multiple_locations">+ vários locais</string>
+    <string name="explore_option_all">Todos</string>
+    <string name="explore_option_buy">Comprar</string>
+    <string name="explore_option_sell">Vender</string>
+    <string name="explore_option_buy_sell">Comprar &amp; Vender</string>
+    <string name="explore_where_to_spend">Onde Gastar</string>
+    <string name="explore_atms">Caixas Eletrônicos</string>
+    <string name="explore_all_states">Todos os Estados</string>
+    <string name="explore_no_results">Nenhum Resultado Encontrado</string>
+    <string name="explore_all_merchants">Todos os Comércios</string>
+    <string name="explore_in_radius">%1$s em %2$s</string>
+    <string name="explore_no_merchants">Nenhum comércio</string>
+    <string name="explore_no_atms">Nenhum Caixa Eletrônico</string>
+    <string name="distance_miles">%s milhas</string>
+    <string name="distance_kilometers">%s quilômetros</string>
+    <plurals name="explore_merchant_amount">
+        <item quantity="one">%d comércio</item>
+        <item quantity="many">%d comércios</item>
+        <item quantity="other">%d comércios</item>
+    </plurals>
+
+    <plurals name="explore_atm_amount">
+        <item quantity="one">%d caixa eletrônico</item>
+        <item quantity="many">%d caixas eletrônicos</item>
+        <item quantity="other">%d caixas eletrônicos</item>
+    </plurals>
+
+    <!-- Details -->
+    <string name="explore_back_to_locations">Voltar para todos os locais</string>
+    <string name="explore_back_to_nearest">Voltar para o local mais próximo</string>
+    <string name="explore_select_location">Selecionar local</string>
+    <string name="explore_pay_with_babachain">Pagar com BabaChain</string>
+    <string name="explore_pay_with_babachain_save">Salvar %.2f%%</string>
+    <string name="explore_buy_gift_card">Comprar um Vale-presente</string>
+    <string name="explore_buy_babachain">Comprar BabaChain</string>
+    <string name="explore_sell_babachain">Vender BabaChain</string>
+    <string name="explore_show_all">Mostrar todos os locais</string>
+    <string name="explore_atm_location_hint">Este caixa eletrônico está localizado em</string>
+    <string name="explore_maps_intent_uri">http://maps.google.com/maps?daddr=%1$f,%2$f</string>
+
+    <!-- Filters -->
+    <string name="explore_filter">Filtro</string>
+    <string name="explore_filters">Filtros</string>
+    <string name="explore_apply_filter">Aplicar</string>
+    <string name="explore_payment_method">Método de Pagamento</string>
+    <string name="explore_payment_babachain">BabaChain</string>
+    <string name="explore_payment_gift_card">Vale-presente</string>
+    <string name="explore_filter_gift_cards">Vales-presente</string>
+    <string name="explore_radius">Raio</string>
+    <string name="explore_location">Localização</string>
+    <string name="explore_current_location">Localização atual</string>
+    <string name="explore_location_settings">Configuração de localização atual</string>
+    <string name="explore_reset_filters">Redefinir filtros</string>
+    <string name="explore_reset_all_filters">Redefinir todos os filtros</string>
+    <string name="explore_filtered_by">Filtrado por:</string>
+    <string name="explore_pay_gift_card">Pagar com cartão presente</string>
+    <string name="explore_sort_by">Ordenar por</string>
+    <string name="gift_card_types">Tipos de cartão-presente</string>
+    <string name="flexible_amount_option">Valores flexíveis</string>
+    <string name="fixed_denom_option">Valores fixos denominados</string>
+
+    <string-array name="merchants_filter_options">
+        <item>Online</item>
+        <item>Próximo</item>
+        <item>Todos</item>
+    </string-array>
+
+    <string-array name="atms_filter_options">
+        <item>Todos</item>
+        <item>Comprar</item>
+        <item>Vender</item>
+        <item>Comprar/Vender</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_miles">
+        <item>1 milha</item>
+        <item>5 milhas</item>
+        <item>20 milhas</item>
+        <item>50 milhas</item>
+    </string-array>
+
+    <string-array name="radius_filter_options_kilometers">
+        <item>1 quilômetro</item>
+        <item>5 quilômetros</item>
+        <item>20 quilômetros</item>
+        <item>50 quilômetros</item>
+    </string-array>
+
+    <string-array name="sort_by_options_names">
+        <item>Nome</item>
+        <item>Distância</item>
+        <item>Desconto</item>
+    </string-array>
+
+    <plurals name="radius_miles">
+        <item quantity="one">%d milha</item>
+        <item quantity="many">%d milhas</item>
+        <item quantity="other">%d milhas</item>
+    </plurals>
+
+    <plurals name="radius_kilometers">
+        <item quantity="one">%d quilômetro</item>
+        <item quantity="many">%d quilômetros</item>
+        <item quantity="other">%d quilômetros</item>
+    </plurals>
+
+    <!-- Location Permission -->
+    <string name="explore_location_allowed">Permitido</string>
+    <string name="explore_location_denied">Negado</string>
+    <string name="explore_manager_permissions">Gerenciar permissão de GPS</string>
+    <string name="explore_location_request">Conceda permissões de GPS para que possamos mostrar locais próximos a você.</string>
+    <string name="explore_location_explainer">Sua localização é usada para mostrar sua posição no mapa, comércios no raio selecionado e melhorar os resultados da pesquisa.</string>
+    <string name="explore_merchant_location_explainer_title">A pesquisa de comércios funciona melhor com os Serviços de Localização ativados.</string>
+    <string name="explore_merchant_location_explainer_message">Sua localização é usada para mostrar sua posição no mapa, comércios no raio selecionado e melhorar os resultados da pesquisa.</string>
+    <string name="explore_atm_location_explainer_title">A pesquisa de Caixas Eletrônicos funciona melhor com os Serviços de Localização ativados.</string>
+    <string name="explore_atm_location_explainer_message">Sua localização é usada para mostrar sua posição no mapa, caixas eletrônicos no raio selecionado e melhorar os resultados da pesquisa.</string>
+
+    <!-- Info screens -->
+    <string name="explore_info_header_text">Temos 2 tipos de comércios</string>
+    <string name="accept_babachain_text">Aceita DASH diretamente</string>
+    <string name="pay_with_babachain_text">Pagar com a carteira DASH.</string>
+    <string name="buy_gift_card_text">Compre cartões presente com seu BabaChain</string>
+    <string name="buy_gift_card_desc_text">Compre cartões presente com seu BabaChain pelo valor exato de sua compra.</string>
+    <string name="learn_more_text">Saiba mais</string>
+    <string name="buy_card_header_text">Como Usar um Cartão Presente</string>
+    <string name="buy_card_desc_text">Nem todas as lojas aceitam DASH diretamente, mas você pode comprar um cartão presente com seu BabaChain.</string>
+    <string name="find_merchant_text">Encontre um comércio</string>
+    <string name="buy_gift_card_with_babachain_text">Compre um cartão presente com BabaChain.</string>
+    <string name="redeem_gift_card_text">Resgate seu cartão presente on-line em segundos ou no caixa.</string>
+
+    <!-- Explore TestNet -->
+    <string name="explore_test_subtitle">O BabaChain de teste não tem valor no mundo real, mas você pode enviá-lo e recebê-lo com outros usuários do BabaChainPay Alpha.</string>
+    <string name="explore_test_babachain_title">Como eu consigo BabaChain de teste?</string>
+    <string name="explore_test_babachain_text_1">O Test BabaChain é gratuito e pode ser obtido no que chamamos de faucet.</string>
+    <string name="explore_test_babachain_text_2">Clique no botão abaixo para copiar um endereço BabaChain desta carteira para que você possa receber seu Test BabaChain..</string>
+    <string name="explore_get_test_babachain">Obtenha BabaChain de teste</string>
+
+    <!-- Sync Status -->
+    <string name="sync_in_progress_not_complete">Sincronização em andamento... Os resultados podem não estar completos.</string>
+    <string name="sync_in_progress_error">Sincronização em andamento... Ocorreu um erro.</string>
+    <string name="sync_in_progress_canceled">Sincronização cancelada... Outra tentativa será realizada mais tarde.</string>
+
+    <string name="sync_in_progress_file_not_found">Erro de compilação: banco de dados não encontrado!</string>
+    <string name="sync_in_progress_network_error">Sincronização interrompida... A rede está offline ou inacessível</string>
+
+
+    <!-- purchase_gift_card -->
+    <string name="purchase_gift_card_at">em</string>
+    <string name="purchase_gift_card_min">Mín: %s</string>
+    <string name="purchase_gift_card_max">Máx: %s</string>
+    <string name="purchase_gift_card_discount_hint">Você está comprando um cartão-presente de %s por %s (%s de desconto)</string>
+    <string name="button_next">Próximo</string>
+    <string name="purchase_gift_card_from">De</string>
+    <string name="purchase_gift_card_to">Para</string>
+    <string name="purchase_confirm_transaction">Confirmar</string>
+    <string name="purchase_gift_card_total_label">Total do cartão-presente</string>
+    <string name="purchase_gift_card_discount">Desconto</string>
+    <string name="purchase_gift_card_you_pay">Você paga</string>
+    <string name="purchase_gift_card_confirm">Confirmar</string>
+    <string name="purchase_gift_card_details">Detalhes do cartão-presente</string>
+    <string name="purchase_original_purchase">Compra original</string>
+    <string name="purchase_check_current_balance">Verificar saldo atual</string>
+    <string name="purchase_card_number">Número do cartão</string>
+    <string name="purchase_card_pin">PIN do cartão</string>
+    <string name="purchase_view_transaction">Ver detalhes da transação</string>
+    <string name="purchase_see_how_to_use_gift_card">Veja como usar um cartão-presente</string>
+    <string name="purchase_how_to_use_gift_card">Como usar um cartão-presente</string>
+    <string name="purchase_self_checkout">Pagamento automático</string>
+    <string name="purchase_Request_assistance">Solicitar assistência de um funcionário para resgatar um cartão-presente digital.</string>
+    <string name="purchase_in_store">Em estoque</string>
+    <string name="purchase_tell_the_cashier">Diga ao caixa que você está pagando com um cartão-presente digital. Caixa: digite o valor total no campo do Cartão de Crédito, em seguida, digite o número do cartão-presente no campo da Conta e pressione Enter.</string>
+    <string name="purchase_in_the_payment_section">Na seção de pagamento, insira o número do seu cartão-presente digital no campo do cartão-presente.</string>
+    <string name="purchase_powered_by">Desenvolvido por</string>
+    <string name="insufficient_money_title">Moedas insuficientes</string>
+    <string name="insufficient_money_msg">Fundos insuficientes</string>
+    <string name="send_coins_error_msg">Erro ao enviar BabaChain!</string>
+    <string name="gift_card_barcode_failed">Falha ao carregar o código de barras</string>
+    <string name="gift_card_tx_title">Cartão-presente · %s</string>
+    <string name="select_amount">Selecionar valor</string>
+    <string name="select_fixed_amount">Este comerciante vende cartões presente com preços fixos</string>
+
+    <!-- babachain spend login-->
+    <string name="enter_verification_code">Digite o código de verificação</string>
+    <string name="verification_check_email">Verifique seu email e insira o código de verificação</string>
+    <string name="buy_gift_card">Compre um cartão-presente com sua conta BabaChainSpend</string>
+    <string name="babachainspend_create_account">Crie uma conta ou faça login em uma existente</string>
+    <string name="create_new_account">Criar nova conta</string>
+    <string name="login">Entrar</string>
+    <string name="password">Senha</string>
+    <string name="logged_in_as">Conectado como %s</string>
+    <string name="log_out">Sair</string>
+    <string name="invaild_code">Você digitou o código errado. Por favor, verifique seu email e tente novamente.</string>
+    <string name="something_wrong_title">Algo deu errado!</string>
+    <string name="retry">Repetir</string>
+    <string name="gift_card_purchase_failed">Compra do cartão-presente falhou</string>
+    <string name="try_again">Tentar Novamente</string>
+    <string name="cancel">Cancelar</string>
+    <string name="gift_card_error">Por alguma razão, não foi possível comprar um cartão-presente. Por favor, tente novamente. </string>
+    <string name="gift_card_details_error">Por alguma razão, não foi possível comprar um cartão-presente. Por favor, entre em contato com o suporte.</string>
+    <string name="gift_card_limit_error">Os limites de compra para este comerciante foram alterados. Por favor, entre em contato com o Suporte CTX para mais informações.</string>
+    <string name="gift_card_unknown_error">Por alguma razão, não foi possível comprar um cartão-presente. Por favor, entre em contato com o suporte com o txid %s.</string>
+    <string name="gift_card_rejected">O pagamento foi rejeitado. Por favor, entre em contato com CTX com o ID do cartão-presente %s, o ID do pagamento %s e o ID da transação %s.</string>
+    <string name="gift_card_redeem_url_not_supported">O pagamento foi feito para um comerciante que fornece uma URL de resgate, mas isso não é suportado atualmente. Por favor, entre em contato com CTX com o ID do cartão-presente %s, o ID do pagamento %s e o ID da transação %s.</string>
+    <string name="babachainspend_terms_conditions">Aceitar termos e condições</string>
+    <string name="accept_terms_conditions">Eu aceito os termos e condições do BabaChainSpend</string>
+    <string name="tap_link_to_proceed">Para criar uma conta no BabaChainSpend, você deve clicar no link abaixo</string>
+    <string name="accept_to_proceed">Para criar uma conta no BabaChainSpend, você deve aceitar os termos e condições do BabaChainSpend</string>
+    <string name="view_terms_conditions">Termos &amp; condições</string>
+    <string name="barcode_placeholder">Assim que seu código for gerado, ele será exibido aqui.</string>
+    <string name="gift_card_contact_ctx">Entrar em contato com o Suporte CTX</string>
+
+    <!-- ctx spend login-->
+    <string name="create_ctx_spend_account">Criar conta</string>
+    <string name="log_in_to_ctxspend_account">Entrar na sua conta</string>
+    <string name="log_in_to_ctxspend_account_desc">Seu email é usado apenas para enviar uma senha única.</string>
+    <string name="buy_a_gift_card_with_your_ctx_spend_account">Compre um cartão-presente com sua conta BabaChainSpend</string>
+    <string name="create_an_account_at_ctx_spend_or_log_in_to_the_existing_one">Crie uma conta no BabaChainSpend ou faça login em uma existente</string>
+    <string name="temporarily_unavailable">Indisponível temporariamente</string>
+    <string name="token_expired_title">Sua sessão expirou</string>
+    </resources>
