@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Name=BabaChain Core
+Comment=BabaChain P2P Cryptocurrency
+Comment[de]=Verbinde mit dem BabaChain peer-to-peer Netzwerk
+Comment[fr]=BabaChain, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=BabaChain, eşten eşe kriptografik sanal para birimi
+Exec=babachain-qt %u
+Terminal=false
+Type=Application
+Icon=babachain128
+MimeType=x-scheme-handler/babachain;
+Categories=Office;Finance;P2P;Network;Qt;
+StartupWMClass=BabaChain-qt
+Keywords=babachain;cryptocurrency;blockchain;wallet;
