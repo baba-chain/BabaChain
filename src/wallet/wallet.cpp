@@ -3080,6 +3080,11 @@ std::shared_ptr<CWallet> CWallet::Create(WalletContext& context, const std::stri
         for (auto spk_man : walletInstance->GetAllScriptPubKeyMans()) {
             walletInstance->WalletLogPrintf("nTimeFirstKey = %u\n", spk_man->GetTimeFirstKey());
         }
+        
+        // Initialize one-click staking components
+        walletInstance->m_maturity_tracker = std::make_unique<CMaturityTracker>(walletInstance.get());
+        walletInstance->m_earnings_calculator = std::make_unique<CEarningsCalculator>(walletInstance.get());
+        walletInstance->WalletLogPrintf("Initialized one-click staking components\n");
     }
 
     return walletInstance;

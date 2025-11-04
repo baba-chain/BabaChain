@@ -505,4 +505,115 @@ std::vector<CValidatorInfo> CWallet::GetValidatorInfo() const
     return validators;
 }
 
-} // namespace wallet
+} // namespace wallet/**
+ *
+ Set up one-click staking with automatic configuration
+ */
+bool CWallet::SetupOneClickStaking(CAmount stakeAmount, bool autoStaking, bool notifications)
+{
+    LOCK(cs_wallet);
+    
+    try {
+        // Validate stake amount
+        interfaces::WalletBalances balances = GetBalances();
+        if (stakeAmount <= 0 || stakeAmount > balances.balance) {
+            LogPrintf("CWallet::SetupOneClickStaking: Invalid stake amount %s (balance: %s)\n",
+                     FormatMoney(stakeAmount), FormatMoney(balances.balance));
+            return false;
+        }
+        
+        // Initialize maturity tracker if not already done
+        if (!m_maturity_tracker) {
+            m_maturity_tracker = std::make_unique<CMaturityTracker>(this);
+        }
+        
+        // Initialize earnings calculator if not already done
+        if (!m_earnings_calculator) {
+            m_earnings_calculator = std::make_unique<CEarningsCalculator>(this);
+        }
+        
+        // Set up maturity tracking for existing coins
+        UpdateCoinMaturityTracking();
+        
+        // Register callbacks for maturity notifications
+        if (notifications) {
+            m_maturity_tracker->RegisterMaturityCallback([this](const CoinMaturityInfo& coinInfo) {
+                LogPrintf("CWallet::MaturityCallback: Coin %s:%d became mature (amount=%s)\n",
+                         coinInfo.txid.ToString(), coinInfo.vout, FormatMoney(coinInfo.amount));
+                
+                // Trigger UI notification (would be connected to Qt signals)
+                // NotifyStakingReward(coinInfo.amount, coinInfo.txid);
+            });
+            
+            m_maturity_tracker->RegisterNearMaturityCallback([this](const CoinMaturityInfo& coinInfo) {
+                LogPrintf("CWallet::NearMaturityCallback: Coin %s:%d approaching maturity (%d blocks left)\n",
+                         coinInfo.txid.ToString(), coinInfo.vout, coinInfo.BlocksUntilMature());
+            });
+        }
+        
+        // Enable automatic staking if requested
+        if (autoStaking) {
+            SetStakingEnabled(true);
+        }
+        
+        // Update earnings projections
+        m_earnings_calculator->UpdateProjections(stakeAmount);
+        
+        LogPrintf("CWallet::SetupOneClickStaking: Successfully configured staking for %s BABACHAIN\n",
+                 FormatMoney(stakeAmount));
+        
+        return true;
+        
+    } catch (const std::exception& e) {
+        LogPrintf("CWallet::SetupOneClickStaking: Exception: %s\n", e.what());
+        return false;
+    }
+}
+
+/**
+ * Update coin maturity tracking for all wallet coins
+ */
+void CWallet::UpdateCoinMaturityTracking()
+{
+    LOCK(cs_wallet);
+    
+    if (!m_maturity_tracker) {
+        return;
+    }
+    
+    // Get all available coins
+    std::vector<COutput> vCoins;
+    AvailableCoins(vCoins, nullptr, 0, MAX_MONEY, MAX_MONEY, 0);
+    
+    for (const COutput& out : vCoins) {
+        // Track coins that aren't already spent or locked
+        if (!IsSpent(out.outpoint) && !IsLockedCoin(out.outpoint)) {
+            int nDepth = GetTxDepthInMainChain(*out.tx);
+            CAmount nValue = out.tx->tx->vout[out.i].nValue;
+            
+            m_maturity_tracker->TrackCoin(out.outpoint.hash, out.outpoint.n, nValue, nDepth);
+        }
+    }
+    
+    // Update maturity status for all tracked coins
+    m_maturity_tracker->UpdateMaturityStatus();
+}
+
+/**
+ * Notify about staking rewards and update earnings calculator
+ */
+void CWallet::NotifyStakingReward(CAmount amount, const uint256& txid)
+{
+    LOCK(cs_wallet);
+    
+    if (m_earnings_calculator) {
+        CAmount totalStaked = GetStakedBalance();
+        m_earnings_calculator->RecordEarning(amount, txid, totalStaked);
+        
+        // Update projections based on new data
+        m_earnings_calculator->UpdateProjections(totalStaked);
+    }
+    
+    LogPrintf("CWallet::NotifyStakingReward: Recorded staking reward of %s (tx: %s)\n",
+             FormatMoney(amount), txid.ToString());
+}

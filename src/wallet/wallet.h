@@ -32,6 +32,8 @@
 #include <wallet/walletdb.h>
 #include <wallet/walletutil.h>
 #include <wallet/staking.h>
+#include <wallet/maturitytracker.h>
+#include <wallet/earningscalculator.h>
 
 #include <algorithm>
 #include <atomic>
@@ -59,6 +61,8 @@ using LoadWalletFn = std::function<void(std::unique_ptr<interfaces::Wallet> wall
 
 namespace wallet {
 struct WalletContext;
+class CMaturityTracker;
+class CEarningsCalculator;
 
 //! Explicitly unload and delete the wallet.
 //  Blocks the current thread after signaling the unload intent so that all
@@ -263,6 +267,12 @@ private:
     
     //! if m_staking_enabled is true, automatic staking is enabled
     bool m_staking_enabled GUARDED_BY(cs_wallet){false};
+    
+    //! Maturity tracker for coin staking eligibility
+    std::unique_ptr<CMaturityTracker> m_maturity_tracker;
+    
+    //! Earnings calculator for staking projections
+    std::unique_ptr<CEarningsCalculator> m_earnings_calculator;
 
     bool Unlock(const CKeyingMaterial& vMasterKeyIn, bool fForMixingOnly = false, bool accept_no_keys = false);
 
@@ -615,6 +625,13 @@ public:
     bool AutoStake() EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     bool RegisterValidator(CAmount nStakeAmount, const std::string& strDescription, CTransactionRef& txNew, std::string& strError) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     std::vector<CValidatorInfo> GetValidatorInfo() const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    
+    // One-click staking setup functionality
+    bool SetupOneClickStaking(CAmount stakeAmount, bool autoStaking = true, bool notifications = true) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    CMaturityTracker* GetMaturityTracker() const { return m_maturity_tracker.get(); }
+    CEarningsCalculator* GetEarningsCalculator() const { return m_earnings_calculator.get(); }
+    void UpdateCoinMaturityTracking() EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    void NotifyStakingReward(CAmount amount, const uint256& txid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     
     unsigned int ComputeTimeSmart(const CWalletTx& wtx, bool rescanning_old_block) const;
 
