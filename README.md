@@ -1,102 +1,173 @@
-BabaChain Core staging tree
-===========================
+# BabaChain Core
 
-| `master` | `develop` |
-| -------- | --------- |
-| [![Build Status](https://github.com/babachainpay/babachain/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/babachainpay/babachain/tree/master) | [![Build Status](https://github.com/babachainpay/babachain/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/babachainpay/babachain/tree/develop) |
+[![Build Status](https://github.com/baba-chain/babachain/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/baba-chain/babachain/tree/master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-https://www.babachain.org
+> A next-generation Proof-of-Stake blockchain with fair economics and sustainable rewards
 
-For an immediately usable, binary version of the BabaChain Core software, see
-https://www.babachain.org/downloads/.
+## What is BabaChain?
 
-BabaChain Core connects to the BabaChain peer-to-peer network to download and fully
-validate blocks and transactions. It also includes a wallet and graphical user
-interface, which can be optionally built.
+BabaChain is a modern cryptocurrency built from the ground up with Proof-of-Stake consensus, designed to be energy-efficient, fair, and sustainable. Unlike traditional cryptocurrencies with massive premines or unfair distributions, BabaChain allocates 90% of its supply to community staking rewards.
 
-Further information about BabaChain Core is available in the [doc folder](/doc).
+### 🚀 Key Features
 
-What is BabaChain?
--------------
+- **⚡ Proof-of-Stake Consensus** - Energy efficient, fast, and secure
+- **🎯 Fair Distribution** - Only 10% premine, 90% for community rewards  
+- **📈 Progressive Economics** - Predictable reward reduction system
+- **🔒 Secure Staking** - Minimum 1,000 BabaChain stake requirement
+- **⏱️ Fast Blocks** - 2.5 minute average block time
+- **🌱 Sustainable** - Designed for long-term network health
 
-BabaChain is a digital currency that enables instant, private payments to anyone,
-anywhere in the world. BabaChain uses peer-to-peer technology to operate with
-no central authority: managing transactions and issuing money are carried out
-collectively by the network. BabaChain Core is the name of the open
-source software which enables the use of this currency.
+## 📊 Economic Model
 
+| Parameter | Value |
+|-----------|-------|
+| **Total Supply** | 210,000,000 BabaChain |
+| **Premine** | 20,000,000 (10%) |
+| **Staking Pool** | 190,000,000 (90%) |
+| **Initial Block Reward** | 200 BabaChain |
+| **Reduction Rate** | 25% every 20M coins |
+| **Block Time** | 2.5 minutes |
 
-For more information read the original BabaChain whitepaper.
+### 💰 Reward Schedule
 
-License
--------
+The block rewards follow a predictable reduction schedule:
 
-BabaChain Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+```
+Block Reward Progression:
+200 → 150 → 112.5 → 84.375 → 63.28 → 47.46 → 35.60 → 26.70 → 20.02 → 15.02
+```
 
-Development Process
--------------------
+**Reduction Points:**
+- At 40M total supply: 200 → 150 BabaChain
+- At 60M total supply: 150 → 112.5 BabaChain  
+- At 80M total supply: 112.5 → 84.375 BabaChain
+- And so on...
 
-The `master` branch is meant to be stable. Development is normally done in separate branches.
-[Tags](https://github.com/babachainpay/babachain/tags) are created to indicate new official,
-stable release versions of BabaChain Core.
+## 🏗️ Getting Started
 
-The `develop` branch is regularly built (see doc/build-*.md for instructions) and tested, but is not guaranteed to be
-completely stable.
+### Prerequisites
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
-and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
+- C++17 compatible compiler
+- CMake 3.16+
+- Boost libraries
+- OpenSSL
+- libevent
 
-Build / Compile from Source
----------------------------
+### Building from Source
 
-The `./configure`, `make`, and `cmake` steps, as well as build dependencies, are in [./doc/](/doc) as well:
+#### Linux/macOS
+```bash
+git clone https://github.com/baba-chain/babachain.git
+cd babachain
+./autogen.sh
+./configure
+make -j$(nproc)
+```
 
-- **Linux**: [./doc/build-unix.md](/doc/build-unix.md) \
-  Ubuntu, Debian, Fedora, Arch, and others
-- **macOS**: [./doc/build-osx.md](/doc/build-osx.md)
-- **Windows**: [./doc/build-windows.md](/doc/build-windows.md)
-- **OpenBSD**: [./doc/build-openbsd.md](/doc/build-openbsd.md)
-- **FreeBSD**: [./doc/build-freebsd.md](/doc/build-freebsd.md)
-- **NetBSD**: [./doc/build-netbsd.md](/doc/build-netbsd.md)
+#### Windows
+See [build-windows.md](doc/build-windows.md) for detailed instructions.
 
-Testing
--------
+### Running BabaChain
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+```bash
+# Start the daemon
+./src/babachaind
 
-### Automated Testing
+# Start with GUI
+./src/qt/babachain-qt
+```
 
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
+## 🥩 Staking Guide
 
-There are also [regression and integration tests](/test), written
-in Python.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
+### Requirements
+- Minimum 1,000 BabaChain
+- Coins must be mature (8+ hours old)
+- Wallet must be unlocked for staking
 
-The CI (Continuous Integration) systems make sure that every pull request is built for Windows, Linux, and macOS,
-and that unit/sanity tests are run automatically.
+### How to Stake
+1. Ensure you have at least 1,000 BabaChain
+2. Keep your wallet online and unlocked
+3. Enable staking in the wallet settings
+4. Wait for your coins to mature (8 hours)
+5. Start earning rewards!
 
-### Manual Quality Assurance (QA) Testing
+### Staking Rewards
+Your staking rewards depend on:
+- Your stake amount (more stake = higher probability)
+- Network participation (total staked coins)
+- Current block reward (reduces over time)
 
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+## 🔧 Configuration
 
-Translations
-------------
+### babachain.conf Example
+```ini
+# Network
+listen=1
+server=1
+daemon=1
 
-Changes to translations as well as new translations can be submitted to
-[BabaChain Core's Transifex page](https://explore.transifex.com/babachain/babachain/).
+# Staking
+staking=1
+stakeminconfirmations=1
 
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
+# RPC
+rpcuser=yourusername
+rpcpassword=yourpassword
+rpcallowip=127.0.0.1
+```
 
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
+## 🧪 Testing
+
+### Unit Tests
+```bash
+make check
+```
+
+### Functional Tests
+```bash
+test/functional/test_runner.py
+```
+
+## 📚 Documentation
+
+- [Build Instructions](doc/)
+- [Configuration Guide](doc/configuration.md)
+- [API Reference](doc/api.md)
+- [Staking Guide](doc/staking.md)
+- [Whitepaper](whitepaper.md)
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+### Development Process
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 🛡️ Security
+
+BabaChain takes security seriously. If you discover a security vulnerability, please email security@babachain.org instead of creating a public issue.
+
+## 📄 License
+
+BabaChain Core is released under the [MIT License](LICENSE).
+
+## 🌐 Community
+
+- **Website**: https://www.babachain.org
+- **Discord**: https://discord.gg/babachain
+- **Twitter**: https://twitter.com/babachainorg
+- **Telegram**: https://t.me/babachain
+- **Reddit**: https://reddit.com/r/babachain
+
+## ⚠️ Disclaimer
+
+BabaChain is experimental software. Use at your own risk. Always do your own research before investing in any cryptocurrency.
+
+---
+
+**Built with ❤️ by the BabaChain Community**

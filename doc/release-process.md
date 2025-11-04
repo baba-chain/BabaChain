@@ -1,14 +1,14 @@
 Release Process
 ====================
 
-* [ ] Update translations, see [translation_process.md](https://github.com/babachainpay/babachain/blob/develop/doc/translation_process.md#synchronising-translations).
-* [ ] Update manpages (after rebuilding the binaries), see [gen-manpages.py](https://github.com/babachainpay/babachain/blob/develop/contrib/devtools/README.md#gen-manpagespy).
-* [ ] Update babachain.conf and commit, see [gen-babachain-conf.sh](https://github.com/babachainpay/babachain/blob/develop/contrib/devtools/README.md#gen-babachain-confsh).
+* [ ] Update translations, see [translation_process.md](https://github.com/baba-chain/babachain/blob/develop/doc/translation_process.md#synchronising-translations).
+* [ ] Update manpages (after rebuilding the binaries), see [gen-manpages.py](https://github.com/baba-chain/babachain/blob/develop/contrib/devtools/README.md#gen-manpagespy).
+* [ ] Update babachain.conf and commit, see [gen-babachain-conf.sh](https://github.com/baba-chain/babachain/blob/develop/contrib/devtools/README.md#gen-babachain-confsh).
 
 Before every minor and major release:
 
-* [ ] Review ["Needs backport" labels](https://github.com/babachainpay/babachain/labels?q=backport).
-* [ ] Update DIPs with any changes introduced by this release (see [this pull request](https://github.com/babachainpay/dips/pull/142) for an example)
+* [ ] Review ["Needs backport" labels](https://github.com/baba-chain/babachain/labels?q=backport).
+* [ ] Update DIPs with any changes introduced by this release (see [this pull request](https://github.com/baba-chain/dips/pull/142) for an example)
 * [ ] Update version in `configure.ac` (don't forget to set `CLIENT_VERSION_IS_RELEASE` to `true`)
 * [ ] Write release notes (see below). To clear the release notes: `cp doc/release-notes-empty-template.md doc/release-notes.md`
 * [ ] Update `src/chainparams.cpp` `nMinimumChainWork` with information from the `getblockchaininfo` rpc.
@@ -25,10 +25,10 @@ Before every minor and major release:
 
 Before every major release:
 
-* [ ] Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/babachainpay/babachain/pull/5914) for an example.
+* [ ] Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/baba-chain/babachain/pull/5914) for an example.
 * [ ] Update [`src/chainparams.cpp`](/src/chainparams.cpp) `m_assumed_blockchain_size` and `m_assumed_chain_state_size` with the current size plus some overhead (see [this](#how-to-calculate-assumed-blockchain-and-chain-state-size) for information on how to calculate them).
 * [ ] Update [`src/chainparams.cpp`](/src/chainparams.cpp) `chainTxData` with statistics about the transaction count and rate. Use the output of the `getchaintxstats` RPC, see
-  [this pull request](https://github.com/babachainpay/babachain/pull/5692) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
+  [this pull request](https://github.com/baba-chain/babachain/pull/5692) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
 
 ### First time / New builders
 
@@ -39,9 +39,9 @@ Check out the source code in the following directory hierarchy.
 
 ```sh
 cd /path/to/your/toplevel/build
-git clone https://github.com/babachainpay/guix.sigs.git
-git clone https://github.com/babachainpay/babachain-detached-sigs.git
-git clone https://github.com/babachainpay/babachain.git
+git clone https://github.com/baba-chain/guix.sigs.git
+git clone https://github.com/baba-chain/babachain-detached-sigs.git
+git clone https://github.com/baba-chain/babachain.git
 ```
 
 ### BabaChain Core maintainers/release engineers, suggestion for writing release notes
@@ -86,7 +86,7 @@ git -C ./guix.sigs pull
 
 ### Create the macOS SDK tarball (first time, or when SDK version changes)
 
-_Note: this step can be skipped if [our CI](https://github.com/babachainpay/babachain/blob/master/ci/test/00_setup_env.sh#L64) still uses bitcoin's SDK package (see SDK_URL)_
+_Note: this step can be skipped if [our CI](https://github.com/baba-chain/babachain/blob/master/ci/test/00_setup_env.sh#L64) still uses bitcoin's SDK package (see SDK_URL)_
 
 Create the macOS SDK tarball, see the [macOS build
 instructions](build-osx.md#deterministic-macos-app-notes) for
@@ -164,7 +164,7 @@ popd
 ### Non-codesigners: wait for Windows and macOS detached signatures
 
 - Once the Windows and macOS builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [babachain-detached-sigs](https://github.com/babachainpay/babachain-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [babachain-detached-sigs](https://github.com/baba-chain/babachain-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 ### Create the codesigned build outputs
 - [Codesigning build outputs](/contrib/guix/README.md#codesigning-build-outputs)
@@ -229,7 +229,7 @@ popd
 * [ ] Celebrate
 
 ### After the release:
-* [ ] Submit patches to BTCPay to ensure they use latest / compatible version see https://github.com/babachainpay/babachain/issues/4211#issuecomment-966608207
+* [ ] Submit patches to BTCPay to ensure they use latest / compatible version see https://github.com/baba-chain/babachain/issues/4211#issuecomment-966608207
 * [ ] Update Core and User docs (docs.babachain.org)
 * [ ] Test Docker build runs without error in BabaChainmate
 * [ ] Add new Release Process items to repo [Release Process](release-process.md) document

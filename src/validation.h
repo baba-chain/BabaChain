@@ -156,8 +156,12 @@ CAmount GetBlockSubsidy(const CBlockIndex* const pindex, const Consensus::Params
 CAmount GetBabaChainPoSSubsidy(int nHeight, const Consensus::Params& consensusParams);
 CAmount GetBabaChainCirculatingSupply(int nHeight, const Consensus::Params& consensusParams);
 CAmount CalculateStakingReward(int nHeight, CAmount nCurrentSupply, const Consensus::Params& consensusParams);
+bool ValidateStakingRequirements(CAmount nStakeAmount, int64_t nStakeAge, const Consensus::Params& consensusParams);
+double CalculateValidatorProbability(CAmount nValidatorStake, CAmount nTotalNetworkStake);
 CAmount DistributeStakingRewards(const std::vector<CAmount>& vStakeAmounts, CAmount nTotalReward);
+std::pair<CAmount, int> GetNetworkStakingStats(const std::vector<CAmount>& vStakeAmounts, const Consensus::Params& consensusParams);
 bool EnforceSupplyCap(int nHeight, const Consensus::Params& consensusParams);
+
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue, bool fV20Active);
 
 bool AbortNode(BlockValidationState& state, const std::string& strMessage, const bilingual_str& userMessage = bilingual_str{});

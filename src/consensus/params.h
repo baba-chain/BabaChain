@@ -177,8 +177,9 @@ struct Params {
 
     /** Supply Management parameters */
     CAmount nMaxSupply{210000000 * COIN};           // Maximum total supply (210M coins)
-    CAmount nPremineAmount{50000000 * COIN};        // Premine amount (50M coins)
-    CAmount nStakingSupply{160000000 * COIN};       // Remaining supply for staking rewards (160M coins)
+    CAmount nPremineAmount{20000000 * COIN};        // Premine amount (20M coins - 10%)
+    CAmount nStakingSupply{190000000 * COIN};       // Remaining supply for staking rewards (190M coins - 90%)
+    CAmount nReductionInterval{20000000 * COIN};    // Reward reduction every 20M coins mined
     
     /** Proof of Stake parameters */
     int64_t nStakeMinAge{8 * 60 * 60};              // Minimum stake age (8 hours)
@@ -186,7 +187,7 @@ struct Params {
     CAmount nMinStakeAmount{1000 * COIN};           // Minimum stake amount (1000 coins)
     int64_t nStakeTargetSpacing{150};               // Target block time (2.5 minutes)
     int64_t nStakeTimestampMask{15};                // Timestamp mask for stake modifier
-    CAmount nStakeRewardPerBlock{10 * COIN};        // Base staking reward per block (10 coins)
+    CAmount nInitialBlockReward{200 * COIN};        // Initial block reward (200 coins)
 
     /** these parameters are only used on devnet and can be configured from the outside */
     int nMinimumDifficultyBlocks{0};

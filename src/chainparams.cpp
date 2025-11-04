@@ -185,9 +185,10 @@ public:
         
         // BabaChain supply parameters
         consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
-        consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
-        consensus.nStakingSupply = 160000000 * COIN;    // 160M for staking rewards
-        consensus.nStakeRewardPerBlock = 10 * COIN;     // 10 BabaChain per block staking reward
+        consensus.nPremineAmount = 20000000 * COIN;     // 20M premine (10%)
+        consensus.nStakingSupply = 190000000 * COIN;    // 190M for staking rewards (90%)
+        consensus.nReductionInterval = 20000000 * COIN; // Reward reduction every 20M coins
+        consensus.nInitialBlockReward = 200 * COIN;     // Initial block reward: 200 BabaChain
         consensus.nMasternodePaymentsStartBlock = 100000; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 158000; // actual historical value
         consensus.nMasternodePaymentsIncreasePeriod = 576*30; // 17280 - actual historical value
@@ -393,8 +394,10 @@ public:
         
         // BabaChain testnet supply parameters (same as mainnet for consistency)
         consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
-        consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
-        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
+        consensus.nPremineAmount = 20000000 * COIN;     // 20M premine (10%)
+        consensus.nStakingSupply = 190000000 * COIN;    // 190M for staking rewards (90%)
+        consensus.nReductionInterval = 20000000 * COIN; // Reward reduction every 20M coins
+        consensus.nInitialBlockReward = 200 * COIN;     // Initial block reward: 200 BabaChain
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
@@ -577,7 +580,7 @@ public:
         // BabaChain devnet supply parameters (same as mainnet for consistency)
         consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
         consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
-        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
+        consensus.nStakingSupply = 160000000 * COIN; // 160M for staking rewards
         consensus.nMasternodePaymentsStartBlock = 4010; // not true, but it's ok as long as it's less then nMasternodePaymentsIncreaseBlock
         consensus.nMasternodePaymentsIncreaseBlock = 4030;
         consensus.nMasternodePaymentsIncreasePeriod = 10;
@@ -818,7 +821,7 @@ public:
         // BabaChain regtest supply parameters (same as mainnet for consistency)
         consensus.nMaxSupply = 210000000 * COIN;        // 210M total supply
         consensus.nPremineAmount = 50000000 * COIN;     // 50M premine
-        consensus.nStakingRewardPool = 160000000 * COIN; // 160M for staking rewards
+        consensus.nStakingSupply = 160000000 * COIN; // 160M for staking rewards
         consensus.nMasternodePaymentsStartBlock = 240;
         consensus.nMasternodePaymentsIncreaseBlock = 350;
         consensus.nMasternodePaymentsIncreasePeriod = 10;

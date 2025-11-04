@@ -97,4 +97,71 @@ BOOST_AUTO_TEST_CASE(block_subsidy_test)
     BOOST_CHECK_EQUAL(nSubsidy, 344897960ULL); // 431122450 * 0.8
 }
 
+BOOST_AUTO_TEST_CASE(babachain_progressive_reduction_test)
+{
+    const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
+    const auto& consensus = chainParams->GetConsensus();
+    
+    // Test genesis block (should return premine amount)
+    CAmount nSubsidy = GetBabaChainPoSSubsidy(0, consensus);
+    BOOST_CHECK_EQUAL(nSubsidy, 20000000 * COIN); // 20M premine
+    
+    // Test initial block reward (should be 200 BabaChain)
+    nSubsidy = GetBabaChainPoSSubsidy(1, consensus);
+    BOOST_CHECK_EQUAL(nSubsidy, 200 * COIN); // 200 BabaChain initial reward
+    
+    // Test supply tracking
+    CAmount nSupply = GetBabaChainCirculatingSupply(0, consensus);
+    BOOST_CHECK_EQUAL(nSupply, 20000000 * COIN); // Genesis supply equals premine
+    
+    // Test 25% reduction system every 20M coins (200 → 150 → 112.5 → ...)
+    CAmount nReward;
+    
+    // At 20M supply (premine only) - should get 200 BabaChain
+    nReward = CalculateStakingReward(1000, 20000000 * COIN, consensus);
+    BOOST_CHECK_EQUAL(nReward, 200 * COIN); // Full reward
+    
+    // At 35M supply (15M mined) - no reduction yet
+    nReward = CalculateStakingReward(1000, 35000000 * COIN, consensus);
+    BOOST_CHECK_EQUAL(nReward, 200 * COIN); // Still full reward
+    
+    // At 40M supply (20M mined) - first reduction: 200 * 0.75 = 150
+    nReward = CalculateStakingReward(1000, 40000000 * COIN, consensus);
+    BOOST_CHECK_EQUAL(nReward, 150 * COIN); // 25% reduction
+    
+    // At 60M supply (40M mined) - second reduction: 150 * 0.75 = 112.5
+    nReward = CalculateStakingReward(1000, 60000000 * COIN, consensus);
+    BOOST_CHECK_EQUAL(nReward, 11250000000ULL); // 112.5 * COIN
+    
+    // At 80M supply (60M mined) - third reduction: 112.5 * 0.75 = 84.375
+    nReward = CalculateStakingReward(1000, 80000000 * COIN, consensus);
+    BOOST_CHECK_EQUAL(nReward, 8437500000ULL); // 84.375 * COIN
+    
+    // Test supply cap enforcement
+    bool bSupplyValid = EnforceSupplyCap(1000000, consensus); // Very high block number
+    BOOST_CHECK(bSupplyValid); // Should still be valid due to supply cap
+    
+    // Test staking requirements validation
+    bool bValidStake = ValidateStakingRequirements(1000 * COIN, 8 * 60 * 60, consensus); // 1000 coins, 8 hours
+    BOOST_CHECK(bValidStake); // Should be valid
+    
+    bool bInvalidStake = ValidateStakingRequirements(500 * COIN, 4 * 60 * 60, consensus); // 500 coins, 4 hours
+    BOOST_CHECK(!bInvalidStake); // Should be invalid (below minimum)
+    
+    // Test validator probability calculation
+    double dProbability = CalculateValidatorProbability(1000 * COIN, 10000 * COIN);
+    BOOST_CHECK_EQUAL(dProbability, 0.1); // 10% probability
+    
+    // Test network staking statistics
+    std::vector<CAmount> vStakes = {1000 * COIN, 2000 * COIN, 3000 * COIN}; // 3 validators
+    auto [nTotalStaked, nActiveValidators] = GetNetworkStakingStats(vStakes, consensus);
+    BOOST_CHECK_EQUAL(nTotalStaked, 6000 * COIN); // Total staked
+    BOOST_CHECK_EQUAL(nActiveValidators, 3); // All validators active
+    
+    // Test reward distribution
+    CAmount nTotalReward = 30 * COIN;
+    CAmount nDistributed = DistributeStakingRewards(vStakes, nTotalReward);
+    BOOST_CHECK_EQUAL(nDistributed, nTotalReward); // All rewards should be distributed
+}
+
 BOOST_AUTO_TEST_SUITE_END()

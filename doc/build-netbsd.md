@@ -41,7 +41,7 @@ See [dependencies.md](dependencies.md) for a complete overview.
 Clone the BabaChain Core repository to a directory. All build scripts and commands will run from this directory.
 
 ```bash
-git clone https://github.com/babachainpay/babachain.git
+git clone https://github.com/baba-chain/babachain.git
 ```
 
 ### 3. Install Optional Dependencies
@@ -52,7 +52,7 @@ It is not necessary to build wallet functionality to run babachaind or the GUI.
 
 ###### Descriptor Wallet Support
 
-`sqlite3` is required to enable support for [descriptor wallets](https://github.com/babachainpay/babachain/blob/master/doc/descriptors.md).
+`sqlite3` is required to enable support for [descriptor wallets](https://github.com/baba-chain/babachain/blob/master/doc/descriptors.md).
 
 ```bash
 pkgin install sqlite3

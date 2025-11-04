@@ -239,13 +239,13 @@ gh pr checks <PR_NUMBER> --json name,state,link,description
 gh pr checks <PR_NUMBER> --json name,state,link --jq '.[] | select(.state == "FAILURE" or .state == "PENDING")'
 
 # View logs from a specific CI job
-gh api repos/babachainpay/babachain/actions/jobs/<JOB_ID>/logs
+gh api repos/baba-chain/babachain/actions/jobs/<JOB_ID>/logs
 
 # Filter failed jobs and steps from a run
 gh run view <RUN_ID> --json jobs --jq '.jobs[] | select(.conclusion == "failure") | {name, conclusion}'
 
 # Example: Get lint failure logs for PR 6691
-# gh api repos/babachainpay/babachain/actions/jobs/46274126203/logs
+# gh api repos/baba-chain/babachain/actions/jobs/46274126203/logs
 ```
 
 ## Branch Structure

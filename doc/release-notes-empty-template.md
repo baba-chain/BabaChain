@@ -10,7 +10,7 @@ This release is **optional** for all nodes, although recommended.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/babachainpay/babachain/issues>
+  <https://github.com/baba-chain/babachain/issues>
 
 
 # Upgrading and downgrading
@@ -97,4 +97,4 @@ These releases are considered obsolete. Old release notes can be found here:
 -
 -
 
-[set-of-changes]: https://github.com/babachainpay/babachain/compare/*version*...babachainpay:*version*
+[set-of-changes]: https://github.com/baba-chain/babachain/compare/*version*...baba-chain:*version*

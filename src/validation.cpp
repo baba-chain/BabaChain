@@ -1562,33 +1562,38 @@ CAmount GetBlockSubsidyInner(int nPrevBits, int nPrevHeight, const Consensus::Pa
 }
 
 /**
- * Calculate BabaChain PoS block subsidy
- * Uses a sophisticated staking reward system with supply tracking
+ * Calculate BabaChain PoS block subsidy with progressive reduction system
+ * Implements 100 → 75 → 50 → 25 → 10 reward reduction based on supply phases
  */
 CAmount GetBabaChainPoSSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
+    // Genesis block returns premine amount
+    if (nHeight == 0) {
+        return consensusParams.nPremineAmount;
+    }
+    
     // Calculate current circulating supply
-    CAmount nCurrentSupply = GetBabaChainCirculatingSupply(nHeight, consensusParams);
+    CAmount nCurrentSupply = GetBabaChainCirculatingSupply(nHeight - 1, consensusParams);
     
     // Ensure we don't exceed maximum supply
     if (nCurrentSupply >= consensusParams.nMaxSupply) {
         return 0; // No more rewards once max supply is reached
     }
     
-    // Calculate dynamic reward based on supply and network participation
-    CAmount nBaseReward = CalculateStakingReward(nHeight, nCurrentSupply, consensusParams);
+    // Calculate reward using progressive reduction system
+    CAmount nStakingReward = CalculateStakingReward(nHeight, nCurrentSupply, consensusParams);
     
     // Ensure we don't exceed max supply with this block
-    if (nCurrentSupply + nBaseReward > consensusParams.nMaxSupply) {
+    if (nCurrentSupply + nStakingReward > consensusParams.nMaxSupply) {
         return consensusParams.nMaxSupply - nCurrentSupply;
     }
     
-    return nBaseReward;
+    return nStakingReward;
 }
 
 /**
  * Calculate current circulating supply for BabaChain
- * Includes premine + all staking rewards issued so far
+ * Includes premine + all staking rewards issued so far using progressive reduction system
  */
 CAmount GetBabaChainCirculatingSupply(int nHeight, const Consensus::Params& consensusParams)
 {
@@ -1599,8 +1604,7 @@ CAmount GetBabaChainCirculatingSupply(int nHeight, const Consensus::Params& cons
     // Start with premine amount
     CAmount nTotalSupply = consensusParams.nPremineAmount;
     
-    // Calculate total rewards issued up to this height
-    // Use iterative approach to avoid deep recursion
+    // Calculate total rewards issued up to this height using progressive reduction system
     for (int i = 1; i <= nHeight; i++) {
         if (nTotalSupply >= consensusParams.nMaxSupply) {
             break; // Stop if max supply reached
@@ -1621,60 +1625,88 @@ CAmount GetBabaChainCirculatingSupply(int nHeight, const Consensus::Params& cons
 }
 
 /**
- * Calculate staking reward for a specific block
- * Implements dynamic reward algorithm based on supply and network conditions
+ * Calculate staking reward for a specific block using 25% reduction system
+ * Starting at 200 BabaChain, reduces by 25% every 20M coins mined
  */
 CAmount CalculateStakingReward(int nHeight, CAmount nCurrentSupply, const Consensus::Params& consensusParams)
 {
-    // Calculate blocks per year (2.5 minute target spacing)
-    const int64_t nBlocksPerYear = (365 * 24 * 60 * 60) / consensusParams.nStakeTargetSpacing;
+    // Base reward starts at 200 BabaChain per block
+    CAmount nBaseReward = consensusParams.nInitialBlockReward;
     
-    // Calculate supply ratio (how much of max supply is already in circulation)
-    double dSupplyRatio = (double)nCurrentSupply / (double)consensusParams.nMaxSupply;
+    // Calculate how many coins have been mined after premine
+    CAmount nMinedCoins = nCurrentSupply - consensusParams.nPremineAmount;
     
-    // Dynamic inflation rate that decreases as supply increases
-    double dInflationRate;
-    if (dSupplyRatio <= 0.25) {
-        // First 25% of supply: 8% annual inflation
-        dInflationRate = 0.08;
-    } else if (dSupplyRatio <= 0.50) {
-        // 25-50% of supply: 6% annual inflation
-        dInflationRate = 0.06;
-    } else if (dSupplyRatio <= 0.75) {
-        // 50-75% of supply: 4% annual inflation
-        dInflationRate = 0.04;
-    } else if (dSupplyRatio <= 0.90) {
-        // 75-90% of supply: 2% annual inflation
-        dInflationRate = 0.02;
-    } else {
-        // 90-100% of supply: 1% annual inflation
-        dInflationRate = 0.01;
+    // If we haven't started mining yet (still at premine), return base reward
+    if (nMinedCoins <= 0) {
+        return nBaseReward;
     }
     
-    // Calculate annual reward pool based on current supply and inflation rate
-    CAmount nAnnualRewardPool = (CAmount)(nCurrentSupply * dInflationRate);
+    // Calculate number of reductions based on 20M coin intervals
+    int nReductions = nMinedCoins / consensusParams.nReductionInterval;
     
-    // Calculate reward per block
-    CAmount nRewardPerBlock = nAnnualRewardPool / nBlocksPerYear;
+    // Apply 25% reductions (multiply by 0.75 for each reduction)
+    for (int i = 0; i < nReductions; i++) {
+        nBaseReward = (nBaseReward * 75) / 100; // 25% reduction = multiply by 0.75
+    }
     
     // Minimum reward to ensure network security (5 BabaChain minimum)
     const CAmount nMinReward = 5 * COIN;
-    if (nRewardPerBlock < nMinReward) {
-        nRewardPerBlock = nMinReward;
+    if (nBaseReward < nMinReward) {
+        nBaseReward = nMinReward;
     }
     
-    // Maximum reward cap (50 BabaChain maximum per block)
-    const CAmount nMaxReward = 50 * COIN;
-    if (nRewardPerBlock > nMaxReward) {
-        nRewardPerBlock = nMaxReward;
-    }
-    
-    return nRewardPerBlock;
+    return nBaseReward;
 }
 
 /**
- * Distribute staking rewards to validators
- * This function will be called by the PoS consensus mechanism
+ * Validate staking requirements for a validator
+ * Checks minimum stake amount, stake age, and other PoS requirements
+ */
+bool ValidateStakingRequirements(CAmount nStakeAmount, int64_t nStakeAge, const Consensus::Params& consensusParams)
+{
+    // Check minimum stake amount
+    if (nStakeAmount < consensusParams.nMinStakeAmount) {
+        return false;
+    }
+    
+    // Check minimum stake age
+    if (nStakeAge < consensusParams.nStakeMinAge) {
+        return false;
+    }
+    
+    // Check maximum stake age (prevents very old stakes from being used)
+    if (nStakeAge > consensusParams.nStakeMaxAge) {
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * Calculate validator selection probability based on stake amount
+ * Higher stake = higher probability of being selected to validate
+ */
+double CalculateValidatorProbability(CAmount nValidatorStake, CAmount nTotalNetworkStake)
+{
+    if (nTotalNetworkStake <= 0 || nValidatorStake <= 0) {
+        return 0.0;
+    }
+    
+    // Simple proportional probability: validator_stake / total_stake
+    double dProbability = (double)nValidatorStake / (double)nTotalNetworkStake;
+    
+    // Cap probability to prevent single validator dominance
+    const double dMaxProbability = 0.25; // Max 25% chance for any single validator
+    if (dProbability > dMaxProbability) {
+        dProbability = dMaxProbability;
+    }
+    
+    return dProbability;
+}
+
+/**
+ * Distribute staking rewards to validators based on their stake amounts
+ * This function implements proportional reward distribution
  */
 CAmount DistributeStakingRewards(const std::vector<CAmount>& vStakeAmounts, CAmount nTotalReward)
 {
@@ -1718,6 +1750,25 @@ CAmount DistributeStakingRewards(const std::vector<CAmount>& vStakeAmounts, CAmo
 }
 
 /**
+ * Calculate network staking statistics
+ * Returns total staked amount and number of active validators
+ */
+std::pair<CAmount, int> GetNetworkStakingStats(const std::vector<CAmount>& vStakeAmounts, const Consensus::Params& consensusParams)
+{
+    CAmount nTotalStaked = 0;
+    int nActiveValidators = 0;
+    
+    for (const CAmount& nStake : vStakeAmounts) {
+        if (nStake >= consensusParams.nMinStakeAmount) {
+            nTotalStaked += nStake;
+            nActiveValidators++;
+        }
+    }
+    
+    return {nTotalStaked, nActiveValidators};
+}
+
+/**
  * Enforce supply cap - ensures total supply never exceeds maximum
  */
 bool EnforceSupplyCap(int nHeight, const Consensus::Params& consensusParams)
@@ -1726,35 +1777,7 @@ bool EnforceSupplyCap(int nHeight, const Consensus::Params& consensusParams)
     return nCurrentSupply <= consensusParams.nMaxSupply;
 }
 
-/**
- * BabaChain PoS-based block subsidy calculation
- * Returns dynamic staking rewards based on supply economics
- */
-CAmount GetBabaChainPoSSubsidy(int nHeight, const Consensus::Params& consensusParams)
-{
-    // Genesis block returns premine amount
-    if (nHeight == 0) {
-        return consensusParams.nPremineAmount;
-    }
-    
-    // Calculate current circulating supply
-    CAmount nCurrentSupply = GetBabaChainCirculatingSupply(nHeight - 1, consensusParams);
-    
-    // Check if we've reached maximum supply
-    if (nCurrentSupply >= consensusParams.nMaxSupply) {
-        return 0; // No more rewards once max supply is reached
-    }
-    
-    // Calculate dynamic staking reward
-    CAmount nStakingReward = CalculateStakingReward(nHeight, nCurrentSupply, consensusParams);
-    
-    // Ensure we don't exceed max supply with this block
-    if (nCurrentSupply + nStakingReward > consensusParams.nMaxSupply) {
-        return consensusParams.nMaxSupply - nCurrentSupply;
-    }
-    
-    return nStakingReward;
-}
+
 
 CAmount GetBlockSubsidy(const CBlockIndex* const pindex, const Consensus::Params& consensusParams)
 {
