@@ -31,6 +31,7 @@
 #include <wallet/transaction.h>
 #include <wallet/walletdb.h>
 #include <wallet/walletutil.h>
+#include <wallet/staking.h>
 
 #include <algorithm>
 #include <atomic>
@@ -259,6 +260,9 @@ private:
 
     //! if fOnlyMixingAllowed is true, only mixing should be allowed in unlocked wallet
     bool fOnlyMixingAllowed;
+    
+    //! if m_staking_enabled is true, automatic staking is enabled
+    bool m_staking_enabled GUARDED_BY(cs_wallet){false};
 
     bool Unlock(const CKeyingMaterial& vMasterKeyIn, bool fForMixingOnly = false, bool accept_no_keys = false);
 
@@ -444,6 +448,7 @@ public:
     /** Construct wallet with specified name and database implementation. */
     CWallet(interfaces::Chain* chain, interfaces::CoinJoin::Loader* coinjoin_loader, const std::string& name, const ArgsManager& args, std::unique_ptr<WalletDatabase> database)
         : fOnlyMixingAllowed(false),
+          m_staking_enabled(false),
           m_args(args),
           m_chain(chain),
           m_coinjoin_loader(coinjoin_loader),
@@ -598,6 +603,19 @@ public:
     bool EncryptWallet(const SecureString& strWalletPassphrase);
 
     void GetKeyBirthTimes(std::map<CKeyID, int64_t> &mapKeyBirth) const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    
+    // Staking functionality
+    bool IsStakingEnabled() const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    void SetStakingEnabled(bool enabled) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    CAmount GetStakingBalance() const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    CAmount GetStakedBalance() const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    std::vector<CStakingInfo> GetStakingTransactions() const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    bool CreateStakingTransaction(CAmount nAmount, int64_t nLockTime, const CTxDestination& dest, CTransactionRef& txNew, std::string& strError) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    bool CreateUnstakingTransaction(const COutPoint& stakeOutpoint, CTransactionRef& txNew, std::string& strError) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    bool AutoStake() EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    bool RegisterValidator(CAmount nStakeAmount, const std::string& strDescription, CTransactionRef& txNew, std::string& strError) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    std::vector<CValidatorInfo> GetValidatorInfo() const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    
     unsigned int ComputeTimeSmart(const CWalletTx& wtx, bool rescanning_old_block) const;
 
     /**

@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: BabaChain Core
-Upstream-Contact: BabaChain Core Group, Inc https://www.babachain.org/dcg/
-Source: https://github.com/babachainpay/babachain
+Upstream-Contact: BabaChain Core Developers https://www.babachain.org/
+Source: https://github.com/baba-chain/babachain
 
 Files: *
 Copyright: 2009-2025, Bitcoin Core Developers,

@@ -6,7 +6,6 @@ for Debian-based Linux systems. If you compile babachaind/babachain-qt yourself,
 
 ## babachain: URI support ##
 
-
 babachain-qt.desktop  (Gnome / Open Desktop)
 To install:
 

@@ -250,10 +250,13 @@ bool CMessageHeader::IsCommandValid() const
 
 
 ServiceFlags GetDesirableServiceFlags(ServiceFlags services) {
+    // For BabaChain PoS network, prefer nodes that support PoS operations
+    ServiceFlags desirable = ServiceFlags(NODE_NETWORK | NODE_POS);
+    
     if ((services & NODE_NETWORK_LIMITED) && g_initial_block_download_completed) {
-        return ServiceFlags(NODE_NETWORK_LIMITED);
+        return ServiceFlags(NODE_NETWORK_LIMITED | NODE_POS);
     }
-    return ServiceFlags(NODE_NETWORK);
+    return desirable;
 }
 
 void SetServiceFlagsIBDCache(bool state) {
@@ -350,6 +353,7 @@ static std::string serviceFlagToStr(size_t bit)
     case NODE_NETWORK_LIMITED: return "NETWORK_LIMITED";
     case NODE_HEADERS_COMPRESSED: return "HEADERS_COMPRESSED";
     case NODE_P2P_V2:          return "P2P_V2";
+    case NODE_POS:             return "POS";
     // Not using default, so we get warned when a case is missing
     }
 

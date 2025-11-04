@@ -65,14 +65,14 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
 }
 
 /**
- * Build the BabaChain genesis block with 50M premine. Note that the output of its generation
+ * Build the BabaChain genesis block with 20M premine. Note that the output of its generation
  * transaction cannot be spent since it did not originally exist in the
  * database.
  *
  * CBlock(hash=TBD, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=TBD, nTime=TBD, nBits=1e0ffff0, nNonce=TBD, vtx=1)
  *   CTransaction(hash=TBD, ver=1, vin.size=1, vout.size=1, nLockTime=0)
  *     CTxIn(COutPoint(000000, -1), coinbase TBD)
- *     CTxOut(nValue=50000000.00000000, scriptPubKey=TBD)
+ *     CTxOut(nValue=20000000.00000000, scriptPubKey=TBD)
  *   vMerkleTree: TBD
  */
 static CBlock CreateBabaChainGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
@@ -227,12 +227,14 @@ public:
         consensus.WithdrawalsHeight = 2201472; // 00000000000000210518749e17c00b035a2a4982c906236c28c41ea2231bf7ef
         consensus.MinBIP9WarningHeight = 2201472 + 2016; // withdrawals activation height + miner confirmation window
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // BabaChain: 2.5 minutes
+        // PoS timing parameters (kept for compatibility but not used for difficulty)
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day (legacy)
+        consensus.nPowTargetSpacing = 150; // BabaChain: 2.5 minutes (150 seconds) - matches PoS target
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nPowKGWHeight = 15200;
-        consensus.nPowDGWHeight = 34140;
+        // PoW difficulty algorithms disabled for PoS
+        consensus.nPowKGWHeight = 0; // Disabled - no KGW for PoS
+        consensus.nPowDGWHeight = 0; // Disabled - no DGW for PoS
         consensus.nRuleChangeActivationThreshold = 1815; // 90% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
@@ -259,21 +261,22 @@ public:
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
+         * BabaChain network magic bytes: 0xbaba1337
          */
         pchMessageStart[0] = 0xba;
         pchMessageStart[1] = 0xba;
-        pchMessageStart[2] = 0xc4;
-        pchMessageStart[3] = 0x1a;
-        nDefaultPort = 8999;
+        pchMessageStart[2] = 0x13;
+        pchMessageStart[3] = 0x37;
+        nDefaultPort = 9999;
         nDefaultPlatformP2PPort = 25656;
         nDefaultPlatformHTTPPort = 543;
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 54;
         m_assumed_chain_state_size = 1;
 
-        // Create BabaChain genesis block with 50M premine
+        // Create BabaChain genesis block with 20M premine
         // Using new timestamp for BabaChain launch (January 1, 2025)
-        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x1e0ffff0, 1, 50000000 * COIN);
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x1e0ffff0, 1, 20000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Genesis block hash and merkle root will be calculated at runtime
         // These values will be different from the original due to the 50M premine
@@ -284,10 +287,12 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("dnsseed.babachain.org.");
+        vSeeds.emplace_back("seed.babachain.network.");
+        vSeeds.emplace_back("node.babachain.io.");
 
-        // BabaChain addresses start with 'B'
+        // BabaChain addresses start with 'B' (base58 prefix 25)
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);
-        // BabaChain script addresses start with 'C'
+        // BabaChain script addresses start with 'C' (base58 prefix 28)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,28);
         // BabaChain private keys start with '7' or 'X'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,204);
@@ -438,12 +443,14 @@ public:
         consensus.WithdrawalsHeight = 1148500; // 000000212a6fec2ee2af040c6d7a176360b154cbaa998888170cfd9ae7dd632d
         consensus.MinBIP9WarningHeight = 1148500 + 2016;  // withdrawals activation height + miner confirmation window
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // BabaChain: 2.5 minutes
+        // PoS timing parameters (kept for compatibility but not used for difficulty)
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day (legacy)
+        consensus.nPowTargetSpacing = 150; // BabaChain: 2.5 minutes (150 seconds) - matches PoS target
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nPowKGWHeight = 4002; // nPowKGWHeight >= nPowDGWHeight means "no KGW"
-        consensus.nPowDGWHeight = 4002; // TODO: make sure to drop all spork6 related code on next testnet reset
+        // PoW difficulty algorithms disabled for PoS testnet
+        consensus.nPowKGWHeight = 0; // Disabled - no KGW for PoS
+        consensus.nPowDGWHeight = 0; // Disabled - no DGW for PoS
         consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
@@ -466,10 +473,11 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00000107d42829a38e31c1a38c660d621e1ca376a880df1520e85e38af175d3a"); // 1295700
 
-        pchMessageStart[0] = 0xce;
-        pchMessageStart[1] = 0xe2;
-        pchMessageStart[2] = 0xca;
-        pchMessageStart[3] = 0xff;
+        // BabaChain testnet magic bytes: 0xbaba7357
+        pchMessageStart[0] = 0xba;
+        pchMessageStart[1] = 0xba;
+        pchMessageStart[2] = 0x73;
+        pchMessageStart[3] = 0x57;
         nDefaultPort = 19999;
         nDefaultPlatformP2PPort = 22000;
         nDefaultPlatformHTTPPort = 22001;
@@ -477,9 +485,9 @@ public:
         m_assumed_blockchain_size = 10;
         m_assumed_chain_state_size = 1;
 
-        // Create BabaChain testnet genesis block with 50M premine
+        // Create BabaChain testnet genesis block with 20M premine
         // Using new timestamp for BabaChain testnet launch
-        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x1e0ffff0, 1, 50000000 * COIN);
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x1e0ffff0, 1, 20000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Genesis block hash and merkle root will be calculated at runtime
         // These values will be different from the original due to the 50M premine
@@ -620,12 +628,14 @@ public:
         consensus.WithdrawalsHeight = 2;   // withdrawals activated immediately on devnet
         consensus.MinBIP9WarningHeight = 2 + 2016; // withdrawals activation height + miner confirmation window
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // BabaChain: 2.5 minutes
+        // PoS timing parameters (kept for compatibility but not used for difficulty)
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day (legacy)
+        consensus.nPowTargetSpacing = 150; // BabaChain: 2.5 minutes (150 seconds) - matches PoS target
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nPowKGWHeight = 4001; // nPowKGWHeight >= nPowDGWHeight means "no KGW"
-        consensus.nPowDGWHeight = 4001;
+        // PoW difficulty algorithms disabled for PoS devnet
+        consensus.nPowKGWHeight = 0; // Disabled - no KGW for PoS
+        consensus.nPowDGWHeight = 0; // Disabled - no DGW for PoS
         consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
@@ -648,10 +658,11 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x000000000000000000000000000000000000000000000000000000000000000");
 
-        pchMessageStart[0] = 0xe2;
-        pchMessageStart[1] = 0xca;
-        pchMessageStart[2] = 0xff;
-        pchMessageStart[3] = 0xce;
+        // BabaChain devnet magic bytes: 0xbabade77
+        pchMessageStart[0] = 0xba;
+        pchMessageStart[1] = 0xba;
+        pchMessageStart[2] = 0xde;
+        pchMessageStart[3] = 0x77;
         nDefaultPort = 19799;
         nDefaultPlatformP2PPort = 22100;
         nDefaultPlatformHTTPPort = 22101;
@@ -660,13 +671,13 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateDevnetSubsidyAndDiffParametersFromArgs(args);
-        // Create BabaChain devnet genesis block with 50M premine
-        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x207fffff, 1, 50000000 * COIN);
+        // Create BabaChain devnet genesis block with 20M premine
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x207fffff, 1, 20000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Genesis block hash and merkle root will be calculated at runtime
         // These values will be different from the original due to the 50M premine
 
-        devnetGenesis = FindDevNetGenesisBlock(genesis, 50000000 * COIN);
+        devnetGenesis = FindDevNetGenesisBlock(genesis, 20000000 * COIN);
         consensus.hashDevnetGenesisBlock = devnetGenesis.GetHash();
 
         vFixedSeeds.clear();
@@ -863,12 +874,14 @@ public:
         consensus.WithdrawalsHeight = 600;
         consensus.MinBIP9WarningHeight = 0;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // BabaChain: 2.5 minutes
+        // PoS timing parameters (kept for compatibility but not used for difficulty)
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // BabaChain: 1 day (legacy)
+        consensus.nPowTargetSpacing = 150; // BabaChain: 2.5 minutes (150 seconds) - matches PoS target
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
-        consensus.nPowKGWHeight = 15200; // same as mainnet
-        consensus.nPowDGWHeight = 34140; // same as mainnet
+        // PoW difficulty algorithms disabled for PoS regtest
+        consensus.nPowKGWHeight = 0; // Disabled - no KGW for PoS
+        consensus.nPowDGWHeight = 0; // Disabled - no DGW for PoS
         consensus.nRuleChangeActivationThreshold = 108; // 75% for testchains
         consensus.nMinerConfirmationWindow = 144; // Faster than normal for regtest (144 instead of 2016)
 
@@ -892,10 +905,11 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        pchMessageStart[0] = 0xfc;
-        pchMessageStart[1] = 0xc1;
-        pchMessageStart[2] = 0xb7;
-        pchMessageStart[3] = 0xdc;
+        // BabaChain regtest magic bytes: 0xbabaf00d
+        pchMessageStart[0] = 0xba;
+        pchMessageStart[1] = 0xba;
+        pchMessageStart[2] = 0xf0;
+        pchMessageStart[3] = 0x0d;
         nDefaultPort = 19899;
         nDefaultPlatformP2PPort = 22200;
         nDefaultPlatformHTTPPort = 22201;
@@ -907,8 +921,8 @@ public:
         UpdateDIP3ParametersFromArgs(args);
         UpdateBudgetParametersFromArgs(args);
 
-        // Create BabaChain regtest genesis block with 50M premine
-        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x207fffff, 1, 50000000 * COIN);
+        // Create BabaChain regtest genesis block with 20M premine
+        genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x207fffff, 1, 20000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Genesis block hash and merkle root will be calculated at runtime
         // These values will be different from the original due to the 50M premine

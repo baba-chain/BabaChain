@@ -1224,6 +1224,17 @@ Span<const CRPCCommand> GetWalletRPCCommands()
         {"wallet", &walletcreatefundedpsbt},
         {"wallet", &wipewallettxes},
     };
-    return commands;
+    
+    // Combine with staking commands
+    static std::vector<CRPCCommand> all_commands;
+    if (all_commands.empty()) {
+        all_commands.assign(std::begin(commands), std::end(commands));
+        
+        // Add staking commands
+        auto staking_commands = GetWalletStakingRPCCommands();
+        all_commands.insert(all_commands.end(), staking_commands.begin(), staking_commands.end());
+    }
+    
+    return MakeSpan(all_commands);
 }
 } // namespace wallet

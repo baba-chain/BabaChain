@@ -1,8 +1,8 @@
 Source: babachain
 Section: utils
 Priority: optional
-Maintainer: Holger Schinzel <holger@babachain.org>
-Uploaders: Holger Schinzel <holger@babachain.org>
+Maintainer: BabaChain Core Developers <dev@babachain.org>
+Uploaders: BabaChain Core Developers <dev@babachain.org>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -22,8 +22,8 @@ Build-Depends: debhelper,
  libzmq3-dev
 Standards-Version: 3.9.2
 Homepage: https://www.babachain.org/
-Vcs-Git: git://github.com/babachainpay/babachain.git
-Vcs-Browser: https://github.com/babachainpay/babachain
+Vcs-Git: git://github.com/baba-chain/babachain.git
+Vcs-Browser: https://github.com/baba-chain/babachain
 
 Package: babachaind
 Architecture: any

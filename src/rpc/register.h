@@ -28,6 +28,7 @@ void RegisterCoinJoinRPCCommands(CRPCTable &tableRPC);
 void RegisterGovernanceRPCCommands(CRPCTable &tableRPC);
 void RegisterEvoRPCCommands(CRPCTable &tableRPC);
 void RegisterQuorumsRPCCommands(CRPCTable &tableRPC);
+void RegisterStakingRPCCommands(CRPCTable &tableRPC);
 
 #ifdef ENABLE_WALLET
 // BabaChain-specific wallet-only RPC commands
@@ -54,6 +55,7 @@ static inline void RegisterAllCoreRPCCommands(CRPCTable &t)
     RegisterGovernanceRPCCommands(t);
     RegisterEvoRPCCommands(t);
     RegisterQuorumsRPCCommands(t);
+    RegisterStakingRPCCommands(t);
 }
 
 #endif // BITCOIN_RPC_REGISTER_H
