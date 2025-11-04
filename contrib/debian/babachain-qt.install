@@ -1,0 +1,6 @@
+usr/local/bin/babachain-qt usr/bin
+share/pixmaps/babachain32.xpm usr/share/pixmaps
+share/pixmaps/babachain16.xpm usr/share/pixmaps
+share/pixmaps/babachain128.png usr/share/pixmaps
+debian/babachain-qt.desktop usr/share/applications
+debian/babachain-qt.protocol usr/share/kde4/services/

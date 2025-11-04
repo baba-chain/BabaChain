@@ -1,0 +1,25 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="ar">locale/babachain_ar.qm</file>
+        <file alias="bg">locale/babachain_bg.qm</file>
+        <file alias="de">locale/babachain_de.qm</file>
+        <file alias="en">locale/babachain_en.qm</file>
+        <file alias="es">locale/babachain_es.qm</file>
+        <file alias="fi">locale/babachain_fi.qm</file>
+        <file alias="fr">locale/babachain_fr.qm</file>
+        <file alias="it">locale/babachain_it.qm</file>
+        <file alias="ja">locale/babachain_ja.qm</file>
+        <file alias="ko">locale/babachain_ko.qm</file>
+        <file alias="nl">locale/babachain_nl.qm</file>
+        <file alias="pl">locale/babachain_pl.qm</file>
+        <file alias="pt">locale/babachain_pt.qm</file>
+        <file alias="ro">locale/babachain_ro.qm</file>
+        <file alias="ru">locale/babachain_ru.qm</file>
+        <file alias="sk">locale/babachain_sk.qm</file>
+        <file alias="th">locale/babachain_th.qm</file>
+        <file alias="tr">locale/babachain_tr.qm</file>
+        <file alias="vi">locale/babachain_vi.qm</file>
+        <file alias="zh_CN">locale/babachain_zh_CN.qm</file>
+        <file alias="zh_TW">locale/babachain_zh_TW.qm</file>
+    </qresource>
+</RCC>
