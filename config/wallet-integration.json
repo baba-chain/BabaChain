@@ -1,0 +1,195 @@
+{
+  "babachain_integration": {
+    "version": "1.0.0",
+    "network": {
+      "mainnet": {
+        "magic_bytes": "0xbaba1337",
+        "default_port": 9999,
+        "rpc_port": 9998,
+        "platform_p2p_port": 25656,
+        "platform_http_port": 543,
+        "genesis_hash": "auto_calculated",
+        "seed_nodes": [
+          "dnsseed.babachain.org:9999",
+          "seed.babachain.network:9999",
+          "node.babachain.io:9999"
+        ]
+      },
+      "testnet": {
+        "magic_bytes": "0xbaba7357",
+        "default_port": 19999,
+        "rpc_port": 19998,
+        "platform_p2p_port": 22000,
+        "platform_http_port": 22001,
+        "seed_nodes": [
+          "testnet-seed.babachain.network:19999"
+        ]
+      }
+    },
+    "consensus": {
+      "algorithm": "proof_of_stake",
+      "block_time": 150,
+      "stake_min_age": 3600,
+      "stake_max_age": 86400,
+      "pos_target_spacing": 150,
+      "supply": {
+        "max_supply": 1000000000,
+        "initial_supply": 210000000,
+        "premine_amount": 20000000,
+        "staking_supply": 190000000,
+        "extended_staking": 790000000,
+        "reduction_interval": 20000000,
+        "initial_block_reward": 200
+      }
+    },
+    "wallets": {
+      "desktop": {
+        "type": "full_node",
+        "features": [
+          "full_blockchain_sync",
+          "auto_staking",
+          "validator_management",
+          "advanced_settings",
+          "turkish_language"
+        ],
+        "staking": {
+          "auto_start": true,
+          "reserve_balance": 0,
+          "stake_split_threshold": 2000
+        },
+        "ui": {
+          "theme": "babachain_modern",
+          "language_default": "en",
+          "supported_languages": ["en", "tr", "es", "fr", "de", "ru", "zh"]
+        }
+      },
+      "android": {
+        "type": "spv_node",
+        "features": [
+          "background_staking",
+          "push_notifications",
+          "qr_scanner",
+          "biometric_security",
+          "turkish_language"
+        ],
+        "staking": {
+          "background_service": true,
+          "notification_rewards": true,
+          "auto_compound": true
+        },
+        "security": {
+          "biometric_auth": true,
+          "pin_protection": true,
+          "secure_enclave": true
+        },
+        "performance": {
+          "max_connections": 8,
+          "cache_size": "100MB",
+          "prune_mode": true
+        }
+      },
+      "ios": {
+        "type": "spv_node",
+        "features": [
+          "background_app_refresh",
+          "ios_notifications",
+          "apple_pay_integration",
+          "face_id_touch_id",
+          "turkish_language"
+        ],
+        "staking": {
+          "background_refresh": true,
+          "notification_rewards": true,
+          "auto_compound": true
+        },
+        "security": {
+          "face_id": true,
+          "touch_id": true,
+          "keychain_storage": true
+        },
+        "performance": {
+          "max_connections": 8,
+          "cache_size": "100MB",
+          "background_processing": true
+        }
+      }
+    },
+    "staking": {
+      "reward_calculation": {
+        "base_reward": 200,
+        "reduction_schedule": [
+          {"supply_range": [0, 20000000], "reward": 200},
+          {"supply_range": [20000000, 40000000], "reward": 150},
+          {"supply_range": [40000000, 60000000], "reward": 100},
+          {"supply_range": [60000000, 80000000], "reward": 75},
+          {"supply_range": [80000000, 100000000], "reward": 50},
+          {"supply_range": [100000000, 120000000], "reward": 25},
+          {"supply_range": [120000000, 210000000], "reward": 10}
+        ]
+      },
+      "validator_requirements": {
+        "minimum_stake": 1000,
+        "minimum_confirmations": 100,
+        "slashing_conditions": [
+          "double_signing",
+          "extended_downtime",
+          "malicious_behavior"
+        ]
+      }
+    },
+    "auto_features": {
+      "node_discovery": {
+        "enabled": true,
+        "discovery_interval": 300,
+        "max_peers": 125,
+        "preferred_peers": 8
+      },
+      "network_healing": {
+        "enabled": true,
+        "reconnect_interval": 60,
+        "health_check_interval": 30
+      },
+      "blockchain_bootstrap": {
+        "enabled": true,
+        "checkpoint_validation": true,
+        "fast_sync": true
+      }
+    },
+    "turkish_support": {
+      "encoding": "UTF-8",
+      "character_set": "turkish_extended",
+      "special_characters": ["ç", "ğ", "ı", "ö", "ş", "ü", "Ç", "Ğ", "İ", "Ö", "Ş", "Ü"],
+      "collation": "turkish_ci",
+      "number_format": "tr_TR",
+      "date_format": "dd.MM.yyyy",
+      "currency_format": "₺#,##0.00000000"
+    },
+    "social_features": {
+      "referral_system": {
+        "enabled": true,
+        "bonus_percentage": 5,
+        "max_referrals": 100
+      },
+      "achievements": {
+        "enabled": true,
+        "categories": ["staking", "trading", "social", "security"]
+      },
+      "leaderboards": {
+        "enabled": true,
+        "update_interval": 3600
+      }
+    },
+    "integration_apis": {
+      "exchange": {
+        "dex_integration": true,
+        "fiat_onramp": true,
+        "dca_features": true
+      },
+      "defi": {
+        "yield_farming": true,
+        "liquidity_mining": true,
+        "governance": true
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "dashboard": {
+    "title": "BabaChain Seed Nodes",
+    "panels": [
+      {
+        "title": "Node Status",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "up{job='babachain-seed-nodes'}",
+            "legendFormat": "{{instance}}"
+          }
+        ]
+      },
+      {
+        "title": "Network Connections",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "babachain_connections{job='babachain-seed-nodes'}",
+            "legendFormat": "{{instance}}"
+          }
+        ]
+      },
+      {
+        "title": "Block Height",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "babachain_block_height{job='babachain-seed-nodes'}",
+            "legendFormat": "{{instance}}"
+          }
+        ]
+      }
+    ]
+  }
+}

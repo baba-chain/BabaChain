@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+scrape_configs:
+- job_name: babachain-seed-nodes
+  metrics_path: /metrics
+  scrape_interval: 30s
+  static_configs:
+  - targets:
+    - seed1.babachain.org:9998
+    - seed2.babachain.org:9998
+    - seed3.babachain.org:9998
+    - node1.babachain.network:9998
+    - node2.babachain.network:9998

@@ -1,0 +1,131 @@
+networks:
+  babachain-network:
+    driver: bridge
+services:
+  babachain-node1:
+    container_name: babachain-node1
+    environment:
+      BABACHAIN_NETWORK: mainnet
+      BABACHAIN_NODE_TYPE: seed
+    healthcheck:
+      interval: 30s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - babachain-cli
+      - getnetworkinfo
+      timeout: 10s
+    image: babachain/babachain:latest
+    networks:
+    - babachain-network
+    ports:
+    - 9999:9999
+    - 9998:9998
+    restart: unless-stopped
+    volumes:
+    - node1-data:/home/babachain/.babachain
+    - ./config/seed-nodes/node1.conf:/home/babachain/.babachain/babachain.conf:ro
+  babachain-node2:
+    container_name: babachain-node2
+    environment:
+      BABACHAIN_NETWORK: mainnet
+      BABACHAIN_NODE_TYPE: seed
+    healthcheck:
+      interval: 30s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - babachain-cli
+      - getnetworkinfo
+      timeout: 10s
+    image: babachain/babachain:latest
+    networks:
+    - babachain-network
+    ports:
+    - 9999:9999
+    - 9998:9998
+    restart: unless-stopped
+    volumes:
+    - node2-data:/home/babachain/.babachain
+    - ./config/seed-nodes/node2.conf:/home/babachain/.babachain/babachain.conf:ro
+  babachain-seed1:
+    container_name: babachain-seed1
+    environment:
+      BABACHAIN_NETWORK: mainnet
+      BABACHAIN_NODE_TYPE: seed
+    healthcheck:
+      interval: 30s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - babachain-cli
+      - getnetworkinfo
+      timeout: 10s
+    image: babachain/babachain:latest
+    networks:
+    - babachain-network
+    ports:
+    - 9999:9999
+    - 9998:9998
+    restart: unless-stopped
+    volumes:
+    - seed1-data:/home/babachain/.babachain
+    - ./config/seed-nodes/seed1.conf:/home/babachain/.babachain/babachain.conf:ro
+  babachain-seed2:
+    container_name: babachain-seed2
+    environment:
+      BABACHAIN_NETWORK: mainnet
+      BABACHAIN_NODE_TYPE: seed
+    healthcheck:
+      interval: 30s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - babachain-cli
+      - getnetworkinfo
+      timeout: 10s
+    image: babachain/babachain:latest
+    networks:
+    - babachain-network
+    ports:
+    - 9999:9999
+    - 9998:9998
+    restart: unless-stopped
+    volumes:
+    - seed2-data:/home/babachain/.babachain
+    - ./config/seed-nodes/seed2.conf:/home/babachain/.babachain/babachain.conf:ro
+  babachain-seed3:
+    container_name: babachain-seed3
+    environment:
+      BABACHAIN_NETWORK: mainnet
+      BABACHAIN_NODE_TYPE: seed
+    healthcheck:
+      interval: 30s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - babachain-cli
+      - getnetworkinfo
+      timeout: 10s
+    image: babachain/babachain:latest
+    networks:
+    - babachain-network
+    ports:
+    - 9999:9999
+    - 9998:9998
+    restart: unless-stopped
+    volumes:
+    - seed3-data:/home/babachain/.babachain
+    - ./config/seed-nodes/seed3.conf:/home/babachain/.babachain/babachain.conf:ro
+version: '3.8'
+volumes:
+  node1-data: {}
+  node2-data: {}
+  seed1-data: {}
+  seed2-data: {}
+  seed3-data: {}

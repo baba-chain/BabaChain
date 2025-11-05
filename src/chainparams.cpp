@@ -275,11 +275,11 @@ public:
         m_assumed_chain_state_size = 1;
 
         // Create BabaChain genesis block with 20M premine
-        // Using new timestamp for BabaChain launch (January 1, 2025)
+        // Mainnet launch: January 1, 2025, 00:00:00 UTC (timestamp: 1735689600)
         genesis = CreateBabaChainGenesisBlock(1735689600, 0, 0x1e0ffff0, 1, 20000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         // Genesis block hash and merkle root will be calculated at runtime
-        // These values will be different from the original due to the 50M premine
+        // These values will be different from the original due to the 20M premine
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.

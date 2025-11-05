@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: babachain
+    node-name: node2
+    node-type: seed
+  name: babachain-node2
+  namespace: babachain
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: babachain
+      node-name: node2
+  template:
+    metadata:
+      labels:
+        app: babachain
+        node-name: node2
+        node-type: seed
+    spec:
+      containers:
+      - image: babachain/babachain:latest
+        livenessProbe:
+          exec:
+            command:
+            - babachain-cli
+            - getnetworkinfo
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        name: babachain
+        ports:
+        - containerPort: 9999
+          name: p2p
+        - containerPort: 9998
+          name: rpc
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /home/babachain/.babachain/babachain.conf
+          name: config
+          subPath: babachain.conf
+        - mountPath: /home/babachain/.babachain
+          name: data
+      volumes:
+      - configMap:
+          name: babachain-node2-config
+        name: config
+      - name: data
+        persistentVolumeClaim:
+          claimName: babachain-node2-data

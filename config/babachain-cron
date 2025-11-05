@@ -1,0 +1,6 @@
+# BabaChain Mainnet Monitoring Cron Jobs
+# Check health every 5 minutes
+*/5 * * * * /usr/local/bin/python3 /opt/babachain/scripts/health-check.py >> /var/log/babachain-health.log 2>&1
+
+# Daily backup
+0 2 * * * /opt/babachain/scripts/backup-wallet.sh >> /var/log/babachain-backup.log 2>&1

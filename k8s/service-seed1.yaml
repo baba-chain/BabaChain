@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: babachain-seed1
+  namespace: babachain
+spec:
+  ports:
+  - name: p2p
+    port: 9999
+    protocol: TCP
+    targetPort: 9999
+  - name: rpc
+    port: 9998
+    protocol: TCP
+    targetPort: 9998
+  selector:
+    app: babachain
+    node-name: seed1
+  type: LoadBalancer
