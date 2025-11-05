@@ -6,7 +6,7 @@ BabaChain ağını ilk defa başlatmak için belirli bir sıra takip etmemiz ger
 
 ## 📅 Lansman Tarihleri
 - **Testnet**: Kasım 2025
-- **Mainnet**: 1 Aralık 2025, 00:00:00 UTC
+- **Mainnet**: 1 Ocak 2026, 00:00:00 UTC
 
 ## 🔄 Lansman Aşamaları
 
