@@ -4,7 +4,7 @@
 
 **A Revolutionary Proof-of-Stake Blockchain with Auto-Node System and Extraordinary Staking Rewards**
 
-*Version 2.0 - January 2025*
+*Version 2.0 - Ekim 2025*
 
 ---
 
