@@ -1,4 +1,4 @@
-# BabaChain Teknik Raporu
+# Teknik Raporu
 
 ![BabaChain Logo](logo.png)
 

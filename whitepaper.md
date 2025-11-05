@@ -1,4 +1,4 @@
-# BabaChain Whitepaper
+# Whitepaper
 
 ![BabaChain Logo](logo.png)
 

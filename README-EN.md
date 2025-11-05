@@ -1,5 +1,4 @@
-# BabaChain Core
-
+# 
 ![BabaChain Logo](logo.png)
 
 [![Build Status](https://github.com/baba-chain/babachain/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/baba-chain/babachain/tree/master)

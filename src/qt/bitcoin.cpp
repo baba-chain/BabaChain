@@ -138,6 +138,11 @@ static void initTranslations(QTranslator &qtTranslatorBase, QTranslator &qtTrans
     QString lang = lang_territory;
     lang.truncate(lang_territory.lastIndexOf('_'));
 
+    // Special handling for Turkish locale to ensure proper UTF-8 encoding and formatting
+    if (lang == "tr" || lang_territory == "tr_TR") {
+        QLocale::setDefault(QLocale(QLocale::Turkish, QLocale::Turkey));
+    }
+
     // Load language files for configured locale:
     // - First load the translator for the base language, without territory
     // - Then load the more specific locale translator
