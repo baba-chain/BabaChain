@@ -990,6 +990,7 @@ libbitcoin_util_a_SOURCES = \
   util/threadinterrupt.cpp \
   util/threadnames.cpp \
   util/tokenpipe.cpp \
+  util/turkish.cpp \
   util/wpipe.cpp \
   $(BITCOIN_CORE_H)
 

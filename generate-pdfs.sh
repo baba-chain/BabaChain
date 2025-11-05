@@ -4,7 +4,7 @@
 echo "Generating BabaChain Whitepapers..."
 
 # English PDF
-pandoc whitepaper.md -o "BabaChain_Whitepaper_EN.pdf" \
+pandoc whitepaper.md -o "BabaChain_Whitepaper.pdf" \
   --pdf-engine=xelatex \
   --variable mainfont="Times New Roman" \
   --variable fontsize=11pt \
@@ -14,7 +14,7 @@ pandoc whitepaper.md -o "BabaChain_Whitepaper_EN.pdf" \
   --highlight-style=tango
 
 # Turkish PDF  
-pandoc whitepaper-tr.md -o "BabaChain_Teknik_Raporu_TR.pdf" \
+pandoc whitepaper-tr.md -o "BabaChain_Teknik_Raporu.pdf" \
   --pdf-engine=xelatex \
   --variable mainfont="Times New Roman" \
   --variable fontsize=11pt \

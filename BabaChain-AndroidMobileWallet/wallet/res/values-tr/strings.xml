@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
 
-    <string name="toast_wallet_reset">Cüzdanınız sıfırlandı reset!\nIt normale dönmesi biraz vakit alacaktır.</string>
+    <string name="toast_wallet_reset">Cüzdanınız sıfırlandı!\nNormale dönmesi biraz vakit alacaktır.</string>
     <string name="toast_start_storage_provider_selector_failed">Uygun bir bulut depolama sağlayıcısı kurulu değil. \n\"Nextcloud\" veya \"Google Drive\" gibi bir şeye ihtiyacınız var.</string>
     <string name="wallet_disclaimer_fragment_remind_safety">Riskin size ait olduğunu bilerek kullanın. &lt;u&gt;Güvenlik notlarını&lt;/u&gt; okuyunuz.</string>
     <string name="wallet_disclaimer_fragment_remind_backup">Cüzdanınızı yedeklemeniz gerekmektedir!</string>
@@ -11,7 +11,7 @@
     <string name="blockchain_state_progress_months">%1$s, %2$d ay geride</string>
     <string name="blockchain_state_progress_stalled">Senkronizasyon durdu</string>
     <string name="blockchain_state_progress_problem_storage">Senkronize ediliyor: Depolama sorunu</string>
-    <string name="blockchain_state_progress_problem_network">Senktronize ediliyor: Ağ sorunu</string>
+    <string name="blockchain_state_progress_problem_network">Senkronize ediliyor: Ağ sorunu</string>
     <string name="wallet_address_fragment_clipboard_msg">BabaChain adresi panoya kopyalandı</string>
     <string name="wallet_address_dialog_fragment_hint">Gizliliğinizi korumak için, adresiniz bir ödeme aldığında değiştirilecektir.</string>
     <string name="wallet_balance_fragment_too_much">Bu miktar cebinizde taşımak için oldukça fazladır. Bir miktarını daha güvenli bir yere aktarınız.</string>
@@ -401,4 +401,42 @@
     <string name="battery_optimization_dialog_unrestricted_title">Arka planda ödeme almak ister misiniz?</string>
     <string name="battery_optimization_dialog_message_not_optimized">Bu uygulama bir süre görünmez kaldıktan sonra çalışmaya devam edecek şekilde yapılandırılmıştır.\n\nBu uygulamanın arka planda bile her zaman blockchain ile güncel kalmasına izin vermenizi öneririz.\n\nMerak etmeyin, pil kullanımınıza her zaman önem vereceğiz.</string>
     <string name="battery_optimization_dialog_button_change">Ayarları aç</string>
+    
+    <!-- Missing strings from main strings.xml -->
+    <string name="blockchain_state_progress_downloading">Ağ ile senkronize ediliyor (%1$s%%)</string>
+    <string name="mixing_state_progress_mixing">Coinler Karıştırılıyor (%1$s%%)</string>
+    <string name="wallet_coinjoin_timeskew_dialog_msg">Cihazınızın saati %s %d saniye farklılık gösteriyor. Bu fark nedeniyle CoinJoin kullanamazsınız.\n\nCoinJoin kullanmak için cihazınızdaki saat ayarlarının \"Saati otomatik ayarla\" olarak değiştirilmesi gerekir.</string>
+    <string name="settings_coinjoin_timeskew_dialog_msg">Cihazınızın saati 5 saniyeden fazla farklılık gösteriyor. Bu fark nedeniyle CoinJoin kullanamazsınız.\n\nCoinJoin kullanmadan önce cihazınızdaki saat ayarlarının \"Saati otomatik ayarla\" olarak değiştirilmesi gerekir.</string>
+    
+    <!-- Staking related strings -->
+    <string name="staking_activity_title">Staking</string>
+    <string name="staking_status_active">Staking Aktif</string>
+    <string name="staking_status_inactive">Staking Pasif</string>
+    <string name="staking_balance_label">Stake Edilen Miktar</string>
+    <string name="staking_rewards_label">Staking Ödülleri</string>
+    <string name="staking_apy_label">Yıllık Getiri Oranı (APY)</string>
+    <string name="staking_start_button">Staking Başlat</string>
+    <string name="staking_stop_button">Staking Durdur</string>
+    <string name="staking_auto_enable">Otomatik Staking Etkinleştir</string>
+    <string name="staking_auto_disable">Otomatik Staking Devre Dışı Bırak</string>
+    <string name="staking_earnings_daily">Günlük Kazanç</string>
+    <string name="staking_earnings_weekly">Haftalık Kazanç</string>
+    <string name="staking_earnings_monthly">Aylık Kazanç</string>
+    <string name="staking_earnings_yearly">Yıllık Projeksiyon</string>
+    <string name="staking_minimum_amount">Minimum Stake Miktarı: %s BABACHAIN</string>
+    <string name="staking_maturity_time">Coinler %d onaydan sonra stake edilebilir</string>
+    <string name="staking_notification_title">BabaChain Staking</string>
+    <string name="staking_notification_earning">Staking ödülü alındı: %s BABACHAIN</string>
+    <string name="staking_setup_wizard_title">Staking Kurulum Sihirbazı</string>
+    <string name="staking_setup_welcome">BabaChain Staking\'e Hoş Geldiniz</string>
+    <string name="staking_setup_subtitle">BABACHAIN coinlerinizi stake ederek %365\'e kadar APY kazanın</string>
+    <string name="staking_validator_status">Doğrulayıcı Durumu</string>
+    <string name="staking_network_weight">Ağ Ağırlığı</string>
+    <string name="staking_expected_time">Beklenen Süre</string>
+    <string name="staking_difficulty">Staking Zorluğu</string>
+    
+    <!-- Turkish locale specific formatting -->
+    <string name="amount_format_turkish">%1$s BABACHAIN</string>
+    <string name="percentage_format_turkish">%%1$s</string>
+    
     </resources>

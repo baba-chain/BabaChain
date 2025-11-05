@@ -10,6 +10,7 @@
 
 #include <QSettings>
 #include <QStringList>
+#include <QLocale>
 
 #include <cassert>
 
@@ -107,7 +108,15 @@ QString BitcoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, Separato
     if (num_decimals > 0) {
         qint64 remainder = n_abs % coin;
         QString remainder_str = QString::number(remainder).rightJustified(num_decimals, '0');
-        return quotient_str + QString(".") + remainder_str;
+        
+        // Special handling for Turkish locale - use comma as decimal separator
+        QString decimal_separator = ".";
+        QLocale current_locale = QLocale::system();
+        if (current_locale.language() == QLocale::Turkish) {
+            decimal_separator = ",";
+        }
+        
+        return quotient_str + decimal_separator + remainder_str;
     } else {
         return quotient_str;
     }

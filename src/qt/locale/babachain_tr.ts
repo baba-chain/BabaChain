@@ -784,6 +784,238 @@
     </message>
 </context>
 <context>
+    <name>StakingPage</name>
+    <message>
+        <source>Staking Controls</source>
+        <translation>Staking Kontrolleri</translation>
+    </message>
+    <message>
+        <source>Staking Status: Inactive</source>
+        <translation>Staking Durumu: Pasif</translation>
+    </message>
+    <message>
+        <source>Staking Status: Active</source>
+        <translation>Staking Durumu: Aktif</translation>
+    </message>
+    <message>
+        <source>Staking Status: Auto-Staking Enabled</source>
+        <translation>Staking Durumu: Otomatik Staking Etkin</translation>
+    </message>
+    <message>
+        <source>Staking Status: Error</source>
+        <translation>Staking Durumu: Hata</translation>
+    </message>
+    <message>
+        <source>Enable Auto-Staking</source>
+        <translation>Otomatik Staking'i Etkinleştir</translation>
+    </message>
+    <message>
+        <source>Automatically start staking when coins mature (8+ hours old)</source>
+        <translation>Coinler olgunlaştığında otomatik olarak staking başlat (8+ saat eski)</translation>
+    </message>
+    <message>
+        <source>Start Staking</source>
+        <translation>Staking Başlat</translation>
+    </message>
+    <message>
+        <source>Manually start staking with current mature coins</source>
+        <translation>Mevcut olgun coinlerle manuel olarak staking başlat</translation>
+    </message>
+    <message>
+        <source>Stop Staking</source>
+        <translation>Staking Durdur</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Yenile</translation>
+    </message>
+    <message>
+        <source>Staking Statistics</source>
+        <translation>Staking İstatistikleri</translation>
+    </message>
+    <message>
+        <source>Total Staked: 0 BABACHAIN</source>
+        <translation>Toplam Stake: 0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Total Staked: %1</source>
+        <translation>Toplam Stake: %1</translation>
+    </message>
+    <message>
+        <source>Next Reward: ~0 BABACHAIN</source>
+        <translation>Sonraki Ödül: ~0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Next Reward: ~%1</source>
+        <translation>Sonraki Ödül: ~%1</translation>
+    </message>
+    <message>
+        <source>Network Stake: 0 BABACHAIN</source>
+        <translation>Ağ Stake'i: 0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Network Stake: %1</source>
+        <translation>Ağ Stake'i: %1</translation>
+    </message>
+    <message>
+        <source>Staking Weight: 0%</source>
+        <translation>Staking Ağırlığı: %0</translation>
+    </message>
+    <message>
+        <source>Staking Weight: %1%</source>
+        <translation>Staking Ağırlığı: %1%</translation>
+    </message>
+    <message>
+        <source>Expected Time: Unknown</source>
+        <translation>Beklenen Süre: Bilinmiyor</translation>
+    </message>
+    <message>
+        <source>Expected Time: %1</source>
+        <translation>Beklenen Süre: %1</translation>
+    </message>
+    <message>
+        <source>Staking Difficulty: 0</source>
+        <translation>Staking Zorluğu: 0</translation>
+    </message>
+    <message>
+        <source>Staking Difficulty: %1</source>
+        <translation>Staking Zorluğu: %1</translation>
+    </message>
+    <message>
+        <source>Staking Earnings &amp; Projections</source>
+        <translation>Staking Kazançları ve Projeksiyonlar</translation>
+    </message>
+    <message>
+        <source>Total Earnings: 0 BABACHAIN</source>
+        <translation>Toplam Kazanç: 0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Total Earnings: %1</source>
+        <translation>Toplam Kazanç: %1</translation>
+    </message>
+    <message>
+        <source>Total Earnings: Hidden</source>
+        <translation>Toplam Kazanç: Gizli</translation>
+    </message>
+    <message>
+        <source>Current ROI: 0.00%</source>
+        <translation>Mevcut ROI: %0,00</translation>
+    </message>
+    <message>
+        <source>Current ROI: Hidden</source>
+        <translation>Mevcut ROI: Gizli</translation>
+    </message>
+    <message>
+        <source>Daily: 0 BABACHAIN</source>
+        <translation>Günlük: 0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Daily: %1</source>
+        <translation>Günlük: %1</translation>
+    </message>
+    <message>
+        <source>Daily: Hidden</source>
+        <translation>Günlük: Gizli</translation>
+    </message>
+    <message>
+        <source>Weekly: 0 BABACHAIN</source>
+        <translation>Haftalık: 0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Weekly: %1</source>
+        <translation>Haftalık: %1</translation>
+    </message>
+    <message>
+        <source>Weekly: Hidden</source>
+        <translation>Haftalık: Gizli</translation>
+    </message>
+    <message>
+        <source>Monthly: 0 BABACHAIN</source>
+        <translation>Aylık: 0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Monthly: %1</source>
+        <translation>Aylık: %1</translation>
+    </message>
+    <message>
+        <source>Monthly: Hidden</source>
+        <translation>Aylık: Gizli</translation>
+    </message>
+    <message>
+        <source>Yearly Projection: 0 BABACHAIN</source>
+        <translation>Yıllık Projeksiyon: 0 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Yearly Projection: Hidden</source>
+        <translation>Yıllık Projeksiyon: Gizli</translation>
+    </message>
+    <message>
+        <source>Active Validators</source>
+        <translation>Aktif Doğrulayıcılar</translation>
+    </message>
+    <message>
+        <source>Validator</source>
+        <translation>Doğrulayıcı</translation>
+    </message>
+    <message>
+        <source>Stake Amount</source>
+        <translation>Stake Miktarı</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Durum</translation>
+    </message>
+    <message>
+        <source>Last Active</source>
+        <translation>Son Aktif</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Gizli</translation>
+    </message>
+</context>
+<context>
+    <name>StakingSetupWizard</name>
+    <message>
+        <source>BabaChain Staking Setup Wizard</source>
+        <translation>BabaChain Staking Kurulum Sihirbazı</translation>
+    </message>
+    <message>
+        <source>Welcome to BabaChain Staking</source>
+        <translation>BabaChain Staking'e Hoş Geldiniz</translation>
+    </message>
+    <message>
+        <source>Earn up to 365% APY by staking your BABACHAIN coins</source>
+        <translation>BABACHAIN coinlerinizi stake ederek %365'e kadar APY kazanın</translation>
+    </message>
+    <message>
+        <source>Benefits of Staking:</source>
+        <translation>Staking'in Faydaları:</translation>
+    </message>
+    <message>
+        <source>Setup Complete</source>
+        <translation>Kurulum Tamamlandı</translation>
+    </message>
+    <message>
+        <source>Staking has been successfully configured!
+
+Your coins will start earning rewards once they mature (after 100 confirmations).
+Expected daily earnings: %1 BABACHAIN</source>
+        <translation>Staking başarıyla yapılandırıldı!
+
+Coinleriniz olgunlaştığında (100 onaydan sonra) ödül kazanmaya başlayacak.
+Beklenen günlük kazanç: %1 BABACHAIN</translation>
+    </message>
+    <message>
+        <source>Setup Error</source>
+        <translation>Kurulum Hatası</translation>
+    </message>
+    <message>
+        <source>Failed to configure staking: %1</source>
+        <translation>Staking yapılandırılamadı: %1</translation>
+    </message>
+</context>
+<context>
     <name>CoinControlDialog</name>
     <message>
         <source>Quantity:</source>

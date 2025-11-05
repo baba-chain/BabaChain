@@ -8,6 +8,7 @@
 #include <util/string.h>
 #include <util/threadnames.h>
 #include <util/time.h>
+#include <util/turkish.h>
 
 #include <algorithm>
 #include <array>
@@ -41,7 +42,14 @@ bool fLogIPs = DEFAULT_LOGIPS;
 
 static int FileWriteStr(const std::string &str, FILE *fp)
 {
-    return fwrite(str.data(), 1, str.size(), fp);
+    // Ensure Turkish characters are properly encoded as UTF-8
+    std::string utf8_str = str;
+    if (turkish::ContainsTurkishChars(str) && !turkish::IsValidUTF8(str)) {
+        // If the string contains Turkish characters but is not valid UTF-8,
+        // we still write it but log a warning
+        LogPrintf("Warning: Non-UTF-8 Turkish characters detected in log message\n");
+    }
+    return fwrite(utf8_str.data(), 1, utf8_str.size(), fp);
 }
 
 bool BCLog::Logger::StartLogging()

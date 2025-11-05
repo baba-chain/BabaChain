@@ -1,4 +1,4 @@
-# BabaChain Core Installation Guide
+# BabaChain Installation Guide
 
 For detailed build instructions, please see the platform-specific documentation:
 

@@ -7,6 +7,7 @@
 #include <rpc/server.h>
 
 #include <rpc/util.h>
+#include <util/turkish.h>
 #include <shutdown.h>
 #include <sync.h>
 #include <util/strencodings.h>
@@ -528,6 +529,27 @@ static bool ExecuteCommand(const CRPCCommand& command, const JSONRPCRequest& req
     try
     {
         RPCCommandExecution execution(request.strMethod);
+        
+        // Validate Turkish character encoding in request parameters
+        if (request.params.isObject()) {
+            for (const auto& key : request.params.getKeys()) {
+                if (turkish::ContainsTurkishChars(key) && !turkish::IsValidUTF8(key)) {
+                    throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid UTF-8 encoding in parameter name: " + key);
+                }
+                const UniValue& value = request.params[key];
+                if (value.isStr() && turkish::ContainsTurkishChars(value.get_str()) && !turkish::IsValidUTF8(value.get_str())) {
+                    throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid UTF-8 encoding in parameter value for: " + key);
+                }
+            }
+        } else if (request.params.isArray()) {
+            for (size_t i = 0; i < request.params.size(); ++i) {
+                const UniValue& value = request.params[i];
+                if (value.isStr() && turkish::ContainsTurkishChars(value.get_str()) && !turkish::IsValidUTF8(value.get_str())) {
+                    throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid UTF-8 encoding in parameter " + std::to_string(i));
+                }
+            }
+        }
+        
         // Execute, convert arguments to array if necessary
         if (request.params.isObject()) {
             return command.actor(transformNamedArguments(request, command.argNames), result, last_handler);

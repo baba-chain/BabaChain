@@ -1,12 +1,12 @@
-Contributing to BabaChain Core
+Contributing to BabaChain 
 ============================
 
-The BabaChain Core project operates an open contributor model where anyone is
+The BabaChain project operates an open contributor model where anyone is
 welcome to contribute towards development in the form of peer review, testing
 and patches. This document explains the practical process and guidelines for
 contributing.
 
-First, in terms of structure, there is no particular concept of "BabaChain Core
+First, in terms of structure, there is no particular concept of "BabaChain 
 developers" in the sense of privileged people. Open source often naturally
 revolves around a meritocracy where contributors earn trust from the developer
 community over time. Nevertheless, some hierarchy is necessary for practical
