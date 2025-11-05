@@ -34,6 +34,7 @@
 #include <wallet/staking.h>
 #include <wallet/maturitytracker.h>
 #include <wallet/earningscalculator.h>
+#include <wallet/gamification.h>
 
 #include <algorithm>
 #include <atomic>
@@ -63,6 +64,7 @@ namespace wallet {
 struct WalletContext;
 class CMaturityTracker;
 class CEarningsCalculator;
+class CGamificationManager;
 
 //! Explicitly unload and delete the wallet.
 //  Blocks the current thread after signaling the unload intent so that all
@@ -273,6 +275,9 @@ private:
     
     //! Earnings calculator for staking projections
     std::unique_ptr<CEarningsCalculator> m_earnings_calculator;
+    
+    //! Gamification manager for achievements, challenges, and pets
+    std::unique_ptr<CGamificationManager> m_gamification_manager;
 
     bool Unlock(const CKeyingMaterial& vMasterKeyIn, bool fForMixingOnly = false, bool accept_no_keys = false);
 
@@ -630,6 +635,7 @@ public:
     bool SetupOneClickStaking(CAmount stakeAmount, bool autoStaking = true, bool notifications = true) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     CMaturityTracker* GetMaturityTracker() const { return m_maturity_tracker.get(); }
     CEarningsCalculator* GetEarningsCalculator() const { return m_earnings_calculator.get(); }
+    CGamificationManager& GetGamificationManager() const { return *m_gamification_manager; }
     void UpdateCoinMaturityTracking() EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     void NotifyStakingReward(CAmount amount, const uint256& txid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     

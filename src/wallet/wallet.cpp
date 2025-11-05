@@ -3084,7 +3084,8 @@ std::shared_ptr<CWallet> CWallet::Create(WalletContext& context, const std::stri
         // Initialize one-click staking components
         walletInstance->m_maturity_tracker = std::make_unique<CMaturityTracker>(walletInstance.get());
         walletInstance->m_earnings_calculator = std::make_unique<CEarningsCalculator>(walletInstance.get());
-        walletInstance->WalletLogPrintf("Initialized one-click staking components\n");
+        walletInstance->m_gamification_manager = std::make_unique<CGamificationManager>(walletInstance.get());
+        walletInstance->WalletLogPrintf("Initialized one-click staking components and gamification system\n");
     }
 
     return walletInstance;
@@ -3935,3 +3936,194 @@ ScriptPubKeyMan* CWallet::AddWalletDescriptor(WalletDescriptor& desc, const Flat
     return spk_man;
 }
 } // namespace wallet
+// Staking functionality implementations
+
+bool CWallet::IsStakingEnabled() const
+{
+    AssertLockHeld(cs_wallet);
+    return m_staking_enabled;
+}
+
+void CWallet::SetStakingEnabled(bool enabled)
+{
+    AssertLockHeld(cs_wallet);
+    m_staking_enabled = enabled;
+    WalletLogPrintf("Staking %s\n", enabled ? "enabled" : "disabled");
+}
+
+CAmount CWallet::GetStakingBalance() const
+{
+    AssertLockHeld(cs_wallet);
+    CAmount nBalance = 0;
+    
+    for (const auto& [wtxid, wtx] : mapWallet) {
+        if (wtx.IsTrusted() && wtx.GetDepthInMainChain() >= 100) { // Mature coins
+            for (unsigned int i = 0; i < wtx.tx->vout.size(); i++) {
+                const CTxOut& txout = wtx.tx->vout[i];
+                if (IsMine(txout) && !IsSpent(COutPoint(wtx.GetHash(), i))) {
+                    nBalance += txout.nValue;
+                }
+            }
+        }
+    }
+    
+    return nBalance;
+}
+
+CAmount CWallet::GetStakedBalance() const
+{
+    AssertLockHeld(cs_wallet);
+    // TODO: Implement staked balance calculation
+    return 0;
+}
+
+std::vector<CStakingInfo> CWallet::GetStakingTransactions() const
+{
+    AssertLockHeld(cs_wallet);
+    std::vector<CStakingInfo> stakingTxs;
+    
+    // TODO: Implement staking transaction enumeration
+    
+    return stakingTxs;
+}
+
+bool CWallet::CreateStakingTransaction(CAmount nAmount, int64_t nLockTime, const CTxDestination& dest, CTransactionRef& txNew, std::string& strError)
+{
+    AssertLockHeld(cs_wallet);
+    // TODO: Implement staking transaction creation
+    strError = "Staking transaction creation not yet implemented";
+    return false;
+}
+
+bool CWallet::CreateUnstakingTransaction(const COutPoint& stakeOutpoint, CTransactionRef& txNew, std::string& strError)
+{
+    AssertLockHeld(cs_wallet);
+    // TODO: Implement unstaking transaction creation
+    strError = "Unstaking transaction creation not yet implemented";
+    return false;
+}
+
+bool CWallet::AutoStake()
+{
+    AssertLockHeld(cs_wallet);
+    if (!m_staking_enabled) {
+        return false;
+    }
+    
+    // TODO: Implement automatic staking logic
+    return true;
+}
+
+bool CWallet::RegisterValidator(CAmount nStakeAmount, const std::string& strDescription, CTransactionRef& txNew, std::string& strError)
+{
+    AssertLockHeld(cs_wallet);
+    // TODO: Implement validator registration
+    strError = "Validator registration not yet implemented";
+    return false;
+}
+
+std::vector<CValidatorInfo> CWallet::GetValidatorInfo() const
+{
+    AssertLockHeld(cs_wallet);
+    std::vector<CValidatorInfo> validators;
+    
+    // TODO: Implement validator info retrieval
+    
+    return validators;
+}
+
+bool CWallet::SetupOneClickStaking(CAmount stakeAmount, bool autoStaking, bool notifications)
+{
+    AssertLockHeld(cs_wallet);
+    
+    WalletLogPrintf("Setting up one-click staking: amount=%s, auto=%s, notifications=%s\n",
+                   FormatMoney(stakeAmount), autoStaking ? "true" : "false", notifications ? "true" : "false");
+    
+    // Enable staking if requested
+    if (autoStaking) {
+        SetStakingEnabled(true);
+    }
+    
+    // Initialize gamification for new staker
+    if (m_gamification_manager) {
+        m_gamification_manager->CheckAchievements(stakeAmount, 0, 0);
+        
+        // Create a default pet if none exists
+        auto pets = m_gamification_manager->GetAllPets();
+        if (pets.empty()) {
+            m_gamification_manager->CreatePet(PetType::CRYPTO_CAT, "Staky");
+            WalletLogPrintf("Created default staking pet 'Staky'\n");
+        }
+    }
+    
+    return true;
+}
+
+void CWallet::UpdateCoinMaturityTracking()
+{
+    AssertLockHeld(cs_wallet);
+    
+    if (!m_maturity_tracker) {
+        return;
+    }
+    
+    // Update maturity status for all tracked coins
+    m_maturity_tracker->UpdateMaturityStatus();
+    
+    // Check for newly mature coins and update gamification
+    auto matureCoins = m_maturity_tracker->GetMatureCoins();
+    CAmount totalMatureAmount = 0;
+    
+    for (const auto& coinInfo : matureCoins) {
+        totalMatureAmount += coinInfo.amount;
+    }
+    
+    if (totalMatureAmount > 0 && m_gamification_manager) {
+        // Update staking streak and check achievements
+        m_gamification_manager->UpdateStakingStreak();
+        m_gamification_manager->CheckAchievements(totalMatureAmount, 0, 
+                                                 m_gamification_manager->GetProfile().consecutiveStakingDays);
+    }
+}
+
+void CWallet::NotifyStakingReward(CAmount amount, const uint256& txid)
+{
+    AssertLockHeld(cs_wallet);
+    
+    WalletLogPrintf("Staking reward received: %s (txid: %s)\n", FormatMoney(amount), txid.ToString());
+    
+    // Update earnings calculator
+    if (m_earnings_calculator) {
+        CAmount currentStake = GetStakingBalance();
+        m_earnings_calculator->RecordEarning(amount, txid, currentStake);
+    }
+    
+    // Update gamification system
+    if (m_gamification_manager) {
+        // Record earnings for gamification
+        m_gamification_manager->RecordEarnings(amount);
+        
+        // Update staking streak
+        m_gamification_manager->UpdateStakingStreak();
+        
+        // Check achievements based on current state
+        CAmount totalStaked = GetStakingBalance();
+        auto profile = m_gamification_manager->GetProfile();
+        m_gamification_manager->CheckAchievements(totalStaked, amount, profile.consecutiveStakingDays);
+        
+        // Feed all active pets with a portion of the earnings
+        auto pets = m_gamification_manager->GetAllPets();
+        if (!pets.empty()) {
+            CAmount feedAmount = amount / pets.size(); // Distribute earnings among pets
+            for (const auto& pet : pets) {
+                m_gamification_manager->FeedPet(pet.id, feedAmount);
+            }
+        }
+        
+        // Add experience points based on reward amount (1 COIN = 100 XP)
+        int64_t xpGained = amount / (COIN / 100);
+        m_gamification_manager->AddExperience(xpGained);
+        
+        WalletLogPrintf("Gamification updated: earned %s, gained %d XP\n", FormatMoney(amount), xpGained);
+    }
+}

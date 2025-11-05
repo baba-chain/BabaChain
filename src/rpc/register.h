@@ -59,6 +59,7 @@ static inline void RegisterAllCoreRPCCommands(CRPCTable &t)
     RegisterQuorumsRPCCommands(t);
     RegisterStakingRPCCommands(t);
     RegisterExchangeRPCCommands(t);
+    RegisterFiatOnRampRPCCommands(t);
 }
 
 #endif // BITCOIN_RPC_REGISTER_H

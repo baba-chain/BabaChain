@@ -660,6 +660,7 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/rpc/encrypt.cpp \
   wallet/rpc/spend.cpp \
   wallet/rpc/signmessage.cpp \
+  wallet/rpc/staking.cpp \
   wallet/rpc/transactions.cpp \
   wallet/rpc/util.cpp \
   wallet/rpc/wallet.cpp \
@@ -670,6 +671,10 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/walletdb.cpp \
   wallet/walletutil.cpp \
   wallet/coinselection.cpp \
+  wallet/staking.cpp \
+  wallet/earningscalculator.cpp \
+  wallet/maturitytracker.cpp \
+  wallet/gamification.cpp \
   $(BITCOIN_CORE_H)
 
 if USE_SQLITE
