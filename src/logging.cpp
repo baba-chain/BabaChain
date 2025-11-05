@@ -324,6 +324,8 @@ std::string LogCategoryToStr(BCLog::LogFlags category)
         return "creditpool";
     case BCLog::LogFlags::EHF:
         return "ehf";
+    case BCLog::LogFlags::POS:
+        return "pos";
     case BCLog::LogFlags::BABACHAIN:
         return "babachain";
     case BCLog::LogFlags::NET_NETCONN:

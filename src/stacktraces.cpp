@@ -45,7 +45,9 @@
 #endif
 
 #ifdef ENABLE_STACKTRACES
+#ifdef HAVE_BACKTRACE_H
 #include <backtrace.h>
+#endif
 #endif
 
 #include <cstring>
@@ -125,6 +127,7 @@ static void my_backtrace_error_callback (void *data, const char *msg,
 {
 }
 
+#ifdef HAVE_BACKTRACE_H
 static backtrace_state* GetLibBacktraceState()
 {
 #if defined(WIN32)
@@ -138,6 +141,7 @@ static backtrace_state* GetLibBacktraceState()
     static backtrace_state* st = backtrace_create_state(exeFileNamePtr, 1, my_backtrace_error_callback, nullptr);
     return st;
 }
+#endif
 #endif // ENABLE_STACKTRACES
 
 #if defined(WIN32)
@@ -352,9 +356,11 @@ static std::vector<stackframe_info> GetStackFrameInfos(const std::vector<uint64_
     infos.reserve(stackframes.size());
 
     for (uint64_t stackframe : stackframes) {
+#ifdef HAVE_BACKTRACE_H
         if (backtrace_pcinfo(GetLibBacktraceState(), stackframe, my_backtrace_full_callback, my_backtrace_error_callback, &infos)) {
             break;
         }
+#endif
     }
 
     return infos;

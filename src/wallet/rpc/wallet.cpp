@@ -28,6 +28,7 @@
 
 #include <coinjoin/client.h>
 #include <coinjoin/options.h>
+#include <span.h>
 
 #include <optional>
 
@@ -1235,6 +1236,6 @@ Span<const CRPCCommand> GetWalletRPCCommands()
         all_commands.insert(all_commands.end(), staking_commands.begin(), staking_commands.end());
     }
     
-    return MakeSpan(all_commands);
+    return Span<const CRPCCommand>(all_commands);
 }
 } // namespace wallet

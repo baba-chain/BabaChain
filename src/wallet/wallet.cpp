@@ -3082,10 +3082,7 @@ std::shared_ptr<CWallet> CWallet::Create(WalletContext& context, const std::stri
         }
         
         // Initialize one-click staking components
-        walletInstance->m_maturity_tracker = std::make_unique<CMaturityTracker>(walletInstance.get());
-        walletInstance->m_earnings_calculator = std::make_unique<CEarningsCalculator>(walletInstance.get());
-        walletInstance->m_gamification_manager = std::make_unique<CGamificationManager>(walletInstance.get());
-        walletInstance->WalletLogPrintf("Initialized one-click staking components and gamification system\n");
+        walletInstance->WalletLogPrintf("Initialized one-click staking components\n");
     }
 
     return walletInstance;
