@@ -1,0 +1,95 @@
+{
+  "ambassador_program": {
+    "name": "BabaChain Ambassadors",
+    "description": "Elite community members promoting BabaChain globally",
+    "tiers": {
+      "bronze": {
+        "requirements": "100+ referrals, active community participation",
+        "benefits": [
+          "10% staking bonus",
+          "Exclusive Discord access",
+          "Monthly rewards"
+        ]
+      },
+      "silver": {
+        "requirements": "500+ referrals, content creation, community leadership",
+        "benefits": [
+          "15% staking bonus",
+          "Ambassador badge",
+          "Monthly $500 bonus"
+        ]
+      },
+      "gold": {
+        "requirements": "1000+ referrals, major community contributions",
+        "benefits": [
+          "20% staking bonus",
+          "Direct team access",
+          "Monthly $1000 bonus"
+        ]
+      }
+    },
+    "application_process": [
+      "Submit application form",
+      "Community vote",
+      "Team review",
+      "Acceptance and onboarding"
+    ]
+  },
+  "developer_program": {
+    "name": "BabaChain Builders",
+    "description": "Developers building on BabaChain ecosystem",
+    "categories": [
+      "DeFi protocols",
+      "NFT marketplaces",
+      "Gaming applications",
+      "Developer tools"
+    ],
+    "incentives": {
+      "grants": "$10K - $100K per project",
+      "technical_support": "Direct developer access",
+      "marketing_support": "Co-marketing opportunities",
+      "token_allocation": "Project-specific token grants"
+    }
+  },
+  "content_creator_program": {
+    "name": "BabaChain Creators",
+    "description": "Content creators educating about BabaChain",
+    "content_types": [
+      "YouTube videos",
+      "Blog articles",
+      "Social media content",
+      "Podcast appearances"
+    ],
+    "rewards": {
+      "per_video": "$100 - $1000",
+      "per_article": "$50 - $500",
+      "per_post": "$10 - $100",
+      "bonus_rewards": "Performance-based bonuses"
+    }
+  },
+  "community_events": {
+    "virtual_meetups": {
+      "frequency": "Weekly",
+      "format": "Discord/Telegram voice chat",
+      "topics": [
+        "Staking tips",
+        "Market analysis",
+        "Community updates"
+      ]
+    },
+    "ama_sessions": {
+      "frequency": "Bi-weekly",
+      "format": "Live streaming",
+      "participants": [
+        "Team members",
+        "Special guests",
+        "Community"
+      ]
+    },
+    "competitions": {
+      "staking_competitions": "Monthly highest staking rewards",
+      "referral_contests": "Quarterly referral leaderboards",
+      "content_contests": "Best BabaChain content creation"
+    }
+  }
+}

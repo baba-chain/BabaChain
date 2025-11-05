@@ -26,8 +26,8 @@ class BabaChainMainnetPreparation:
         """Configure mainnet parameters for BabaChain"""
         logger.info("🔧 Configuring BabaChain mainnet parameters...")
         
-        # Mainnet launch timestamp (January 1, 2025, 00:00:00 UTC)
-        mainnet_launch_time = int(datetime(2025, 1, 1, 0, 0, 0).timestamp())
+        # Mainnet launch timestamp (December 1, 2025, 00:00:00 UTC)
+        mainnet_launch_time = int(datetime(2025, 12, 1, 0, 0, 0).timestamp())
         
         self.mainnet_config = {
             "network_name": "BabaChain Mainnet",

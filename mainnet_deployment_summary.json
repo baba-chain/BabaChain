@@ -1,6 +1,6 @@
 {
   "preparation_date": "2025-11-05T17:59:03.602666",
-  "mainnet_launch_date": "2025-01-01T00:00:00",
+  "mainnet_launch_date": "2026-01-01T00:00:00",
   "network_config": {
     "network_name": "BabaChain Mainnet",
     "network_id": "main",
@@ -89,7 +89,7 @@
       "address": "BabaChainFoundation2025Genesis",
       "public_key": "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"
     },
-    "coinbase_message": "BabaChain Genesis Block - New Era of Proof of Stake - January 2025",
+    "coinbase_message": "BabaChain Genesis Block - New Era of Proof of Stake - January 2026",
     "merkle_root": "",
     "hash": ""
   },

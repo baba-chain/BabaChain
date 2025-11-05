@@ -1,0 +1,132 @@
+{
+  "tutorials": [
+    {
+      "title": "BabaChain Staking Guide: Earn 365%+ APY",
+      "type": "video_tutorial",
+      "duration": "10 minutes",
+      "topics": [
+        "What is BabaChain staking?",
+        "How to set up your wallet",
+        "Starting your first stake",
+        "Maximizing your rewards"
+      ],
+      "platforms": [
+        "YouTube",
+        "Website",
+        "Mobile apps"
+      ],
+      "languages": [
+        "English",
+        "Turkish",
+        "Spanish"
+      ]
+    },
+    {
+      "title": "From Zero to Staking Hero: Complete Beginner's Guide",
+      "type": "written_guide",
+      "length": "2000 words",
+      "topics": [
+        "Cryptocurrency basics",
+        "Proof of Stake explained",
+        "BabaChain advantages",
+        "Step-by-step setup"
+      ],
+      "platforms": [
+        "Medium",
+        "Website blog",
+        "PDF download"
+      ],
+      "languages": [
+        "English",
+        "Turkish"
+      ]
+    },
+    {
+      "title": "ROI Calculator: Plan Your BabaChain Earnings",
+      "type": "interactive_tool",
+      "features": [
+        "Stake amount input",
+        "Time period selection",
+        "ROI projections",
+        "Compound interest calculations"
+      ],
+      "platforms": [
+        "Website",
+        "Mobile apps"
+      ],
+      "languages": [
+        "English",
+        "Turkish"
+      ]
+    }
+  ],
+  "webinars": [
+    {
+      "title": "BabaChain Launch Event: The Future of Staking",
+      "date": "2025-01-01",
+      "duration": "60 minutes",
+      "agenda": [
+        "BabaChain introduction (10 min)",
+        "Live staking demonstration (20 min)",
+        "Q&A session (20 min)",
+        "Community celebration (10 min)"
+      ],
+      "speakers": [
+        "BabaChain Team",
+        "Crypto Influencers"
+      ],
+      "platforms": [
+        "YouTube Live",
+        "Twitter Spaces",
+        "Telegram"
+      ]
+    },
+    {
+      "title": "Turkish Crypto Community AMA",
+      "date": "2025-01-07",
+      "duration": "45 minutes",
+      "language": "Turkish",
+      "agenda": [
+        "BabaChain T\u00fcrkiye tan\u0131t\u0131m\u0131",
+        "Staking rehberi",
+        "Soru-cevap",
+        "Topluluk etkinlikleri"
+      ],
+      "platforms": [
+        "YouTube Live",
+        "Instagram Live"
+      ]
+    }
+  ],
+  "infographics": [
+    {
+      "title": "BabaChain vs Traditional Investments",
+      "comparison": {
+        "savings_account": "0.5% APY",
+        "stock_market": "7% APY",
+        "real_estate": "12% APY",
+        "babachain_staking": "365% APY"
+      },
+      "formats": [
+        "PNG",
+        "PDF",
+        "Social media formats"
+      ]
+    },
+    {
+      "title": "Staking Rewards Timeline",
+      "timeline": [
+        "Day 1: Start staking",
+        "Day 2: First rewards",
+        "Week 1: 7% earned",
+        "Month 1: 30% earned",
+        "Year 1: 365% earned"
+      ],
+      "formats": [
+        "PNG",
+        "PDF",
+        "Animated GIF"
+      ]
+    }
+  ]
+}

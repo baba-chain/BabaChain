@@ -1,0 +1,481 @@
+{
+  "overview": {
+    "total_airdrop_allocation": 5000000,
+    "campaign_duration": "90 days",
+    "expected_participants": 100000,
+    "viral_coefficient_target": 3.5,
+    "roi_for_participants": "Up to 365% APY from staking"
+  },
+  "genesis_airdrop": {
+    "name": "BabaChain Genesis Airdrop",
+    "description": "Exclusive airdrop for early BabaChain adopters",
+    "start_date": "2025-11-01",
+    "end_date": "2025-12-31",
+    "total_allocation": 1000000,
+    "eligibility_criteria": [
+      "Join official Discord/Telegram",
+      "Follow social media accounts",
+      "Complete KYC verification",
+      "Hold minimum 100 BabaChain tokens",
+      "Refer at least 3 friends"
+    ],
+    "reward_structure": {
+      "base_reward": 100,
+      "referral_bonus": 50,
+      "early_bird_bonus": 200,
+      "social_engagement_bonus": 25,
+      "staking_bonus": 100
+    },
+    "distribution_schedule": [
+      {
+        "date": "2026-01-01",
+        "percentage": 25,
+        "description": "Launch day distribution"
+      },
+      {
+        "date": "2026-01-15",
+        "percentage": 35,
+        "description": "Mid-month distribution"
+      },
+      {
+        "date": "2026-01-31",
+        "percentage": 40,
+        "description": "Final distribution"
+      }
+    ],
+    "verification_requirements": {
+      "social_media": [
+        "Twitter follow + retweet",
+        "Discord join + verification",
+        "Telegram join"
+      ],
+      "kyc": "Basic identity verification",
+      "wallet": "Valid BabaChain wallet address",
+      "activity": "Minimum 7 days account age"
+    }
+  },
+  "referral_system": {
+    "program_name": "BabaChain Viral Referral Program",
+    "description": "Earn lifetime rewards from your referrals' staking",
+    "mechanics": {
+      "referrer_rewards": {
+        "immediate_bonus": 50,
+        "staking_percentage": 5,
+        "tier_bonuses": {
+          "bronze": {
+            "referrals": "1-10",
+            "bonus_multiplier": 1.0
+          },
+          "silver": {
+            "referrals": "11-50",
+            "bonus_multiplier": 1.5
+          },
+          "gold": {
+            "referrals": "51-100",
+            "bonus_multiplier": 2.0
+          },
+          "platinum": {
+            "referrals": "101+",
+            "bonus_multiplier": 3.0
+          }
+        }
+      },
+      "referee_rewards": {
+        "welcome_bonus": 25,
+        "first_stake_bonus": 100,
+        "staking_boost": 10,
+        "loyalty_rewards": "Increasing bonuses for long-term staking"
+      }
+    },
+    "tracking_system": {
+      "referral_codes": "Unique 8-character codes per user",
+      "attribution_window": "30 days from click to signup",
+      "fraud_prevention": [
+        "IP address tracking",
+        "Device fingerprinting",
+        "Behavioral analysis",
+        "Manual review for large rewards"
+      ]
+    },
+    "leaderboards": {
+      "monthly_top_referrers": {
+        "1st_place": 5000,
+        "2nd_place": 3000,
+        "3rd_place": 2000,
+        "top_10": 500
+      },
+      "quarterly_champions": {
+        "1st_place": 20000,
+        "2nd_place": 15000,
+        "3rd_place": 10000
+      }
+    }
+  },
+  "social_campaigns": [
+    {
+      "name": "Twitter Engagement Airdrop",
+      "platform": "Twitter",
+      "duration": "30 days",
+      "total_rewards": 500000,
+      "tasks": [
+        {
+          "action": "Follow @BabaChainOfficial",
+          "reward": 10
+        },
+        {
+          "action": "Retweet launch announcement",
+          "reward": 15
+        },
+        {
+          "action": "Quote tweet with #BabaChain365",
+          "reward": 25
+        },
+        {
+          "action": "Create original BabaChain content",
+          "reward": 100
+        },
+        {
+          "action": "Tag 3 friends in comments",
+          "reward": 20
+        }
+      ],
+      "bonus_multipliers": {
+        "verified_account": 2.0,
+        "crypto_influencer": 3.0,
+        "high_engagement": 1.5
+      }
+    },
+    {
+      "name": "TikTok Viral Challenge",
+      "platform": "TikTok",
+      "duration": "21 days",
+      "total_rewards": 300000,
+      "challenge": "#BabaChainStakingChallenge",
+      "tasks": [
+        {
+          "action": "Create staking tutorial video",
+          "reward": 200
+        },
+        {
+          "action": "Show earnings screenshot",
+          "reward": 150
+        },
+        {
+          "action": "Dance with BabaChain logo",
+          "reward": 100
+        },
+        {
+          "action": "Duet with official videos",
+          "reward": 75
+        }
+      ],
+      "viral_bonuses": {
+        "1K_views": 50,
+        "10K_views": 200,
+        "100K_views": 1000,
+        "1M_views": 5000
+      }
+    },
+    {
+      "name": "YouTube Education Series",
+      "platform": "YouTube",
+      "duration": "60 days",
+      "total_rewards": 200000,
+      "content_types": [
+        {
+          "type": "Tutorial video (5+ min)",
+          "reward": 500
+        },
+        {
+          "type": "Review/Analysis video",
+          "reward": 300
+        },
+        {
+          "type": "Live stream mention",
+          "reward": 200
+        },
+        {
+          "type": "Short form content",
+          "reward": 100
+        }
+      ],
+      "quality_bonuses": {
+        "high_production_value": 200,
+        "accurate_information": 100,
+        "engaging_content": 150
+      }
+    }
+  ],
+  "community_airdrops": [
+    {
+      "name": "Turkish Community Airdrop",
+      "target": "Turkish crypto community",
+      "duration": "45 days",
+      "total_allocation": 750000,
+      "eligibility": [
+        "Turkish IP address or VPN detection",
+        "Turkish language social media activity",
+        "Join Turkish Telegram group",
+        "Complete Turkish language quiz"
+      ],
+      "cultural_bonuses": {
+        "turkish_content_creation": 200,
+        "local_community_building": 300,
+        "turkish_influencer_status": 500
+      },
+      "special_events": [
+        {
+          "event": "Turkish Independence Day bonus",
+          "date": "2024-10-29",
+          "multiplier": 2.0
+        },
+        {
+          "event": "New Year celebration",
+          "date": "2025-01-01",
+          "multiplier": 3.0
+        }
+      ]
+    },
+    {
+      "name": "DeFi Community Airdrop",
+      "target": "DeFi protocol users",
+      "duration": "30 days",
+      "total_allocation": 500000,
+      "eligibility": [
+        "Proven DeFi protocol usage (Uniswap, Compound, etc.)",
+        "Minimum $1000 DeFi transaction history",
+        "Active liquidity provider status",
+        "Yield farming experience"
+      ],
+      "protocol_bonuses": {
+        "uniswap_lp": 100,
+        "compound_lender": 150,
+        "aave_user": 125,
+        "yearn_vault_user": 200,
+        "multiple_protocols": 300
+      }
+    },
+    {
+      "name": "Crypto Twitter Airdrop",
+      "target": "Crypto Twitter influencers and active users",
+      "duration": "21 days",
+      "total_allocation": 400000,
+      "eligibility": [
+        "Minimum 1000 Twitter followers",
+        "Regular crypto-related tweets",
+        "Engagement with crypto community",
+        "Account age minimum 6 months"
+      ],
+      "influence_tiers": {
+        "micro_influencer": {
+          "followers": "1K-10K",
+          "reward": 200
+        },
+        "macro_influencer": {
+          "followers": "10K-100K",
+          "reward": 500
+        },
+        "mega_influencer": {
+          "followers": "100K+",
+          "reward": 1000
+        }
+      }
+    }
+  ],
+  "gamification": {
+    "achievement_system": {
+      "badges": [
+        {
+          "name": "Early Adopter",
+          "requirement": "Join in first 1000 users",
+          "reward": 500
+        },
+        {
+          "name": "Staking Master",
+          "requirement": "Stake for 30 consecutive days",
+          "reward": 300
+        },
+        {
+          "name": "Referral Champion",
+          "requirement": "Refer 50+ users",
+          "reward": 1000
+        },
+        {
+          "name": "Community Builder",
+          "requirement": "Active in Discord for 60 days",
+          "reward": 200
+        },
+        {
+          "name": "Content Creator",
+          "requirement": "Create 10+ pieces of content",
+          "reward": 750
+        },
+        {
+          "name": "Turkish Pioneer",
+          "requirement": "First 100 Turkish users",
+          "reward": 400
+        }
+      ],
+      "levels": [
+        {
+          "level": 1,
+          "requirement": "0 points",
+          "title": "Newcomer",
+          "benefits": "Basic rewards"
+        },
+        {
+          "level": 2,
+          "requirement": "1000 points",
+          "title": "Enthusiast",
+          "benefits": "5% bonus rewards"
+        },
+        {
+          "level": 3,
+          "requirement": "5000 points",
+          "title": "Advocate",
+          "benefits": "10% bonus rewards"
+        },
+        {
+          "level": 4,
+          "requirement": "15000 points",
+          "title": "Champion",
+          "benefits": "15% bonus rewards"
+        },
+        {
+          "level": 5,
+          "requirement": "50000 points",
+          "title": "Legend",
+          "benefits": "25% bonus rewards"
+        }
+      ]
+    },
+    "daily_challenges": [
+      {
+        "challenge": "Check staking rewards",
+        "reward": 5,
+        "frequency": "daily"
+      },
+      {
+        "challenge": "Share on social media",
+        "reward": 10,
+        "frequency": "daily"
+      },
+      {
+        "challenge": "Invite a friend",
+        "reward": 25,
+        "frequency": "daily"
+      },
+      {
+        "challenge": "Participate in Discord",
+        "reward": 15,
+        "frequency": "daily"
+      }
+    ],
+    "weekly_quests": [
+      {
+        "quest": "Stake additional tokens",
+        "reward": 100,
+        "frequency": "weekly"
+      },
+      {
+        "quest": "Create educational content",
+        "reward": 200,
+        "frequency": "weekly"
+      },
+      {
+        "quest": "Help new users in community",
+        "reward": 150,
+        "frequency": "weekly"
+      }
+    ],
+    "seasonal_events": [
+      {
+        "name": "Launch Month Celebration",
+        "duration": "January 2025",
+        "special_rewards": "Double all rewards",
+        "exclusive_badges": [
+          "Launch Participant",
+          "Genesis Staker"
+        ]
+      },
+      {
+        "name": "Spring Growth Festival",
+        "duration": "March 2025",
+        "special_rewards": "Triple referral bonuses",
+        "exclusive_badges": [
+          "Spring Grower",
+          "Network Expander"
+        ]
+      }
+    ]
+  },
+  "anti_fraud": {
+    "detection_methods": [
+      {
+        "method": "IP Analysis",
+        "description": "Detect multiple accounts from same IP",
+        "action": "Flag for manual review"
+      },
+      {
+        "method": "Device Fingerprinting",
+        "description": "Track unique device characteristics",
+        "action": "Limit rewards per device"
+      },
+      {
+        "method": "Behavioral Analysis",
+        "description": "Analyze user interaction patterns",
+        "action": "Score suspicious behavior"
+      },
+      {
+        "method": "Social Graph Analysis",
+        "description": "Detect fake social media accounts",
+        "action": "Verify account authenticity"
+      }
+    ],
+    "verification_levels": [
+      {
+        "level": "Basic",
+        "requirements": [
+          "Email verification",
+          "Social media connection"
+        ],
+        "reward_limit": 1000
+      },
+      {
+        "level": "Enhanced",
+        "requirements": [
+          "Phone verification",
+          "Identity document"
+        ],
+        "reward_limit": 5000
+      },
+      {
+        "level": "Premium",
+        "requirements": [
+          "Video KYC",
+          "Address verification"
+        ],
+        "reward_limit": "Unlimited"
+      }
+    ],
+    "penalty_system": {
+      "warning": "First offense - warning message",
+      "temporary_suspension": "Second offense - 7 day suspension",
+      "permanent_ban": "Third offense - permanent account ban",
+      "reward_clawback": "Fraudulent rewards returned to pool"
+    }
+  },
+  "technical_implementation": {
+    "smart_contract": "BabaChainAirdrop.sol",
+    "merkle_tree": "For efficient airdrop distribution",
+    "api_endpoints": "For tracking and verification",
+    "database_schema": "User tracking and rewards"
+  },
+  "success_metrics": {
+    "user_acquisition": "100K+ new users",
+    "social_engagement": "1M+ social interactions",
+    "referral_rate": "Average 3+ referrals per user",
+    "retention_rate": "70%+ user retention after 30 days",
+    "staking_adoption": "80%+ of airdrop recipients start staking"
+  }
+}

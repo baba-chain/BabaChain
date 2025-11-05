@@ -1,0 +1,122 @@
+[
+  {
+    "name": "365% ROI Challenge",
+    "type": "social_media_campaign",
+    "duration": "30 days",
+    "target_audience": "crypto investors, DeFi users",
+    "key_message": "Earn 365%+ APY with BabaChain Staking - The Future of Passive Income",
+    "platforms": [
+      "Twitter",
+      "TikTok",
+      "YouTube",
+      "Instagram"
+    ],
+    "content_types": [
+      "ROI calculator videos",
+      "Success story testimonials",
+      "Daily earnings screenshots",
+      "Staking tutorial content"
+    ],
+    "hashtags": [
+      "#BabaChain365",
+      "#StakingRewards",
+      "#PassiveIncome",
+      "#CryptoROI",
+      "#DeFiYield"
+    ],
+    "budget": "$50,000",
+    "kpis": {
+      "reach": "1M+ impressions",
+      "engagement": "50K+ interactions",
+      "conversions": "5K+ new users"
+    }
+  },
+  {
+    "name": "Turkish Crypto Revolution",
+    "type": "localized_campaign",
+    "duration": "60 days",
+    "target_audience": "Turkish crypto community",
+    "key_message": "T\u00fcrkiye'nin Kripto Paras\u0131 - BabaChain ile Y\u0131lda %365 Kazan\u00e7",
+    "platforms": [
+      "Twitter",
+      "Instagram",
+      "YouTube",
+      "Telegram"
+    ],
+    "content_types": [
+      "Turkish language tutorials",
+      "Local influencer partnerships",
+      "Turkish community AMAs",
+      "Cultural celebration content"
+    ],
+    "hashtags": [
+      "#BabaChainT\u00fcrkiye",
+      "#KriptoT\u00fcrkiye",
+      "#StakingKazanc\u0131",
+      "#T\u00fcrkKripto"
+    ],
+    "budget": "$30,000",
+    "kpis": {
+      "reach": "500K+ Turkish users",
+      "engagement": "25K+ interactions",
+      "conversions": "3K+ Turkish users"
+    }
+  },
+  {
+    "name": "Referral Explosion",
+    "type": "referral_program",
+    "duration": "90 days",
+    "target_audience": "existing users, crypto communities",
+    "key_message": "Earn 5% of Your Friends' Staking Rewards Forever",
+    "mechanics": {
+      "referral_bonus": "5% of referee staking rewards",
+      "referee_bonus": "10% bonus on first month staking",
+      "tier_system": {
+        "bronze": "1-10 referrals: 5% bonus",
+        "silver": "11-50 referrals: 7% bonus",
+        "gold": "51+ referrals: 10% bonus"
+      }
+    },
+    "platforms": [
+      "All wallet apps",
+      "Website",
+      "Social media"
+    ],
+    "budget": "$100,000 in rewards",
+    "kpis": {
+      "referrals": "10K+ successful referrals",
+      "viral_coefficient": "2.5+",
+      "user_growth": "50K+ new users"
+    }
+  },
+  {
+    "name": "Influencer Partnership Program",
+    "type": "influencer_marketing",
+    "duration": "45 days",
+    "target_audience": "crypto influencer audiences",
+    "key_message": "Crypto Influencers Earning 365%+ with BabaChain",
+    "tiers": {
+      "mega_influencers": {
+        "followers": "1M+",
+        "compensation": "$10K + tokens",
+        "deliverables": "3 posts, 1 video, 1 live stream"
+      },
+      "macro_influencers": {
+        "followers": "100K-1M",
+        "compensation": "$2K + tokens",
+        "deliverables": "2 posts, 1 video"
+      },
+      "micro_influencers": {
+        "followers": "10K-100K",
+        "compensation": "$500 + tokens",
+        "deliverables": "3 posts"
+      }
+    },
+    "budget": "$200,000",
+    "kpis": {
+      "influencers": "100+ partnerships",
+      "reach": "10M+ combined reach",
+      "conversions": "15K+ new users"
+    }
+  }
+]
