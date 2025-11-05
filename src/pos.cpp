@@ -631,7 +631,7 @@ bool ProcessValidatorRegistration(const CTransaction& tx, const CValidatorRegist
     // Validation should have been done already, but double-check
     if (IsValidatorRegistered(payload.validatorPubKey)) {
         LogPrintf("ProcessValidatorRegistration: Validator %s already registered\n", 
-                 payload.validatorPubKey.ToString());
+                 HexStr(payload.validatorPubKey));
         return false;
     }
     
@@ -641,7 +641,7 @@ bool ProcessValidatorRegistration(const CTransaction& tx, const CValidatorRegist
     
     if (success) {
         LogPrintf("ProcessValidatorRegistration: Successfully registered validator %s with stake %s\n", 
-                 payload.validatorPubKey.ToString(), FormatMoney(payload.nStakeAmount));
+                 HexStr(payload.validatorPubKey), FormatMoney(payload.nStakeAmount));
     }
     
     return success;
@@ -734,7 +734,7 @@ CAmount CalculateSlashingPenalty(const CPubKey& validatorPubKey, SlashingConditi
 {
     CValidator validator;
     if (!GetValidator(validatorPubKey, validator)) {
-        LogPrintf("CalculateSlashingPenalty: Validator %s not found\n", validatorPubKey.ToString());
+        LogPrintf("CalculateSlashingPenalty: Validator %s not found\n", HexStr(validatorPubKey));
         return 0;
     }
     
@@ -778,7 +778,7 @@ CAmount CalculateSlashingPenalty(const CPubKey& validatorPubKey, SlashingConditi
     }
     
     LogPrintf("CalculateSlashingPenalty: Validator %s, condition %d, penalty %s\n", 
-             validatorPubKey.ToString(), condition, FormatMoney(penalty));
+             HexStr(validatorPubKey), condition, FormatMoney(penalty));
     
     return penalty;
 }
@@ -790,13 +790,13 @@ bool SlashValidator(const CPubKey& validatorPubKey, SlashingCondition condition,
 {
     // Check if validator exists
     if (!IsValidatorRegistered(validatorPubKey)) {
-        LogPrintf("SlashValidator: Validator %s not registered\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: Validator %s not registered\n", HexStr(validatorPubKey));
         return false;
     }
     
     // Check if validator is already slashed
     if (mapSlashedValidators.find(validatorPubKey) != mapSlashedValidators.end()) {
-        LogPrintf("SlashValidator: Validator %s already slashed\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: Validator %s already slashed\n", HexStr(validatorPubKey));
         return false;
     }
     
