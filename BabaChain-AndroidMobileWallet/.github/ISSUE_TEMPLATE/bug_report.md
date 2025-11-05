@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a report to help us improve BabaChain Mobile Wallet
 title: ''
 labels: 'bug'
 assignees: ''
@@ -26,13 +26,23 @@ assignees: ''
 3.
 4.
 
+## Staking Related Information (if applicable)
+<!--- If this bug affects staking functionality, please provide: -->
+- [ ] Is this related to staking rewards?
+- [ ] Is this related to background staking?
+- [ ] Is this related to biometric authentication?
+- [ ] Current staking balance: 
+- [ ] Last successful stake time:
+
 ## Context
 <!--- How has this issue affected you? What are you trying to accomplish? -->
 <!--- Providing context helps us come up with a solution that is most useful in the real world -->
 
 ## Your Environment
 <!--- Include as many relevant details about the environment you experienced the bug in -->
-* Version used:
-* Environment name and version (e.g. Chrome 39, node.js 5.4):
-* Operating System and version (desktop, server, or mobile):
-* Link to your project:
+* BabaChain Wallet version:
+* Android version:
+* Device model:
+* Network (Mainnet/Testnet):
+* Staking status (Active/Inactive):
+* Battery optimization settings:

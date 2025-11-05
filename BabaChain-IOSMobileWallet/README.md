@@ -1,4 +1,4 @@
-# BabaChain Wallet
+# BabaChain IOS Mobile Wallet
 
 [![Build Status](https://github.com/baba-chain/babachain-ios/actions/workflows/semantic-pull-request.yml/badge.svg)](https://github.com/baba-chain/babachain-ios/actions) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/baba-chain/babachain-ios/blob/master/LICENSE) [![Release](https://img.shields.io/github/v/release/baba-chain/babachain-ios)](https://github.com/baba-chain/babachain-ios/releases) [![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20watchOS-blue)](https://github.com/baba-chain/babachain-ios)
 
