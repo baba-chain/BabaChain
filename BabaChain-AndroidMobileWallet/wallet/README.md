@@ -1,8 +1,14 @@
-BabaChain Wallet
-===============
+# BabaChain Android Wallet
+
 BabaChain Wallet is a revolutionary mobile staking wallet for the BabaChain Proof-of-Stake cryptocurrency. 
 This repo contains the source code for the Android platform. iOS is supported 
 at the [babachain-ios](https://github.com/baba-chain/babachain-ios) repo on Github.
+
+[![Build Status](https://github.com/baba-chain/babachain-android/actions/workflows/android.yml/badge.svg)](https://github.com/baba-chain/babachain-android/actions)
+[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/baba-chain/babachain-android/blob/master/LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Android-green)](https://github.com/baba-chain/babachain-android)
+
+*BabaChain Wallet* connects directly to the BabaChain network using SPV light node technology for fast mobile performance while maintaining full security. Built with Android-native features like biometric authentication, background services, and hardware security integration.
 
 ## 🚀 Revolutionary Features
 
@@ -97,100 +103,104 @@ Log messages can be viewed by:
 The app can send extensive debug information. Use **Options > Settings > Report Issue** and follow the dialog.
 In the generated e-mail, replace the support address with yours.
 
+## Quick Start
+
+### For Users
+1. **Download** BabaChain Wallet from Google Play Store
+2. **Create** a new wallet or import existing seed phrase
+3. **Enable** biometric authentication for security
+4. **Start Staking** and earn 365%+ APR automatically!
+
+### For Developers
+
+#### Prerequisites
+- Android Studio Arctic Fox or later
+- Java 11 or later
+- Android SDK with API level 24+
+- Android NDK (for native cryptographic operations)
+
+#### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/baba-chain/babachain-android.git
+cd babachain-android
+
+# Install dependencies (Ubuntu/Debian)
+sudo apt install git gradle openjdk-11-jdk android-tools-adb
+
+# Set environment variables
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/21.4.7075529
+
+# Build debug version
+./gradlew assembleTestNet3Debug
+
+# Install on device
+adb install wallet/build/outputs/apk/wallet-_testNet3-debug.apk
+```
+
 ### BUILDING THE DEVELOPMENT VERSION (TESTNET)
 
-It's important to know that the development version uses Testnet, is debuggable and the wallet file
-is world readable/writeable. The goal is to be able to debug easily.
+The development version uses Testnet for safe testing and debugging.
 
-The _testNet3 and staging flavors builds for Testnet.
+**Build Flavors:**
+- `_testNet3`: TestNet build for development
+- `staging`: Staging environment build
+- `devnet`: Development network build
+- `prod`: Production mainnet build
 
-You can probably skip some steps, especially if you built Android apps before.
+**Development Build:**
+```bash
+./gradlew clean assemble_testNet3Debug -x test
+```
 
-You'll need git, a Java SDK 8 (or later) and Gradle 7.0 (or later) for this. I'll assume Ubuntu Linux
-for the package installs, which comes with slightly more recent versions.
+**Production Build:**
+```bash
+./gradlew clean assembleProdRelease
+```
 
-    # first time only
-    sudo apt install git gradle openjdk-11-jdk libstdc++6:i386 zlib1g:i386
+## 🏗️ Architecture
 
-Download the [Android SDK Tools](https://developer.android.com/studio/index.html#command-tools)
-and unpack to your workspace directory. Point your `ANDROID_HOME` variable to the unpacked Android SDK directory
-and switch to it.
+### Core Components
 
-Download and install the required Android dependencies:
-    tools/android update sdk --no-ui --force --all --filter tool,platform-tool,build-tools-30,android-21,android-30
+- **LightNodeService**: SPV blockchain synchronization and PoS consensus
+- **BackgroundStakingService**: Continuous staking with WorkManager integration
+- **BiometricAuthenticationManager**: Hardware-backed biometric security
+- **StakingNotificationService**: Push notifications for rewards and events
+- **EnhancedQrScannerActivity**: Advanced QR code scanning with Camera2 API
+- **MobileWalletController**: Central coordinator for all mobile features
 
-Download the [Android NDK](https://developer.android.com/ndk/downloads/), then unpack it to your workspace directory. Point your `ANDROID_NDK_HOME` variable to the unpacked Android NDK directory.
+### Security Architecture
 
-Finally, you can build BabaChain Wallet and sign it with your development key. Again in your workspace,
-use
+- **Android Keystore**: Hardware-backed private key storage
+- **Biometric Protection**: Fingerprint/face authentication for all operations
+- **Encrypted Storage**: All sensitive data encrypted at rest
+- **Foreground Services**: Secure background operation management
 
-	# first time only
-	git clone -b master https://github.com/baba-chain/babachain-android.git babachain-wallet
-	cd babachain-wallet
-	git pull
-    
-	# each time
-	cd babachain-wallet
-	git pull
-    gradle clean assemble_testNet3Debug -x test
+### Dependencies
 
-To install the app on your Android device, use:
+#### BabaChain Core Dependencies
+```bash
+# Clone required repositories
+git clone https://github.com/baba-chain/babachainj.git
+git clone https://github.com/baba-chain/android-babachainj.git
+git clone https://github.com/baba-chain/babachain-client-android.git
+git clone https://github.com/baba-chain/android-babachainpay.git
 
-    # first time only
-    sudo apt install android-tools-adb
+# Build dependencies
+cd babachainj && ./gradlew assemble
+cd ../android-babachainj && ./gradlew build
+cd ../babachain-client-android && ./gradlew build
+cd ../android-babachainpay && ./gradlew build
+```
 
-	# each time
-	adb install wallet/build/outputs/apk/babachain-wallet-_testNet3-debug.apk
-
-If installation fails, make sure "Developer options" and "USB debugging" are enabled on your Android device, and an ADB
-connection is established.
-
-### BUILDING THE TESTNET VERSION
-
-It's important to know that this development version uses TestNet, is debuggable and the wallet file
-is world readable/writeable. The goal is to be able to debug easily.
-
-The `_testNet3` flavor builds for the TestNet.
-
-	# first time only
-	git clone -b master https://github.com/baba-chain/babachain-android.git babachain-wallet
-	cd babachain-wallet
-	git pull
-    cd ..
-
-	git clone -b master https://github.com/baba-chain/android-babachainj.git android-babachainj
-	cd android-babachainj
-	gradlew build
-    cd ..
-
-	git clone -b master https://github.com/baba-chain/babachain-client-android babachain-client-android
-	cd babachain-client-android
-	gradlew build
-	cd ..
-
-    git clone -b master https://github.com/baba-chain/android-babachainpay.git android-babachainpay
-    cd android-babachainpay
-    gradlew build
-    cd ..
-
-    # optional
-    git clone -b master https://github.com/baba-chain/babachainj.git babachainj
-    cd babachainj
-    ./gradlew assemble
-    cd ..
-
-	# each time or build in Android Studio
-	cd babachain-wallet
-	git pull
-    gradle clean assemble_testNet3Release -x test
-
-To install the app on your Android device, use:
-
-    # first time only
-    sudo apt install android-tools-adb
-
-	# each time
-	adb install wallet/build/outputs/apk/babachain-wallet-_testNet3-debug.apk
+#### Android-Specific Libraries
+- **AndroidX Biometric**: Biometric authentication
+- **WorkManager**: Background task scheduling
+- **Room Database**: Local data persistence
+- **Camera2 API**: Enhanced QR code scanning
+- **Firebase Messaging**: Push notifications
 
 ### BUILDING THE PRODUCTION VERSION
 
@@ -321,33 +331,82 @@ As soon as a translation is ready, it can be pulled:
 Note that after pulling, any bugs introduced by either translators or Transifex itself need to be
 corrected manually.
 
-### NFC (Near field communication)
+## 📱 Android-Specific Features
+
+### NFC (Near Field Communication)
 
 BabaChain Wallet supports reading BabaChain requests via NFC, either from a passive NFC tag or from
 another NFC capable Android device that is requesting coins.
 
-For this to work, just enable NFC in your phone and hold your phone to the tag or device (with
-the "Request coins" dialog open). The "Send coins" dialog will open with fields populated.
+**Features:**
+- **Tap-to-Pay**: Send payments by tapping NFC-enabled devices
+- **Tap-to-Receive**: Request payments via NFC
+- **NFC Tag Support**: Read payment requests from NFC tags
+- **Peer-to-Peer**: Direct NFC payments between Android devices
 
-Instructions for preparing an NFC tag with your address:
+**Usage:**
+1. Enable NFC in your Android device settings
+2. Hold your phone to the NFC tag or device
+3. The payment dialog will open with pre-filled information
 
-- We have successfully tested [this NFC tag writer](https://play.google.com/store/apps/details?id=com.nxp.nfc.tagwriter).
-  Other writers should work as well, let us know if you succeed.
+**NFC Tag Setup:**
+- Use [NFC TagWriter](https://play.google.com/store/apps/details?id=com.nxp.nfc.tagwriter) or similar apps
+- Minimum 1 KB capacity tags recommended
+- Format: `babachain:BabaChainAddressExample123456789?amount=1.5&label=Payment`
+- Set message type to URI or URL (not Text)
+- Enable write protection for public tags
 
-- Some tags have less than 50 bytes capacity, those won't work. 1 KB tags recommended.
+### Home Screen Widgets
 
-- The tag needs to contain a BabaChain URI. You can construct one with the "Request coins" dialog,
-  then share with messaging or email. You can also construct the URI manually. Mainnet example:
-  `babachain:BabaChainAddressExample123456789`
+BabaChain Wallet provides Android home screen widgets for quick access to wallet information:
 
-- The type of the message needs to be URI or URL (not Text).
+**Widget Types:**
+- **Balance Widget**: Shows current BABA balance and USD value
+- **Staking Widget**: Displays staking status and recent rewards
+- **Quick Actions Widget**: Fast access to send, receive, and staking
 
-- If you put your tag at a public place, don't forget to enable write protect. Otherwise, someone
-  could overwrite the tag with his own BabaChain address.
+**Widget Features:**
+- Real-time balance updates
+- Staking reward notifications
+- One-tap access to common actions
+- Customizable refresh intervals
+- Dark/light theme support
+
+### Background Services
+
+**Foreground Services:**
+- **LightNodeService**: Continuous blockchain synchronization
+- **BackgroundStakingService**: 24/7 staking operation
+
+**WorkManager Tasks:**
+- **StakingWorker**: Periodic staking checks every 15 minutes
+- **SyncWorker**: Blockchain synchronization tasks
+- **NotificationWorker**: Push notification processing
+
+**Battery Optimization:**
+- Doze mode compatibility
+- App standby handling
+- Intelligent task scheduling
+- Network-aware operations
 
 ### BABACHAINJ
 
 BabaChain Wallet uses [babachainj](https://github.com/baba-chain/babachainj) for BabaChain specific logic. This project is forked from [bitcoinj](https://bitcoinj.github.io/) with PoS consensus support.
+
+## URL Schemes
+
+BabaChain Wallet supports the following URL schemes for Android integration:
+
+- `babachain://` - Standard BabaChain payments
+- `babachainwallet://` - Wallet-specific actions
+- `babachainid://` - BabaChain identity operations
+
+**Example Usage:**
+```
+babachain:BabaChainAddressExample123456789?amount=1.5&label=Payment
+babachainwallet://staking/start
+babachainid://profile/view?username=alice
+```
 
 ### EXCHANGE RATES
 
@@ -384,6 +443,57 @@ BabaChain Wallet implements Proof-of-Stake consensus with the following features
 - **Hardware Security**: Integration with Android Keystore
 - **Encrypted Storage**: All staking data is encrypted at rest
 
+## 🚀 Deployment
+
+### Google Play Store
+
+The production version is available on Google Play Store:
+
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=org.babachain.wallet)
+
+### APK Distribution
+
+Direct APK downloads are available from GitHub releases:
+- **Mainnet**: `wallet-prod-release.apk`
+- **Testnet**: `wallet-_testNet3-release.apk`
+
+### System Requirements
+
+- **Android Version**: 7.0 (API level 24) or later
+- **RAM**: Minimum 2GB, recommended 4GB+
+- **Storage**: 500MB free space for blockchain data
+- **Network**: Internet connection for initial sync
+- **Hardware**: Biometric sensor (recommended)
+
+## ⚠️ Security Warning
+
+**Rooted Devices**: Installation on rooted devices is strongly discouraged. Root access can compromise the Android Keystore and expose private keys to malicious applications.
+
+**Unknown Sources**: Only install BabaChain Wallet from Google Play Store or official GitHub releases. Avoid third-party app stores or unofficial sources.
+
+## 🌐 Community & Support
+
+- **Website**: https://www.babachain.org
+- **Documentation**: https://docs.babachain.org
+- **Discord**: https://discord.gg/babachain
+- **Twitter**: https://twitter.com/babachainorg
+- **Telegram**: https://t.me/babachain
+- **Reddit**: https://reddit.com/r/babachain
+- **GitHub**: https://github.com/baba-chain
+
+### Getting Help
+
+1. **Documentation**: Check [docs.babachain.org](https://docs.babachain.org) for guides
+2. **GitHub Issues**: Report bugs and request features
+3. **Discord**: Join our community for real-time support
+4. **Email**: Contact support@babachain.org for critical issues
+
+## 📄 License
+
+BabaChain Wallet is available under the MIT license. See the [LICENSE](../LICENSE) file for more info.
+
 ---
 
-**Start earning 365%+ APR today with BabaChain's revolutionary mobile staking!**
+**Built with ❤️ by the BabaChain Community**
+
+*Start earning 365%+ APR today with BabaChain's revolutionary mobile staking!*
