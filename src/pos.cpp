@@ -134,7 +134,7 @@ bool IsSupplyCapEnforced(int nHeight, const Consensus::Params& consensusParams)
     
     // Add all staking rewards distributed so far
     if (nHeight > 0) {
-        totalSupply += (nHeight - 1) * consensusParams.nStakeRewardPerBlock;
+        totalSupply += (nHeight - 1) * consensusParams.nInitialBlockReward;
     }
     
     // Check if we're approaching or at the cap
@@ -155,7 +155,7 @@ CAmount GetRemainingStakingSupply(int nHeight, const Consensus::Params& consensu
     // Calculate total rewards already distributed
     CAmount distributedRewards = 0;
     if (nHeight > 0) {
-        distributedRewards = (nHeight - 1) * consensusParams.nStakeRewardPerBlock;
+        distributedRewards = (nHeight - 1) * consensusParams.nInitialBlockReward;
     }
     
     // Return remaining from staking supply pool
