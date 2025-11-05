@@ -1,5 +1,7 @@
 # BabaChain Teknik Raporu
 
+![BabaChain Logo](logo.png)
+
 **Otomatik Düğüm Sistemi ve Olağanüstü Staking Ödülleri ile Devrimci Proof-of-Stake Blok Zinciri**
 
 *Versiyon 2.0 - Ekim 2025*
