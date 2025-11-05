@@ -77,8 +77,8 @@ static RPCHelpMan getstakingbalance()
     CAmount stakedBalance = pwallet->GetStakedBalance();
     
     UniValue result(UniValue::VOBJ);
-    result.pushKV("stakingbalance", ValueFromAmount(stakingBalance));
-    result.pushKV("stakedbalance", ValueFromAmount(stakedBalance));
+    result.pushKV("stakingbalance", FormatMoney(stakingBalance));
+    result.pushKV("stakedbalance", FormatMoney(stakedBalance));
     
     return result;
 },

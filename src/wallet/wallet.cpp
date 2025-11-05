@@ -3977,10 +3977,10 @@ CAmount CWallet::GetStakedBalance() const
     return 0;
 }
 
-std::vector<CStakingInfo> CWallet::GetStakingTransactions() const
+std::vector<wallet::CStakingInfo> CWallet::GetStakingTransactions() const
 {
     AssertLockHeld(cs_wallet);
-    std::vector<CStakingInfo> stakingTxs;
+    std::vector<wallet::CStakingInfo> stakingTxs;
     
     // TODO: Implement staking transaction enumeration
     
@@ -4044,26 +4044,7 @@ bool CWallet::SetupOneClickStaking(CAmount stakeAmount, bool autoStaking, bool n
         SetStakingEnabled(true);
     }
     
-    // TODO: Initialize gamification for new staker (future feature)
-    
     return true;
-}
-
-void CWallet::UpdateCoinMaturityTracking()
-{
-    AssertLockHeld(cs_wallet);
-    
-    // TODO: Implement coin maturity tracking
-    WalletLogPrintf("UpdateCoinMaturityTracking called\n");
-}
-
-void CWallet::NotifyStakingReward(CAmount amount, const uint256& txid)
-{
-    AssertLockHeld(cs_wallet);
-    
-    WalletLogPrintf("Staking reward received: %s (txid: %s)\n", FormatMoney(amount), txid.ToString());
-    
-    // TODO: Update earnings calculator and gamification system (future features)
 }
 
 } // namespace wallet
