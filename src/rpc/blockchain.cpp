@@ -1602,7 +1602,7 @@ RPCHelpMan getblockchaininfo()
     posInfo.pushKV("stakedifficulty", dStakeDifficulty);
     
     // Current block reward
-    posInfo.pushKV("blockreward", ValueFromAmount(consensusParams.nStakeRewardPerBlock));
+    posInfo.pushKV("blockreward", ValueFromAmount(consensusParams.nInitialBlockReward));
     
     // Remaining supply for staking rewards
     CAmount nRemainingSupply = GetRemainingStakingSupply(height, consensusParams);

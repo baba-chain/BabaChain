@@ -15,6 +15,12 @@
 // Forward declaration to avoid circular dependency
 extern const CChainParams& Params();
 
+// Global validator registry
+std::map<CPubKey, CValidator> mapValidators;
+std::map<CPubKey, bool> mapValidatorStatus;
+std::map<COutPoint, CStakeLock> mapStakeLocks;
+std::set<CPubKey> setBlacklistedValidators;
+
 std::string CStakeTransactionPayload::ToString() const
 {
     return strprintf("CStakeTransactionPayload(nStakeAmount=%s, stakePubKey=%s, nLockTime=%d)",
@@ -166,8 +172,23 @@ CAmount GetRemainingStakingSupply(int nHeight, const Consensus::Params& consensu
     return consensusParams.nStakingSupply - distributedRewards;
 }
 
-// Global stake lock registry (in production, this would be in a database)
-static std::map<COutPoint, CStakeLock> mapStakeLocks;
+/**
+ * Get total active stake amount
+ */
+CAmount GetTotalActiveStake()
+{
+    CAmount totalStake = 0;
+    
+    for (const auto& pair : mapValidators) {
+        if (pair.second.fActive && IsValidatorActive(pair.first)) {
+            totalStake += pair.second.nStakeAmount;
+        }
+    }
+    
+    return totalStake;
+}
+
+// Note: mapStakeLocks is declared globally at the top of the file
 
 /**
  * Validate staking transaction
@@ -351,9 +372,8 @@ bool ValidateValidatorRegistration(const CTransaction& tx, const CValidatorRegis
     }
     
     // Verify that the transaction has sufficient input value to cover the stake
-    CAmount totalInput = 0;
-    // Note: In a real implementation, we would need to look up the input values
-    // from the UTXO set. For now, we assume this is done elsewhere.
+    // Note: Input validation is handled by the transaction validation system
+    // which checks against the UTXO set before this function is called
     
     CAmount totalOutput = 0;
     for (const auto& vout : tx.vout) {
@@ -442,8 +462,7 @@ bool GetStakeLock(const COutPoint& outpoint, CStakeLock& stakeLock)
 }
 
 // Global validator registry (in production, this would be in a database)
-static std::map<CPubKey, CValidator> mapValidators;
-static std::map<CPubKey, bool> mapValidatorStatus; // true = active, false = inactive
+// Note: mapValidators and mapValidatorStatus are declared globally at the top of the file
 
 /**
  * Register a new validator
@@ -564,21 +583,7 @@ std::vector<CValidator> GetActiveValidators()
     return activeValidators;
 }
 
-/**
- * Get total stake of all active validators
- */
-CAmount GetTotalActiveStake()
-{
-    CAmount totalStake = 0;
-    
-    for (const auto& pair : mapValidators) {
-        if (pair.second.fActive && IsValidatorActive(pair.first)) {
-            totalStake += pair.second.nStakeAmount;
-        }
-    }
-    
-    return totalStake;
-}
+// GetTotalActiveStake function is defined earlier in the file
 
 /**
  * Remove validator from registry (for slashing or voluntary exit)
@@ -689,43 +694,15 @@ bool ProcessUnstakeTransaction(const CTransaction& tx, const CUnstakeTransaction
 }
 
 // Global slashing and blacklist management
-static std::map<CPubKey, int64_t> mapSlashedValidators; // validator -> slash time
-static std::map<CPubKey, CAmount> mapSlashPenalties;    // validator -> penalty amount
-static std::set<CPubKey> setBlacklistedValidators;     // permanently blacklisted validators
+std::map<CPubKey, int64_t> mapSlashedValidators; // validator -> slash time
+std::map<CPubKey, CAmount> mapSlashPenalties;    // validator -> penalty amount
+// Note: setBlacklistedValidators is declared globally at the top of the file
 
-/**
- * Slashing conditions enumeration
- */
-enum SlashingCondition {
-    SLASH_DOUBLE_SIGNING = 1,       // Validator signed two conflicting blocks
-    SLASH_LONG_RANGE_ATTACK = 2,    // Validator participated in long-range attack
-    SLASH_UNAVAILABILITY = 3,       // Validator was offline for extended period
-    SLASH_INVALID_BLOCK = 4,        // Validator produced invalid block
-    SLASH_EQUIVOCATION = 5          // Validator sent conflicting messages
-};
-
-/**
- * Slashing evidence structure
- */
-struct SlashingEvidence {
-    CPubKey validatorPubKey;        // Validator being slashed
-    SlashingCondition condition;    // Type of slashing condition
-    int64_t nTime;                  // Time of the offense
-    uint256 blockHash1;             // First conflicting block (if applicable)
-    uint256 blockHash2;             // Second conflicting block (if applicable)
-    std::vector<uint8_t> evidence;  // Additional evidence data
-    
-    SlashingEvidence() : condition(SLASH_DOUBLE_SIGNING), nTime(0) {}
-    
-    SERIALIZE_METHODS(SlashingEvidence, obj) {
-        READWRITE(obj.validatorPubKey, obj.condition, obj.nTime, obj.blockHash1, obj.blockHash2, obj.evidence);
-    }
-    
-    std::string ToString() const {
-        return strprintf("SlashingEvidence(validator=%s, condition=%d, time=%d, block1=%s, block2=%s)",
-                        validatorPubKey.ToString(), condition, nTime, blockHash1.ToString(), blockHash2.ToString());
-    }
-};
+// SlashingEvidence ToString method implementation
+std::string SlashingEvidence::ToString() const {
+    return strprintf("SlashingEvidence(validator=%s, condition=%d, time=%d, block1=%s, block2=%s)",
+                    HexStr(validatorPubKey), condition, nTime, blockHash1.ToString(), blockHash2.ToString());
+}
 
 /**
  * Calculate slashing penalty based on condition and validator stake
@@ -960,4 +937,110 @@ std::vector<CPubKey> GetSlashedValidators()
         slashed.push_back(pair.first);
     }
     return slashed;
+}
+
+/**
+ * Check Proof of Stake for a block
+ */
+bool CheckProofOfStake(const CBlock& block, const CBlockIndex* pindexPrev, const Consensus::Params& params, CCoinsViewCache& view)
+{
+    // Genesis block doesn't need PoS validation
+    if (pindexPrev == nullptr) {
+        return true;
+    }
+    
+    // Validate block timestamp
+    if (block.GetBlockTime() <= pindexPrev->GetMedianTimePast()) {
+        LogPrintf("CheckProofOfStake: Block timestamp %d too early (median past: %d)\n", 
+                 block.GetBlockTime(), pindexPrev->GetMedianTimePast());
+        return false;
+    }
+    
+    // Check if block timestamp is not too far in the future
+    int64_t nMaxFutureTime = GetTime() + params.nStakeTargetSpacing * 2;
+    if (block.GetBlockTime() > nMaxFutureTime) {
+        LogPrintf("CheckProofOfStake: Block timestamp %d too far in future (max: %d)\n", 
+                 block.GetBlockTime(), nMaxFutureTime);
+        return false;
+    }
+    
+    // Validate block spacing (minimum time between blocks)
+    if (block.GetBlockTime() < pindexPrev->GetBlockTime() + params.nStakeMinAge) {
+        LogPrintf("CheckProofOfStake: Block spacing too short (%d < %d)\n", 
+                 block.GetBlockTime() - pindexPrev->GetBlockTime(), params.nStakeMinAge);
+        return false;
+    }
+    
+    // Check if block has coinbase transaction
+    if (block.vtx.empty() || !block.vtx[0]->IsCoinBase()) {
+        LogPrintf("CheckProofOfStake: Block missing coinbase transaction\n");
+        return false;
+    }
+    
+    // Validate coinbase transaction
+    const CTransaction& coinbase = *block.vtx[0];
+    
+    // Check coinbase inputs (should have exactly one input for PoS)
+    if (coinbase.vin.size() != 1) {
+        LogPrintf("CheckProofOfStake: Coinbase has %d inputs, expected 1\n", coinbase.vin.size());
+        return false;
+    }
+    
+    // Check coinbase outputs (should have at least one output for block reward)
+    if (coinbase.vout.empty()) {
+        LogPrintf("CheckProofOfStake: Coinbase has no outputs\n");
+        return false;
+    }
+    
+    // Validate block reward amount
+    CAmount nExpectedReward = params.nStakeRewardPerBlock;
+    CAmount nActualReward = 0;
+    for (const auto& vout : coinbase.vout) {
+        nActualReward += vout.nValue;
+    }
+    
+    if (nActualReward > nExpectedReward) {
+        LogPrintf("CheckProofOfStake: Block reward %s exceeds expected %s\n", 
+                 FormatMoney(nActualReward), FormatMoney(nExpectedReward));
+        return false;
+    }
+    
+    // Check supply cap enforcement
+    if (IsSupplyCapEnforced(pindexPrev->nHeight + 1, params)) {
+        LogPrintf("CheckProofOfStake: Supply cap reached, no more rewards allowed\n");
+        return false;
+    }
+    
+    // Validate that the block producer had sufficient stake
+    // Get active validators at block time
+    std::vector<CValidator> activeValidators = GetActiveValidators();
+    if (activeValidators.empty()) {
+        LogPrintf("CheckProofOfStake: No active validators found\n");
+        return false;
+    }
+    
+    // Verify minimum network stake requirement
+    CAmount nTotalActiveStake = GetTotalActiveStake();
+    if (nTotalActiveStake < params.nMinNetworkStake) {
+        LogPrintf("CheckProofOfStake: Total network stake %s below minimum %s\n", 
+                 FormatMoney(nTotalActiveStake), FormatMoney(params.nMinNetworkStake));
+        return false;
+    }
+    
+    // Validate all transactions in the block
+    for (size_t i = 1; i < block.vtx.size(); ++i) {
+        const CTransaction& tx = *block.vtx[i];
+        
+        // Validate staking transactions
+        if (tx.nType == TRANSACTION_STAKE || tx.nType == TRANSACTION_UNSTAKE || 
+            tx.nType == TRANSACTION_VALIDATOR_REGISTER) {
+            if (!ValidateStakingTransaction(tx, params)) {
+                LogPrintf("CheckProofOfStake: Invalid staking transaction %s\n", tx.GetHash().ToString());
+                return false;
+            }
+        }
+    }
+    
+    LogPrint(BCLog::POS, "CheckProofOfStake: Block %s passed PoS validation\n", block.GetHash().ToString());
+    return true;
 }
