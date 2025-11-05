@@ -803,7 +803,7 @@ bool SlashValidator(const CPubKey& validatorPubKey, SlashingCondition condition,
     // Calculate penalty
     CAmount penalty = CalculateSlashingPenalty(validatorPubKey, condition, consensusParams);
     if (penalty == 0) {
-        LogPrintf("SlashValidator: No penalty calculated for validator %s\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: No penalty calculated for validator %s\n", HexStr(validatorPubKey));
         return false;
     }
     
@@ -829,11 +829,11 @@ bool SlashValidator(const CPubKey& validatorPubKey, SlashingCondition condition,
     // For severe offenses, add to blacklist
     if (condition == SLASH_LONG_RANGE_ATTACK || condition == SLASH_DOUBLE_SIGNING) {
         setBlacklistedValidators.insert(validatorPubKey);
-        LogPrintf("SlashValidator: Blacklisted validator %s for severe offense\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: Blacklisted validator %s for severe offense\n", HexStr(validatorPubKey));
     }
     
     LogPrintf("SlashValidator: Slashed validator %s, penalty %s, new stake %s\n", 
-             validatorPubKey.ToString(), FormatMoney(penalty), FormatMoney(newStake));
+             HexStr(validatorPubKey), FormatMoney(penalty), FormatMoney(newStake));
     
     return true;
 }
@@ -881,7 +881,7 @@ bool DetectDoubleSigning(const CPubKey& validatorPubKey, const uint256& blockHas
     }
     
     LogPrintf("DetectDoubleSigning: Validator %s signed two blocks at height %d: %s and %s\n", 
-             validatorPubKey.ToString(), nHeight, blockHash1.ToString(), blockHash2.ToString());
+             HexStr(validatorPubKey), nHeight, blockHash1.ToString(), blockHash2.ToString());
     
     // Create slashing evidence
     SlashingEvidence evidence;
@@ -908,7 +908,7 @@ bool DetectUnavailability(const CPubKey& validatorPubKey, int nMissedBlocks, int
     }
     
     LogPrintf("DetectUnavailability: Validator %s missed %d/%d blocks (%.2f%%)\n", 
-             validatorPubKey.ToString(), nMissedBlocks, nTotalBlocks, missRate * 100);
+             HexStr(validatorPubKey), nMissedBlocks, nTotalBlocks, missRate * 100);
     
     // Create slashing evidence
     SlashingEvidence evidence;
@@ -927,13 +927,13 @@ bool RemoveFromBlacklist(const CPubKey& validatorPubKey)
 {
     auto it = setBlacklistedValidators.find(validatorPubKey);
     if (it == setBlacklistedValidators.end()) {
-        LogPrintf("RemoveFromBlacklist: Validator %s not blacklisted\n", validatorPubKey.ToString());
+        LogPrintf("RemoveFromBlacklist: Validator %s not blacklisted\n", HexStr(validatorPubKey));
         return false;
     }
     
     setBlacklistedValidators.erase(it);
     
-    LogPrintf("RemoveFromBlacklist: Removed validator %s from blacklist\n", validatorPubKey.ToString());
+    LogPrintf("RemoveFromBlacklist: Removed validator %s from blacklist\n", HexStr(validatorPubKey));
     
     return true;
 }
