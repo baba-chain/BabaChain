@@ -30,6 +30,7 @@ void RegisterEvoRPCCommands(CRPCTable &tableRPC);
 void RegisterQuorumsRPCCommands(CRPCTable &tableRPC);
 void RegisterStakingRPCCommands(CRPCTable &tableRPC);
 void RegisterExchangeRPCCommands(CRPCTable &tableRPC);
+void RegisterFiatOnRampRPCCommands(CRPCTable &tableRPC);
 
 #ifdef ENABLE_WALLET
 // BabaChain-specific wallet-only RPC commands
