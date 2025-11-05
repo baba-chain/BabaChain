@@ -14,6 +14,7 @@
 #include <wallet/wallet.h>
 #include <wallet/rpc/util.h>
 #include <node/context.h>
+#include <node/transaction.h>
 
 #include <univalue.h>
 
@@ -132,9 +133,10 @@ static RPCHelpMan stakecoin()
     CTransactionRef tx = MakeTransactionRef(std::move(mtx));
     
     NodeContext& node = EnsureAnyNodeContext(request.context);
-    const TransactionError err = BroadcastTransaction(node, tx, strError, DEFAULT_MAX_RAW_TX_FEE_RATE.GetFeePerK(), true, true);
+    bilingual_str error;
+    const TransactionError err = BroadcastTransaction(node, tx, error, DEFAULT_MAX_RAW_TX_FEE_RATE.GetFeePerK(), true, true);
     if (TransactionError::OK != err) {
-        throw JSONRPCTransactionError(err, strError);
+        throw JSONRPCTransactionError(err, error);
     }
 
     UniValue result(UniValue::VOBJ);
@@ -327,8 +329,6 @@ static RPCHelpMan listvalidators()
 },
     };
 }
-
-
 
 void RegisterStakingRPCCommands(CRPCTable &t)
 {

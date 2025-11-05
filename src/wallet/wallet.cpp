@@ -3957,7 +3957,7 @@ CAmount CWallet::GetStakingBalance() const
     CAmount nBalance = 0;
     
     for (const auto& [wtxid, wtx] : mapWallet) {
-        if (wtx.tx && wtx.GetDepthInMainChain() >= 100) { // Mature coins
+        if (wtx.tx && GetTxDepthInMainChain(wtx) >= 100) { // Mature coins
             for (unsigned int i = 0; i < wtx.tx->vout.size(); i++) {
                 const CTxOut& txout = wtx.tx->vout[i];
                 if (IsMine(txout) && !IsSpent(COutPoint(wtx.GetHash(), i))) {
