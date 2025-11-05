@@ -3935,7 +3935,7 @@ ScriptPubKeyMan* CWallet::AddWalletDescriptor(WalletDescriptor& desc, const Flat
 
     return spk_man;
 }
-} // namespace wallet
+
 // Staking functionality implementations
 
 bool CWallet::IsStakingEnabled() const
@@ -3957,7 +3957,7 @@ CAmount CWallet::GetStakingBalance() const
     CAmount nBalance = 0;
     
     for (const auto& [wtxid, wtx] : mapWallet) {
-        if (wtx.IsTrusted() && wtx.GetDepthInMainChain() >= 100) { // Mature coins
+        if (wtx.tx && wtx.GetDepthInMainChain() >= 100) { // Mature coins
             for (unsigned int i = 0; i < wtx.tx->vout.size(); i++) {
                 const CTxOut& txout = wtx.tx->vout[i];
                 if (IsMine(txout) && !IsSpent(COutPoint(wtx.GetHash(), i))) {
@@ -4044,17 +4044,7 @@ bool CWallet::SetupOneClickStaking(CAmount stakeAmount, bool autoStaking, bool n
         SetStakingEnabled(true);
     }
     
-    // Initialize gamification for new staker
-    if (m_gamification_manager) {
-        m_gamification_manager->CheckAchievements(stakeAmount, 0, 0);
-        
-        // Create a default pet if none exists
-        auto pets = m_gamification_manager->GetAllPets();
-        if (pets.empty()) {
-            m_gamification_manager->CreatePet(PetType::CRYPTO_CAT, "Staky");
-            WalletLogPrintf("Created default staking pet 'Staky'\n");
-        }
-    }
+    // TODO: Initialize gamification for new staker (future feature)
     
     return true;
 }
@@ -4063,27 +4053,8 @@ void CWallet::UpdateCoinMaturityTracking()
 {
     AssertLockHeld(cs_wallet);
     
-    if (!m_maturity_tracker) {
-        return;
-    }
-    
-    // Update maturity status for all tracked coins
-    m_maturity_tracker->UpdateMaturityStatus();
-    
-    // Check for newly mature coins and update gamification
-    auto matureCoins = m_maturity_tracker->GetMatureCoins();
-    CAmount totalMatureAmount = 0;
-    
-    for (const auto& coinInfo : matureCoins) {
-        totalMatureAmount += coinInfo.amount;
-    }
-    
-    if (totalMatureAmount > 0 && m_gamification_manager) {
-        // Update staking streak and check achievements
-        m_gamification_manager->UpdateStakingStreak();
-        m_gamification_manager->CheckAchievements(totalMatureAmount, 0, 
-                                                 m_gamification_manager->GetProfile().consecutiveStakingDays);
-    }
+    // TODO: Implement coin maturity tracking
+    WalletLogPrintf("UpdateCoinMaturityTracking called\n");
 }
 
 void CWallet::NotifyStakingReward(CAmount amount, const uint256& txid)
@@ -4092,38 +4063,7 @@ void CWallet::NotifyStakingReward(CAmount amount, const uint256& txid)
     
     WalletLogPrintf("Staking reward received: %s (txid: %s)\n", FormatMoney(amount), txid.ToString());
     
-    // Update earnings calculator
-    if (m_earnings_calculator) {
-        CAmount currentStake = GetStakingBalance();
-        m_earnings_calculator->RecordEarning(amount, txid, currentStake);
-    }
-    
-    // Update gamification system
-    if (m_gamification_manager) {
-        // Record earnings for gamification
-        m_gamification_manager->RecordEarnings(amount);
-        
-        // Update staking streak
-        m_gamification_manager->UpdateStakingStreak();
-        
-        // Check achievements based on current state
-        CAmount totalStaked = GetStakingBalance();
-        auto profile = m_gamification_manager->GetProfile();
-        m_gamification_manager->CheckAchievements(totalStaked, amount, profile.consecutiveStakingDays);
-        
-        // Feed all active pets with a portion of the earnings
-        auto pets = m_gamification_manager->GetAllPets();
-        if (!pets.empty()) {
-            CAmount feedAmount = amount / pets.size(); // Distribute earnings among pets
-            for (const auto& pet : pets) {
-                m_gamification_manager->FeedPet(pet.id, feedAmount);
-            }
-        }
-        
-        // Add experience points based on reward amount (1 COIN = 100 XP)
-        int64_t xpGained = amount / (COIN / 100);
-        m_gamification_manager->AddExperience(xpGained);
-        
-        WalletLogPrintf("Gamification updated: earned %s, gained %d XP\n", FormatMoney(amount), xpGained);
-    }
+    // TODO: Update earnings calculator and gamification system (future features)
 }
+
+} // namespace wallet

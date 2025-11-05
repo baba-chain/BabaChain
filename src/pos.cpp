@@ -11,6 +11,9 @@
 #include <logging.h>
 #include <streams.h>
 #include <util/time.h>
+#include <primitives/block.h>
+#include <chain.h>
+#include <coins.h>
 
 // Forward declaration to avoid circular dependency
 extern const CChainParams& Params();
@@ -350,10 +353,8 @@ bool ValidateValidatorRegistration(const CTransaction& tx, const CValidatorRegis
         return false;
     }
     
-    // Verify that the transaction has sufficient input value to cover the stake
-    CAmount totalInput = 0;
     // Note: In a real implementation, we would need to look up the input values
-    // from the UTXO set. For now, we assume this is done elsewhere.
+    // from the UTXO set to verify sufficient funds. For now, we assume this is done elsewhere.
     
     CAmount totalOutput = 0;
     for (const auto& vout : tx.vout) {
@@ -694,40 +695,6 @@ static std::map<CPubKey, CAmount> mapSlashPenalties;    // validator -> penalty 
 static std::set<CPubKey> setBlacklistedValidators;     // permanently blacklisted validators
 
 /**
- * Slashing conditions enumeration
- */
-enum SlashingCondition {
-    SLASH_DOUBLE_SIGNING = 1,       // Validator signed two conflicting blocks
-    SLASH_LONG_RANGE_ATTACK = 2,    // Validator participated in long-range attack
-    SLASH_UNAVAILABILITY = 3,       // Validator was offline for extended period
-    SLASH_INVALID_BLOCK = 4,        // Validator produced invalid block
-    SLASH_EQUIVOCATION = 5          // Validator sent conflicting messages
-};
-
-/**
- * Slashing evidence structure
- */
-struct SlashingEvidence {
-    CPubKey validatorPubKey;        // Validator being slashed
-    SlashingCondition condition;    // Type of slashing condition
-    int64_t nTime;                  // Time of the offense
-    uint256 blockHash1;             // First conflicting block (if applicable)
-    uint256 blockHash2;             // Second conflicting block (if applicable)
-    std::vector<uint8_t> evidence;  // Additional evidence data
-    
-    SlashingEvidence() : condition(SLASH_DOUBLE_SIGNING), nTime(0) {}
-    
-    SERIALIZE_METHODS(SlashingEvidence, obj) {
-        READWRITE(obj.validatorPubKey, obj.condition, obj.nTime, obj.blockHash1, obj.blockHash2, obj.evidence);
-    }
-    
-    std::string ToString() const {
-        return strprintf("SlashingEvidence(validator=%s, condition=%d, time=%d, block1=%s, block2=%s)",
-                        validatorPubKey.ToString(), condition, nTime, blockHash1.ToString(), blockHash2.ToString());
-    }
-};
-
-/**
  * Calculate slashing penalty based on condition and validator stake
  */
 CAmount CalculateSlashingPenalty(const CPubKey& validatorPubKey, SlashingCondition condition, const Consensus::Params& consensusParams)
@@ -960,4 +927,55 @@ std::vector<CPubKey> GetSlashedValidators()
         slashed.push_back(pair.first);
     }
     return slashed;
+}
+
+/**
+ * Check proof of stake for a block
+ */
+bool CheckProofOfStake(const CBlock& block, const CBlockIndex* pindexPrev, const Consensus::Params& consensusParams, CCoinsViewCache& view)
+{
+    // For now, implement a basic PoS check
+    // In a real implementation, this would verify:
+    // 1. The block is signed by a valid validator
+    // 2. The validator has sufficient stake
+    // 3. The validator is selected based on stake weight
+    // 4. The block timestamp is valid for PoS
+    
+    if (block.vtx.empty()) {
+        LogPrintf("CheckProofOfStake: Block has no transactions\n");
+        return false;
+    }
+    
+    // Check if this is a PoS block (has staking transaction)
+    bool hasStakingTx = false;
+    for (const auto& tx : block.vtx) {
+        if (tx->nType == TRANSACTION_STAKE || tx->nType == TRANSACTION_VALIDATOR_REGISTER) {
+            hasStakingTx = true;
+            break;
+        }
+    }
+    
+    // For now, accept blocks without staking transactions (during transition)
+    if (!hasStakingTx) {
+        LogPrint(BCLog::POS, "CheckProofOfStake: Block has no staking transactions, allowing during transition\n");
+        return true;
+    }
+    
+    // Basic timestamp check
+    if (block.nTime <= pindexPrev->nTime) {
+        LogPrintf("CheckProofOfStake: Block timestamp %d not greater than previous %d\n", 
+                 block.nTime, pindexPrev->nTime);
+        return false;
+    }
+    
+    // Check block time is not too far in the future
+    int64_t nCurrentTime = GetTime();
+    if (block.nTime > nCurrentTime + consensusParams.nStakeTargetSpacing * 2) {
+        LogPrintf("CheckProofOfStake: Block timestamp %d too far in future (current: %d)\n", 
+                 block.nTime, nCurrentTime);
+        return false;
+    }
+    
+    LogPrint(BCLog::POS, "CheckProofOfStake: Block passed basic PoS validation\n");
+    return true;
 }

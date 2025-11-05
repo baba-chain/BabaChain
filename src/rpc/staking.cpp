@@ -198,7 +198,7 @@ static RPCHelpMan getstakinginfo()
     result.pushKV("totalstake", ValueFromAmount(nTotalStake));
     
     // Calculate expected reward
-    CAmount nExpectedReward = consensusParams.nStakeRewardPerBlock;
+    CAmount nExpectedReward = consensusParams.nInitialBlockReward;
     result.pushKV("expectedreward", ValueFromAmount(nExpectedReward));
     
     // Staking difficulty (simplified calculation)
@@ -327,6 +327,8 @@ static RPCHelpMan listvalidators()
 },
     };
 }
+
+
 
 void RegisterStakingRPCCommands(CRPCTable &t)
 {

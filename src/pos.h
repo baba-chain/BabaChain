@@ -18,6 +18,11 @@
 #include <map>
 #include <string>
 
+// Forward declarations
+class CBlock;
+class CBlockIndex;
+class CCoinsViewCache;
+
 /**
  * Proof of Stake input structure
  */
@@ -386,5 +391,10 @@ std::vector<CPubKey> GetBlacklistedValidators();
  * Get all slashed validators
  */
 std::vector<CPubKey> GetSlashedValidators();
+
+/**
+ * Check proof of stake for a block
+ */
+bool CheckProofOfStake(const CBlock& block, const CBlockIndex* pindexPrev, const Consensus::Params& consensusParams, CCoinsViewCache& view);
 
 #endif // BITCOIN_POS_H
