@@ -7,6 +7,7 @@
 #include <chainparams.h>
 #include <consensus/consensus.h>
 #include <util/moneystr.h>
+#include <util/strencodings.h>
 #include <logging.h>
 #include <streams.h>
 #include <util/time.h>
@@ -17,25 +18,25 @@ extern const CChainParams& Params();
 std::string CStakeTransactionPayload::ToString() const
 {
     return strprintf("CStakeTransactionPayload(nStakeAmount=%s, stakePubKey=%s, nLockTime=%d)",
-                    FormatMoney(nStakeAmount), stakePubKey.ToString(), nLockTime);
+                    FormatMoney(nStakeAmount), HexStr(stakePubKey), nLockTime);
 }
 
 std::string CUnstakeTransactionPayload::ToString() const
 {
     return strprintf("CUnstakeTransactionPayload(stakeOutpoint=%s, stakePubKey=%s)",
-                    stakeOutpoint.ToString(), stakePubKey.ToString());
+                    stakeOutpoint.ToString(), HexStr(stakePubKey));
 }
 
 std::string CValidatorRegistrationPayload::ToString() const
 {
     return strprintf("CValidatorRegistrationPayload(validatorPubKey=%s, nStakeAmount=%s, strDescription=%s)",
-                    validatorPubKey.ToString(), FormatMoney(nStakeAmount), strDescription);
+                    HexStr(validatorPubKey), FormatMoney(nStakeAmount), strDescription);
 }
 
 std::string CStakeLock::ToString() const
 {
     return strprintf("CStakeLock(outpoint=%s, nLockTime=%d, nAmount=%s, ownerPubKey=%s)",
-                    outpoint.ToString(), nLockTime, FormatMoney(nAmount), ownerPubKey.ToString());
+                    outpoint.ToString(), nLockTime, FormatMoney(nAmount), HexStr(ownerPubKey));
 }
 
 /**
@@ -44,7 +45,7 @@ std::string CStakeLock::ToString() const
 CAmount CalculateStakeReward(const CAmount& stakeAmount, int64_t stakeDuration, const Consensus::Params& consensusParams)
 {
     // Base reward calculation: proportional to stake amount
-    CAmount baseReward = consensusParams.nStakeRewardPerBlock;
+    CAmount baseReward = consensusParams.nInitialBlockReward;
     
     // Minimum stake requirement check
     if (stakeAmount < consensusParams.nMinStakeAmount) {
@@ -332,7 +333,7 @@ bool ValidateValidatorRegistration(const CTransaction& tx, const CValidatorRegis
     // Check if validator is already registered
     if (IsValidatorRegistered(payload.validatorPubKey)) {
         LogPrintf("ValidateValidatorRegistration: Validator %s already registered\n", 
-                 payload.validatorPubKey.ToString());
+                 HexStr(payload.validatorPubKey));
         return false;
     }
     
@@ -451,7 +452,7 @@ bool RegisterValidator(const CPubKey& validatorPubKey, CAmount nStakeAmount, con
 {
     // Check if validator is already registered
     if (mapValidators.find(validatorPubKey) != mapValidators.end()) {
-        LogPrintf("RegisterValidator: Validator %s already registered\n", validatorPubKey.ToString());
+        LogPrintf("RegisterValidator: Validator %s already registered\n", HexStr(validatorPubKey));
         return false;
     }
     
@@ -467,7 +468,7 @@ bool RegisterValidator(const CPubKey& validatorPubKey, CAmount nStakeAmount, con
     mapValidatorStatus[validatorPubKey] = true;
     
     LogPrintf("RegisterValidator: Registered validator %s with stake %s\n", 
-             validatorPubKey.ToString(), FormatMoney(nStakeAmount));
+             HexStr(validatorPubKey), FormatMoney(nStakeAmount));
     
     return true;
 }
@@ -479,7 +480,7 @@ bool UpdateValidatorStake(const CPubKey& validatorPubKey, CAmount nNewStakeAmoun
 {
     auto it = mapValidators.find(validatorPubKey);
     if (it == mapValidators.end()) {
-        LogPrintf("UpdateValidatorStake: Validator %s not found\n", validatorPubKey.ToString());
+        LogPrintf("UpdateValidatorStake: Validator %s not found\n", HexStr(validatorPubKey));
         return false;
     }
     
@@ -487,7 +488,7 @@ bool UpdateValidatorStake(const CPubKey& validatorPubKey, CAmount nNewStakeAmoun
     it->second.nStakeAmount = nNewStakeAmount;
     
     LogPrintf("UpdateValidatorStake: Updated validator %s stake from %s to %s\n", 
-             validatorPubKey.ToString(), FormatMoney(oldStake), FormatMoney(nNewStakeAmount));
+             HexStr(validatorPubKey), FormatMoney(oldStake), FormatMoney(nNewStakeAmount));
     
     return true;
 }
@@ -499,7 +500,7 @@ bool SetValidatorStatus(const CPubKey& validatorPubKey, bool fActive)
 {
     auto it = mapValidators.find(validatorPubKey);
     if (it == mapValidators.end()) {
-        LogPrintf("SetValidatorStatus: Validator %s not found\n", validatorPubKey.ToString());
+        LogPrintf("SetValidatorStatus: Validator %s not found\n", HexStr(validatorPubKey));
         return false;
     }
     
@@ -507,7 +508,7 @@ bool SetValidatorStatus(const CPubKey& validatorPubKey, bool fActive)
     mapValidatorStatus[validatorPubKey] = fActive;
     
     LogPrintf("SetValidatorStatus: Set validator %s status to %s\n", 
-             validatorPubKey.ToString(), fActive ? "active" : "inactive");
+             HexStr(validatorPubKey), fActive ? "active" : "inactive");
     
     return true;
 }
@@ -586,14 +587,14 @@ bool RemoveValidator(const CPubKey& validatorPubKey)
 {
     auto it = mapValidators.find(validatorPubKey);
     if (it == mapValidators.end()) {
-        LogPrintf("RemoveValidator: Validator %s not found\n", validatorPubKey.ToString());
+        LogPrintf("RemoveValidator: Validator %s not found\n", HexStr(validatorPubKey));
         return false;
     }
     
     mapValidators.erase(it);
     mapValidatorStatus.erase(validatorPubKey);
     
-    LogPrintf("RemoveValidator: Removed validator %s from registry\n", validatorPubKey.ToString());
+    LogPrintf("RemoveValidator: Removed validator %s from registry\n", HexStr(validatorPubKey));
     
     return true;
 }

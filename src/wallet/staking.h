@@ -14,11 +14,6 @@
 #include <string>
 #include <vector>
 
-// Transaction types for staking
-static const int TRANSACTION_STAKE = 10;
-static const int TRANSACTION_UNSTAKE = 11;
-static const int TRANSACTION_VALIDATOR_REGISTER = 12;
-
 namespace wallet {
 
 class CWallet;
