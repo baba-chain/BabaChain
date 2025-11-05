@@ -5,6 +5,7 @@
 #include <wallet/earningscalculator.h>
 
 #include <wallet/wallet.h>
+#include <wallet/walletdb.h>
 #include <logging.h>
 #include <util/time.h>
 #include <util/moneystr.h>
@@ -296,15 +297,74 @@ void CEarningsCalculator::UpdateProjectionsFromHistory()
 
 bool CEarningsCalculator::LoadFromDatabase()
 {
-    // TODO: Implement database loading
-    LogPrint(BCLog::WALLET, "CEarningsCalculator::%s: Loading earnings data from database\n", __func__);
+    if (!wallet) {
+        LogPrintf("CEarningsCalculator::%s: Wallet not available\n", __func__);
+        return false;
+    }
+    
+    LOCK(wallet->cs_wallet);
+    
+    // Load earnings history from wallet database
+    CWalletDB walletdb(wallet->GetDatabase());
+    
+    // Load earnings data points
+    std::vector<EarningsDataPoint> loadedHistory;
+    if (walletdb.ReadEarningsHistory(loadedHistory)) {
+        earningsHistory = std::move(loadedHistory);
+        LogPrint(BCLog::WALLET, "CEarningsCalculator::%s: Loaded %d earnings data points\n", 
+                 __func__, earningsHistory.size());
+    }
+    
+    // Load configuration
+    double loadedBaseAPY;
+    if (walletdb.ReadEarningsBaseAPY(loadedBaseAPY)) {
+        baseAPY = loadedBaseAPY;
+    }
+    
+    double loadedDifficultyFactor;
+    if (walletdb.ReadEarningsNetworkDifficulty(loadedDifficultyFactor)) {
+        networkDifficultyFactor = loadedDifficultyFactor;
+    }
+    
+    // Recalculate stats and projections
+    CalculateStats();
+    UpdateProjectionsFromHistory();
+    
+    LogPrint(BCLog::WALLET, "CEarningsCalculator::%s: Successfully loaded earnings data\n", __func__);
     return true;
 }
 
 bool CEarningsCalculator::SaveToDatabase()
 {
-    // TODO: Implement database saving
-    LogPrint(BCLog::WALLET, "CEarningsCalculator::%s: Saving earnings data to database\n", __func__);
+    if (!wallet) {
+        LogPrintf("CEarningsCalculator::%s: Wallet not available\n", __func__);
+        return false;
+    }
+    
+    LOCK(wallet->cs_wallet);
+    
+    // Save earnings history to wallet database
+    CWalletDB walletdb(wallet->GetDatabase());
+    
+    // Save earnings data points
+    if (!walletdb.WriteEarningsHistory(earningsHistory)) {
+        LogPrintf("CEarningsCalculator::%s: Failed to save earnings history\n", __func__);
+        return false;
+    }
+    
+    // Save configuration
+    if (!walletdb.WriteEarningsBaseAPY(baseAPY)) {
+        LogPrintf("CEarningsCalculator::%s: Failed to save base APY\n", __func__);
+        return false;
+    }
+    
+    if (!walletdb.WriteEarningsNetworkDifficulty(networkDifficultyFactor)) {
+        LogPrintf("CEarningsCalculator::%s: Failed to save network difficulty factor\n", __func__);
+        return false;
+    }
+    
+    LogPrint(BCLog::WALLET, "CEarningsCalculator::%s: Successfully saved earnings data (%d points)\n", 
+             __func__, earningsHistory.size());
     return true;
 }
 
@@ -320,11 +380,95 @@ void CEarningsCalculator::UpdateNetworkDifficulty(double factor)
     UpdateProjectionsFromHistory();
 }
 
+std::vector<EarningsDataPoint> CEarningsCalculator::GetEarningsHistory(int64_t fromTime, int64_t toTime) const
+{
+    std::vector<EarningsDataPoint> filteredHistory;
+    
+    for (const auto& dataPoint : earningsHistory) {
+        if (dataPoint.timestamp >= fromTime && dataPoint.timestamp <= toTime) {
+            filteredHistory.push_back(dataPoint);
+        }
+    }
+    
+    return filteredHistory;
+}
+
+CAmount CEarningsCalculator::GetAverageDailyEarnings(int days) const
+{
+    if (days <= 0 || earningsHistory.empty()) {
+        return 0;
+    }
+    
+    int64_t fromTime = GetTime() - (days * 24 * 60 * 60);
+    CAmount totalEarnings = GetEarningsForPeriod(fromTime, GetTime());
+    
+    return totalEarnings / days;
+}
+
+int64_t CEarningsCalculator::EstimateTimeToTarget(CAmount targetAmount, CAmount currentStake) const
+{
+    if (targetAmount <= 0 || currentStake <= 0) {
+        return 0;
+    }
+    
+    EarningsProjection projection = CalculateProjection(currentStake);
+    if (projection.daily <= 0) {
+        return 0; // Cannot reach target with zero daily earnings
+    }
+    
+    int64_t daysToTarget = targetAmount / projection.daily;
+    return daysToTarget * 24 * 60 * 60; // Convert to seconds
+}
+
+EarningsProjection CEarningsCalculator::CalculateCompoundProjection(CAmount initialStake, int days, bool reinvest) const
+{
+    EarningsProjection projection;
+    
+    if (initialStake <= 0 || days <= 0) {
+        return projection;
+    }
+    
+    CAmount currentStake = initialStake;
+    CAmount totalEarnings = 0;
+    double effectiveAPY = AdjustAPYForDifficulty(baseAPY);
+    double dailyRate = effectiveAPY / 365.0 / 100.0;
+    
+    for (int day = 0; day < days; day++) {
+        CAmount dailyEarning = static_cast<CAmount>(currentStake * dailyRate);
+        totalEarnings += dailyEarning;
+        
+        if (reinvest) {
+            currentStake += dailyEarning;
+        }
+    }
+    
+    projection.totalStaked = currentStake;
+    projection.daily = static_cast<CAmount>(currentStake * dailyRate);
+    projection.weekly = projection.daily * 7;
+    projection.monthly = projection.daily * 30;
+    projection.yearly = totalEarnings * (365 / days); // Annualized
+    projection.currentAPY = effectiveAPY;
+    projection.projectedAPY = effectiveAPY;
+    projection.lastUpdated = GetTime();
+    
+    return projection;
+}
+
+double CEarningsCalculator::GetROI() const
+{
+    if (currentStats.totalEarned <= 0 || currentProjection.totalStaked <= 0) {
+        return 0.0;
+    }
+    
+    return (static_cast<double>(currentStats.totalEarned) / static_cast<double>(currentProjection.totalStaked)) * 100.0;
+}
+
 void CEarningsCalculator::ClearHistory()
 {
     earningsHistory.clear();
     currentStats = EarningsStats();
     currentProjection = EarningsProjection();
+    SaveToDatabase(); // Persist the cleared state
 }
 
 } // namespace wallet

@@ -117,6 +117,7 @@ class CGamificationManager
 {
 private:
     CWallet* wallet;
+    std::map<uint256, Achievement> achievements;
     
 public:
     explicit CGamificationManager(CWallet* wallet);
@@ -152,6 +153,10 @@ public:
     };
     
     std::vector<NFTReward> GetOwnedNFTs() const { return {}; }
+
+private:
+    /** Trigger achievement unlocked notification */
+    void TriggerAchievementUnlocked(const Achievement& achievement);
 };
 
 } // namespace wallet
