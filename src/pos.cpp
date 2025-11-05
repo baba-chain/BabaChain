@@ -134,7 +134,7 @@ bool IsSupplyCapEnforced(int nHeight, const Consensus::Params& consensusParams)
     
     // Add all staking rewards distributed so far
     if (nHeight > 0) {
-        totalSupply += (nHeight - 1) * consensusParams.nStakeRewardPerBlock;
+        totalSupply += (nHeight - 1) * consensusParams.nInitialBlockReward;
     }
     
     // Check if we're approaching or at the cap
@@ -155,7 +155,7 @@ CAmount GetRemainingStakingSupply(int nHeight, const Consensus::Params& consensu
     // Calculate total rewards already distributed
     CAmount distributedRewards = 0;
     if (nHeight > 0) {
-        distributedRewards = (nHeight - 1) * consensusParams.nStakeRewardPerBlock;
+        distributedRewards = (nHeight - 1) * consensusParams.nInitialBlockReward;
     }
     
     // Return remaining from staking supply pool
@@ -631,7 +631,7 @@ bool ProcessValidatorRegistration(const CTransaction& tx, const CValidatorRegist
     // Validation should have been done already, but double-check
     if (IsValidatorRegistered(payload.validatorPubKey)) {
         LogPrintf("ProcessValidatorRegistration: Validator %s already registered\n", 
-                 payload.validatorPubKey.ToString());
+                 HexStr(payload.validatorPubKey));
         return false;
     }
     
@@ -641,7 +641,7 @@ bool ProcessValidatorRegistration(const CTransaction& tx, const CValidatorRegist
     
     if (success) {
         LogPrintf("ProcessValidatorRegistration: Successfully registered validator %s with stake %s\n", 
-                 payload.validatorPubKey.ToString(), FormatMoney(payload.nStakeAmount));
+                 HexStr(payload.validatorPubKey), FormatMoney(payload.nStakeAmount));
     }
     
     return success;
@@ -734,7 +734,7 @@ CAmount CalculateSlashingPenalty(const CPubKey& validatorPubKey, SlashingConditi
 {
     CValidator validator;
     if (!GetValidator(validatorPubKey, validator)) {
-        LogPrintf("CalculateSlashingPenalty: Validator %s not found\n", validatorPubKey.ToString());
+        LogPrintf("CalculateSlashingPenalty: Validator %s not found\n", HexStr(validatorPubKey));
         return 0;
     }
     
@@ -778,7 +778,7 @@ CAmount CalculateSlashingPenalty(const CPubKey& validatorPubKey, SlashingConditi
     }
     
     LogPrintf("CalculateSlashingPenalty: Validator %s, condition %d, penalty %s\n", 
-             validatorPubKey.ToString(), condition, FormatMoney(penalty));
+             HexStr(validatorPubKey), condition, FormatMoney(penalty));
     
     return penalty;
 }
@@ -790,20 +790,20 @@ bool SlashValidator(const CPubKey& validatorPubKey, SlashingCondition condition,
 {
     // Check if validator exists
     if (!IsValidatorRegistered(validatorPubKey)) {
-        LogPrintf("SlashValidator: Validator %s not registered\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: Validator %s not registered\n", HexStr(validatorPubKey));
         return false;
     }
     
     // Check if validator is already slashed
     if (mapSlashedValidators.find(validatorPubKey) != mapSlashedValidators.end()) {
-        LogPrintf("SlashValidator: Validator %s already slashed\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: Validator %s already slashed\n", HexStr(validatorPubKey));
         return false;
     }
     
     // Calculate penalty
     CAmount penalty = CalculateSlashingPenalty(validatorPubKey, condition, consensusParams);
     if (penalty == 0) {
-        LogPrintf("SlashValidator: No penalty calculated for validator %s\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: No penalty calculated for validator %s\n", HexStr(validatorPubKey));
         return false;
     }
     
@@ -829,11 +829,11 @@ bool SlashValidator(const CPubKey& validatorPubKey, SlashingCondition condition,
     // For severe offenses, add to blacklist
     if (condition == SLASH_LONG_RANGE_ATTACK || condition == SLASH_DOUBLE_SIGNING) {
         setBlacklistedValidators.insert(validatorPubKey);
-        LogPrintf("SlashValidator: Blacklisted validator %s for severe offense\n", validatorPubKey.ToString());
+        LogPrintf("SlashValidator: Blacklisted validator %s for severe offense\n", HexStr(validatorPubKey));
     }
     
     LogPrintf("SlashValidator: Slashed validator %s, penalty %s, new stake %s\n", 
-             validatorPubKey.ToString(), FormatMoney(penalty), FormatMoney(newStake));
+             HexStr(validatorPubKey), FormatMoney(penalty), FormatMoney(newStake));
     
     return true;
 }
@@ -881,7 +881,7 @@ bool DetectDoubleSigning(const CPubKey& validatorPubKey, const uint256& blockHas
     }
     
     LogPrintf("DetectDoubleSigning: Validator %s signed two blocks at height %d: %s and %s\n", 
-             validatorPubKey.ToString(), nHeight, blockHash1.ToString(), blockHash2.ToString());
+             HexStr(validatorPubKey), nHeight, blockHash1.ToString(), blockHash2.ToString());
     
     // Create slashing evidence
     SlashingEvidence evidence;
@@ -908,7 +908,7 @@ bool DetectUnavailability(const CPubKey& validatorPubKey, int nMissedBlocks, int
     }
     
     LogPrintf("DetectUnavailability: Validator %s missed %d/%d blocks (%.2f%%)\n", 
-             validatorPubKey.ToString(), nMissedBlocks, nTotalBlocks, missRate * 100);
+             HexStr(validatorPubKey), nMissedBlocks, nTotalBlocks, missRate * 100);
     
     // Create slashing evidence
     SlashingEvidence evidence;
@@ -927,13 +927,13 @@ bool RemoveFromBlacklist(const CPubKey& validatorPubKey)
 {
     auto it = setBlacklistedValidators.find(validatorPubKey);
     if (it == setBlacklistedValidators.end()) {
-        LogPrintf("RemoveFromBlacklist: Validator %s not blacklisted\n", validatorPubKey.ToString());
+        LogPrintf("RemoveFromBlacklist: Validator %s not blacklisted\n", HexStr(validatorPubKey));
         return false;
     }
     
     setBlacklistedValidators.erase(it);
     
-    LogPrintf("RemoveFromBlacklist: Removed validator %s from blacklist\n", validatorPubKey.ToString());
+    LogPrintf("RemoveFromBlacklist: Removed validator %s from blacklist\n", HexStr(validatorPubKey));
     
     return true;
 }
