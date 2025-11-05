@@ -1,0 +1,22 @@
+/* confdefs.h */
+#define PACKAGE_NAME "libsecp256k1"
+#define PACKAGE_TARNAME "libsecp256k1"
+#define PACKAGE_VERSION "0.3.3-dev"
+#define PACKAGE_STRING "libsecp256k1 0.3.3-dev"
+#define PACKAGE_BUGREPORT "https://github.com/bitcoin-core/secp256k1/issues"
+#define PACKAGE_URL "https://github.com/bitcoin-core/secp256k1"
+#define PACKAGE "libsecp256k1"
+#define VERSION "0.3.3-dev"
+#define HAVE_STDIO_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_UNISTD_H 1
+#define STDC_HEADERS 1
+#define HAVE_DLFCN_H 1
+#define LT_OBJDIR ".libs/"
+#define ENABLE_MODULE_ELLSWIFT 1
