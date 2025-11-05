@@ -39,94 +39,30 @@
             overflow: hidden;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
         .header h1 {
             font-size: 3.5em;
             font-weight: 700;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
         }
 
         .header .subtitle {
             font-size: 1.4em;
             font-weight: 300;
             margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
         }
 
         .header .version {
             font-size: 1.1em;
             opacity: 0.9;
-            position: relative;
-            z-index: 1;
         }
 
         .content {
             padding: 60px 40px;
         }
 
-        .toc {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            border-left: 5px solid #2a5298;
-        }
-
-        .toc h2 {
-            color: #2a5298;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-
-        .toc ul {
-            list-style: none;
-        }
-
-        .toc li {
-            margin: 10px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .toc li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: #2a5298;
-        }
-
-        .toc a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .toc a:hover {
-            color: #2a5298;
-        }
-
         .section {
             margin-bottom: 50px;
-            scroll-margin-top: 20px;
         }
 
         .section h2 {
@@ -135,17 +71,6 @@
             margin-bottom: 25px;
             padding-bottom: 10px;
             border-bottom: 3px solid #e9ecef;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #2a5298, #667eea);
         }
 
         .section h3 {
@@ -154,13 +79,6 @@
             margin: 30px 0 20px 0;
             padding-left: 20px;
             border-left: 4px solid #667eea;
-        }
-
-        .section h4 {
-            color: #6c757d;
-            font-size: 1.3em;
-            margin: 25px 0 15px 0;
-            font-weight: 600;
         }
 
         .section p {
@@ -175,52 +93,6 @@
             padding: 30px;
             margin: 30px 0;
             border-left: 5px solid #667eea;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(102,126,234,0.1) 0%, transparent 70%);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #e9ecef;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .stat-card h4 {
-            color: #2a5298;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .stat-card .value {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
         }
 
         table {
@@ -246,128 +118,31 @@
             border-bottom: 1px solid #e9ecef;
         }
 
-        tr:hover {
-            background: #f8f9fa;
-        }
-
-        .comparison-table {
-            margin: 30px 0;
-        }
-
-        .comparison-table th:first-child {
-            background: #dc3545;
-        }
-
-        .comparison-table th:last-child {
-            background: #28a745;
-        }
-
-        .comparison-table td:first-child {
-            background: #fff5f5;
-            color: #dc3545;
-        }
-
-        .comparison-table td:last-child {
-            background: #f8fff8;
-            color: #28a745;
-        }
-
-        .roadmap {
-            position: relative;
-            padding-left: 40px;
-        }
-
-        .roadmap::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #667eea, #764ba2);
-        }
-
-        .roadmap-item {
-            position: relative;
-            margin-bottom: 40px;
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-left: 20px;
-        }
-
-        .roadmap-item::before {
-            content: '';
-            position: absolute;
-            left: -32px;
-            top: 25px;
-            width: 15px;
-            height: 15px;
-            background: #667eea;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px #667eea;
-        }
-
-        .roadmap-item.completed::before {
-            background: #28a745;
-            box-shadow: 0 0 0 3px #28a745;
-        }
-
-        .roadmap-item h4 {
-            color: #2a5298;
-            margin-bottom: 15px;
-        }
-
-        .feature-grid {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
 
-        .feature-card {
+        .stat-card {
             background: white;
             border-radius: 15px;
             padding: 25px;
-            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            text-align: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card .icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h4 {
+        .stat-card h4 {
             color: #2a5298;
             margin-bottom: 15px;
         }
 
-        .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-
-        .code-block::before {
-            content: 'CODE';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 0.8em;
-            color: #a0aec0;
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
         }
 
         .footer {
@@ -377,36 +152,10 @@
             text-align: center;
         }
 
-        .footer h3 {
-            margin-bottom: 20px;
-            color: #667eea;
-        }
-
         .footer a {
             color: #667eea;
             text-decoration: none;
             margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        .footer a:hover {
-            color: white;
-        }
-
-        .abstract {
-            background: linear-gradient(135deg, #667eea10, #764ba210);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 40px 0;
-            font-size: 1.2em;
-            line-height: 1.8;
-            text-align: center;
-            border: 2px solid #667eea20;
-        }
-
-        .emoji {
-            font-size: 1.2em;
-            margin-right: 8px;
         }
 
         ul, ol {
@@ -422,48 +171,6 @@
             color: #2a5298;
             font-weight: 600;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                border-radius: 10px;
-            }
-            
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .header h1 {
-                font-size: 2.5em;
-            }
-            
-            .content {
-                padding: 40px 20px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-            }
-            
-            .container {
-                box-shadow: none;
-                margin: 0;
-            }
-            
-            .header::before {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
@@ -475,28 +182,14 @@
         </div>
 
         <div class="content">
-            <div class="toc">
-                <h2>📋 Table of Contents</h2>
-                <ul>
-                    <li><a href="#abstract">Abstract</a></li>
-                    <li><a href="#introduction">1. Introduction</a></li>
-                    <li><a href="#technical">2. Technical Architecture</a></li>
-                    <li><a href="#economic">3. Economic Model</a></li>
-                    <li><a href="#security">4. Network Security</a></li>
-                    <li><a href="#governance">5. Governance Model</a></li>
-                    <li><a href="#ecosystem">6. Multi-Platform Ecosystem</a></li>
-                    <li><a href="#roadmap">7. Development Roadmap</a></li>
-                    <li><a href="#risks">8. Risk Analysis</a></li>
-                    <li><a href="#conclusion">9. Conclusion</a></li>
-                </ul>
-            </div>
-
-            <div class="abstract" id="abstract">
+            <div class="section">
                 <h2>🚀 Abstract</h2>
-                <p>BabaChain introduces a revolutionary blockchain platform built on Proof-of-Stake consensus with an unprecedented economic model offering <strong>~365% annual ROI</strong> through daily staking rewards. Unlike traditional cryptocurrencies with massive premines or unfair distributions, BabaChain allocates <strong>90% of its supply to community staking rewards</strong> and features a groundbreaking <strong>Auto-Node System</strong> where every wallet automatically becomes a network node, eliminating the need for complex setup or pool fees.</p>
+                <div class="highlight-box">
+                    <p>BabaChain introduces a revolutionary blockchain platform built on Proof-of-Stake consensus with an unprecedented economic model offering <strong>~365% annual ROI</strong> through daily staking rewards. Unlike traditional cryptocurrencies with massive premines or unfair distributions, BabaChain allocates <strong>90% of its supply to community staking rewards</strong> and features a groundbreaking <strong>Auto-Node System</strong> where every wallet automatically becomes a network node, eliminating the need for complex setup or pool fees.</p>
+                </div>
             </div>
 
-            <div class="section" id="introduction">
+            <div class="section">
                 <h2>1. Introduction</h2>
                 <p>The cryptocurrency landscape has been dominated by projects with unfair token distributions, excessive energy consumption, and unsustainable economic models. Bitcoin's Proof-of-Work consensus, while secure, consumes enormous amounts of energy. Many newer projects allocate 30-50% or more of their supply to founders, creating centralized control and unfair advantages.</p>
                 
@@ -507,3 +200,243 @@
                         <li><strong>Extraordinary staking rewards</strong> offering ~365% annual ROI (1% daily)</li>
                         <li><strong>Fair distribution</strong> with only 10% premine, 90% for community rewards</li>
                         <li><strong>Zero pool fees</strong> - 100% of rewards go directly to stakers</li>
+                        <li><strong>Multi-platform accessibility</strong> with Turkish language support</li>
+                        <li><strong>Viral growth mechanics</strong> through social features and referral bonuses</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>2. Technical Architecture</h2>
+                
+                <h3>2.1 Proof-of-Stake Consensus</h3>
+                <p>BabaChain utilizes a modern Proof-of-Stake consensus mechanism that reduces energy consumption by 99% compared to Proof-of-Work, provides fast transaction finality (2.5 minute blocks), ensures network security through economic incentives, and enables democratic participation in network validation.</p>
+
+                <h3>2.2 Revolutionary Auto-Node Staking System</h3>
+                <div class="highlight-box">
+                    <h4>🌟 Revolutionary Auto-Node System!</h4>
+                    <ul>
+                        <li>Every wallet automatically becomes a network node</li>
+                        <li>No manual setup - just install and run!</li>
+                        <li>Your wallet auto-connects to the BabaChain network</li>
+                        <li>Automatically participates in block validation and earns rewards</li>
+                        <li>The more users join, the stronger and more decentralized the network becomes</li>
+                        <li>Earn rewards directly to your wallet - no pool fees, no middlemen!</li>
+                    </ul>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Minimum Stake</h4>
+                        <div class="value">ANY</div>
+                        <p>Even 1 BabaChain works!</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Coin Maturity</h4>
+                        <div class="value">8 Hours</div>
+                        <p>Wait time after receiving coins</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Pool Fees</h4>
+                        <div class="value">0%</div>
+                        <p>100% rewards go to you</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>3. Economic Model</h2>
+                
+                <h3>3.1 Supply Distribution</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Initial Supply</h4>
+                        <div class="value">210M</div>
+                        <p>BabaChain launch supply</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Maximum Supply</h4>
+                        <div class="value">1B</div>
+                        <p>Hard cap limit</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Premine</h4>
+                        <div class="value">10%</div>
+                        <p>20M for development</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Community Rewards</h4>
+                        <div class="value">90%</div>
+                        <p>190M for staking</p>
+                    </div>
+                </div>
+
+                <h3>3.2 Revolutionary Staking Rewards System</h3>
+                <div class="highlight-box">
+                    <h4>🔥 Simple Formula: Your daily rewards = Your Stake × 1% + Gradual Bonus</h4>
+                    <p><strong>Key Features:</strong></p>
+                    <ul>
+                        <li><strong>1% Daily Returns:</strong> Your stake grows by ~1% every single day</li>
+                        <li><strong>365%+ Yearly ROI:</strong> Incredible returns that beat any traditional investment</li>
+                        <li><strong>Gradual Bonus System:</strong> Larger stakes get progressively higher bonuses</li>
+                        <li><strong>No Pool Fees:</strong> 100% of rewards go directly to you</li>
+                        <li><strong>Compound Growth:</strong> Reinvest daily rewards to grow exponentially</li>
+                    </ul>
+                </div>
+
+                <h4>💰 Daily Reward Examples:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Your Stake</th>
+                            <th>Base Daily (1%)</th>
+                            <th>Gradual Bonus</th>
+                            <th>Total Daily</th>
+                            <th>Yearly ROI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>100 BabaChain</strong></td>
+                            <td>1.0</td>
+                            <td>+0.05</td>
+                            <td>1.05</td>
+                            <td><strong>383%</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>1,000 BabaChain</strong></td>
+                            <td>10.0</td>
+                            <td>+0.5</td>
+                            <td>10.5</td>
+                            <td><strong>383%</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>10,000 BabaChain</strong></td>
+                            <td>100.0</td>
+                            <td>+50</td>
+                            <td>150</td>
+                            <td><strong>548%</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>100,000 BabaChain</strong></td>
+                            <td>1,000.0</td>
+                            <td>+2,000</td>
+                            <td>3,000</td>
+                            <td><strong>1,095%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>4. Multi-Platform Ecosystem</h2>
+                
+                <h3>4.1 Desktop Wallets (Available Now)</h3>
+                <div class="highlight-box">
+                    <h4>🖥️ Full Node Auto-Staking</h4>
+                    <ul>
+                        <li>Windows, macOS, and Linux support</li>
+                        <li>Built-in full node functionality</li>
+                        <li>Automatic blockchain sync on first startup</li>
+                        <li>Auto-staking feature (starts staking when coins mature)</li>
+                        <li>User-friendly staking dashboard with real-time earnings</li>
+                        <li>Complete Turkish language support with proper character handling</li>
+                    </ul>
+                </div>
+
+                <h3>4.2 Mobile Wallets (Coming Soon)</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>🔋 Background Staking</h4>
+                        <p>Earn rewards even when app is closed</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>📊 Real-time Stats</h4>
+                        <p>Monitor your staking performance</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>🔔 Push Notifications</h4>
+                        <p>Get alerted when you find blocks</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>🔐 Biometric Security</h4>
+                        <p>Fingerprint and Face ID support</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>5. Development Roadmap</h2>
+                
+                <div class="highlight-box">
+                    <h3>✅ Phase 1: Core Network Launch (Q1 2025)</h3>
+                    <ul>
+                        <li>Complete PoS consensus implementation</li>
+                        <li>Revolutionary Auto-Node System deployment</li>
+                        <li>Desktop wallet with full staking functionality</li>
+                        <li>365% APY staking rewards system</li>
+                        <li>Turkish language support implementation</li>
+                        <li>Network launch with 20M premine</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>📱 Phase 2: Mobile Ecosystem (Q2 2025)</h3>
+                    <ul>
+                        <li>Android mobile wallet with background staking</li>
+                        <li>iOS mobile wallet with notifications</li>
+                        <li>Push notification system for staking rewards</li>
+                        <li>Real-time earnings tracking and analytics</li>
+                        <li>Gamification system with achievements and NFT rewards</li>
+                        <li>Social features and referral system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>6. Conclusion</h2>
+                
+                <div class="highlight-box">
+                    <p>BabaChain represents a <strong>revolutionary breakthrough</strong> in blockchain technology, combining the energy efficiency of Proof-of-Stake with an unprecedented economic model offering <strong>~365% annual ROI</strong> through daily staking rewards. By allocating 90% of the token supply to community staking rewards and implementing the groundbreaking Auto-Node System, BabaChain creates the world's most accessible and rewarding cryptocurrency ecosystem.</p>
+                </div>
+
+                <h3>🚀 Key Revolutionary Features:</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>💎 365%+ Annual ROI</h4>
+                        <p>Earn ~1% of your stake daily with gradual bonuses</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>🔄 Auto-Node System</h4>
+                        <p>Every wallet becomes a network node automatically</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>🎯 No Minimums</h4>
+                        <p>Stake ANY amount (even 1 BabaChain works!)</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>💯 Zero Pool Fees</h4>
+                        <p>100% of rewards go directly to you</p>
+                    </div>
+                </div>
+
+                <p>The Auto-Node System eliminates technical barriers and pool fees, making BabaChain accessible to anyone with a smartphone or computer. The extraordinary staking rewards create powerful incentives for network participation, while the gradual bonus system ensures fair distribution without sudden tier cutoffs.</p>
+
+                <p>With its focus on accessibility, extraordinary rewards, and viral growth mechanics, BabaChain is positioned to become the leading blockchain platform for mainstream cryptocurrency adoption, offering users the opportunity to earn life-changing returns through simple, automated staking.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>📚 References & Resources</h3>
+            <p>
+                <a href="https://www.babachain.org">🌐 Website</a>
+                <a href="https://github.com/baba-chain/babachain">💻 GitHub</a>
+                <a href="https://docs.babachain.org">📖 Documentation</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                <em>This whitepaper is a living document and may be updated as the project evolves.</em>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
