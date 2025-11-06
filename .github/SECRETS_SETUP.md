@@ -65,7 +65,7 @@ WEBSITE_DEPLOY_KEY=github_personal_access_token
 
 ### 1. GitHub Repository'ye Git
 ```
-https://github.com/BabaChain/BabaChain/settings/secrets/actions
+https://github.com/Baba-Chain/BabaChain/settings/secrets/actions
 ```
 
 ### 2. Her Secret İçin:
@@ -182,7 +182,7 @@ curl "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
 
 Secrets kurulumunda sorun yaşıyorsanız:
 
-1. **GitHub Issues**: https://github.com/BabaChain/BabaChain/issues
+1. **GitHub Issues**: https://github.com/Baba-Chain/BabaChain/issues
 2. **Discord**: https://discord.gg/babachain  
 3. **Telegram**: https://t.me/babachainofficial
 
