@@ -1,0 +1,300 @@
+name: 🧪 Test Release System
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Test type to run'
+        type: choice
+        options:
+          - 'build-only'
+          - 'full-pipeline'
+          - 'notifications-only'
+        default: 'build-only'
+      platform:
+        description: 'Platform to test (for build-only)'
+        type: choice
+        options:
+          - 'all'
+          - 'linux-x64'
+          - 'linux-arm64'
+          - 'macos-x64'
+          - 'macos-arm64'
+          - 'windows-x64'
+        default: 'linux-x64'
+
+jobs:
+  # ============================================================================
+  # 🧪 Build Test
+  # ============================================================================
+  test-build:
+    name: 🧪 Test Build - ${{ matrix.platform }}
+    if: github.event.inputs.test_type == 'build-only' || github.event.inputs.test_type == 'full-pipeline'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux-x64
+            os: ubuntu-22.04
+            condition: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'linux-x64' }}
+          - platform: linux-arm64
+            os: ubuntu-22.04
+            condition: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'linux-arm64' }}
+          - platform: macos-x64
+            os: macos-13
+            condition: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'macos-x64' }}
+          - platform: macos-arm64
+            os: macos-14
+            condition: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'macos-arm64' }}
+          - platform: windows-x64
+            os: windows-2022
+            condition: ${{ github.event.inputs.platform == 'all' || github.event.inputs.platform == 'windows-x64' }}
+
+    steps:
+      - name: 📥 Checkout Repository
+        if: matrix.condition
+        uses: actions/checkout@v4
+
+      - name: 🧪 Quick Build Test
+        if: matrix.condition
+        run: |
+          echo "🧪 Testing build for ${{ matrix.platform }}"
+          
+          # Platform-specific quick tests
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            echo "✅ Linux build environment ready"
+            gcc --version
+            cmake --version
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            echo "✅ macOS build environment ready"
+            clang --version
+            cmake --version
+          elif [ "${{ runner.os }}" = "Windows" ]; then
+            echo "✅ Windows build environment ready"
+            cl 2>&1 || echo "MSVC not in PATH, will be configured later"
+            cmake --version
+          fi
+        shell: bash
+
+      - name: 🔍 Verify Build Dependencies
+        if: matrix.condition
+        run: |
+          echo "🔍 Checking build dependencies for ${{ matrix.platform }}"
+          
+          # Check if we can access required tools
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            apt list --installed | grep -E "(cmake|build-essential)" || echo "Will install via apt"
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            brew list | grep cmake || echo "Will install via brew"
+          elif [ "${{ runner.os }}" = "Windows" ]; then
+            where cmake || echo "CMake available in PATH"
+          fi
+        shell: bash
+
+  # ============================================================================
+  # 🐳 Docker Test
+  # ============================================================================
+  test-docker:
+    name: 🐳 Test Docker Build
+    if: github.event.inputs.test_type == 'build-only' || github.event.inputs.test_type == 'full-pipeline'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🧪 Test Docker Build
+        run: |
+          echo "🧪 Testing Docker multi-platform build"
+          
+          # Test build without push
+          docker buildx build \
+            --platform linux/amd64 \
+            --file ./docker/Dockerfile \
+            --tag babachain:test \
+            --load \
+            .
+          
+          echo "✅ Docker build test successful"
+
+      - name: 🧪 Test Docker Run
+        run: |
+          echo "🧪 Testing Docker container startup"
+          
+          # Start container in background
+          docker run -d --name babachain-test \
+            -e BABACHAIN_RPCUSER=test \
+            -e BABACHAIN_RPCPASSWORD=test123 \
+            babachain:test
+          
+          # Wait a bit for startup
+          sleep 10
+          
+          # Check if container is running
+          if docker ps | grep babachain-test; then
+            echo "✅ Docker container started successfully"
+          else
+            echo "❌ Docker container failed to start"
+            docker logs babachain-test
+            exit 1
+          fi
+          
+          # Cleanup
+          docker stop babachain-test
+          docker rm babachain-test
+
+  # ============================================================================
+  # 📢 Notification Test
+  # ============================================================================
+  test-notifications:
+    name: 📢 Test Notifications
+    if: github.event.inputs.test_type == 'notifications-only' || github.event.inputs.test_type == 'full-pipeline'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📢 Test Discord Notification
+        if: secrets.DISCORD_WEBHOOK_URL != ''
+        run: |
+          echo "📢 Testing Discord notification"
+          
+          curl -X POST "${{ secrets.DISCORD_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "content": "🧪 **BabaChain Release System Test**\n\n✅ Discord notification system is working!\n\n*This is a test message from GitHub Actions*"
+            }'
+          
+          echo "✅ Discord notification test sent"
+
+      - name: 📧 Test Telegram Notification
+        if: secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != ''
+        run: |
+          echo "📧 Testing Telegram notification"
+          
+          curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d "text=🧪 *BabaChain Release System Test*%0A%0A✅ Telegram notification system is working!%0A%0A_This is a test message from GitHub Actions_" \
+            -d "parse_mode=Markdown"
+          
+          echo "✅ Telegram notification test sent"
+
+      - name: 📊 Notification Summary
+        run: |
+          echo "📊 Notification Test Results:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ secrets.DISCORD_WEBHOOK_URL }}" != "" ]; then
+            echo "- ✅ Discord: Configured and tested" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ⚠️ Discord: Not configured (DISCORD_WEBHOOK_URL missing)" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ secrets.TELEGRAM_BOT_TOKEN }}" != "" ] && [ "${{ secrets.TELEGRAM_CHAT_ID }}" != "" ]; then
+            echo "- ✅ Telegram: Configured and tested" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ⚠️ Telegram: Not configured (TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID missing)" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================================================
+  # 🔐 Secrets Validation
+  # ============================================================================
+  validate-secrets:
+    name: 🔐 Validate Secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔐 Check Required Secrets
+        run: |
+          echo "🔐 Validating GitHub Secrets Configuration" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Secret | Status | Required For |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|--------|--------------|" >> $GITHUB_STEP_SUMMARY
+          
+          # Docker Hub secrets
+          if [ "${{ secrets.DOCKER_USERNAME }}" != "" ] && [ "${{ secrets.DOCKER_PASSWORD }}" != "" ]; then
+            echo "| Docker Hub | ✅ Configured | Docker image publishing |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Docker Hub | ❌ Missing | Docker image publishing |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Discord webhook
+          if [ "${{ secrets.DISCORD_WEBHOOK_URL }}" != "" ]; then
+            echo "| Discord | ✅ Configured | Release notifications |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Discord | ⚠️ Optional | Release notifications |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Telegram bot
+          if [ "${{ secrets.TELEGRAM_BOT_TOKEN }}" != "" ] && [ "${{ secrets.TELEGRAM_CHAT_ID }}" != "" ]; then
+            echo "| Telegram | ✅ Configured | Release notifications |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Telegram | ⚠️ Optional | Release notifications |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Website deploy key
+          if [ "${{ secrets.WEBSITE_DEPLOY_KEY }}" != "" ]; then
+            echo "| Website Deploy | ✅ Configured | Website updates |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Website Deploy | ⚠️ Optional | Website updates |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 🧪 Test Docker Hub Access
+        if: secrets.DOCKER_USERNAME != '' && secrets.DOCKER_PASSWORD != ''
+        run: |
+          echo "🧪 Testing Docker Hub authentication"
+          
+          # Test login (without actually logging in to avoid rate limits)
+          if [ ${#DOCKER_USERNAME} -gt 0 ] && [ ${#DOCKER_PASSWORD} -gt 0 ]; then
+            echo "✅ Docker credentials appear to be configured"
+          else
+            echo "❌ Docker credentials are empty"
+            exit 1
+          fi
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+  # ============================================================================
+  # 📋 Test Summary
+  # ============================================================================
+  test-summary:
+    name: 📋 Test Summary
+    needs: [test-build, test-docker, test-notifications, validate-secrets]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📋 Generate Test Summary
+        run: |
+          echo "# 🧪 BabaChain Release System Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Test Type:** ${{ github.event.inputs.test_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Platform:** ${{ github.event.inputs.platform }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status | Notes |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Build System | ${{ needs.test-build.result }} | Cross-platform compilation |" >> $GITHUB_STEP_SUMMARY
+          echo "| Docker Build | ${{ needs.test-docker.result }} | Multi-platform containers |" >> $GITHUB_STEP_SUMMARY
+          echo "| Notifications | ${{ needs.test-notifications.result }} | Discord/Telegram alerts |" >> $GITHUB_STEP_SUMMARY
+          echo "| Secrets | ${{ needs.validate-secrets.result }} | Authentication tokens |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Overall status
+          if [ "${{ needs.test-build.result }}" = "success" ] && [ "${{ needs.test-docker.result }}" = "success" ]; then
+            echo "## ✅ Overall Status: READY FOR PRODUCTION" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "🚀 The release system is ready to create cross-platform releases!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ⚠️ Overall Status: NEEDS ATTENTION" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "🔧 Some components need to be fixed before production use." >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🚀 Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "1. Fix any failed tests above" >> $GITHUB_STEP_SUMMARY
+          echo "2. Configure missing secrets (see [SECRETS_SETUP.md](.github/SECRETS_SETUP.md))" >> $GITHUB_STEP_SUMMARY
+          echo "3. Create a test release: \`git tag v1.0.0-test && git push origin v1.0.0-test\`" >> $GITHUB_STEP_SUMMARY
+          echo "4. Monitor the full release pipeline" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,212 @@
+name: 🤖 Auto Release Trigger
+
+on:
+  push:
+    branches:
+      - mainnet-v*
+      - release/*
+    paths:
+      - 'src/**'
+      - 'CMakeLists.txt'
+      - 'configure.ac'
+  
+  schedule:
+    # Her Pazartesi 09:00 UTC'de otomatik release kontrolü
+    - cron: '0 9 * * 1'
+
+  workflow_dispatch:
+    inputs:
+      force_release:
+        description: 'Force create release even if no changes'
+        type: boolean
+        default: false
+      release_type:
+        description: 'Release type'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
+
+jobs:
+  # ============================================================================
+  # 🔍 Change Detection
+  # ============================================================================
+  detect-changes:
+    name: 🔍 Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      should_release: ${{ steps.check.outputs.should_release }}
+      new_version: ${{ steps.version.outputs.new_version }}
+      changes: ${{ steps.changes.outputs.changes }}
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🏷️ Get Latest Tag
+        id: latest_tag
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+          echo "Latest tag: $LATEST_TAG"
+
+      - name: 🔍 Check for Changes
+        id: changes
+        run: |
+          LATEST_TAG="${{ steps.latest_tag.outputs.latest_tag }}"
+          
+          # Son tag'den bu yana değişen dosyaları kontrol et
+          CHANGED_FILES=$(git diff --name-only $LATEST_TAG..HEAD)
+          
+          # Önemli değişiklikleri kontrol et
+          CORE_CHANGES=$(echo "$CHANGED_FILES" | grep -E "(src/|CMakeLists.txt|configure.ac)" | wc -l)
+          
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          echo "core_changes=$CORE_CHANGES" >> $GITHUB_OUTPUT
+          
+          # Commit mesajlarında breaking change var mı?
+          BREAKING_CHANGES=$(git log $LATEST_TAG..HEAD --oneline | grep -i "breaking\|major" | wc -l)
+          echo "breaking_changes=$BREAKING_CHANGES" >> $GITHUB_OUTPUT
+          
+          # Feature eklemeleri var mı?
+          FEATURE_CHANGES=$(git log $LATEST_TAG..HEAD --oneline | grep -i "feat\|feature\|add" | wc -l)
+          echo "feature_changes=$FEATURE_CHANGES" >> $GITHUB_OUTPUT
+
+      - name: 📊 Determine Release Need
+        id: check
+        run: |
+          CORE_CHANGES="${{ steps.changes.outputs.core_changes }}"
+          FORCE_RELEASE="${{ github.event.inputs.force_release }}"
+          
+          if [ "$FORCE_RELEASE" = "true" ] || [ "$CORE_CHANGES" -gt "0" ]; then
+            echo "should_release=true" >> $GITHUB_OUTPUT
+            echo "✅ Release needed: Core changes detected or forced"
+          else
+            echo "should_release=false" >> $GITHUB_OUTPUT
+            echo "❌ No release needed: No significant changes"
+          fi
+
+      - name: 🔢 Calculate New Version
+        id: version
+        if: steps.check.outputs.should_release == 'true'
+        run: |
+          LATEST_TAG="${{ steps.latest_tag.outputs.latest_tag }}"
+          BREAKING_CHANGES="${{ steps.changes.outputs.breaking_changes }}"
+          FEATURE_CHANGES="${{ steps.changes.outputs.feature_changes }}"
+          RELEASE_TYPE="${{ github.event.inputs.release_type }}"
+          
+          # Mevcut versiyonu parse et
+          CURRENT_VERSION=$(echo $LATEST_TAG | sed 's/^v//')
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+          
+          # Yeni versiyon hesapla
+          if [ "$RELEASE_TYPE" = "major" ] || [ "$BREAKING_CHANGES" -gt "0" ]; then
+            NEW_VERSION="v$((MAJOR + 1)).0.0"
+          elif [ "$RELEASE_TYPE" = "minor" ] || [ "$FEATURE_CHANGES" -gt "0" ]; then
+            NEW_VERSION="v$MAJOR.$((MINOR + 1)).0"
+          else
+            NEW_VERSION="v$MAJOR.$MINOR.$((PATCH + 1))"
+          fi
+          
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "🏷️ New version will be: $NEW_VERSION"
+
+  # ============================================================================
+  # 🚀 Trigger Release Build
+  # ============================================================================
+  trigger-release:
+    name: 🚀 Trigger Release Build
+    needs: [detect-changes]
+    if: needs.detect-changes.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏷️ Create Release Tag
+        run: |
+          NEW_VERSION="${{ needs.detect-changes.outputs.new_version }}"
+          
+          # Git kullanıcı bilgilerini ayarla
+          git config user.name "BabaChain Bot"
+          git config user.email "bot@babachain.org"
+          
+          # Tag oluştur ve push et
+          git tag -a "$NEW_VERSION" -m "🚀 Automated release $NEW_VERSION
+          
+          📋 Changes since last release:
+          ${{ needs.detect-changes.outputs.changes }}
+          
+          🤖 This release was automatically created by GitHub Actions."
+          
+          git push origin "$NEW_VERSION"
+          
+          echo "✅ Created and pushed tag: $NEW_VERSION"
+
+      - name: 🚀 Trigger Cross-Platform Build
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: workflow } = await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'release-cross-platform.yml',
+              ref: '${{ needs.detect-changes.outputs.new_version }}',
+              inputs: {
+                version: '${{ needs.detect-changes.outputs.new_version }}',
+                create_release: 'true'
+              }
+            });
+            
+            console.log('✅ Triggered cross-platform build workflow');
+
+  # ============================================================================
+  # 📊 Summary
+  # ============================================================================
+  summary:
+    name: 📊 Release Summary
+    needs: [detect-changes, trigger-release]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📊 Generate Summary
+        run: |
+          echo "# 🤖 Auto Release Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ needs.detect-changes.outputs.should_release }}" = "true" ]; then
+            echo "## ✅ Release Triggered" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**New Version:** ${{ needs.detect-changes.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Reason:** Core changes detected or manual trigger" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "## 📋 Changes Detected" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ needs.detect-changes.outputs.changes }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "## 🚀 Next Steps" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "1. ✅ Tag created: ${{ needs.detect-changes.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
+            echo "2. 🏗️ Cross-platform build triggered" >> $GITHUB_STEP_SUMMARY
+            echo "3. 📦 Binaries will be available in ~30 minutes" >> $GITHUB_STEP_SUMMARY
+            echo "4. 📋 GitHub Release will be created automatically" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ❌ No Release Needed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Reason:** No significant changes detected since last release" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Last Release:** ${{ needs.detect-changes.outputs.latest_tag }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "To force a release, use the manual workflow dispatch with 'force_release' enabled." >> $GITHUB_STEP_SUMMARY
+          fi

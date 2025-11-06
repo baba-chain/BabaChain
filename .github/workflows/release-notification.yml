@@ -1,0 +1,165 @@
+name: 📢 Release Notifications
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  # ============================================================================
+  # 📢 Discord Notification
+  # ============================================================================
+  discord-notification:
+    name: 📢 Discord Notification
+    runs-on: ubuntu-latest
+    if: secrets.DISCORD_WEBHOOK_URL != ''
+    steps:
+      - name: 📢 Send Discord Notification
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          args: |
+            🚀 **BabaChain ${{ github.event.release.tag_name }} Released!**
+            
+            📦 **Cross-Platform Support:**
+            • 🐧 Linux (x64, ARM64)
+            • 🍎 macOS (Intel, Apple Silicon)  
+            • 🪟 Windows (x64)
+            • 🐳 Docker (Multi-platform)
+            
+            📥 **Download:** ${{ github.event.release.html_url }}
+            
+            ✨ **What's New:**
+            ${{ github.event.release.body }}
+
+  # ============================================================================
+  # 📧 Telegram Notification
+  # ============================================================================
+  telegram-notification:
+    name: 📧 Telegram Notification
+    runs-on: ubuntu-latest
+    if: secrets.TELEGRAM_BOT_TOKEN != '' && secrets.TELEGRAM_CHAT_ID != ''
+    steps:
+      - name: 📧 Send Telegram Notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          format: markdown
+          message: |
+            🚀 *BabaChain ${{ github.event.release.tag_name }} Released\!*
+            
+            📦 *Cross\-Platform Support:*
+            • 🐧 Linux \(x64, ARM64\)
+            • 🍎 macOS \(Intel, Apple Silicon\)
+            • 🪟 Windows \(x64\)
+            • 🐳 Docker \(Multi\-platform\)
+            
+            📥 [Download Release](${{ github.event.release.html_url }})
+            
+            Join our community:
+            • [GitHub](https://github.com/BabaChain/BabaChain)
+            • [Discord](https://discord.gg/babachain)
+
+  # ============================================================================
+  # 🐳 Docker Hub Update
+  # ============================================================================
+  update-docker-hub:
+    name: 🐳 Update Docker Hub Description
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐳 Update Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: babachain/babachain
+          readme-filepath: ./docker/README.md
+
+  # ============================================================================
+  # 📊 Release Analytics
+  # ============================================================================
+  release-analytics:
+    name: 📊 Release Analytics
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📊 Log Release Metrics
+        run: |
+          echo "# 📊 Release Analytics - ${{ github.event.release.tag_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📋 Release Information" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Version** | ${{ github.event.release.tag_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Release Type** | ${{ github.event.release.prerelease && 'Pre-release' || 'Stable' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Published** | ${{ github.event.release.published_at }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Author** | ${{ github.event.release.author.login }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🔗 Links" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- 📥 [Download Release](${{ github.event.release.html_url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 [Release Notes](${{ github.event.release.html_url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- 🐳 [Docker Images](https://hub.docker.com/r/babachain/babachain)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📦 Assets" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Release asset'lerini listele
+          ASSETS=$(echo '${{ toJson(github.event.release.assets) }}' | jq -r '.[] | "- 📦 [\(.name)](\(.browser_download_url)) (\(.size | . / 1024 / 1024 | floor)MB)"')
+          echo "$ASSETS" >> $GITHUB_STEP_SUMMARY
+
+  # ============================================================================
+  # 🌐 Website Update (Opsiyonel)
+  # ============================================================================
+  update-website:
+    name: 🌐 Update Website
+    runs-on: ubuntu-latest
+    if: secrets.WEBSITE_DEPLOY_KEY != ''
+    steps:
+      - name: 🌐 Trigger Website Update
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.WEBSITE_DEPLOY_KEY }}
+          script: |
+            // Website repository'sinde release bilgilerini güncelle
+            const { data: dispatch } = await github.rest.repos.createDispatchEvent({
+              owner: 'BabaChain',
+              repo: 'babachain-website',
+              event_type: 'new_release',
+              client_payload: {
+                version: '${{ github.event.release.tag_name }}',
+                release_url: '${{ github.event.release.html_url }}',
+                release_notes: '${{ github.event.release.body }}'
+              }
+            });
+            
+            console.log('✅ Website update triggered');
+
+  # ============================================================================
+  # 📈 Performance Tracking
+  # ============================================================================
+  performance-tracking:
+    name: 📈 Performance Tracking
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📈 Track Release Performance
+        run: |
+          # Release zamanlaması ve performans metrikleri
+          RELEASE_TIME=$(date -d "${{ github.event.release.published_at }}" +%s)
+          CURRENT_TIME=$(date +%s)
+          TIME_DIFF=$((CURRENT_TIME - RELEASE_TIME))
+          
+          echo "📈 Release Performance Metrics:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏱️ Release processed in: ${TIME_DIFF} seconds" >> $GITHUB_STEP_SUMMARY
+          echo "- 📦 Total assets: ${{ github.event.release.assets_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 Release URL: ${{ github.event.release.html_url }}" >> $GITHUB_STEP_SUMMARY
+          
+          # Asset boyutlarını hesapla
+          TOTAL_SIZE=$(echo '${{ toJson(github.event.release.assets) }}' | jq '[.[].size] | add')
+          TOTAL_SIZE_MB=$((TOTAL_SIZE / 1024 / 1024))
+          echo "- 💾 Total download size: ${TOTAL_SIZE_MB}MB" >> $GITHUB_STEP_SUMMARY

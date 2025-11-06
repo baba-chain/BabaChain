@@ -12,6 +12,7 @@
 #include <memory>
 
 class ClientModel;
+enum class BlockSource;
 
 /** Auto-node discovery and network optimization system */
 class AutoNodeManager : public QObject

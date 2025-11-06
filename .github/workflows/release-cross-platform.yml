@@ -1,0 +1,444 @@
+name: 🚀 Cross-Platform Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'mainnet-*'
+      - 'release-*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+      create_release:
+        description: 'Create GitHub Release'
+        type: boolean
+        default: true
+
+env:
+  CARGO_TERM_COLOR: always
+  CMAKE_BUILD_TYPE: Release
+
+jobs:
+  # ============================================================================
+  # 🏗️ BUILD MATRIX - Tüm Platformlar
+  # ============================================================================
+  build-matrix:
+    name: 🏗️ Build ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # 🐧 Linux Builds
+          - platform: linux-x64
+            os: ubuntu-22.04
+            target: x86_64-pc-linux-gnu
+            artifact_name: babachain-linux-x64
+            binary_extension: ""
+            
+          - platform: linux-arm64
+            os: ubuntu-22.04
+            target: aarch64-unknown-linux-gnu
+            artifact_name: babachain-linux-arm64
+            binary_extension: ""
+            
+          # 🍎 macOS Builds
+          - platform: macos-x64
+            os: macos-13
+            target: x86_64-apple-darwin
+            artifact_name: babachain-macos-x64
+            binary_extension: ""
+            
+          - platform: macos-arm64
+            os: macos-14
+            target: aarch64-apple-darwin
+            artifact_name: babachain-macos-arm64
+            binary_extension: ""
+            
+          # 🪟 Windows Builds
+          - platform: windows-x64
+            os: windows-2022
+            target: x86_64-pc-windows-msvc
+            artifact_name: babachain-windows-x64
+            binary_extension: ".exe"
+
+    steps:
+      # ======================================================================
+      # 📥 Checkout & Setup
+      # ======================================================================
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: 🏷️ Get Version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+
+      # ======================================================================
+      # 🐧 Linux Build Setup
+      # ======================================================================
+      - name: 🐧 Setup Linux Dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake git wget curl \
+            libboost-all-dev libssl-dev libdb++-dev \
+            libminiupnpc-dev libzmq3-dev \
+            libqt6-dev qt6-base-dev qt6-tools-dev \
+            libprotobuf-dev protobuf-compiler \
+            pkg-config libevent-dev libqrencode-dev \
+            ccache ninja-build
+
+      - name: 🐧 Setup ARM64 Cross-Compilation
+        if: matrix.platform == 'linux-arm64'
+        run: |
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+          echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/cmake/toolchain-aarch64.cmake" >> $GITHUB_ENV
+
+      # ======================================================================
+      # 🍎 macOS Build Setup
+      # ======================================================================
+      - name: 🍎 Setup macOS Dependencies
+        if: runner.os == 'macOS'
+        run: |
+          brew update
+          brew install cmake boost openssl berkeley-db miniupnpc zeromq qt6 protobuf pkg-config libevent qrencode ccache ninja
+
+      # ======================================================================
+      # 🪟 Windows Build Setup
+      # ======================================================================
+      - name: 🪟 Setup Windows Dependencies (vcpkg)
+        if: runner.os == 'Windows'
+        run: |
+          # vcpkg kurulumu
+          git clone https://github.com/Microsoft/vcpkg.git C:\vcpkg
+          cd C:\vcpkg
+          .\bootstrap-vcpkg.bat
+          
+          # Gerekli paketleri yükle
+          .\vcpkg install --triplet x64-windows boost openssl berkeleydb zeromq miniupnpc protobuf qt6-base qt6-tools libevent qrencode
+          
+          # vcpkg'yi global olarak entegre et
+          .\vcpkg integrate install
+          
+          echo "CMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake" >> $env:GITHUB_ENV
+        shell: powershell
+
+      # ======================================================================
+      # 🏗️ Build Process
+      # ======================================================================
+      - name: 🏗️ Configure CMake
+        run: |
+          mkdir build
+          cd build
+          
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            cmake .. \
+              -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_TOOLCHAIN_FILE="${{ env.CMAKE_TOOLCHAIN_FILE }}" \
+              -DVCPKG_TARGET_TRIPLET=x64-windows \
+              -G "Visual Studio 17 2022" \
+              -A x64
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            cmake .. \
+              -DCMAKE_BUILD_TYPE=Release \
+              -DOPENSSL_ROOT_DIR=$(brew --prefix openssl) \
+              -DBOOST_ROOT=$(brew --prefix boost) \
+              -DQt6_DIR=$(brew --prefix qt6)/lib/cmake/Qt6 \
+              -G Ninja
+          else
+            cmake .. \
+              -DCMAKE_BUILD_TYPE=Release \
+              -G Ninja \
+              ${{ env.CMAKE_TOOLCHAIN_FILE && format('-DCMAKE_TOOLCHAIN_FILE={0}', env.CMAKE_TOOLCHAIN_FILE) || '' }}
+          fi
+        shell: bash
+
+      - name: 🔨 Build BabaChain
+        run: |
+          cd build
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            cmake --build . --config Release --parallel
+          else
+            ninja -j$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
+          fi
+        shell: bash
+
+      # ======================================================================
+      # 📦 Package Binaries
+      # ======================================================================
+      - name: 📦 Package Binaries
+        run: |
+          mkdir -p release/${{ matrix.artifact_name }}
+          
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            BUILD_DIR="build/Release"
+          else
+            BUILD_DIR="build"
+          fi
+          
+          # Ana binary'leri kopyala
+          cp $BUILD_DIR/babachaind${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          cp $BUILD_DIR/babachain-cli${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          
+          # Qt wallet varsa kopyala
+          if [ -f "$BUILD_DIR/babachain-qt${{ matrix.binary_extension }}" ]; then
+            cp $BUILD_DIR/babachain-qt${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          fi
+          
+          # Konfigürasyon dosyalarını ekle
+          cp README.md release/${{ matrix.artifact_name }}/
+          cp COPYING release/${{ matrix.artifact_name }}/
+          
+          # Platform-specific deployment dosyalarını ekle
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            cp BABACHAIN_UBUNTU_DEPLOYMENT.md release/${{ matrix.artifact_name }}/
+            cp scripts/ubuntu-deploy.sh release/${{ matrix.artifact_name }}/
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            cp BABACHAIN_MACOS_DEPLOYMENT.md release/${{ matrix.artifact_name }}/
+            cp scripts/macos-deploy.sh release/${{ matrix.artifact_name }}/
+          elif [ "${{ runner.os }}" = "Windows" ]; then
+            cp BABACHAIN_WINDOWS_DEPLOYMENT.md release/${{ matrix.artifact_name }}/
+            cp scripts/windows-deploy.ps1 release/${{ matrix.artifact_name }}/
+          fi
+          
+          # Versiyon bilgisini ekle
+          echo "${{ steps.version.outputs.version }}" > release/${{ matrix.artifact_name }}/VERSION
+          echo "Built on: $(date)" >> release/${{ matrix.artifact_name }}/BUILD_INFO
+          echo "Platform: ${{ matrix.platform }}" >> release/${{ matrix.artifact_name }}/BUILD_INFO
+          echo "Target: ${{ matrix.target }}" >> release/${{ matrix.artifact_name }}/BUILD_INFO
+        shell: bash
+
+      - name: 🗜️ Create Archive
+        run: |
+          cd release
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            7z a -tzip ${{ matrix.artifact_name }}-${{ steps.version.outputs.version }}.zip ${{ matrix.artifact_name }}/
+          else
+            tar -czf ${{ matrix.artifact_name }}-${{ steps.version.outputs.version }}.tar.gz ${{ matrix.artifact_name }}/
+          fi
+        shell: bash
+
+      # ======================================================================
+      # 🧪 Test Binaries
+      # ======================================================================
+      - name: 🧪 Test Binaries
+        run: |
+          cd release/${{ matrix.artifact_name }}
+          
+          # Version kontrolü
+          ./babachaind${{ matrix.binary_extension }} --version
+          ./babachain-cli${{ matrix.binary_extension }} --version
+          
+          # Qt wallet varsa test et
+          if [ -f "babachain-qt${{ matrix.binary_extension }}" ]; then
+            ./babachain-qt${{ matrix.binary_extension }} --version
+          fi
+        shell: bash
+
+      # ======================================================================
+      # 📤 Upload Artifacts
+      # ======================================================================
+      - name: 📤 Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}-${{ steps.version.outputs.version }}
+          path: |
+            release/${{ matrix.artifact_name }}-${{ steps.version.outputs.version }}.*
+          retention-days: 30
+
+  # ============================================================================
+  # 🐳 Docker Multi-Platform Build
+  # ============================================================================
+  docker-build:
+    name: 🐳 Docker Multi-Platform
+    runs-on: ubuntu-latest
+    needs: [build-matrix]
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏷️ Get Version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔑 Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: 🏗️ Build and Push Docker Images
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./docker/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            babachain/babachain:latest
+            babachain/babachain:${{ steps.version.outputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ============================================================================
+  # 📋 Create GitHub Release
+  # ============================================================================
+  create-release:
+    name: 📋 Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [build-matrix, docker-build]
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.create_release == 'true')
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏷️ Get Version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📥 Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: 📋 Generate Release Notes
+        id: release_notes
+        run: |
+          cat > release_notes.md << 'EOF'
+          # 🚀 BabaChain ${{ steps.version.outputs.version }} - Cross-Platform Release
+          
+          ## 📦 Platform Support
+          
+          Bu release aşağıdaki platformları destekler:
+          
+          ### 🐧 Linux
+          - **x86_64**: Ubuntu 20.04+ ve diğer modern Linux dağıtımları
+          - **ARM64**: Raspberry Pi 4, AWS Graviton, Apple M1/M2 Linux
+          
+          ### 🍎 macOS
+          - **Intel (x86_64)**: macOS 10.15 Catalina ve üzeri
+          - **Apple Silicon (ARM64)**: M1, M2, M3 işlemcili Mac'ler
+          
+          ### 🪟 Windows
+          - **x86_64**: Windows 10/11 (64-bit)
+          
+          ## 🔧 Kurulum
+          
+          ### Hızlı Kurulum
+          ```bash
+          # Linux/macOS
+          wget https://github.com/BabaChain/BabaChain/releases/download/${{ steps.version.outputs.version }}/babachain-[platform]-${{ steps.version.outputs.version }}.tar.gz
+          tar -xzf babachain-[platform]-${{ steps.version.outputs.version }}.tar.gz
+          cd babachain-[platform]
+          ./babachaind --version
+          ```
+          
+          ### Docker
+          ```bash
+          docker run -d --name babachain \
+            -p 9999:9999 -p 9998:9998 \
+            -v babachain-data:/home/babachain/.babachain \
+            babachain/babachain:${{ steps.version.outputs.version }}
+          ```
+          
+          ## ✨ Bu Sürümdeki Yenilikler
+          
+          - ✅ Qt 6 tam uyumluluğu
+          - ✅ Cross-platform binary'ler
+          - ✅ Geliştirilmiş staking performansı
+          - ✅ Otomatik deployment scriptleri
+          - ✅ Docker multi-platform desteği
+          
+          ## 🛡️ Güvenlik
+          
+          Tüm binary'ler GitHub Actions ile otomatik olarak derlenmiş ve test edilmiştir.
+          
+          **SHA256 Checksums:**
+          ```
+          $(find ./artifacts -name "*.tar.gz" -o -name "*.zip" | xargs sha256sum)
+          ```
+          
+          ## 📚 Dokümantasyon
+          
+          - [Ubuntu Deployment](BABACHAIN_UBUNTU_DEPLOYMENT.md)
+          - [macOS Deployment](BABACHAIN_MACOS_DEPLOYMENT.md)  
+          - [Windows Deployment](BABACHAIN_WINDOWS_DEPLOYMENT.md)
+          - [Cross-Platform Guide](CROSS_PLATFORM_DEPLOYMENT.md)
+          
+          ## 🆘 Destek
+          
+          - **GitHub Issues**: https://github.com/BabaChain/BabaChain/issues
+          - **Discord**: https://discord.gg/babachain
+          - **Telegram**: https://t.me/babachainofficial
+          EOF
+
+      - name: 📋 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: 🚀 BabaChain ${{ steps.version.outputs.version }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.version, 'rc') || contains(steps.version.outputs.version, 'beta') || contains(steps.version.outputs.version, 'alpha') }}
+          files: |
+            ./artifacts/**/*.tar.gz
+            ./artifacts/**/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ============================================================================
+  # 📊 Build Summary
+  # ============================================================================
+  build-summary:
+    name: 📊 Build Summary
+    runs-on: ubuntu-latest
+    needs: [build-matrix, docker-build, create-release]
+    if: always()
+    steps:
+      - name: 📊 Generate Build Summary
+        run: |
+          echo "# 🚀 BabaChain Cross-Platform Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📦 Build Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Platform | Status | Artifact |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|--------|----------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🐧 Linux x64 | ${{ needs.build-matrix.result }} | babachain-linux-x64 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🐧 Linux ARM64 | ${{ needs.build-matrix.result }} | babachain-linux-arm64 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🍎 macOS x64 | ${{ needs.build-matrix.result }} | babachain-macos-x64 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🍎 macOS ARM64 | ${{ needs.build-matrix.result }} | babachain-macos-arm64 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🪟 Windows x64 | ${{ needs.build-matrix.result }} | babachain-windows-x64 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🐳 Docker | ${{ needs.docker-build.result }} | Multi-platform |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎯 Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "1. ✅ Download artifacts from the [Releases page](https://github.com/BabaChain/BabaChain/releases)" >> $GITHUB_STEP_SUMMARY
+          echo "2. ✅ Test binaries on target platforms" >> $GITHUB_STEP_SUMMARY
+          echo "3. ✅ Deploy to production environments" >> $GITHUB_STEP_SUMMARY
+          echo "4. ✅ Update documentation if needed" >> $GITHUB_STEP_SUMMARY

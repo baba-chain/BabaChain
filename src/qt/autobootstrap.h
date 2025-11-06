@@ -14,6 +14,7 @@
 #include <memory>
 
 class ClientModel;
+enum class SynchronizationState;
 
 /** Automatic blockchain bootstrap system */
 class AutoBootstrapManager : public QObject
@@ -29,7 +30,7 @@ public:
     void stopBootstrap();
     
     bool isBootstrapping() const { return isBootstrapActive; }
-    int getBootstrapProgress() const { return bootstrapProgress; }
+    int getBootstrapProgress() const { return m_bootstrapProgress; }
 
 public Q_SLOTS:
     void checkBootstrapStatus();
@@ -62,7 +63,7 @@ private:
     // Bootstrap configuration
     bool isBootstrapActive;
     bool autoBootstrapEnabled;
-    int bootstrapProgress;
+    int m_bootstrapProgress;  // Renamed to avoid conflict with signal
     QString currentBootstrapSource;
     QString bootstrapFilePath;
     

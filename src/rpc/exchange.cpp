@@ -21,6 +21,14 @@
 #include <vector>
 
 using node::NodeContext;
+using wallet::CWallet;
+using wallet::GetWalletForJSONRPCRequest;
+
+// Helper function to convert CAmount to UniValue
+static UniValue ValueFromAmount(const CAmount& amount)
+{
+    return FormatMoney(amount);
+}
 
 // Exchange order book structure
 struct ExchangeOrder {
@@ -119,9 +127,11 @@ static RPCHelpMan createexchangeorder()
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid address");
         }
     } else {
-        if (!pwallet->GetNewDestination(OutputType::LEGACY, "", userAddress)) {
+        auto dest_result = pwallet->GetNewDestination("");
+        if (!dest_result) {
             throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out");
         }
+        userAddress = *dest_result;
     }
     
     // Generate order ID
@@ -295,8 +305,8 @@ static RPCHelpMan createdcaschedule()
     std::string fromAsset = request.params[0].get_str();
     std::string toAsset = request.params[1].get_str();
     CAmount amountPerPurchase = AmountFromValue(request.params[2]);
-    int64_t intervalSeconds = request.params[3].get_int64();
-    int totalPurchases = request.params[4].get_int();
+    int64_t intervalSeconds = request.params[3].getInt<int64_t>();
+    int totalPurchases = request.params[4].getInt<int>();
     
     if (fromAsset == toAsset) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Cannot DCA the same asset");
@@ -322,9 +332,11 @@ static RPCHelpMan createdcaschedule()
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid address");
         }
     } else {
-        if (!pwallet->GetNewDestination(OutputType::LEGACY, "", userAddress)) {
+        auto dest_result = pwallet->GetNewDestination("");
+        if (!dest_result) {
             throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out");
         }
+        userAddress = *dest_result;
     }
     
     // Generate schedule ID

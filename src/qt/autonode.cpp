@@ -7,6 +7,8 @@
 #include <qt/clientmodel.h>
 #include <interfaces/node.h>
 #include <util/system.h>
+#include <sync.h>
+#include <validation.h>
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -15,6 +17,8 @@
 #include <QUrl>
 #include <QHostAddress>
 #include <QRandomGenerator>
+#include <algorithm>
+#include <random>
 
 // Built-in seed nodes for BabaChain network
 const QStringList AutoNodeManager::BUILTIN_SEED_NODES = {
@@ -76,6 +80,74 @@ AutoNodeManager::~AutoNodeManager()
 void AutoNodeManager::setClientModel(ClientModel* clientModel)
 {
     this->clientModel = clientModel;
+    
+    if (clientModel) {
+        // Connect to ClientModel signals for comprehensive network monitoring
+        connect(clientModel, &ClientModel::numBlocksChanged,
+                this, [this, clientModel](int count, const QDateTime& blockDate, const QString& blockHash, 
+                             double nVerificationProgress, bool header, SynchronizationState sync_state) {
+            Q_UNUSED(count)
+            Q_UNUSED(blockDate)
+            Q_UNUSED(blockHash)
+            Q_UNUSED(sync_state)
+            if (!header) {
+                syncProgress = static_cast<int>(nVerificationProgress * 100);
+                Q_EMIT autoSyncProgress(syncProgress);
+                
+                // Adjust discovery behavior based on sync state
+                if (clientModel->node().isInitialBlockDownload()) {
+                    // During IBD, be more aggressive with peer discovery
+                    if (connectionCount < targetConnections) {
+                        performPeerDiscovery();
+                    }
+                }
+            }
+        });
+        
+        // Monitor connection count changes for network health
+        connect(clientModel, &ClientModel::numConnectionsChanged,
+                this, [this](int count) {
+            int previousCount = connectionCount;
+            connectionCount = count;
+            
+            // Update last successful connection time if connections increased
+            if (count > previousCount) {
+                lastSuccessfulConnection = QDateTime::currentSecsSinceEpoch();
+                failedConnectionAttempts = 0;
+            }
+            
+            // Trigger self-healing if connections dropped significantly
+            if (count < targetConnections / 2 && previousCount >= targetConnections / 2) {
+                performSelfHealing();
+            }
+            
+            // Update network health based on connection changes
+            checkNetworkHealth();
+        });
+        
+        // Monitor network activity for connectivity issues
+        connect(clientModel, &ClientModel::networkActiveChanged,
+                this, [this](bool networkActive) {
+            if (!networkActive) {
+                // Network became inactive - trigger self-healing
+                performSelfHealing();
+            } else {
+                // Network reactivated - resume normal discovery
+                if (autoDiscoveryEnabled) {
+                    performPeerDiscovery();
+                }
+            }
+            checkNetworkHealth();
+        });
+        
+        // Monitor additional sync progress for masternode/governance data
+        connect(clientModel, &ClientModel::additionalDataSyncProgressChanged,
+                this, [this](double nSyncProgress) {
+            // Additional data sync affects network health
+            Q_UNUSED(nSyncProgress)
+            checkNetworkHealth();
+        });
+    }
 }
 
 void AutoNodeManager::startAutoDiscovery()
@@ -147,13 +219,16 @@ void AutoNodeManager::optimizeConnections()
         return;
     }
     
-    // Get current connection count
+    // Get current connection count using ClientModel API
     connectionCount = clientModel->getNumConnections();
     
     // If we have too few connections, try to connect to more peers
     if (connectionCount < targetConnections) {
         connectToBestPeers();
     }
+    
+    // Monitor network capacity and adjust accordingly
+    monitorNetworkCapacity();
     
     // Evaluate and score current peers
     evaluateNetworkHealth();
@@ -165,10 +240,10 @@ void AutoNodeManager::checkNetworkHealth()
         return;
     }
     
-    // Calculate network health score based on various metrics
+    // Calculate network health score based on various metrics using ClientModel APIs
     int healthScore = 0;
     
-    // Connection count (0-30 points)
+    // Connection count (0-30 points) - use ClientModel API
     connectionCount = clientModel->getNumConnections();
     if (connectionCount >= targetConnections) {
         healthScore += 30;
@@ -176,18 +251,28 @@ void AutoNodeManager::checkNetworkHealth()
         healthScore += (connectionCount * 30) / targetConnections;
     }
     
-    // Sync progress (0-40 points)
+    // Sync progress (0-40 points) - use cached sync progress from signals
     if (clientModel->node().isInitialBlockDownload()) {
-        syncProgress = static_cast<int>(clientModel->getVerificationProgress() * 100);
+        // syncProgress is updated via signal connections, use cached value
         healthScore += (syncProgress * 40) / 100;
     } else {
         healthScore += 40; // Fully synced
         syncProgress = 100;
     }
     
-    // Network activity (0-30 points)
-    if (clientModel->getNetworkActive()) {
+    // Network activity (0-30 points) - check block source and connections
+    BlockSource blockSource = clientModel->getBlockSource();
+    if (blockSource == BlockSource::NETWORK && connectionCount > 0) {
         healthScore += 30;
+    } else if (blockSource == BlockSource::DISK && connectionCount > 0) {
+        healthScore += 20; // Loading from disk but have connections
+    } else if (connectionCount > 0) {
+        healthScore += 10; // Have connections but no clear block source
+    }
+    
+    // Adjust score based on recent connection failures
+    if (failedConnectionAttempts > 5) {
+        healthScore = qMax(0, healthScore - (failedConnectionAttempts * 2));
     }
     
     networkHealthScore = healthScore;
@@ -211,7 +296,7 @@ void AutoNodeManager::onSeedNodesReplyFinished()
             QJsonObject obj = doc.object();
             QJsonArray nodes = obj["nodes"].toArray();
             
-            for (const QJsonValue& value : nodes) {
+            for (const QJsonValue value : nodes) {
                 QJsonObject node = value.toObject();
                 QString address = node["address"].toString();
                 int port = node["port"].toInt();
@@ -248,8 +333,10 @@ void AutoNodeManager::loadBuiltinSeedNodes()
     knownSeedNodes.clear();
     knownSeedNodes.append(BUILTIN_SEED_NODES);
     
-    // Shuffle the list for better distribution
-    std::random_shuffle(knownSeedNodes.begin(), knownSeedNodes.end());
+    // Shuffle the list for better distribution using Qt 6 compatible method
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(knownSeedNodes.begin(), knownSeedNodes.end(), g);
 }
 
 void AutoNodeManager::connectToBestPeers()
@@ -311,6 +398,7 @@ void AutoNodeManager::bootstrapFromMultipleSources()
     };
     
     for (const QString& dnsSeed : dnsSeeds) {
+        Q_UNUSED(dnsSeed)
         // This would perform DNS lookup for peer addresses
         // For now, we use the built-in seed nodes
     }
@@ -323,7 +411,8 @@ void AutoNodeManager::bootstrapFromMultipleSources()
     };
     
     for (const QString& source : webSources) {
-        QNetworkRequest request(QUrl(source));
+        QNetworkRequest request;
+        request.setUrl(QUrl(source));
         request.setRawHeader("User-Agent", "BabaChain-Qt/1.0");
         
         QNetworkReply* reply = networkManager->get(request);
@@ -345,10 +434,10 @@ void AutoNodeManager::performSelfHealing()
         return;
     }
     
-    // Check if we need self-healing
+    // Check if we need self-healing using ClientModel APIs
     bool needsHealing = false;
     
-    // Check connection count
+    // Check connection count using ClientModel API
     connectionCount = clientModel->getNumConnections();
     if (connectionCount < targetConnections / 2) {
         needsHealing = true;
@@ -363,6 +452,16 @@ void AutoNodeManager::performSelfHealing()
     
     // Check if too many connection attempts have failed
     if (failedConnectionAttempts > 10) {
+        needsHealing = true;
+    }
+    
+    // Check if we're in IBD but have very poor connectivity
+    if (clientModel->node().isInitialBlockDownload() && connectionCount == 0) {
+        needsHealing = true;
+    }
+    
+    // Check block source - if we can't get blocks from network, we need healing
+    if (clientModel->getBlockSource() == BlockSource::NONE && connectionCount > 0) {
         needsHealing = true;
     }
     
@@ -406,16 +505,22 @@ void AutoNodeManager::optimizePeerConnections()
         return;
     }
     
-    // Get current peer statistics and optimize connections
+    // Get current peer statistics and optimize connections using ClientModel APIs
     connectionCount = clientModel->getNumConnections();
+    BlockSource blockSource = clientModel->getBlockSource();
     
-    // If we have too many connections, disconnect from worst performers
-    if (connectionCount > maxConnections) {
+    // If we have too many connections but poor block source, prioritize quality over quantity
+    if (connectionCount > maxConnections || 
+        (connectionCount > targetConnections && blockSource != BlockSource::NETWORK)) {
+        // Mark poor performing peers for potential removal
         // This would need to be implemented in the client model
         // to disconnect from specific peers based on performance
+        
+        // For now, we'll just reduce our target to encourage better peer selection
+        targetConnections = qMax(DEFAULT_TARGET_CONNECTIONS / 2, targetConnections - 2);
     }
     
-    // Update peer scores based on performance
+    // Update peer scores based on performance and network conditions
     int64_t currentTime = QDateTime::currentSecsSinceEpoch();
     for (auto it = peerLastSeen.begin(); it != peerLastSeen.end(); ++it) {
         QString peer = it.key();
@@ -423,7 +528,12 @@ void AutoNodeManager::optimizePeerConnections()
         
         // Decrease score for peers not seen recently
         if ((currentTime - lastSeen) > 600) { // 10 minutes
-            peerScores[peer] = qMax(0, peerScores[peer] - 10);
+            peerScores[peer] = qMax(-100, peerScores[peer] - 10);
+        }
+        
+        // Bonus points for peers that help with network sync
+        if (blockSource == BlockSource::NETWORK && (currentTime - lastSeen) < 60) {
+            peerScores[peer] = qMin(100, peerScores[peer] + 5);
         }
     }
     
@@ -441,6 +551,9 @@ void AutoNodeManager::optimizePeerConnections()
         peerLastSeen.remove(peer);
         peerFailureCount.remove(peer);
     }
+    
+    // Monitor network capacity after optimization
+    monitorNetworkCapacity();
 }
 
 void AutoNodeManager::monitorNetworkCapacity()
@@ -449,11 +562,12 @@ void AutoNodeManager::monitorNetworkCapacity()
         return;
     }
     
-    // Monitor network capacity and adjust target connections accordingly
+    // Monitor network capacity and adjust target connections accordingly using ClientModel APIs
     
-    // Get current network statistics
+    // Get current network statistics using ClientModel APIs
     connectionCount = clientModel->getNumConnections();
     bool isIBD = clientModel->node().isInitialBlockDownload();
+    BlockSource blockSource = clientModel->getBlockSource();
     
     // Adjust target connections based on network conditions
     if (isIBD) {
@@ -464,20 +578,35 @@ void AutoNodeManager::monitorNetworkCapacity()
         targetConnections = DEFAULT_TARGET_CONNECTIONS;
     }
     
+    // Further adjust based on block source
+    if (blockSource == BlockSource::NONE && connectionCount > 0) {
+        // We have connections but no block source - increase target to find better peers
+        targetConnections = qMin(maxConnections, targetConnections + 2);
+    } else if (blockSource == BlockSource::NETWORK && connectionCount >= targetConnections) {
+        // Good network sync - can reduce target slightly for efficiency
+        targetConnections = qMax(DEFAULT_TARGET_CONNECTIONS, targetConnections - 1);
+    }
+    
     // Adjust discovery interval based on connection health
     if (connectionCount < targetConnections / 2) {
         // Poor connectivity - discover more frequently
         discoveryInterval = DEFAULT_DISCOVERY_INTERVAL / 2;
-    } else if (connectionCount >= targetConnections) {
-        // Good connectivity - discover less frequently
+    } else if (connectionCount >= targetConnections && blockSource == BlockSource::NETWORK) {
+        // Good connectivity and network sync - discover less frequently
         discoveryInterval = DEFAULT_DISCOVERY_INTERVAL * 2;
     } else {
         // Normal discovery interval
         discoveryInterval = DEFAULT_DISCOVERY_INTERVAL;
     }
     
-    // Update timer intervals
+    // Update timer intervals if they're active
     if (discoveryTimer && discoveryTimer->isActive()) {
         discoveryTimer->setInterval(discoveryInterval);
+    }
+    if (healthTimer && healthTimer->isActive()) {
+        // Adjust health check frequency based on network conditions
+        int healthInterval = (connectionCount < targetConnections / 2) ? 
+                           healthCheckInterval / 2 : healthCheckInterval;
+        healthTimer->setInterval(healthInterval);
     }
 }

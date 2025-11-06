@@ -53,7 +53,7 @@ dnl CAUTION: Do not use this inside of a conditional.
 AC_DEFUN([BITCOIN_QT_INIT],[
   dnl enable qt support
   AC_ARG_WITH([gui],
-    [AS_HELP_STRING([--with-gui@<:@=no|qt5|auto@:>@],
+    [AS_HELP_STRING([--with-gui@<:@=no|qt6|auto@:>@],
     [build babachain-qt GUI (default=auto)])],
     [
      bitcoin_qt_want_version=$withval
@@ -64,10 +64,10 @@ AC_DEFUN([BITCOIN_QT_INIT],[
     ],
     [bitcoin_qt_want_version=auto])
 
-  AS_IF([test "$with_gui" = "qt5_debug"],
+  AS_IF([test "$with_gui" = "qt6_debug"],
         [AS_CASE([$host],
                  [*darwin*], [qt_lib_suffix=_debug],
-                 [qt_lib_suffix= ]); bitcoin_qt_want_version=qt5],
+                 [qt_lib_suffix= ]); bitcoin_qt_want_version=qt6],
         [qt_lib_suffix= ])
 
   AS_CASE([$host], [*android*], [qt_lib_suffix=_$ANDROID_ARCH])
@@ -105,7 +105,7 @@ dnl Outputs: Sets variables for all qt-related tools.
 dnl Outputs: bitcoin_enable_qt, bitcoin_enable_qt_dbus, bitcoin_enable_qt_test
 AC_DEFUN([BITCOIN_QT_CONFIGURE],[
   qt_version=">= $1"
-  qt_lib_prefix="Qt5"
+  qt_lib_prefix="Qt6"
   BITCOIN_QT_CHECK([_BITCOIN_QT_FIND_LIBS])
 
   dnl This is ugly and complicated. Yuck. Works as follows:
@@ -219,12 +219,12 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
     ])
   fi
 
-  BITCOIN_QT_PATH_PROGS([MOC], [moc-qt5 moc5 moc], $qt_bin_path)
-  BITCOIN_QT_PATH_PROGS([UIC], [uic-qt5 uic5 uic], $qt_bin_path)
-  BITCOIN_QT_PATH_PROGS([RCC], [rcc-qt5 rcc5 rcc], $qt_bin_path)
-  BITCOIN_QT_PATH_PROGS([LRELEASE], [lrelease-qt5 lrelease5 lrelease], $qt_bin_path)
-  BITCOIN_QT_PATH_PROGS([LUPDATE], [lupdate-qt5 lupdate5 lupdate],$qt_bin_path, yes)
-  BITCOIN_QT_PATH_PROGS([LCONVERT], [lconvert-qt5 lconvert5 lconvert], $qt_bin_path, yes)
+  BITCOIN_QT_PATH_PROGS([MOC], [moc-qt6 moc6 moc], $qt_bin_path)
+  BITCOIN_QT_PATH_PROGS([UIC], [uic-qt6 uic6 uic], $qt_bin_path)
+  BITCOIN_QT_PATH_PROGS([RCC], [rcc-qt6 rcc6 rcc], $qt_bin_path)
+  BITCOIN_QT_PATH_PROGS([LRELEASE], [lrelease-qt6 lrelease6 lrelease], $qt_bin_path)
+  BITCOIN_QT_PATH_PROGS([LUPDATE], [lupdate-qt6 lupdate6 lupdate],$qt_bin_path, yes)
+  BITCOIN_QT_PATH_PROGS([LCONVERT], [lconvert-qt6 lconvert6 lconvert], $qt_bin_path, yes)
 
   BITCOIN_QT_CHECK([
     AC_CACHE_CHECK([whether $RCC accepts --format-version option],
@@ -293,7 +293,7 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
   AC_SUBST(QT_LDFLAGS)
   AC_SUBST(QT_DBUS_INCLUDES)
   AC_SUBST(QT_TEST_INCLUDES)
-  AC_SUBST(QT_SELECT, qt5)
+  AC_SUBST(QT_SELECT, qt6)
   AC_SUBST(MOC_DEFS)
 ])
 

@@ -17,6 +17,14 @@
 #include <string>
 
 using node::NodeContext;
+using wallet::CWallet;
+using wallet::GetWalletForJSONRPCRequest;
+
+// Helper function to convert CAmount to UniValue
+static UniValue ValueFromAmount(const CAmount& amount)
+{
+    return FormatMoney(amount);
+}
 
 // Fiat purchase order structure
 struct FiatPurchaseOrder {
@@ -128,9 +136,11 @@ static RPCHelpMan buywithfiat()
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid address");
         }
     } else {
-        if (!pwallet->GetNewDestination(OutputType::LEGACY, "", userAddress)) {
+        auto dest_result = pwallet->GetNewDestination("");
+        if (!dest_result) {
             throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out");
         }
+        userAddress = *dest_result;
     }
     
     // Calculate crypto amount (mock exchange rate: 1 BABA = $0.50)

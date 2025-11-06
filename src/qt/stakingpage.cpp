@@ -13,6 +13,7 @@
 #include <interfaces/node.h>
 #include <interfaces/wallet.h>
 #include <util/system.h>
+#include <univalue.h>
 
 #include <QApplication>
 #include <QGroupBox>
@@ -263,10 +264,10 @@ void StakingPage::updateStakingStatus()
         
         if (node.tryGetStakingInfo(stakingInfo)) {
             bool stakingEnabled = stakingInfo["enabled"].get_bool();
-            CAmount totalStaked = stakingInfo["totalstaked"].get_int64();
-            CAmount networkStake = stakingInfo["networkstake"].get_int64();
+            CAmount totalStaked = stakingInfo["totalstaked"].getInt<int64_t>();
+            CAmount networkStake = stakingInfo["networkstake"].getInt<int64_t>();
             double stakingWeight = stakingInfo["weight"].get_real();
-            int64_t expectedTime = stakingInfo["expectedtime"].get_int64();
+            int64_t expectedTime = stakingInfo["expectedtime"].getInt<int64_t>();
             double difficulty = stakingInfo["difficulty"].get_real();
             
             // Update status label and styling
@@ -296,7 +297,7 @@ void StakingPage::updateStakingStatus()
             stakingWeightLabel->setText(tr("Staking Weight: %1%").arg(QString::number(stakingWeight, 'f', 2)));
             
             if (expectedTime > 0) {
-                QString timeStr = GUIUtil::formatDurationStr(expectedTime);
+                QString timeStr = GUIUtil::formatDurationStr(std::chrono::seconds(expectedTime));
                 expectedTimeLabel->setText(tr("Expected Time: %1").arg(timeStr));
             } else {
                 expectedTimeLabel->setText(tr("Expected Time: Unknown"));
@@ -391,9 +392,9 @@ void StakingPage::updateValidatorsList()
                 validatorsTable->insertRow(i);
                 
                 QString pubkey = QString::fromStdString(validator["pubkey"].get_str()).left(16) + "...";
-                CAmount stakeAmount = validator["stake"].get_int64();
+                CAmount stakeAmount = validator["stake"].getInt<int64_t>();
                 QString status = QString::fromStdString(validator["status"].get_str());
-                int64_t lastActive = validator["lastactive"].get_int64();
+                int64_t lastActive = validator["lastactive"].getInt<int64_t>();
                 
                 validatorsTable->setItem(i, 0, new QTableWidgetItem(pubkey));
                 validatorsTable->setItem(i, 1, new QTableWidgetItem(
@@ -530,7 +531,10 @@ void StakingPage::showStakingSuccess(const QString& message)
 void StakingPage::onStakingReward(const QString& amount, const QString& txid)
 {
     // Handle staking reward notification
-    totalEarnings += BitcoinUnits::parse(m_display_unit, amount);
+    CAmount parsedAmount;
+    if (BitcoinUnits::parse(m_display_unit, amount, &parsedAmount)) {
+        totalEarnings += parsedAmount;
+    }
     updateEarningsDisplay();
     
     Q_EMIT stakingRewardReceived(amount, txid);

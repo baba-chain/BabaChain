@@ -7,6 +7,7 @@
 #include <qt/clientmodel.h>
 #include <interfaces/node.h>
 #include <util/system.h>
+#include <validation.h>
 
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -34,7 +35,7 @@ AutoBootstrapManager::AutoBootstrapManager(QObject* parent)
       statusTimer(nullptr),
       isBootstrapActive(false),
       autoBootstrapEnabled(true),
-      bootstrapProgress(0),
+      m_bootstrapProgress(0),
       clientModel(nullptr)
 {
     networkManager = new QNetworkAccessManager(this);
@@ -61,6 +62,49 @@ AutoBootstrapManager::~AutoBootstrapManager()
 void AutoBootstrapManager::setClientModel(ClientModel* clientModel)
 {
     this->clientModel = clientModel;
+    
+    // Connect to ClientModel signals for comprehensive progress tracking
+    if (clientModel) {
+        // Track verification progress during bootstrap
+        connect(clientModel, &ClientModel::numBlocksChanged,
+                this, [this, clientModel](int count, const QDateTime& blockDate, const QString& blockHash, 
+                             double nVerificationProgress, bool header, SynchronizationState sync_state) {
+            Q_UNUSED(count)
+            Q_UNUSED(blockDate)
+            Q_UNUSED(blockHash)
+            Q_UNUSED(sync_state)
+            if (!header && isBootstrapActive) {
+                m_bootstrapProgress = static_cast<int>(nVerificationProgress * 100);
+                Q_EMIT bootstrapProgress(m_bootstrapProgress);
+                
+                // Check if bootstrap is complete based on verification progress
+                if (nVerificationProgress >= 1.0 && !clientModel->node().isInitialBlockDownload()) {
+                    isBootstrapActive = false;
+                    statusTimer->stop();
+                    cleanupBootstrapFiles();
+                    Q_EMIT bootstrapFinished(true);
+                }
+            }
+        });
+        
+        // Monitor network connectivity for bootstrap reliability
+        connect(clientModel, &ClientModel::numConnectionsChanged,
+                this, [this](int count) {
+            if (isBootstrapActive && count == 0) {
+                // Lost all connections during bootstrap - this might affect download
+                Q_EMIT bootstrapError(tr("Network connection lost during bootstrap"));
+            }
+        });
+        
+        // Monitor network activity changes
+        connect(clientModel, &ClientModel::networkActiveChanged,
+                this, [this](bool networkActive) {
+            if (isBootstrapActive && !networkActive) {
+                // Network became inactive during bootstrap
+                Q_EMIT bootstrapError(tr("Network became inactive during bootstrap"));
+            }
+        });
+    }
 }
 
 void AutoBootstrapManager::startBootstrap()
@@ -69,13 +113,19 @@ void AutoBootstrapManager::startBootstrap()
         return;
     }
     
-    // Check if bootstrap is needed
+    // Check if bootstrap is needed using ClientModel API
     if (!clientModel->node().isInitialBlockDownload()) {
         return; // Already synced
     }
     
-    // Check available disk space
-    QString dataDir = QString::fromStdString(gArgs.GetDataDirNet().string());
+    // Check network connectivity before starting
+    if (clientModel->getNumConnections() == 0) {
+        Q_EMIT bootstrapError(tr("No network connections available for bootstrap"));
+        return;
+    }
+    
+    // Check available disk space using ClientModel API
+    QString dataDir = clientModel->dataDir();
     QDir dir(dataDir);
     if (!dir.exists()) {
         Q_EMIT bootstrapError(tr("Data directory does not exist"));
@@ -84,7 +134,7 @@ void AutoBootstrapManager::startBootstrap()
     
     // Start bootstrap process
     isBootstrapActive = true;
-    bootstrapProgress = 0;
+    m_bootstrapProgress = 0;
     
     Q_EMIT bootstrapStarted();
     
@@ -111,7 +161,7 @@ void AutoBootstrapManager::stopBootstrap()
     }
     
     isBootstrapActive = false;
-    bootstrapProgress = 0;
+    m_bootstrapProgress = 0;
 }
 
 void AutoBootstrapManager::checkBootstrapStatus()
@@ -120,7 +170,7 @@ void AutoBootstrapManager::checkBootstrapStatus()
         return;
     }
     
-    // Check if node is still in IBD
+    // Check if node is still in IBD using available ClientModel API
     if (!clientModel->node().isInitialBlockDownload()) {
         // Bootstrap completed successfully
         isBootstrapActive = false;
@@ -130,10 +180,8 @@ void AutoBootstrapManager::checkBootstrapStatus()
         return;
     }
     
-    // Update progress based on sync status
-    double syncProgress = clientModel->getVerificationProgress();
-    bootstrapProgress = static_cast<int>(syncProgress * 100);
-    Q_EMIT bootstrapProgress(bootstrapProgress);
+    // Progress is now updated via numBlocksChanged signal connection
+    // The verification progress is provided as a parameter in the signal
 }
 
 void AutoBootstrapManager::downloadBootstrapData()
@@ -148,7 +196,7 @@ void AutoBootstrapManager::downloadBootstrapData()
     bootstrapFilePath = tempDir + "/babachain_bootstrap.tar.gz";
     
     // Start download
-    QNetworkRequest request(QUrl(currentBootstrapSource));
+    QNetworkRequest request((QUrl(currentBootstrapSource)));
     request.setRawHeader("User-Agent", "BabaChain-Qt/1.0");
     
     currentDownload = networkManager->get(request);
@@ -180,8 +228,8 @@ void AutoBootstrapManager::onBootstrapDownloadProgress(qint64 bytesReceived, qin
 {
     if (bytesTotal > 0) {
         int progress = static_cast<int>((bytesReceived * 50) / bytesTotal); // 50% for download
-        bootstrapProgress = progress;
-        Q_EMIT bootstrapProgress(bootstrapProgress);
+        m_bootstrapProgress = progress;
+        Q_EMIT bootstrapProgress(m_bootstrapProgress);
     }
 }
 
@@ -229,8 +277,8 @@ void AutoBootstrapManager::onBootstrapDownloadFinished()
 void AutoBootstrapManager::onBootstrapVerificationFinished()
 {
     // This would be called after verification is complete
-    bootstrapProgress = 100;
-    Q_EMIT bootstrapProgress(bootstrapProgress);
+    m_bootstrapProgress = 100;
+    Q_EMIT bootstrapProgress(m_bootstrapProgress);
     Q_EMIT bootstrapFinished(true);
 }
 
@@ -303,8 +351,8 @@ void AutoBootstrapManager::applyBootstrapData(const QString& filePath)
     // 4. Monitor the sync process
     
     // For now, we'll just simulate the process
-    bootstrapProgress = 75;
-    Q_EMIT bootstrapProgress(bootstrapProgress);
+    m_bootstrapProgress = 75;
+    Q_EMIT bootstrapProgress(m_bootstrapProgress);
     
     // Simulate processing time
     QTimer::singleShot(5000, this, &AutoBootstrapManager::onBootstrapVerificationFinished);

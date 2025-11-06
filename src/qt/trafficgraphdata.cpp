@@ -150,7 +150,7 @@ TrafficGraphData::SampleQueue TrafficGraphData::sumEach2Samples(const SampleQueu
 TrafficGraphData::SampleQueue TrafficGraphData::sumEach3Samples(const SampleQueue& rangeQueue, GraphRange range)
 {
     SampleQueue result;
-    int lastUnusedSample = std::min(rangeQueue.size() - 1, DESIRED_DATA_SAMPLES - 1);
+    int lastUnusedSample = std::min(static_cast<int>(rangeQueue.size() - 1), DESIRED_DATA_SAMPLES - 1);
 
     // use stash first
     SampleQueue& stashQueue = sampleStash[range];

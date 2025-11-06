@@ -888,8 +888,8 @@ case $host in
            BDB_LIBS="-L$bdb_prefix/lib -ldb_cxx-4.8"
          fi
 
-         if $BREW list --versions qt@5 >/dev/null; then
-           export PKG_CONFIG_PATH="$($BREW --prefix qt@5 2>/dev/null)/lib/pkgconfig:$PKG_CONFIG_PATH"
+         if $BREW list --versions qt >/dev/null; then
+           export PKG_CONFIG_PATH="$($BREW --prefix qt 2>/dev/null)/lib/pkgconfig:$PKG_CONFIG_PATH"
          fi
 
          gmp_prefix=$($BREW --prefix gmp 2>/dev/null)
@@ -1422,7 +1422,7 @@ else
     BITCOIN_QT_INIT
 
     dnl sets $bitcoin_enable_qt, $bitcoin_enable_qt_test, $bitcoin_enable_qt_dbus
-    BITCOIN_QT_CONFIGURE([5.11.3])
+    BITCOIN_QT_CONFIGURE([6.0.0])
 
     dnl Keep a copy of the original $QT_INCLUDES and use it when invoking qt's moc
     QT_INCLUDES_UNSUPPRESSED=$QT_INCLUDES

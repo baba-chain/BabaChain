@@ -584,7 +584,9 @@ libbitcoin_node_a_SOURCES = \
   rpc/blockchain.cpp \
   rpc/coinjoin.cpp \
   rpc/evo.cpp \
+  rpc/exchange.cpp \
   rpc/fees.cpp \
+  rpc/fiatonramp.cpp \
   rpc/index_util.cpp \
   rpc/masternode.cpp \
   rpc/mempool.cpp \
@@ -598,6 +600,7 @@ libbitcoin_node_a_SOURCES = \
   rpc/server.cpp \
   rpc/server_util.cpp \
   rpc/signmessage.cpp \
+  rpc/staking.cpp \
   rpc/txoutproof.cpp \
   script/sigcache.cpp \
   shutdown.cpp \

@@ -785,7 +785,7 @@ void BitcoinGUI::createToolBars()
         QVBoxLayout* walletSelectorLayout = new QVBoxLayout(this);
         walletSelectorLayout->addWidget(m_wallet_selector);
         walletSelectorLayout->setSpacing(0);
-        walletSelectorLayout->setMargin(0);
+        walletSelectorLayout->setContentsMargins(0, 0, 0, 0);
         walletSelectorLayout->setContentsMargins(5, 0, 5, 0);
         QWidget* walletSelector = new QWidget(this);
         walletSelector->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);

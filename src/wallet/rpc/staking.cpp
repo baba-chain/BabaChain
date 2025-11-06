@@ -85,7 +85,7 @@ static RPCHelpMan getstakingbalance()
     };
 }
 
-Span<const CRPCCommand> GetStakingRPCCommands()
+Span<const CRPCCommand> GetWalletStakingRPCCommands()
 {
     static const CRPCCommand commands[] = {
         {"wallet", &setstaking},
