@@ -32,7 +32,7 @@ BabaChain artık **Ubuntu Linux**, **macOS** ve **Windows** işletim sistemlerin
 ### Ubuntu Linux - Otomatik Kurulum
 ```bash
 # Repository'yi klonla
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 
 # Otomatik kurulum scriptini çalıştır
@@ -43,7 +43,7 @@ chmod +x scripts/ubuntu-deploy.sh
 ### macOS - Otomatik Kurulum
 ```bash
 # Repository'yi klonla
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 
 # Otomatik kurulum scriptini çalıştır
@@ -55,7 +55,7 @@ chmod +x scripts/macos-deploy.sh
 ```powershell
 # PowerShell'i yönetici olarak açın
 # Repository'yi klonla
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 
 # Otomatik kurulum scriptini çalıştır
@@ -263,7 +263,7 @@ BabaChain artık tüm major platformlarda çalışıyor! Hangi işletim sistemin
 - **Mainnet**: 1 Aralık 2025
 
 **🔗 Destek:**
-- GitHub: https://github.com/BabaChain/BabaChain
+- GitHub: https://github.com/Baba-Chain/BabaChain
 - Discord: https://discord.gg/babachain
 - Telegram: https://t.me/babachainofficial
 

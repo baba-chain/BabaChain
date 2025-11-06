@@ -114,7 +114,7 @@ print_status "📥 BabaChain kaynak kodu indiriliyor..."
 sudo -u babachain bash << 'EOF'
 cd /home/babachain
 if [ ! -d "BabaChain" ]; then
-    git clone https://github.com/BabaChain/BabaChain.git
+    git clone https://github.com/Baba-Chain/BabaChain.git
 else
     cd BabaChain
     git pull origin main

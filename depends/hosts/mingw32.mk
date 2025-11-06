@@ -5,6 +5,13 @@ endif
 mingw32_CFLAGS=-pipe -std=$(C_STANDARD)
 mingw32_CXXFLAGS=-pipe -std=$(CXX_STANDARD)
 
+# Windows-specific flags
+mingw32_CPPFLAGS=-DWIN32 -D_WIN32_WINNT=0x0601 -D_WIN32_IE=0x0501 -DWIN32_LEAN_AND_MEAN -DNOMINMAX
+mingw32_LDFLAGS=-Wl,--major-subsystem-version -Wl,6 -Wl,--minor-subsystem-version -Wl,1
+
+# Static linking for Windows
+mingw32_LDFLAGS += -static-libgcc -static-libstdc++
+
 ifneq ($(LTO),)
 mingw32_AR = $(host_toolchain)gcc-ar
 mingw32_NM = $(host_toolchain)gcc-nm

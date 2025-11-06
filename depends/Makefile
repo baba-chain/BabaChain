@@ -58,6 +58,8 @@ BASEDIR = $(CURDIR)
 HASH_LENGTH:=11
 DOWNLOAD_CONNECT_TIMEOUT:=30
 DOWNLOAD_RETRIES:=3
+DOWNLOAD_MAX_RETRIES:=5
+DOWNLOAD_RETRY_DELAY:=2
 HOST_ID_SALT ?= salt
 BUILD_ID_SALT ?= salt
 
@@ -259,13 +261,25 @@ define check_or_remove_cached
   mkdir -p $(BASE_CACHE)/$(host)/$(package) && cd $(BASE_CACHE)/$(host)/$(package); \
   $(build_SHA256SUM) -c $($(package)_cached_checksum) >/dev/null 2>/dev/null || \
   ( rm -f $($(package)_cached_checksum); \
-    if test -f "$($(package)_cached)"; then echo "Checksum mismatch for $(package). Forcing rebuild.."; rm -f $($(package)_cached_checksum) $($(package)_cached); fi )
+    if test -f "$($(package)_cached)"; then \
+      echo "ERROR: Checksum mismatch for $(package). This could indicate:"; \
+      echo "  1. Corrupted cache file"; \
+      echo "  2. Package definition changed"; \
+      echo "  3. Network/storage issues"; \
+      echo "Forcing rebuild of $(package)..."; \
+      rm -f $($(package)_cached_checksum) $($(package)_cached); \
+    fi )
 endef
 
 define check_or_remove_sources
   mkdir -p $($(package)_source_dir); cd $($(package)_source_dir); \
   test -f $($(package)_fetched) && ( $(build_SHA256SUM) -c $($(package)_fetched) >/dev/null 2>/dev/null || \
-    ( echo "Checksum missing or mismatched for $(package) source. Forcing re-download."; \
+    ( echo "ERROR: Source checksum verification failed for $(package)"; \
+      echo "This could indicate:"; \
+      echo "  1. Corrupted source files"; \
+      echo "  2. Incomplete download"; \
+      echo "  3. Package version/checksum mismatch"; \
+      echo "Forcing re-download of $(package) sources..."; \
       rm -f $($(package)_all_sources) $($(1)_fetched))) || true
 endef
 

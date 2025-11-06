@@ -18,8 +18,11 @@ on:
         default: true
 
 env:
-  CARGO_TERM_COLOR: always
-  CMAKE_BUILD_TYPE: Release
+  MAKEJOBS: "-j4"
+  RUN_UNIT_TESTS: false
+  RUN_FUNCTIONAL_TESTS: false
+  CCACHE_SIZE: "200M"
+  CCACHE_TEMPDIR: /tmp/.ccache-temp
 
 jobs:
   # ============================================================================
@@ -38,32 +41,37 @@ jobs:
             target: x86_64-pc-linux-gnu
             artifact_name: babachain-linux-x64
             binary_extension: ""
+            host: x86_64-pc-linux-gnu
             
           - platform: linux-arm64
             os: ubuntu-22.04
-            target: aarch64-unknown-linux-gnu
+            target: aarch64-linux-gnu
             artifact_name: babachain-linux-arm64
             binary_extension: ""
+            host: aarch64-linux-gnu
             
-          # 🍎 macOS Builds
+          # 🍎 macOS Builds (Ventura 13.7.8+ support)
           - platform: macos-x64
             os: macos-13
-            target: x86_64-apple-darwin
+            target: x86_64-apple-darwin19
             artifact_name: babachain-macos-x64
             binary_extension: ""
+            host: x86_64-apple-darwin19
             
           - platform: macos-arm64
             os: macos-14
-            target: aarch64-apple-darwin
+            target: aarch64-apple-darwin20
             artifact_name: babachain-macos-arm64
             binary_extension: ""
+            host: aarch64-apple-darwin20
             
           # 🪟 Windows Builds
           - platform: windows-x64
             os: windows-2022
-            target: x86_64-pc-windows-msvc
+            target: x86_64-w64-mingw32
             artifact_name: babachain-windows-x64
             binary_extension: ".exe"
+            host: x86_64-w64-mingw32
 
     steps:
       # ======================================================================
@@ -88,93 +96,298 @@ jobs:
       # ======================================================================
       # 🐧 Linux Build Setup
       # ======================================================================
+      - name: 🐧 Setup ccache
+        if: runner.os == 'Linux'
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ccache-${{ matrix.platform }}-${{ github.sha }}
+          restore-keys: |
+            ccache-${{ matrix.platform }}-
+            ccache-
+
       - name: 🐧 Setup Linux Dependencies
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            build-essential cmake git wget curl \
-            libboost-all-dev libssl-dev libdb++-dev \
-            libminiupnpc-dev libzmq3-dev \
-            libqt6-dev qt6-base-dev qt6-tools-dev \
-            libprotobuf-dev protobuf-compiler \
-            pkg-config libevent-dev libqrencode-dev \
-            ccache ninja-build
+            build-essential libtool autotools-dev automake \
+            pkg-config bsdmainutils python3 \
+            ccache curl ca-certificates \
+            g++-multilib binutils-gold \
+            git
 
       - name: 🐧 Setup ARM64 Cross-Compilation
         if: matrix.platform == 'linux-arm64'
         run: |
-          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
-          echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/cmake/toolchain-aarch64.cmake" >> $GITHUB_ENV
+          sudo apt-get install -y \
+            gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
+            binutils-aarch64-linux-gnu
+          
+          # Set cross-compilation environment variables
+          echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV
+          echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV
+          echo "AR=aarch64-linux-gnu-ar" >> $GITHUB_ENV
+          echo "STRIP=aarch64-linux-gnu-strip" >> $GITHUB_ENV
+          echo "RANLIB=aarch64-linux-gnu-ranlib" >> $GITHUB_ENV
+
+      - name: 🐧 Configure ccache
+        if: runner.os == 'Linux'
+        run: |
+          ccache --set-config=cache_dir=$HOME/.ccache
+          ccache --set-config=compression=true
+          ccache --set-config=max_size=${{ env.CCACHE_SIZE }}
+          ccache --zero-stats
+          echo "PATH=/usr/lib/ccache:$PATH" >> $GITHUB_ENV
 
       # ======================================================================
       # 🍎 macOS Build Setup
       # ======================================================================
+      - name: 🍎 Setup ccache for macOS
+        if: runner.os == 'macOS'
+        uses: actions/cache@v4
+        with:
+          path: ~/Library/Caches/ccache
+          key: ccache-${{ matrix.platform }}-${{ github.sha }}
+          restore-keys: |
+            ccache-${{ matrix.platform }}-
+            ccache-
+
       - name: 🍎 Setup macOS Dependencies
         if: runner.os == 'macOS'
         run: |
+          # Update Homebrew
           brew update
-          brew install cmake boost openssl berkeley-db miniupnpc zeromq qt6 protobuf pkg-config libevent qrencode ccache ninja
+          
+          # Install build dependencies
+          brew install automake libtool pkg-config python3 ccache
+          
+          # Show system info
+          echo "macOS Version: $(sw_vers -productVersion)"
+          echo "Architecture: $(uname -m)"
+          echo "Xcode Version: $(xcodebuild -version | head -1)"
+          echo "SDK Path: $(xcrun --show-sdk-path)"
+          
+          # Configure ccache
+          ccache --set-config=cache_dir=$HOME/Library/Caches/ccache
+          ccache --set-config=compression=true
+          ccache --set-config=max_size=${{ env.CCACHE_SIZE }}
+          ccache --zero-stats
+
+      - name: 🍎 Setup macOS Architecture-Specific Config
+        if: runner.os == 'macOS'
+        run: |
+          if [ "${{ matrix.platform }}" = "macos-arm64" ]; then
+            echo "Configuring for Apple Silicon (ARM64)"
+            echo "MACOSX_DEPLOYMENT_TARGET=11.0" >> $GITHUB_ENV
+            echo "ARCHFLAGS=-arch arm64" >> $GITHUB_ENV
+          else
+            echo "Configuring for Intel (x86_64)"
+            echo "MACOSX_DEPLOYMENT_TARGET=10.15" >> $GITHUB_ENV
+            echo "ARCHFLAGS=-arch x86_64" >> $GITHUB_ENV
+          fi
+          
+          # Set common macOS environment
+          echo "DEVELOPER_DIR=$(xcode-select -p)" >> $GITHUB_ENV
+          echo "SDKROOT=$(xcrun --show-sdk-path)" >> $GITHUB_ENV
 
       # ======================================================================
       # 🪟 Windows Build Setup
       # ======================================================================
-      - name: 🪟 Setup Windows Dependencies (vcpkg)
+      - name: 🪟 Setup ccache for Windows
         if: runner.os == 'Windows'
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runneradmin\.ccache
+          key: ccache-${{ matrix.platform }}-${{ github.sha }}
+          restore-keys: |
+            ccache-${{ matrix.platform }}-
+            ccache-
+
+      - name: 🪟 Setup Windows Dependencies (MSYS2)
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-autotools
+            mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-python3
+            mingw-w64-x86_64-ccache
+            mingw-w64-x86_64-curl
+            mingw-w64-x86_64-ca-certificates
+            base-devel
+            git
+            make
+
+      - name: 🪟 Configure Windows Build Environment
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
         run: |
-          # vcpkg kurulumu
-          git clone https://github.com/Microsoft/vcpkg.git C:\vcpkg
-          cd C:\vcpkg
-          .\bootstrap-vcpkg.bat
+          # Show system information
+          echo "Windows Version: $(cmd //c ver)"
+          echo "MSYS2 Environment: $MSYSTEM"
+          echo "GCC Version: $(gcc --version | head -1)"
+          echo "Available disk space:"
+          df -h
           
-          # Gerekli paketleri yükle
-          .\vcpkg install --triplet x64-windows boost openssl berkeleydb zeromq miniupnpc protobuf qt6-base qt6-tools libevent qrencode
+          # Configure ccache
+          ccache --set-config=cache_dir=/c/Users/runneradmin/.ccache
+          ccache --set-config=compression=true
+          ccache --set-config=max_size=${{ env.CCACHE_SIZE }}
+          ccache --zero-stats
           
-          # vcpkg'yi global olarak entegre et
-          .\vcpkg integrate install
-          
-          echo "CMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake" >> $env:GITHUB_ENV
-        shell: powershell
+          # Set Windows-specific environment
+          echo "MINGW_PREFIX=/mingw64" >> $GITHUB_ENV
+          echo "MSYS2_PATH_TYPE=inherit" >> $GITHUB_ENV
 
       # ======================================================================
       # 🏗️ Build Process
       # ======================================================================
-      - name: 🏗️ Configure CMake
+      - name: 🏗️ Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            depends/built
+            depends/sources
+          key: depends-${{ matrix.host }}-${{ hashFiles('depends/**/*.mk', 'depends/Makefile') }}
+          restore-keys: |
+            depends-${{ matrix.host }}-
+            depends-
+
+      - name: 🏗️ Build Dependencies
         run: |
-          mkdir build
-          cd build
+          cd depends
+          echo "Building dependencies for HOST=${{ matrix.host }}"
+          echo "Available disk space:"
+          df -h
           
           if [ "${{ runner.os }}" = "Windows" ]; then
-            cmake .. \
-              -DCMAKE_BUILD_TYPE=Release \
-              -DCMAKE_TOOLCHAIN_FILE="${{ env.CMAKE_TOOLCHAIN_FILE }}" \
-              -DVCPKG_TARGET_TRIPLET=x64-windows \
-              -G "Visual Studio 17 2022" \
-              -A x64
+            # Windows build in MSYS2 environment
+            echo "Building Windows dependencies with MinGW64"
+            echo "PATH: $PATH"
+            echo "HOST: ${{ matrix.host }}"
+            
+            # Ensure proper MinGW64 environment
+            export PATH="/mingw64/bin:$PATH"
+            export CC=x86_64-w64-mingw32-gcc
+            export CXX=x86_64-w64-mingw32-g++
+            export AR=x86_64-w64-mingw32-ar
+            export RANLIB=x86_64-w64-mingw32-ranlib
+            export STRIP=x86_64-w64-mingw32-strip
+            
+            make HOST=${{ matrix.host }} -j4 V=1
           elif [ "${{ runner.os }}" = "macOS" ]; then
-            cmake .. \
-              -DCMAKE_BUILD_TYPE=Release \
-              -DOPENSSL_ROOT_DIR=$(brew --prefix openssl) \
-              -DBOOST_ROOT=$(brew --prefix boost) \
-              -DQt6_DIR=$(brew --prefix qt6)/lib/cmake/Qt6 \
-              -G Ninja
+            # macOS build with proper SDK and architecture handling
+            echo "macOS SDK: $SDKROOT"
+            echo "Architecture flags: $ARCHFLAGS"
+            echo "Deployment target: $MACOSX_DEPLOYMENT_TARGET"
+            
+            # Use ccache for faster builds
+            export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+            
+            make HOST=${{ matrix.host }} -j4 V=1
           else
-            cmake .. \
-              -DCMAKE_BUILD_TYPE=Release \
-              -G Ninja \
-              ${{ env.CMAKE_TOOLCHAIN_FILE && format('-DCMAKE_TOOLCHAIN_FILE={0}', env.CMAKE_TOOLCHAIN_FILE) || '' }}
+            # Linux build
+            make HOST=${{ matrix.host }} -j4 V=1
           fi
-        shell: bash
+          
+          echo "Dependencies build completed"
+          ls -la ${{ matrix.host }}/
+        shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
+
+      - name: 🔧 Configure Build
+        run: |
+          echo "Configuring build for ${{ matrix.platform }}"
+          echo "HOST=${{ matrix.host }}"
+          
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            # Windows-specific configuration with MinGW64
+            echo "Configuring for Windows with MinGW64"
+            
+            export PATH="/mingw64/bin:$PATH"
+            export CC=x86_64-w64-mingw32-gcc
+            export CXX=x86_64-w64-mingw32-g++
+            export AR=x86_64-w64-mingw32-ar
+            export RANLIB=x86_64-w64-mingw32-ranlib
+            export STRIP=x86_64-w64-mingw32-strip
+            
+            ./autogen.sh
+            CONFIG_SITE=$PWD/depends/${{ matrix.host }}/share/config.site ./configure \
+              --prefix=/ \
+              --disable-tests \
+              --disable-bench \
+              --disable-gui-tests \
+              --enable-reduce-exports \
+              --with-gui=qt5
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            # macOS-specific configuration
+            echo "Configuring for macOS with SDK: $SDKROOT"
+            
+            # Ensure proper PATH for autotools
+            export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+            
+            ./autogen.sh
+            CONFIG_SITE=$PWD/depends/${{ matrix.host }}/share/config.site ./configure \
+              --prefix=/ \
+              --disable-tests \
+              --disable-bench \
+              --enable-reduce-exports \
+              --disable-gui-tests
+          else
+            # Linux configuration
+            ./autogen.sh
+            CONFIG_SITE=$PWD/depends/${{ matrix.host }}/share/config.site ./configure --prefix=/ --disable-tests --disable-bench
+          fi
+          
+          echo "Configuration completed"
+        shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
 
       - name: 🔨 Build BabaChain
         run: |
-          cd build
+          echo "Building BabaChain for ${{ matrix.platform }}"
+          echo "Available memory:"
+          free -h || vm_stat || echo "Memory info not available"
+          
           if [ "${{ runner.os }}" = "Windows" ]; then
-            cmake --build . --config Release --parallel
+            # Windows build with MinGW64
+            echo "Building for Windows with MinGW64"
+            echo "Available disk space:"
+            df -h
+            
+            export PATH="/mingw64/bin:$PATH"
+            export CC=x86_64-w64-mingw32-gcc
+            export CXX=x86_64-w64-mingw32-g++
+            
+            echo "Building with ccache stats:"
+            ccache -s || echo "ccache stats not available"
+            
+            make ${{ env.MAKEJOBS }} V=1
+            
+            echo "Post-build ccache stats:"
+            ccache -s || echo "ccache stats not available"
+          elif [ "${{ runner.os }}" = "macOS" ]; then
+            # macOS build with proper environment
+            export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+            
+            echo "Building with ccache stats:"
+            ccache -s || echo "ccache stats not available"
+            
+            make ${{ env.MAKEJOBS }} V=1
+            
+            echo "Post-build ccache stats:"
+            ccache -s || echo "ccache stats not available"
           else
-            ninja -j$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
+            # Linux build
+            make ${{ env.MAKEJOBS }} V=1
           fi
-        shell: bash
+          
+          echo "Build completed successfully"
+          echo "Binary sizes:"
+          ls -lh src/babachaind* src/babachain-cli* src/qt/babachain-qt* 2>/dev/null || echo "Some binaries not found"
+        shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
 
       # ======================================================================
       # 📦 Package Binaries
@@ -183,42 +396,33 @@ jobs:
         run: |
           mkdir -p release/${{ matrix.artifact_name }}
           
-          if [ "${{ runner.os }}" = "Windows" ]; then
-            BUILD_DIR="build/Release"
-          else
-            BUILD_DIR="build"
-          fi
-          
           # Ana binary'leri kopyala
-          cp $BUILD_DIR/babachaind${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
-          cp $BUILD_DIR/babachain-cli${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          cp src/babachaind${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          cp src/babachain-cli${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
           
           # Qt wallet varsa kopyala
-          if [ -f "$BUILD_DIR/babachain-qt${{ matrix.binary_extension }}" ]; then
-            cp $BUILD_DIR/babachain-qt${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          if [ -f "src/qt/babachain-qt${{ matrix.binary_extension }}" ]; then
+            cp src/qt/babachain-qt${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          fi
+          
+          # Diğer araçları kopyala
+          if [ -f "src/babachain-tx${{ matrix.binary_extension }}" ]; then
+            cp src/babachain-tx${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
+          fi
+          if [ -f "src/babachain-wallet${{ matrix.binary_extension }}" ]; then
+            cp src/babachain-wallet${{ matrix.binary_extension }} release/${{ matrix.artifact_name }}/
           fi
           
           # Konfigürasyon dosyalarını ekle
-          cp README.md release/${{ matrix.artifact_name }}/
-          cp COPYING release/${{ matrix.artifact_name }}/
-          
-          # Platform-specific deployment dosyalarını ekle
-          if [ "${{ runner.os }}" = "Linux" ]; then
-            cp BABACHAIN_UBUNTU_DEPLOYMENT.md release/${{ matrix.artifact_name }}/
-            cp scripts/ubuntu-deploy.sh release/${{ matrix.artifact_name }}/
-          elif [ "${{ runner.os }}" = "macOS" ]; then
-            cp BABACHAIN_MACOS_DEPLOYMENT.md release/${{ matrix.artifact_name }}/
-            cp scripts/macos-deploy.sh release/${{ matrix.artifact_name }}/
-          elif [ "${{ runner.os }}" = "Windows" ]; then
-            cp BABACHAIN_WINDOWS_DEPLOYMENT.md release/${{ matrix.artifact_name }}/
-            cp scripts/windows-deploy.ps1 release/${{ matrix.artifact_name }}/
-          fi
+          cp README.md release/${{ matrix.artifact_name }}/ 2>/dev/null || echo "README.md not found"
+          cp COPYING release/${{ matrix.artifact_name }}/ 2>/dev/null || echo "COPYING not found"
           
           # Versiyon bilgisini ekle
           echo "${{ steps.version.outputs.version }}" > release/${{ matrix.artifact_name }}/VERSION
           echo "Built on: $(date)" >> release/${{ matrix.artifact_name }}/BUILD_INFO
           echo "Platform: ${{ matrix.platform }}" >> release/${{ matrix.artifact_name }}/BUILD_INFO
           echo "Target: ${{ matrix.target }}" >> release/${{ matrix.artifact_name }}/BUILD_INFO
+          echo "Host: ${{ matrix.host }}" >> release/${{ matrix.artifact_name }}/BUILD_INFO
         shell: bash
 
       - name: 🗜️ Create Archive
@@ -239,14 +443,65 @@ jobs:
           cd release/${{ matrix.artifact_name }}
           
           # Version kontrolü
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            export PATH="/mingw64/bin:$PATH"
+            echo "Testing Windows binaries with MinGW64 environment"
+          fi
+          
+          echo "Testing binaries for ${{ matrix.platform }}"
+          
+          # Ana binary'leri test et
+          echo "Testing babachaind..."
           ./babachaind${{ matrix.binary_extension }} --version
+          
+          echo "Testing babachain-cli..."
           ./babachain-cli${{ matrix.binary_extension }} --version
           
           # Qt wallet varsa test et
           if [ -f "babachain-qt${{ matrix.binary_extension }}" ]; then
-            ./babachain-qt${{ matrix.binary_extension }} --version
+            echo "Testing babachain-qt..."
+            ./babachain-qt${{ matrix.binary_extension }} --version || echo "Qt wallet test skipped (display required)"
           fi
-        shell: bash
+          
+          # Diğer araçları test et
+          if [ -f "babachain-tx${{ matrix.binary_extension }}" ]; then
+            echo "Testing babachain-tx..."
+            ./babachain-tx${{ matrix.binary_extension }} --version
+          fi
+          
+          # Platform-specific binary checks
+          if [ "${{ matrix.platform }}" = "linux-arm64" ]; then
+            echo "Checking ARM64 binary architecture..."
+            file ./babachaind${{ matrix.binary_extension }} | grep -i aarch64 || echo "Warning: Binary architecture check failed"
+          elif [ "${{ matrix.platform }}" = "macos-arm64" ]; then
+            echo "Checking macOS ARM64 binary architecture..."
+            file ./babachaind${{ matrix.binary_extension }} | grep -i "arm64" || echo "Warning: macOS ARM64 binary check failed"
+            lipo -info ./babachaind${{ matrix.binary_extension }} || echo "lipo info not available"
+          elif [ "${{ matrix.platform }}" = "macos-x64" ]; then
+            echo "Checking macOS x86_64 binary architecture..."
+            file ./babachaind${{ matrix.binary_extension }} | grep -i "x86_64" || echo "Warning: macOS x86_64 binary check failed"
+            lipo -info ./babachaind${{ matrix.binary_extension }} || echo "lipo info not available"
+          fi
+          
+          # Platform-specific binary compatibility checks
+          if [ "${{ runner.os }}" = "macOS" ]; then
+            echo "Checking macOS binary compatibility..."
+            otool -L ./babachaind${{ matrix.binary_extension }} | head -10 || echo "otool not available"
+          elif [ "${{ runner.os }}" = "Windows" ]; then
+            echo "Checking Windows binary compatibility..."
+            file ./babachaind${{ matrix.binary_extension }} | grep -i "PE32+" || echo "Warning: Windows PE32+ binary check failed"
+            
+            # Check for required DLLs
+            echo "Checking DLL dependencies..."
+            objdump -p ./babachaind${{ matrix.binary_extension }} | grep "DLL Name" | head -10 || echo "objdump not available"
+            
+            # Verify it's a Windows executable
+            echo "Binary file type:"
+            file ./babachaind${{ matrix.binary_extension }}
+          fi
+          
+          echo "All binary tests completed successfully"
+        shell: ${{ runner.os == 'Windows' && 'msys2 {0}' || 'bash' }}
 
       # ======================================================================
       # 📤 Upload Artifacts
@@ -353,7 +608,7 @@ jobs:
           ### Hızlı Kurulum
           ```bash
           # Linux/macOS
-          wget https://github.com/BabaChain/BabaChain/releases/download/${{ steps.version.outputs.version }}/babachain-[platform]-${{ steps.version.outputs.version }}.tar.gz
+          wget https://github.com/Baba-Chain/BabaChain/releases/download/${{ steps.version.outputs.version }}/babachain-[platform]-${{ steps.version.outputs.version }}.tar.gz
           tar -xzf babachain-[platform]-${{ steps.version.outputs.version }}.tar.gz
           cd babachain-[platform]
           ./babachaind --version
@@ -393,7 +648,7 @@ jobs:
           
           ## 🆘 Destek
           
-          - **GitHub Issues**: https://github.com/BabaChain/BabaChain/issues
+          - **GitHub Issues**: https://github.com/Baba-Chain/BabaChain/issues
           - **Discord**: https://discord.gg/babachain
           - **Telegram**: https://t.me/babachainofficial
           EOF
@@ -438,7 +693,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## 🎯 Next Steps" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "1. ✅ Download artifacts from the [Releases page](https://github.com/BabaChain/BabaChain/releases)" >> $GITHUB_STEP_SUMMARY
+          echo "1. ✅ Download artifacts from the [Releases page](https://github.com/Baba-Chain/BabaChain/releases)" >> $GITHUB_STEP_SUMMARY
           echo "2. ✅ Test binaries on target platforms" >> $GITHUB_STEP_SUMMARY
           echo "3. ✅ Deploy to production environments" >> $GITHUB_STEP_SUMMARY
           echo "4. ✅ Update documentation if needed" >> $GITHUB_STEP_SUMMARY

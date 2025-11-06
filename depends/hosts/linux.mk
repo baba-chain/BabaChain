@@ -39,4 +39,20 @@ i686_linux_CXX=$(default_host_CXX) -m32
 x86_64_linux_CC=$(default_host_CC) -m64
 x86_64_linux_CXX=$(default_host_CXX) -m64
 endif
+
+# ARM64 cross-compilation support
+aarch64_linux_CC=$(default_host_CC)
+aarch64_linux_CXX=$(default_host_CXX)
+aarch64_linux_AR=$(default_host_AR)
+aarch64_linux_RANLIB=$(default_host_RANLIB)
+aarch64_linux_NM=$(default_host_NM)
+aarch64_linux_STRIP=$(default_host_STRIP)
+
+# ARM32 cross-compilation support
+arm_linux_CC=$(default_host_CC)
+arm_linux_CXX=$(default_host_CXX)
+arm_linux_AR=$(default_host_AR)
+arm_linux_RANLIB=$(default_host_RANLIB)
+arm_linux_NM=$(default_host_NM)
+arm_linux_STRIP=$(default_host_STRIP)
 linux_cmake_system=Linux

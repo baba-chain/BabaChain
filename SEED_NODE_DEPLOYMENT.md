@@ -171,7 +171,7 @@ cp ~/.babachain/babachain.conf ~/backup/babachain-$(date +%Y%m%d).conf
 
 ## Support
 For support and questions:
-- GitHub: https://github.com/BabaChain/BabaChain
+- GitHub: https://github.com/Baba-Chain/BabaChain
 - Discord: https://discord.gg/babachain
 - Email: support@babachain.org
 

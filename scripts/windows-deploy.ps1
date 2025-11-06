@@ -128,7 +128,7 @@ Write-Success "Bağımlılıklar yüklendi"
 Write-Status "📥 BabaChain kaynak kodu indiriliyor..."
 Set-Location C:\
 if (!(Test-Path "C:\BabaChain")) {
-    git clone https://github.com/BabaChain/BabaChain.git
+    git clone https://github.com/Baba-Chain/BabaChain.git
     Write-Success "Kaynak kod indirildi"
 } else {
     Write-Warning "Kaynak kod zaten mevcut, güncelleniyor..."
@@ -374,7 +374,7 @@ Write-Host "  4. BabaChain token'larınızı bu adrese gönderin"
 Write-Host "  5. Staking'e başlayın!"
 Write-Host ""
 Write-Host "🔗 DESTEK:"
-Write-Host "  GitHub: https://github.com/BabaChain/BabaChain"
+Write-Host "  GitHub: https://github.com/Baba-Chain/BabaChain"
 Write-Host "  Discord: https://discord.gg/babachain"
 Write-Host "  Telegram: https://t.me/babachainofficial"
 Write-Host ""

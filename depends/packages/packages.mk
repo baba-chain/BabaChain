@@ -9,6 +9,12 @@ qrencode_android_packages = qrencode
 qrencode_darwin_packages = qrencode
 qrencode_mingw32_packages = qrencode
 
+# Architecture-specific packages
+aarch64_linux_packages = $(qt_linux_packages) $(qrencode_linux_packages)
+x86_64_linux_packages = $(qt_linux_packages) $(qrencode_linux_packages)
+aarch64_darwin_packages = $(qt_darwin_packages) $(qrencode_darwin_packages)
+x86_64_darwin_packages = $(qt_darwin_packages) $(qrencode_darwin_packages)
+
 qt_linux_packages:=qt expat libxcb xcb_proto libXau xproto freetype fontconfig libxkbcommon libxcb_util libxcb_util_render libxcb_util_keysyms libxcb_util_image libxcb_util_wm
 qt_android_packages=qt
 qt_darwin_packages=qt

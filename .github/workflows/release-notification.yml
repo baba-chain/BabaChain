@@ -58,7 +58,7 @@ jobs:
             📥 [Download Release](${{ github.event.release.html_url }})
             
             Join our community:
-            • [GitHub](https://github.com/BabaChain/BabaChain)
+            • [GitHub](https://github.com/Baba-Chain/BabaChain)
             • [Discord](https://discord.gg/babachain)
 
   # ============================================================================

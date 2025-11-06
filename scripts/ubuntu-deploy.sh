@@ -96,7 +96,7 @@ fi
 # 4. BabaChain kaynak kodunu indir
 print_status "📥 BabaChain kaynak kodu indiriliyor..."
 if [ ! -d "/home/babachain/BabaChain" ]; then
-    sudo -u babachain git clone https://github.com/BabaChain/BabaChain.git /home/babachain/BabaChain
+    sudo -u babachain git clone https://github.com/Baba-Chain/BabaChain.git /home/babachain/BabaChain
     print_success "Kaynak kod indirildi"
 else
     print_warning "Kaynak kod zaten mevcut, güncelleniyor..."
@@ -357,7 +357,7 @@ echo "  4. BabaChain token'larınızı bu adrese gönderin"
 echo "  5. Staking'e başlayın!"
 echo
 echo "🔗 DESTEK:"
-echo "  GitHub: https://github.com/BabaChain/BabaChain"
+echo "  GitHub: https://github.com/Baba-Chain/BabaChain"
 echo "  Discord: https://discord.gg/babachain"
 echo "  Telegram: https://t.me/babachainofficial"
 echo

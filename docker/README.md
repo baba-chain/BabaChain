@@ -1,8 +1,8 @@
 # 🐳 BabaChain Docker Image
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/babachain/babachain)](https://hub.docker.com/r/babachain/babachain)
-[![Docker Image Size](https://img.shields.io/docker/image-size/babachain/babachain/latest)](https://hub.docker.com/r/babachain/babachain)
-[![Docker Image Version](https://img.shields.io/docker/v/babachain/babachain?sort=semver)](https://hub.docker.com/r/babachain/babachain)
+[![Docker Pulls](https://img.shields.io/docker/pulls/baba-chain/babachain)](https://hub.docker.com/r/babachain/babachain)
+[![Docker Image Size](https://img.shields.io/docker/image-size/baba-chain/babachain/latest)](https://hub.docker.com/r/babachain/babachain)
+[![Docker Image Version](https://img.shields.io/docker/v/baba-chain/babachain?sort=semver)](https://hub.docker.com/r/babachain/babachain)
 
 Official Docker image for BabaChain - A Proof-of-Stake cryptocurrency with advanced staking features.
 
@@ -258,20 +258,20 @@ docker exec babachain cat /home/babachain/.babachain/babachain.conf
 
 ## 📚 Documentation
 
-- [BabaChain GitHub](https://github.com/BabaChain/BabaChain)
-- [Ubuntu Deployment Guide](https://github.com/BabaChain/BabaChain/blob/main/BABACHAIN_UBUNTU_DEPLOYMENT.md)
-- [macOS Deployment Guide](https://github.com/BabaChain/BabaChain/blob/main/BABACHAIN_MACOS_DEPLOYMENT.md)
-- [Windows Deployment Guide](https://github.com/BabaChain/BabaChain/blob/main/BABACHAIN_WINDOWS_DEPLOYMENT.md)
+- [BabaChain GitHub](https://github.com/Baba-Chain/BabaChain)
+- [Ubuntu Deployment Guide](https://github.com/Baba-Chain/BabaChain/blob/main/BABACHAIN_UBUNTU_DEPLOYMENT.md)
+- [macOS Deployment Guide](https://github.com/Baba-Chain/BabaChain/blob/main/BABACHAIN_MACOS_DEPLOYMENT.md)
+- [Windows Deployment Guide](https://github.com/Baba-Chain/BabaChain/blob/main/BABACHAIN_WINDOWS_DEPLOYMENT.md)
 
 ## 🆘 Support
 
-- **GitHub Issues**: https://github.com/BabaChain/BabaChain/issues
+- **GitHub Issues**: https://github.com/Baba-Chain/BabaChain/issues
 - **Discord**: https://discord.gg/babachain
 - **Telegram**: https://t.me/babachainofficial
 
 ## 📄 License
 
-This Docker image is licensed under the MIT License. See the [LICENSE](https://github.com/BabaChain/BabaChain/blob/main/COPYING) file for details.
+This Docker image is licensed under the MIT License. See the [LICENSE](https://github.com/Baba-Chain/BabaChain/blob/main/COPYING) file for details.
 
 ---
 

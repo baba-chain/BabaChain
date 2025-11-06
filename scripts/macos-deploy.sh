@@ -98,7 +98,7 @@ print_success "Gerekli paketler yüklendi"
 print_status "📥 BabaChain kaynak kodu indiriliyor..."
 cd ~
 if [ ! -d "BabaChain" ]; then
-    git clone https://github.com/BabaChain/BabaChain.git
+    git clone https://github.com/Baba-Chain/BabaChain.git
     print_success "Kaynak kod indirildi"
 else
     print_warning "Kaynak kod zaten mevcut, güncelleniyor..."
@@ -372,7 +372,7 @@ echo "  4. BabaChain token'larınızı bu adrese gönderin"
 echo "  5. Staking'e başlayın!"
 echo
 echo "🔗 DESTEK:"
-echo "  GitHub: https://github.com/BabaChain/BabaChain"
+echo "  GitHub: https://github.com/Baba-Chain/BabaChain"
 echo "  Discord: https://discord.gg/babachain"
 echo "  Telegram: https://t.me/babachainofficial"
 echo

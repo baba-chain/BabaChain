@@ -49,7 +49,7 @@ sudo su - babachain
 cd ~
 
 # BabaChain repository'sini klonla
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 
 # En son stable branch'e geç

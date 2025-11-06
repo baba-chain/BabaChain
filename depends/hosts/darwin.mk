@@ -1,5 +1,9 @@
-OSX_MIN_VERSION=11.0
+OSX_MIN_VERSION=10.15
 OSX_SDK_VERSION=14.0
+
+# Architecture-specific minimum versions
+x86_64_darwin_MIN_VERSION=10.15
+aarch64_darwin_MIN_VERSION=11.0
 XCODE_VERSION=15.0
 XCODE_BUILD_ID=15A240d
 LLD_VERSION=711
@@ -59,8 +63,20 @@ darwin_CXX=$(clangxx_prog) --target=$(host) \
                -iwithsysroot/usr/include/c++/v1 \
                -iwithsysroot/usr/include -iframeworkwithsysroot/System/Library/Frameworks
 
+# Native macOS build overrides (when building on macOS)
+ifeq ($(build_os),darwin)
+darwin_CC=$(shell xcrun -f clang) --target=$(host) -isysroot$(shell xcrun --show-sdk-path)
+darwin_CXX=$(shell xcrun -f clang++) --target=$(host) -isysroot$(shell xcrun --show-sdk-path)
+endif
+
 darwin_CFLAGS=-pipe -std=$(C_STANDARD) -mmacos-version-min=$(OSX_MIN_VERSION)
 darwin_CXXFLAGS=-pipe -std=$(CXX_STANDARD) -mmacos-version-min=$(OSX_MIN_VERSION)
+
+# Architecture-specific flags
+x86_64_darwin_CFLAGS=-pipe -std=$(C_STANDARD) -mmacos-version-min=$(x86_64_darwin_MIN_VERSION)
+x86_64_darwin_CXXFLAGS=-pipe -std=$(CXX_STANDARD) -mmacos-version-min=$(x86_64_darwin_MIN_VERSION)
+aarch64_darwin_CFLAGS=-pipe -std=$(C_STANDARD) -mmacos-version-min=$(aarch64_darwin_MIN_VERSION)
+aarch64_darwin_CXXFLAGS=-pipe -std=$(CXX_STANDARD) -mmacos-version-min=$(aarch64_darwin_MIN_VERSION)
 darwin_LDFLAGS=-Wl,-platform_version,macos,$(OSX_MIN_VERSION),$(OSX_SDK_VERSION)
 
 ifneq ($(build_os),darwin)

@@ -16,7 +16,7 @@ curl -fsSL https://github.com/baba-chain/BabaChain/blob/development/scripts/vps-
 
 ```bash
 # 1. Repository'yi klonla
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 
 # 2. Script'i çalıştır
@@ -31,7 +31,7 @@ sudo ./scripts/vps-quick-setup.sh seed node1 mainnet
 
 ```bash
 # Doğru raw URL formatı (eğer repository public ise):
-curl -fsSL https://raw.githubusercontent.com/BabaChain/BabaChain/main/scripts/vps-quick-setup.sh | sudo bash -s seed mainnet-seed1
+curl -fsSL https://raw.githubusercontent.com/Baba-Chain/BabaChain/main/scripts/vps-quick-setup.sh | sudo bash -s seed mainnet-seed1
 ```
 
 ## Çözüm 3: Adım Adım Manuel Kurulum
@@ -56,7 +56,7 @@ adduser --disabled-password --gecos "" babachain
 usermod -aG sudo babachain
 
 # 4. BabaChain kaynak kodunu indir
-sudo -u babachain git clone https://github.com/BabaChain/BabaChain.git /home/babachain/BabaChain
+sudo -u babachain git clone https://github.com/Baba-Chain/BabaChain.git /home/babachain/BabaChain
 
 # 5. Derle
 sudo -u babachain bash << 'EOF'
@@ -197,7 +197,7 @@ babachain-cli getpeerinfo
 
 ```bash
 # En basit çözüm:
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 sudo ./scripts/vps-quick-setup.sh seed mainnet-seed1
 ```

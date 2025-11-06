@@ -6,7 +6,7 @@
 
 ```bash
 # 1. Repository'yi klonla
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 
 # 2. Docker Compose ile başlat
@@ -27,7 +27,7 @@ docker-compose exec babachain babachain-cli getnewaddress
 
 ```bash
 # 1. Repository'yi klonla
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 
 # 2. Otomatik kurulum scriptini çalıştır
@@ -49,7 +49,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y build-essential cmake git libboost-all-dev libssl-dev
 
 # 3. BabaChain'i derle
-git clone https://github.com/BabaChain/BabaChain.git
+git clone https://github.com/Baba-Chain/BabaChain.git
 cd BabaChain
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
@@ -212,7 +212,7 @@ babachain-cli walletpassphrase "ŞİFRE" 999999999 true
 
 ### Resmi Kanallar
 - **Website**: https://babachain.org
-- **GitHub**: https://github.com/BabaChain/BabaChain
+- **GitHub**: https://github.com/Baba-Chain/BabaChain
 - **Discord**: https://discord.gg/babachain
 - **Telegram**: https://t.me/babachainofficial
 - **Twitter**: https://twitter.com/BabaChainOrg
