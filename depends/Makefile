@@ -188,6 +188,7 @@ all_packages = $(packages) $(native_packages)
 meta_depends = Makefile config.guess config.sub funcs.mk builders/default.mk hosts/default.mk hosts/$(host_os).mk builders/$(build_os).mk
 
 include funcs.mk
+include verify.mk
 
 final_build_id_long+=$(shell $(build_SHA256SUM) config.site.in)
 final_build_id+=$(shell echo -n "$(final_build_id_long)" | $(build_SHA256SUM) | cut -c-$(HASH_LENGTH))
@@ -266,7 +267,9 @@ define check_or_remove_cached
       echo "  1. Corrupted cache file"; \
       echo "  2. Package definition changed"; \
       echo "  3. Network/storage issues"; \
+      echo "  4. Build environment changes"; \
       echo "Forcing rebuild of $(package)..."; \
+      echo "$(package): CHECKSUM_MISMATCH - $$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $(BASEDIR)/verify-cache/checksum-failures.log; \
       rm -f $($(package)_cached_checksum) $($(package)_cached); \
     fi )
 endef
@@ -279,9 +282,38 @@ define check_or_remove_sources
       echo "  1. Corrupted source files"; \
       echo "  2. Incomplete download"; \
       echo "  3. Package version/checksum mismatch"; \
+      echo "  4. Network transmission errors"; \
       echo "Forcing re-download of $(package) sources..."; \
+      mkdir -p $(BASEDIR)/verify-cache; \
+      echo "$(package): SOURCE_CHECKSUM_FAILED - $$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $(BASEDIR)/verify-cache/source-failures.log; \
       rm -f $($(package)_all_sources) $($(1)_fetched))) || true
 endef
+
+check-toolchain:
+	@echo "Checking cross-compilation toolchain for $(HOST)..."
+	@if [ "$(HOST)" != "$(BUILD)" ]; then \
+		echo "Cross-compilation detected: $(BUILD) -> $(HOST)"; \
+		if [ -n "$(host_CC)" ]; then \
+			echo "Checking CC: $(host_CC)"; \
+			if ! command -v $(host_CC) >/dev/null 2>&1; then \
+				echo "ERROR: Cross-compiler $(host_CC) not found"; \
+				echo "Please install the appropriate cross-compilation toolchain"; \
+				exit 1; \
+			fi; \
+			echo "CC check passed: $(host_CC)"; \
+		fi; \
+		if [ -n "$(host_CXX)" ]; then \
+			echo "Checking CXX: $(host_CXX)"; \
+			if ! command -v $(host_CXX) >/dev/null 2>&1; then \
+				echo "ERROR: Cross-compiler $(host_CXX) not found"; \
+				exit 1; \
+			fi; \
+			echo "CXX check passed: $(host_CXX)"; \
+		fi; \
+	else \
+		echo "Native compilation detected"; \
+	fi
+	@echo "Toolchain check completed successfully"
 
 check-packages:
 	@$(foreach package,$(all_packages),$(call check_or_remove_cached,$(package));)
@@ -290,7 +322,7 @@ check-sources:
 
 $(host_prefix)/share/config.site: check-packages
 
-check-packages: check-sources
+check-packages: check-sources check-toolchain
 
 clean-all: clean
 	@rm -rf $(SOURCES_PATH) x86_64* i686* mips* arm* aarch64* powerpc* riscv32* riscv64* s390x*
@@ -314,5 +346,43 @@ download: download-osx download-linux download-win
 $(foreach package,$(all_packages),$(eval $(call ext_add_stages,$(package))))
 
 .PHONY: install cached clean clean-all download-one download-osx download-linux download-win download check-packages check-sources
+.PHONY: verify-checksums verify-sources verify-cache check-updates verify-all verify-status verify-clean
+.PHONY: validate-dependencies validate-packages validate-environment validate-consistency
 .PHONY: FORCE
 $(V).SILENT:
+
+# Dependency validation targets
+validate-dependencies:
+	@echo "Running comprehensive dependency validation..."
+	@$(BASEDIR)/validate-dependencies.sh validate
+
+validate-packages:
+	@echo "Validating package definitions..."
+	@$(BASEDIR)/validate-dependencies.sh packages
+
+validate-environment:
+	@echo "Validating build environment..."
+	@$(BASEDIR)/validate-dependencies.sh environment
+
+validate-consistency:
+	@echo "Checking dependency consistency..."
+	@$(BASEDIR)/validate-dependencies.sh consistency
+
+validate-status:
+	@$(BASEDIR)/validate-dependencies.sh status
+
+validate-clean:
+	@$(BASEDIR)/validate-dependencies.sh clean
+
+# Dependency update automation
+update-dependencies:
+	@echo "Running dependency update automation..."
+	@$(BASEDIR)/update-dependencies.py --action all
+
+check-dependency-updates:
+	@echo "Checking for dependency updates..."
+	@$(BASEDIR)/update-dependencies.py --action check
+
+verify-dependency-integrity:
+	@echo "Verifying dependency integrity..."
+	@$(BASEDIR)/update-dependencies.py --action verify

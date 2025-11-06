@@ -1184,6 +1184,20 @@ if HARDEN
 	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py $(bin_PROGRAMS)
 endif
 
+check-build-verification: $(bin_PROGRAMS)
+	@echo "Running comprehensive build verification tests..."
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/build-verification.py . $(HOST) --output build-verification.json
+	@echo "Running cross-platform compatibility tests..."
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/cross-platform-test.py ./$(BITCOIN_DAEMON_NAME)$(EXEEXT) $(HOST) --output cross-platform-test.json
+	@echo "Generating and verifying checksums..."
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/generate-checksums.py generate . --output checksums.json --json --patterns "*$(EXEEXT)"
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/generate-checksums.py verify checksums.json . --output checksum-verification.json
+	@echo "Build verification completed successfully"
+
+check-checksums: $(bin_PROGRAMS)
+	@echo "Generating checksums for binaries..."
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/generate-checksums.py generate . --patterns "*$(EXEEXT)"
+
 
 osx_debug: $(bin_PROGRAMS)
 	for i in $(bin_PROGRAMS); do mkdir -p $$i.dSYM/Contents/Resources/DWARF && $(DSYMUTIL_FLAT) -o $$i.dSYM/Contents/Resources/DWARF/$$(basename $$i) $$i &> /dev/null ; done

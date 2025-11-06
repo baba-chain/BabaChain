@@ -9,5 +9,5 @@ scrape_configs:
     - seed1.babachain.org:9998
     - seed2.babachain.org:9998
     - seed3.babachain.org:9998
-    - node1.babachain.network:9998
-    - node2.babachain.network:9998
+    - node1.babachain.org:9998
+    - node2.babachain.org:9998

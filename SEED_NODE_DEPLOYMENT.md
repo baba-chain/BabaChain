@@ -15,8 +15,8 @@ This guide covers the deployment of BabaChain seed nodes for mainnet launch.
 1. **seed1** - seed1.babachain.org (US-East)
 2. **seed2** - seed2.babachain.org (EU-West)
 3. **seed3** - seed3.babachain.org (Asia-Pacific)
-4. **node1** - node1.babachain.network (US-West)
-5. **node2** - node2.babachain.network (EU-Central)
+4. **node1** - node1.babachain.org (US-West)
+5. **node2** - node2.babachain.org (EU-Central)
 
 
 ## Docker Deployment
@@ -100,8 +100,8 @@ Update DNS records for seed nodes:
 seed1.babachain.org    A    <IP_ADDRESS>
 seed2.babachain.org    A    <IP_ADDRESS>
 seed3.babachain.org    A    <IP_ADDRESS>
-node1.babachain.network A   <IP_ADDRESS>
-node2.babachain.network A   <IP_ADDRESS>
+node1.babachain.org    A    <IP_ADDRESS>
+node2.babachain.org    A    <IP_ADDRESS>
 ```
 
 ### Monitoring

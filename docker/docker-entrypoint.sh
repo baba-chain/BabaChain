@@ -41,8 +41,8 @@ reservebalance=${RESERVE_BALANCE:-0}
 addnode=seed1.babachain.org:9999
 addnode=seed2.babachain.org:9999
 addnode=seed3.babachain.org:9999
-addnode=node1.babachain.network:9999
-addnode=node2.babachain.network:9999
+addnode=node1.babachain.org:9999
+addnode=node2.babachain.org:9999
 
 # Performans ayarları
 maxconnections=${MAX_CONNECTIONS:-125}

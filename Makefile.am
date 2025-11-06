@@ -330,3 +330,14 @@ if TARGET_LINUX
 	$(AM_V_at) CC='$(CC)' CFLAGS='$(CFLAGS)' CPPFLAGS='$(CPPFLAGS)' LDFLAGS='$(LDFLAGS)' $(PYTHON) $(top_srcdir)/contrib/devtools/test-security-check.py TestSecurityChecks.test_ELF
 	$(AM_V_at) CC='$(CC)' CFLAGS='$(CFLAGS)' CPPFLAGS='$(CPPFLAGS)' LDFLAGS='$(LDFLAGS)' $(PYTHON) $(top_srcdir)/contrib/devtools/test-symbol-check.py TestSymbolChecks.test_ELF
 endif
+
+test-build-verification: $(bin_PROGRAMS)
+	@echo "Running comprehensive build verification tests..."
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/build-verification.py src $(HOST) --output build-verification.json
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/cross-platform-test.py src/$(BITCOIN_DAEMON_NAME)$(EXEEXT) $(HOST) --output cross-platform-test.json
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/generate-checksums.py generate src --output checksums.json --json --patterns "$(BITCOIN_DAEMON_NAME)$(EXEEXT)" "$(BITCOIN_CLI_NAME)$(EXEEXT)" "$(BITCOIN_GUI_NAME)$(EXEEXT)"
+	@echo "Build verification completed successfully"
+
+test-checksums: $(bin_PROGRAMS)
+	@echo "Generating checksums for binaries..."
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/generate-checksums.py generate src --patterns "*$(EXEEXT)"

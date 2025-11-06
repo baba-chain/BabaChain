@@ -1,0 +1,445 @@
+name: 🔧 Maintenance Automation
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      check_type:
+        description: 'Type of maintenance check'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - dependencies
+          - build-health
+          - performance
+          - cache-cleanup
+      force_update:
+        description: 'Force dependency updates'
+        type: boolean
+        default: false
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  # ============================================================================
+  # 🔍 Dependency Health Check
+  # ============================================================================
+  dependency-check:
+    name: 🔍 Dependency Health Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.check_type == 'all' || github.event.inputs.check_type == 'dependencies'
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: 📦 Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests urllib3 psutil
+
+      - name: 🔍 Run Dependency Validation
+        run: |
+          cd depends
+          ./validate-dependencies.sh validate
+          
+          # Generate detailed report
+          echo "=== Dependency Validation Summary ===" >> $GITHUB_STEP_SUMMARY
+          if [ -f "verify-cache/validation-status.md" ]; then
+            cat verify-cache/validation-status.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 🔄 Check for Dependency Updates
+        run: |
+          cd depends
+          python3 update-dependencies.py --action check
+          
+          # Add update report to summary
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "=== Dependency Update Check ===" >> $GITHUB_STEP_SUMMARY
+          if [ -f "update-logs/status-summary.md" ]; then
+            cat update-logs/status-summary.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 🔧 Auto-fix Minor Issues
+        if: github.event.inputs.force_update == 'true'
+        run: |
+          cd depends
+          
+          # Clean up any corrupted cache files
+          make clean
+          
+          # Verify all dependencies
+          python3 update-dependencies.py --action verify
+          
+          echo "Auto-fix completed" >> $GITHUB_STEP_SUMMARY
+
+      - name: 📤 Upload Dependency Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-reports
+          path: |
+            depends/verify-cache/
+            depends/update-logs/
+          retention-days: 30
+
+      - name: 🚨 Create Issue for Critical Problems
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🚨 Dependency Health Check Failed - ${new Date().toISOString().split('T')[0]}`;
+            const body = `
+            ## Dependency Health Check Failure
+            
+            **Date:** ${new Date().toISOString()}
+            **Workflow:** ${context.workflow}
+            **Run ID:** ${context.runId}
+            
+            ### Issue
+            The automated dependency health check has failed. This could indicate:
+            
+            - Broken dependency URLs
+            - Checksum mismatches
+            - Missing build tools
+            - Configuration errors
+            
+            ### Next Steps
+            1. Review the workflow logs: ${context.payload.repository.html_url}/actions/runs/${context.runId}
+            2. Check dependency validation reports in the artifacts
+            3. Fix any identified issues
+            4. Re-run the maintenance workflow
+            
+            ### Auto-generated
+            This issue was automatically created by the maintenance automation workflow.
+            `;
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['maintenance', 'dependencies', 'automated']
+            });
+
+  # ============================================================================
+  # 🏗️ Build Health Monitoring
+  # ============================================================================
+  build-health:
+    name: 🏗️ Build Health Monitoring
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.check_type == 'all' || github.event.inputs.check_type == 'build-health'
+    
+    strategy:
+      matrix:
+        platform: [linux-x64, linux-arm64]
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: 📦 Install Monitoring Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install psutil
+
+      - name: 🐧 Setup Build Environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential libtool autotools-dev automake \
+            pkg-config bsdmainutils python3 ccache
+
+      - name: 🏗️ Test Build Process
+        run: |
+          # Start build monitoring
+          python3 scripts/build-monitor.py \
+            --build-command "cd depends && make HOST=x86_64-pc-linux-gnu -j2 download-one" \
+            --output-dir build-health-metrics \
+            --duration 1800 &
+          
+          MONITOR_PID=$!
+          
+          # Run a lightweight build test
+          cd depends
+          
+          # Test dependency download
+          timeout 1800 make HOST=x86_64-pc-linux-gnu -j2 download-one || {
+            echo "Build test timed out or failed"
+            kill $MONITOR_PID 2>/dev/null || true
+            exit 1
+          }
+          
+          # Wait for monitoring to complete
+          wait $MONITOR_PID || true
+          
+          echo "Build health test completed successfully"
+
+      - name: 📊 Analyze Build Performance
+        run: |
+          if [ -d "build-health-metrics" ]; then
+            echo "=== Build Health Report ===" >> $GITHUB_STEP_SUMMARY
+            if [ -f "build-health-metrics/latest-build-summary.md" ]; then
+              cat build-health-metrics/latest-build-summary.md >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
+
+      - name: 📤 Upload Build Health Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-health-${{ matrix.platform }}
+          path: build-health-metrics/
+          retention-days: 30
+
+  # ============================================================================
+  # 🧹 Cache Cleanup and Optimization
+  # ============================================================================
+  cache-cleanup:
+    name: 🧹 Cache Cleanup
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.check_type == 'all' || github.event.inputs.check_type == 'cache-cleanup'
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🧹 Clean Old Cache Entries
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            
+            // Get all caches
+            const caches = await github.rest.actions.getActionsCaches({
+              owner,
+              repo,
+              per_page: 100
+            });
+            
+            console.log(`Found ${caches.data.total_count} cache entries`);
+            
+            // Delete caches older than 7 days
+            const sevenDaysAgo = new Date();
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            
+            let deletedCount = 0;
+            let totalSize = 0;
+            
+            for (const cache of caches.data.actions_caches) {
+              const cacheDate = new Date(cache.created_at);
+              totalSize += cache.size_in_bytes;
+              
+              if (cacheDate < sevenDaysAgo) {
+                try {
+                  await github.rest.actions.deleteActionsCacheById({
+                    owner,
+                    repo,
+                    cache_id: cache.id
+                  });
+                  console.log(`Deleted cache: ${cache.key} (${(cache.size_in_bytes / 1024 / 1024).toFixed(1)}MB)`);
+                  deletedCount++;
+                } catch (error) {
+                  console.error(`Failed to delete cache ${cache.key}: ${error.message}`);
+                }
+              }
+            }
+            
+            const totalSizeMB = (totalSize / 1024 / 1024).toFixed(1);
+            console.log(`Cache cleanup completed: ${deletedCount} entries deleted, ${totalSizeMB}MB total cache size`);
+            
+            // Add to step summary
+            const summary = `
+            ## 🧹 Cache Cleanup Report
+            
+            - **Total Cache Entries:** ${caches.data.total_count}
+            - **Deleted Old Entries:** ${deletedCount}
+            - **Total Cache Size:** ${totalSizeMB}MB
+            - **Cleanup Date:** ${new Date().toISOString()}
+            `;
+            
+            require('fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
+
+      - name: 📊 Cache Usage Analysis
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            
+            // Get current caches
+            const caches = await github.rest.actions.getActionsCaches({
+              owner,
+              repo,
+              per_page: 100
+            });
+            
+            // Analyze cache patterns
+            const cacheAnalysis = {
+              depends: { count: 0, size: 0 },
+              ccache: { count: 0, size: 0 },
+              build: { count: 0, size: 0 },
+              other: { count: 0, size: 0 }
+            };
+            
+            for (const cache of caches.data.actions_caches) {
+              const key = cache.key.toLowerCase();
+              const size = cache.size_in_bytes;
+              
+              if (key.includes('depends')) {
+                cacheAnalysis.depends.count++;
+                cacheAnalysis.depends.size += size;
+              } else if (key.includes('ccache')) {
+                cacheAnalysis.ccache.count++;
+                cacheAnalysis.ccache.size += size;
+              } else if (key.includes('build')) {
+                cacheAnalysis.build.count++;
+                cacheAnalysis.build.size += size;
+              } else {
+                cacheAnalysis.other.count++;
+                cacheAnalysis.other.size += size;
+              }
+            }
+            
+            // Generate analysis report
+            const analysisReport = `
+            ## 📊 Cache Usage Analysis
+            
+            | Cache Type | Count | Size (MB) | Avg Size (MB) |
+            |------------|-------|-----------|---------------|
+            | Dependencies | ${cacheAnalysis.depends.count} | ${(cacheAnalysis.depends.size / 1024 / 1024).toFixed(1)} | ${cacheAnalysis.depends.count > 0 ? (cacheAnalysis.depends.size / cacheAnalysis.depends.count / 1024 / 1024).toFixed(1) : '0'} |
+            | CCache | ${cacheAnalysis.ccache.count} | ${(cacheAnalysis.ccache.size / 1024 / 1024).toFixed(1)} | ${cacheAnalysis.ccache.count > 0 ? (cacheAnalysis.ccache.size / cacheAnalysis.ccache.count / 1024 / 1024).toFixed(1) : '0'} |
+            | Build Objects | ${cacheAnalysis.build.count} | ${(cacheAnalysis.build.size / 1024 / 1024).toFixed(1)} | ${cacheAnalysis.build.count > 0 ? (cacheAnalysis.build.size / cacheAnalysis.build.count / 1024 / 1024).toFixed(1) : '0'} |
+            | Other | ${cacheAnalysis.other.count} | ${(cacheAnalysis.other.size / 1024 / 1024).toFixed(1)} | ${cacheAnalysis.other.count > 0 ? (cacheAnalysis.other.size / cacheAnalysis.other.count / 1024 / 1024).toFixed(1) : '0'} |
+            
+            ### Recommendations
+            ${cacheAnalysis.depends.size > 500 * 1024 * 1024 ? '- ⚠️ Dependency cache is large (>500MB) - consider cleanup' : '- ✅ Dependency cache size is optimal'}
+            ${cacheAnalysis.ccache.count > 10 ? '- ⚠️ Many ccache entries - consider consolidation' : '- ✅ CCache entry count is reasonable'}
+            `;
+            
+            require('fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY, analysisReport);
+
+  # ============================================================================
+  # 📈 Performance Trend Analysis
+  # ============================================================================
+  performance-analysis:
+    name: 📈 Performance Analysis
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.check_type == 'all' || github.event.inputs.check_type == 'performance'
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📥 Download Recent Build Metrics
+        uses: actions/download-artifact@v4
+        with:
+          pattern: build-metrics-*
+          path: historical-metrics/
+          merge-multiple: true
+        continue-on-error: true
+
+      - name: 📊 Analyze Performance Trends
+        run: |
+          echo "=== Performance Trend Analysis ===" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -d "historical-metrics" ]; then
+            # Count available metrics
+            METRIC_COUNT=$(find historical-metrics -name "*.json" | wc -l)
+            echo "Found $METRIC_COUNT historical build reports" >> $GITHUB_STEP_SUMMARY
+            
+            if [ "$METRIC_COUNT" -gt 0 ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "### Recent Build Performance" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              
+              # Analyze recent builds
+              find historical-metrics -name "build-report-*.json" | head -5 | while read report; do
+                if [ -f "$report" ]; then
+                  PLATFORM=$(grep '"platform"' "$report" | cut -d'"' -f4)
+                  BUILD_TIME=$(grep '"total_minutes"' "$report" | cut -d':' -f2 | cut -d',' -f1 | tr -d ' ')
+                  RATING=$(grep '"overall_rating"' "$report" | cut -d'"' -f4)
+                  
+                  echo "- **$PLATFORM**: ${BUILD_TIME} minutes (${RATING})" >> $GITHUB_STEP_SUMMARY
+                fi
+              done
+            else
+              echo "No historical metrics available for trend analysis" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "No historical metrics directory found" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Recommendations" >> $GITHUB_STEP_SUMMARY
+          echo "- Monitor build times for regressions" >> $GITHUB_STEP_SUMMARY
+          echo "- Optimize slow build phases" >> $GITHUB_STEP_SUMMARY
+          echo "- Maintain cache efficiency" >> $GITHUB_STEP_SUMMARY
+
+  # ============================================================================
+  # 📋 Maintenance Summary
+  # ============================================================================
+  maintenance-summary:
+    name: 📋 Maintenance Summary
+    runs-on: ubuntu-latest
+    needs: [dependency-check, build-health, cache-cleanup, performance-analysis]
+    if: always()
+    
+    steps:
+      - name: 📋 Generate Maintenance Summary
+        run: |
+          echo "# 🔧 Maintenance Automation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "**Workflow:** Maintenance Automation" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "## Job Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔍 Dependency Check | ${{ needs.dependency-check.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🏗️ Build Health | ${{ needs.build-health.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🧹 Cache Cleanup | ${{ needs.cache-cleanup.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📈 Performance Analysis | ${{ needs.performance-analysis.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Determine overall status
+          OVERALL_STATUS="success"
+          if [[ "${{ needs.dependency-check.result }}" == "failure" ]] || \
+             [[ "${{ needs.build-health.result }}" == "failure" ]]; then
+            OVERALL_STATUS="failure"
+          elif [[ "${{ needs.dependency-check.result }}" == "cancelled" ]] || \
+               [[ "${{ needs.build-health.result }}" == "cancelled" ]] || \
+               [[ "${{ needs.cache-cleanup.result }}" == "cancelled" ]] || \
+               [[ "${{ needs.performance-analysis.result }}" == "cancelled" ]]; then
+            OVERALL_STATUS="cancelled"
+          fi
+          
+          echo "## Overall Status: ${OVERALL_STATUS^^}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "$OVERALL_STATUS" = "success" ]; then
+            echo "✅ All maintenance tasks completed successfully" >> $GITHUB_STEP_SUMMARY
+          elif [ "$OVERALL_STATUS" = "failure" ]; then
+            echo "❌ Some maintenance tasks failed - review job logs" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Some maintenance tasks were cancelled" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Next Scheduled Run" >> $GITHUB_STEP_SUMMARY
+          echo "$(date -d 'tomorrow 2:00' -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY

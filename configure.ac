@@ -29,6 +29,41 @@ if test -n "$PKG_CONFIG_LIBDIR"; then
   PKG_CONFIG="env PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR $PKG_CONFIG"
 fi
 
+dnl Helper function for cross-compilation pkg-config setup
+dnl SETUP_CROSS_PKG_CONFIG()
+dnl Sets up pkg-config environment for cross-compilation
+AC_DEFUN([SETUP_CROSS_PKG_CONFIG], [
+  if test "$cross_compiling" = "yes"; then
+    AC_MSG_CHECKING([pkg-config cross-compilation setup])
+    
+    dnl Save original paths
+    PKG_CONFIG_ORIG_PATH="$PKG_CONFIG_PATH"
+    PKG_CONFIG_ORIG_LIBDIR="$PKG_CONFIG_LIBDIR"
+    
+    dnl Set cross-compilation paths
+    if test -n "$PKG_CONFIG_LIBDIR"; then
+      export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR/pkgconfig:$PKG_CONFIG_PATH"
+      export PKG_CONFIG_LIBDIR="$PKG_CONFIG_LIBDIR"
+    fi
+    
+    dnl Disable host system paths for cross-compilation
+    if test -n "$host_alias"; then
+      PKG_CONFIG="$PKG_CONFIG --define-variable=prefix=$prefix"
+    fi
+    
+    AC_MSG_RESULT([configured for $host])
+  fi
+])
+
+dnl Helper function to restore pkg-config paths
+dnl RESTORE_PKG_CONFIG()
+AC_DEFUN([RESTORE_PKG_CONFIG], [
+  if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_ORIG_LIBDIR"; then
+    PKG_CONFIG_PATH="$PKG_CONFIG_ORIG_PATH"
+    PKG_CONFIG_LIBDIR="$PKG_CONFIG_ORIG_LIBDIR"
+  fi
+])
+
 BITCOIN_DAEMON_NAME=babachaind
 BITCOIN_GUI_NAME=babachain-qt
 BITCOIN_TEST_NAME=test_babachain
@@ -802,9 +837,33 @@ AC_ARG_WITH([daemon],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
+dnl Enhanced platform detection with better cross-compilation support
 case $host in
   *mingw*)
      TARGET_OS=windows
+     AC_MSG_CHECKING([for Windows MinGW toolchain])
+     
+     dnl Detect MinGW variant and architecture
+     case $host in
+       x86_64-*-mingw*)
+         MINGW_ARCH=x86_64
+         MINGW_BITS=64
+         ;;
+       i?86-*-mingw*)
+         MINGW_ARCH=i686
+         MINGW_BITS=32
+         ;;
+       aarch64-*-mingw*)
+         MINGW_ARCH=aarch64
+         MINGW_BITS=64
+         ;;
+       *)
+         AC_MSG_ERROR([Unsupported MinGW architecture: $host])
+         ;;
+     esac
+     AC_MSG_RESULT([MinGW $MINGW_ARCH ($MINGW_BITS-bit)])
+     
+     dnl Check for required Windows libraries
      AC_CHECK_LIB([kernel32], [GetModuleFileNameA],      [], [AC_MSG_ERROR([libkernel32 missing])])
      AC_CHECK_LIB([user32],   [main],                    [], [AC_MSG_ERROR([libuser32 missing])])
      AC_CHECK_LIB([gdi32],    [main],                    [], [AC_MSG_ERROR([libgdi32 missing])])
@@ -836,7 +895,8 @@ case $host in
        AC_MSG_ERROR([windres not found])
      fi
 
-     CORE_CPPFLAGS="$CORE_CPPFLAGS -D_MT -DWIN32 -D_WINDOWS -D_WIN32_WINNT=0x0601 -D_WIN32_IE=0x0501 -DWIN32_LEAN_AND_MEAN"
+     dnl Enhanced Windows version targeting - Windows 10 (NT 10.0) minimum
+     CORE_CPPFLAGS="$CORE_CPPFLAGS -D_MT -DWIN32 -D_WINDOWS -D_WIN32_WINNT=0x0A00 -D_WIN32_IE=0x0A00 -DWIN32_LEAN_AND_MEAN"
      dnl Prevent the definition of min/max macros.
      dnl We always want to use the standard library.
      CORE_CPPFLAGS="$CORE_CPPFLAGS -DNOMINMAX"
@@ -849,17 +909,58 @@ case $host in
      archive_cmds_CXX="\$CC -shared \$libobjs \$deplibs \$compiler_flags -static -o \$output_objdir/\$soname \${wl}--enable-auto-image-base -Xlinker --out-implib -Xlinker \$lib"
      postdeps_CXX=
 
-     dnl We require Windows 7 (NT 6.1) or later
-     AX_CHECK_LINK_FLAG([-Wl,--major-subsystem-version -Wl,6 -Wl,--minor-subsystem-version -Wl,1], [CORE_LDFLAGS="$CORE_LDFLAGS -Wl,--major-subsystem-version -Wl,6 -Wl,--minor-subsystem-version -Wl,1"], [], [$LDFLAG_WERROR])
+     dnl We require Windows 10 (NT 10.0) or later for modern features
+     AX_CHECK_LINK_FLAG([-Wl,--major-subsystem-version -Wl,10 -Wl,--minor-subsystem-version -Wl,0], [CORE_LDFLAGS="$CORE_LDFLAGS -Wl,--major-subsystem-version -Wl,10 -Wl,--minor-subsystem-version -Wl,0"], [], [$LDFLAG_WERROR])
 
      dnl Avoid the use of aligned vector instructions when building for Windows.
      dnl See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=54412.
      AX_CHECK_COMPILE_FLAG([-Wa,-muse-unaligned-vector-move], [CORE_CXXFLAGS="$CORE_CXXFLAGS -Wa,-muse-unaligned-vector-move"], [], [$CXXFLAG_WERROR])
+     
+     dnl Architecture-specific optimizations
+     case $MINGW_ARCH in
+       x86_64)
+         AX_CHECK_COMPILE_FLAG([-march=x86-64], [CORE_CXXFLAGS="$CORE_CXXFLAGS -march=x86-64"], [], [$CXXFLAG_WERROR])
+         ;;
+       aarch64)
+         AX_CHECK_COMPILE_FLAG([-march=armv8-a], [CORE_CXXFLAGS="$CORE_CXXFLAGS -march=armv8-a"], [], [$CXXFLAG_WERROR])
+         ;;
+     esac
      ;;
   *darwin*)
      TARGET_OS=darwin
-     if  test $cross_compiling != "yes"; then
+     AC_MSG_CHECKING([for macOS version and architecture])
+     
+     dnl Enhanced macOS version detection
+     case $host in
+       x86_64-*-darwin*)
+         DARWIN_ARCH=x86_64
+         DARWIN_MIN_VERSION=10.15
+         ;;
+       aarch64-*-darwin*|arm64-*-darwin*)
+         DARWIN_ARCH=aarch64
+         DARWIN_MIN_VERSION=11.0
+         ;;
+       *)
+         AC_MSG_ERROR([Unsupported Darwin architecture: $host])
+         ;;
+     esac
+     AC_MSG_RESULT([macOS $DARWIN_ARCH (minimum version $DARWIN_MIN_VERSION)])
+     
+     if test $cross_compiling != "yes"; then
        BUILD_OS=darwin
+       
+       dnl Detect macOS SDK version for native builds
+       AC_MSG_CHECKING([for macOS SDK version])
+       if command -v xcrun >/dev/null 2>&1; then
+         MACOS_SDK_VERSION=$(xcrun --show-sdk-version 2>/dev/null || echo "unknown")
+         MACOS_SDK_PATH=$(xcrun --show-sdk-path 2>/dev/null || echo "")
+         AC_MSG_RESULT([$MACOS_SDK_VERSION])
+         if test "$MACOS_SDK_PATH" != ""; then
+           CORE_CPPFLAGS="$CORE_CPPFLAGS -isysroot $MACOS_SDK_PATH"
+         fi
+       else
+         AC_MSG_RESULT([xcrun not found])
+       fi
 
        AX_CHECK_LINK_FLAG([-Wl,-headerpad_max_install_names], [CORE_LDFLAGS="$CORE_LDFLAGS -Wl,-headerpad_max_install_names"], [], [$LDFLAG_WERROR])
 
@@ -898,8 +999,9 @@ case $host in
            CORE_LDFLAGS="$CORE_LDFLAGS -L$gmp_prefix/lib"
          fi
 
-         case $host in
-           *aarch64*)
+         dnl Architecture-specific Homebrew handling
+         case $DARWIN_ARCH in
+           aarch64)
              dnl The preferred Homebrew prefix for Apple Silicon is /opt/homebrew.
              dnl Therefore, as we do not use pkg-config to detect miniupnpc and libnatpmp
              dnl packages, we should set the CPPFLAGS and LDFLAGS variables for them
@@ -944,6 +1046,17 @@ case $host in
      fi
 
      CORE_CPPFLAGS="$CORE_CPPFLAGS -DMAC_OSX -DOBJC_OLD_DISPATCH_PROTOTYPES=0"
+     
+     dnl Architecture-specific minimum version flags
+     case $DARWIN_ARCH in
+       x86_64)
+         AX_CHECK_COMPILE_FLAG([-mmacos-version-min=$DARWIN_MIN_VERSION], [CORE_CXXFLAGS="$CORE_CXXFLAGS -mmacos-version-min=$DARWIN_MIN_VERSION"], [], [$CXXFLAG_WERROR])
+         ;;
+       aarch64)
+         AX_CHECK_COMPILE_FLAG([-mmacos-version-min=$DARWIN_MIN_VERSION], [CORE_CXXFLAGS="$CORE_CXXFLAGS -mmacos-version-min=$DARWIN_MIN_VERSION"], [], [$CXXFLAG_WERROR])
+         AX_CHECK_COMPILE_FLAG([-mcpu=apple-a14], [CORE_CXXFLAGS="$CORE_CXXFLAGS -mcpu=apple-a14"], [], [$CXXFLAG_WERROR])
+         ;;
+     esac
 
      dnl ignore deprecated-declarations warnings coming from objcxx code
      dnl "'NSUserNotificationCenter' is deprecated: first deprecated in macOS 11.0".
@@ -952,21 +1065,56 @@ case $host in
    *android*)
      dnl make sure android stays above linux for hosts like *linux-android*
      TARGET_OS=android
+     AC_MSG_CHECKING([for Android architecture])
      case $host in
-       *x86_64*)
+       x86_64-*-android*)
           ANDROID_ARCH=x86_64
           ;;
-        *aarch64*)
+        aarch64-*-android*|arm64-*-android*)
           ANDROID_ARCH=arm64-v8a
           ;;
-        *armv7a*)
+        armv7a-*-android*|arm-*-android*)
           ANDROID_ARCH=armeabi-v7a
           ;;
-        *) AC_MSG_ERROR(["Could not determine Android arch"]) ;;
+        i?86-*-android*)
+          ANDROID_ARCH=x86
+          ;;
+        *) AC_MSG_ERROR(["Could not determine Android arch from $host"]) ;;
       esac
+     AC_MSG_RESULT([$ANDROID_ARCH])
      ;;
    *linux*)
      TARGET_OS=linux
+     AC_MSG_CHECKING([for Linux architecture])
+     case $host in
+       x86_64-*-linux*)
+         LINUX_ARCH=x86_64
+         ;;
+       aarch64-*-linux*|arm64-*-linux*)
+         LINUX_ARCH=aarch64
+         ;;
+       arm-*-linux*)
+         LINUX_ARCH=arm
+         ;;
+       i?86-*-linux*)
+         LINUX_ARCH=i686
+         ;;
+       *)
+         LINUX_ARCH=unknown
+         AC_MSG_WARN([Unknown Linux architecture: $host])
+         ;;
+     esac
+     AC_MSG_RESULT([$LINUX_ARCH])
+     
+     dnl Architecture-specific optimizations for Linux
+     case $LINUX_ARCH in
+       aarch64)
+         AX_CHECK_COMPILE_FLAG([-march=armv8-a], [CORE_CXXFLAGS="$CORE_CXXFLAGS -march=armv8-a"], [], [$CXXFLAG_WERROR])
+         ;;
+       x86_64)
+         AX_CHECK_COMPILE_FLAG([-march=x86-64], [CORE_CXXFLAGS="$CORE_CXXFLAGS -march=x86-64"], [], [$CXXFLAG_WERROR])
+         ;;
+     esac
      ;;
 esac
 
@@ -1076,50 +1224,141 @@ if test "$TARGET_OS" != "windows"; then
   AX_CHECK_COMPILE_FLAG([-fPIC], [PIC_FLAGS="-fPIC"])
 fi
 
+dnl Enhanced hardening flags with platform-specific conflict resolution
 if test "$use_hardening" != "no"; then
   use_hardening=yes
-  AX_CHECK_COMPILE_FLAG([-Wstack-protector], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -Wstack-protector"])
-  AX_CHECK_COMPILE_FLAG([-fstack-protector-all], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fstack-protector-all"])
+  AC_MSG_CHECKING([for hardening support])
+  
+  dnl Stack protection - choose the best available option
+  stack_protection_found=no
+  if test "$stack_protection_found" = "no"; then
+    AX_CHECK_COMPILE_FLAG([-fstack-protector-strong], [
+      HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fstack-protector-strong"
+      stack_protection_found=yes
+    ], [], [$CXXFLAG_WERROR])
+  fi
+  if test "$stack_protection_found" = "no"; then
+    AX_CHECK_COMPILE_FLAG([-fstack-protector-all], [
+      HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fstack-protector-all"
+      stack_protection_found=yes
+    ], [], [$CXXFLAG_WERROR])
+  fi
+  if test "$stack_protection_found" = "no"; then
+    AX_CHECK_COMPILE_FLAG([-fstack-protector], [
+      HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fstack-protector"
+      stack_protection_found=yes
+    ], [], [$CXXFLAG_WERROR])
+  fi
+  
+  dnl Add stack protector warning only if stack protection is enabled
+  if test "$stack_protection_found" = "yes"; then
+    AX_CHECK_COMPILE_FLAG([-Wstack-protector], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -Wstack-protector"], [], [$CXXFLAG_WERROR])
+  fi
 
-  AX_CHECK_COMPILE_FLAG([-fcf-protection=full], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fcf-protection=full"])
-
+  dnl Control Flow Integrity - platform specific
   case $host in
     *mingw*)
-      dnl stack-clash-protection doesn't compile with GCC 10 and earlier.
-      dnl In any case, it is a no-op for Windows.
-      dnl See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90458 for more details.
+      dnl Windows-specific hardening
+      AX_CHECK_COMPILE_FLAG([-fcf-protection=full], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fcf-protection=full"], [], [$CXXFLAG_WERROR])
+      ;;
+    *darwin*)
+      dnl macOS-specific hardening
+      AX_CHECK_COMPILE_FLAG([-fcf-protection=full], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fcf-protection=full"], [], [$CXXFLAG_WERROR])
+      ;;
+    *linux*)
+      dnl Linux-specific hardening
+      AX_CHECK_COMPILE_FLAG([-fcf-protection=full], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fcf-protection=full"], [], [$CXXFLAG_WERROR])
+      ;;
+  esac
+
+  dnl Stack clash protection - avoid conflicts with older GCC on Windows
+  case $host in
+    *mingw*)
+      dnl Check GCC version for MinGW to avoid conflicts
+      AC_MSG_CHECKING([GCC version for stack clash protection compatibility])
+      if test "$GXX" = "yes"; then
+        gcc_version=$($CXX -dumpversion | cut -d. -f1)
+        if test "$gcc_version" -ge 11; then
+          AX_CHECK_COMPILE_FLAG([-fstack-clash-protection], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fstack-clash-protection"], [], [$CXXFLAG_WERROR])
+          AC_MSG_RESULT([GCC $gcc_version - enabled])
+        else
+          AC_MSG_RESULT([GCC $gcc_version - disabled (requires GCC 11+)])
+        fi
+      else
+        AC_MSG_RESULT([non-GCC compiler - skipped])
+      fi
       ;;
     *)
       AX_CHECK_COMPILE_FLAG([-fstack-clash-protection], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fstack-clash-protection"], [], [$CXXFLAG_WERROR])
       ;;
   esac
 
+  dnl Architecture-specific hardening
   case $host in
-    *aarch64*)
-      AX_CHECK_COMPILE_FLAG([-mbranch-protection=bti], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -mbranch-protection=bti"])
-    ;;
+    *aarch64*|*arm64*)
+      dnl ARM64 branch protection
+      AX_CHECK_COMPILE_FLAG([-mbranch-protection=standard], [
+        HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -mbranch-protection=standard"
+      ], [
+        AX_CHECK_COMPILE_FLAG([-mbranch-protection=bti], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -mbranch-protection=bti"], [], [$CXXFLAG_WERROR])
+      ], [$CXXFLAG_WERROR])
+      ;;
+    *x86_64*)
+      dnl x86_64 specific hardening
+      AX_CHECK_COMPILE_FLAG([-mshstk], [HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -mshstk"], [], [$CXXFLAG_WERROR])
+      ;;
   esac
 
+  dnl FORTIFY_SOURCE with conflict resolution
   dnl When enable_debug is yes, all optimizations are disabled.
   dnl However, FORTIFY_SOURCE requires that there is some level of optimization, otherwise it does nothing and just creates a compiler warning.
   dnl Since FORTIFY_SOURCE is a no-op without optimizations, do not enable it when enable_debug is yes.
   if test "$enable_debug" != "yes"; then
-    AX_CHECK_PREPROC_FLAG([-D_FORTIFY_SOURCE=3],[
-      AX_CHECK_PREPROC_FLAG([-U_FORTIFY_SOURCE],[
+    dnl Try FORTIFY_SOURCE=3 first (GCC 12+), fallback to level 2
+    AX_CHECK_PREPROC_FLAG([-D_FORTIFY_SOURCE=3], [
+      AX_CHECK_PREPROC_FLAG([-U_FORTIFY_SOURCE], [
         HARDENED_CPPFLAGS="$HARDENED_CPPFLAGS -U_FORTIFY_SOURCE"
       ])
       HARDENED_CPPFLAGS="$HARDENED_CPPFLAGS -D_FORTIFY_SOURCE=3"
+    ], [
+      dnl Fallback to FORTIFY_SOURCE=2
+      AX_CHECK_PREPROC_FLAG([-D_FORTIFY_SOURCE=2], [
+        AX_CHECK_PREPROC_FLAG([-U_FORTIFY_SOURCE], [
+          HARDENED_CPPFLAGS="$HARDENED_CPPFLAGS -U_FORTIFY_SOURCE"
+        ])
+        HARDENED_CPPFLAGS="$HARDENED_CPPFLAGS -D_FORTIFY_SOURCE=2"
+      ])
     ])
   fi
 
-  AX_CHECK_LINK_FLAG([-Wl,--enable-reloc-section], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--enable-reloc-section"], [], [$LDFLAG_WERROR])
-  AX_CHECK_LINK_FLAG([-Wl,--dynamicbase], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--dynamicbase"], [], [$LDFLAG_WERROR])
-  AX_CHECK_LINK_FLAG([-Wl,--nxcompat], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--nxcompat"], [], [$LDFLAG_WERROR])
-  AX_CHECK_LINK_FLAG([-Wl,--high-entropy-va], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--high-entropy-va"], [], [$LDFLAG_WERROR])
-  AX_CHECK_LINK_FLAG([-Wl,-z,relro], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,relro"], [], [$LDFLAG_WERROR])
-  AX_CHECK_LINK_FLAG([-Wl,-z,now], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,now"], [], [$LDFLAG_WERROR])
-  AX_CHECK_LINK_FLAG([-Wl,-z,separate-code], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,separate-code"], [], [$LDFLAG_WERROR])
-  AX_CHECK_LINK_FLAG([-fPIE -pie], [PIE_FLAGS="-fPIE"; HARDENED_LDFLAGS="$HARDENED_LDFLAGS -pie"], [], [$CXXFLAG_WERROR])
+  dnl Platform-specific linker hardening flags
+  case $host in
+    *mingw*)
+      dnl Windows-specific linker flags
+      AX_CHECK_LINK_FLAG([-Wl,--enable-reloc-section], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--enable-reloc-section"], [], [$LDFLAG_WERROR])
+      AX_CHECK_LINK_FLAG([-Wl,--dynamicbase], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--dynamicbase"], [], [$LDFLAG_WERROR])
+      AX_CHECK_LINK_FLAG([-Wl,--nxcompat], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--nxcompat"], [], [$LDFLAG_WERROR])
+      AX_CHECK_LINK_FLAG([-Wl,--high-entropy-va], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,--high-entropy-va"], [], [$LDFLAG_WERROR])
+      ;;
+    *darwin*)
+      dnl macOS-specific linker flags
+      AX_CHECK_LINK_FLAG([-Wl,-bind_at_load], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-bind_at_load"], [], [$LDFLAG_WERROR])
+      ;;
+    *linux*)
+      dnl Linux-specific linker flags
+      AX_CHECK_LINK_FLAG([-Wl,-z,relro], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,relro"], [], [$LDFLAG_WERROR])
+      AX_CHECK_LINK_FLAG([-Wl,-z,now], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,now"], [], [$LDFLAG_WERROR])
+      AX_CHECK_LINK_FLAG([-Wl,-z,separate-code], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,separate-code"], [], [$LDFLAG_WERROR])
+      AX_CHECK_LINK_FLAG([-Wl,-z,noexecstack], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,noexecstack"], [], [$LDFLAG_WERROR])
+      ;;
+  esac
+  
+  dnl Position Independent Executable (PIE) - avoid conflicts
+  if test "$enable_gprof" != "yes"; then
+    AX_CHECK_LINK_FLAG([-fPIE -pie], [PIE_FLAGS="-fPIE"; HARDENED_LDFLAGS="$HARDENED_LDFLAGS -pie"], [], [$CXXFLAG_WERROR])
+  fi
+  
+  AC_MSG_RESULT([configured for $host])
 fi
 
 dnl These flags are specific to ld64, and may cause issues with other linkers.
@@ -1130,6 +1369,83 @@ if test "$TARGET_OS" = "darwin"; then
   AX_CHECK_LINK_FLAG([-Wl,-dead_strip_dylibs], [CORE_LDFLAGS="$CORE_LDFLAGS -Wl,-dead_strip_dylibs"], [], [$LDFLAG_WERROR])
   AX_CHECK_LINK_FLAG([-Wl,-fixup_chains], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-fixup_chains"], [], [$LDFLAG_WERROR])
 fi
+
+dnl Resolve compilation flag conflicts and optimize flag ordering
+AC_MSG_CHECKING([for compilation flag conflicts])
+
+dnl Remove duplicate flags and resolve conflicts
+TEMP_CXXFLAGS="$CORE_CXXFLAGS"
+CORE_CXXFLAGS=""
+
+dnl Function to add flag if not already present
+add_unique_flag() {
+  local flag="$1"
+  local var_name="$2"
+  local current_flags=$(eval echo \$$var_name)
+  
+  case " $current_flags " in
+    *" $flag "*)
+      dnl Flag already present, skip
+      ;;
+    *)
+      eval "$var_name=\"\$$var_name $flag\""
+      ;;
+  esac
+}
+
+dnl Resolve optimization flag conflicts
+case "$TEMP_CXXFLAGS" in
+  *-O3*)
+    CORE_CXXFLAGS="$CORE_CXXFLAGS -O3"
+    ;;
+  *-O2*)
+    CORE_CXXFLAGS="$CORE_CXXFLAGS -O2"
+    ;;
+  *-O1*)
+    CORE_CXXFLAGS="$CORE_CXXFLAGS -O1"
+    ;;
+  *-O0*)
+    CORE_CXXFLAGS="$CORE_CXXFLAGS -O0"
+    ;;
+esac
+
+dnl Add remaining flags while avoiding duplicates
+for flag in $TEMP_CXXFLAGS; do
+  case "$flag" in
+    -O*)
+      dnl Skip optimization flags as they're already handled
+      ;;
+    *)
+      case " $CORE_CXXFLAGS " in
+        *" $flag "*)
+          dnl Skip duplicate
+          ;;
+        *)
+          CORE_CXXFLAGS="$CORE_CXXFLAGS $flag"
+          ;;
+      esac
+      ;;
+  esac
+done
+
+dnl Resolve stack protector conflicts in hardening flags
+case "$HARDENED_CXXFLAGS" in
+  *-fstack-protector-strong*)
+    dnl Remove weaker stack protector flags
+    HARDENED_CXXFLAGS=$(echo "$HARDENED_CXXFLAGS" | sed 's/-fstack-protector-all//g' | sed 's/-fstack-protector[^-]//g')
+    ;;
+  *-fstack-protector-all*)
+    dnl Remove weaker stack protector flags
+    HARDENED_CXXFLAGS=$(echo "$HARDENED_CXXFLAGS" | sed 's/-fstack-protector[^-]//g')
+    ;;
+esac
+
+dnl Clean up extra spaces
+CORE_CXXFLAGS=$(echo "$CORE_CXXFLAGS" | sed 's/  */ /g' | sed 's/^ *//' | sed 's/ *$//')
+HARDENED_CXXFLAGS=$(echo "$HARDENED_CXXFLAGS" | sed 's/  */ /g' | sed 's/^ *//' | sed 's/ *$//')
+HARDENED_LDFLAGS=$(echo "$HARDENED_LDFLAGS" | sed 's/  */ /g' | sed 's/^ *//' | sed 's/ *$//')
+
+AC_MSG_RESULT([resolved])
 
 AC_CHECK_HEADERS([sys/select.h sys/prctl.h vm/vm_param.h sys/vmmeter.h sys/resources.h])
 
@@ -1459,9 +1775,35 @@ if test "$enable_wallet" != "no"; then
       fi
     fi
 
-    dnl Check for sqlite3
+    dnl Enhanced SQLite3 detection with cross-compilation support
     if test "$use_sqlite" != "no"; then
-      PKG_CHECK_MODULES([SQLITE], [sqlite3 >= 3.7.17], [have_sqlite=yes], [have_sqlite=no])
+      AC_MSG_CHECKING([for SQLite3])
+      
+      dnl First try pkg-config with cross-compilation support
+      if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_LIBDIR"; then
+        PKG_CONFIG_ORIG_PATH="$PKG_CONFIG_PATH"
+        PKG_CONFIG_ORIG_LIBDIR="$PKG_CONFIG_LIBDIR"
+        export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR/pkgconfig:$PKG_CONFIG_PATH"
+      fi
+      
+      PKG_CHECK_MODULES([SQLITE], [sqlite3 >= 3.7.17], [have_sqlite=yes], [
+        dnl Fallback: manual detection
+        AC_CHECK_HEADER([sqlite3.h], [
+          AC_CHECK_LIB([sqlite3], [sqlite3_open], [
+            have_sqlite=yes
+            SQLITE_CFLAGS=""
+            SQLITE_LIBS="-lsqlite3"
+          ], [have_sqlite=no])
+        ], [have_sqlite=no])
+      ])
+      
+      dnl Restore original PKG_CONFIG paths
+      if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_ORIG_LIBDIR"; then
+        PKG_CONFIG_PATH="$PKG_CONFIG_ORIG_PATH"
+        PKG_CONFIG_LIBDIR="$PKG_CONFIG_ORIG_LIBDIR"
+      fi
+      
+      AC_MSG_RESULT([$have_sqlite])
     fi
     AC_MSG_CHECKING([whether to build wallet with support for sqlite])
     if test "$use_sqlite" = "no"; then
@@ -1605,16 +1947,49 @@ fi
 
 dnl libevent check
 
+dnl Enhanced libevent detection with cross-compilation support
 use_libevent=no
 if test "$build_bitcoin_cli$build_bitcoind$bitcoin_enable_qt$enable_fuzz_binary$use_tests$use_bench" != "nononononono"; then
-  PKG_CHECK_MODULES([EVENT], [libevent >= 2.1.8], [use_libevent=yes], [AC_MSG_ERROR([libevent version 2.1.8 or greater not found.])])
-  if test "$TARGET_OS" != "windows"; then
-    PKG_CHECK_MODULES([EVENT_PTHREADS], [libevent_pthreads >= 2.1.8], [], [AC_MSG_ERROR([libevent_pthreads version 2.1.8 or greater not found.])])
+  AC_MSG_CHECKING([for libevent])
+  
+  dnl Setup cross-compilation pkg-config environment
+  if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_LIBDIR"; then
+    PKG_CONFIG_ORIG_PATH="$PKG_CONFIG_PATH"
+    PKG_CONFIG_ORIG_LIBDIR="$PKG_CONFIG_LIBDIR"
+    export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR/pkgconfig:$PKG_CONFIG_PATH"
+  fi
+  
+  PKG_CHECK_MODULES([EVENT], [libevent >= 2.1.8], [use_libevent=yes], [
+    dnl Fallback: manual detection
+    AC_CHECK_HEADER([event2/event.h], [
+      AC_CHECK_LIB([event], [event_base_new], [
+        use_libevent=yes
+        EVENT_CFLAGS=""
+        EVENT_LIBS="-levent"
+      ], [AC_MSG_ERROR([libevent version 2.1.8 or greater not found.])])
+    ], [AC_MSG_ERROR([libevent headers not found.])])
+  ])
+  
+  if test "$use_libevent" = "yes" && test "$TARGET_OS" != "windows"; then
+    PKG_CHECK_MODULES([EVENT_PTHREADS], [libevent_pthreads >= 2.1.8], [], [
+      dnl Fallback: manual detection for pthreads
+      AC_CHECK_LIB([event_pthreads], [evthread_use_pthreads], [
+        EVENT_PTHREADS_LIBS="-levent_pthreads"
+      ], [AC_MSG_ERROR([libevent_pthreads version 2.1.8 or greater not found.])])
+    ])
+  fi
+  
+  dnl Restore original PKG_CONFIG paths
+  if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_ORIG_LIBDIR"; then
+    PKG_CONFIG_PATH="$PKG_CONFIG_ORIG_PATH"
+    PKG_CONFIG_LIBDIR="$PKG_CONFIG_ORIG_LIBDIR"
   fi
 
   if test "$suppress_external_warnings" != "no"; then
     EVENT_CFLAGS=SUPPRESS_WARNINGS($EVENT_CFLAGS)
   fi
+  
+  AC_MSG_RESULT([$use_libevent])
 fi
 
 if test "$use_libevent" = "yes"; then
@@ -1645,11 +2020,43 @@ fi
 
 dnl ZMQ check
 
+dnl Enhanced ZMQ detection with cross-compilation support
 if test "$use_zmq" = "yes"; then
-  PKG_CHECK_MODULES([ZMQ], [libzmq >= 4],
-    AC_DEFINE([ENABLE_ZMQ], [1], [Define this symbol to enable ZMQ functions]),
-    [AC_MSG_WARN([libzmq version 4.x or greater not found, disabling])
-    use_zmq=no])
+  AC_MSG_CHECKING([for ZeroMQ])
+  
+  dnl Setup cross-compilation pkg-config environment
+  if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_LIBDIR"; then
+    PKG_CONFIG_ORIG_PATH="$PKG_CONFIG_PATH"
+    PKG_CONFIG_ORIG_LIBDIR="$PKG_CONFIG_LIBDIR"
+    export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR/pkgconfig:$PKG_CONFIG_PATH"
+  fi
+  
+  PKG_CHECK_MODULES([ZMQ], [libzmq >= 4], [
+    AC_DEFINE([ENABLE_ZMQ], [1], [Define this symbol to enable ZMQ functions])
+  ], [
+    dnl Fallback: manual detection
+    AC_CHECK_HEADER([zmq.h], [
+      AC_CHECK_LIB([zmq], [zmq_ctx_new], [
+        ZMQ_CFLAGS=""
+        ZMQ_LIBS="-lzmq"
+        AC_DEFINE([ENABLE_ZMQ], [1], [Define this symbol to enable ZMQ functions])
+      ], [
+        AC_MSG_WARN([libzmq version 4.x or greater not found, disabling])
+        use_zmq=no
+      ])
+    ], [
+      AC_MSG_WARN([ZeroMQ headers not found, disabling])
+      use_zmq=no
+    ])
+  ])
+  
+  dnl Restore original PKG_CONFIG paths
+  if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_ORIG_LIBDIR"; then
+    PKG_CONFIG_PATH="$PKG_CONFIG_ORIG_PATH"
+    PKG_CONFIG_LIBDIR="$PKG_CONFIG_ORIG_LIBDIR"
+  fi
+  
+  AC_MSG_RESULT([$use_zmq])
 fi
 
 if test "$use_zmq" = "yes"; then
@@ -1661,9 +2068,37 @@ if test "$use_zmq" = "yes"; then
   esac
 fi
 
-dnl check if libgmp is present
-AC_CHECK_HEADER([gmp.h],, AC_MSG_ERROR(libgmp headers missing))
-AC_CHECK_LIB([gmp],  [__gmpz_init],GMP_LIBS=-lgmp, AC_MSG_ERROR(libgmp missing))
+dnl Enhanced GMP detection with cross-compilation support
+AC_MSG_CHECKING([for GNU Multiple Precision Arithmetic Library (GMP)])
+gmp_found=no
+
+dnl First try pkg-config
+if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_LIBDIR"; then
+  PKG_CONFIG_ORIG_PATH="$PKG_CONFIG_PATH"
+  PKG_CONFIG_ORIG_LIBDIR="$PKG_CONFIG_LIBDIR"
+  export PKG_CONFIG_PATH="$PKG_CONFIG_LIBDIR/pkgconfig:$PKG_CONFIG_PATH"
+fi
+
+PKG_CHECK_MODULES([GMP], [gmp], [
+  gmp_found=yes
+], [
+  dnl Fallback: manual detection
+  AC_CHECK_HEADER([gmp.h], [
+    AC_CHECK_LIB([gmp], [__gmpz_init], [
+      gmp_found=yes
+      GMP_CFLAGS=""
+      GMP_LIBS="-lgmp"
+    ], [AC_MSG_ERROR([libgmp missing])])
+  ], [AC_MSG_ERROR([libgmp headers missing])])
+])
+
+dnl Restore original PKG_CONFIG paths
+if test "$cross_compiling" = "yes" && test -n "$PKG_CONFIG_ORIG_LIBDIR"; then
+  PKG_CONFIG_PATH="$PKG_CONFIG_ORIG_PATH"
+  PKG_CONFIG_LIBDIR="$PKG_CONFIG_ORIG_LIBDIR"
+fi
+
+AC_MSG_RESULT([$gmp_found])
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "$use_zmq" = "yes"])
 
@@ -1876,9 +2311,230 @@ else
 fi
 AC_MSG_RESULT($dsymutil_needs_flat)
 
+dnl Configuration validation and sanity checks
+AC_MSG_CHECKING([configuration sanity])
+
+dnl Validate target selection
 if test "$build_bitcoin_wallet$build_bitcoin_cli$build_bitcoin_tx$build_bitcoind$bitcoin_enable_qt$enable_fuzz_binary$use_bench$use_tests" = "nononononononono"; then
   AC_MSG_ERROR([No targets! Please specify at least one of: --with-utils --with-libs --with-daemon --with-gui --enable-fuzz(-binary) --enable-bench or --enable-tests])
 fi
+
+dnl Platform-specific validation
+case $TARGET_OS in
+  windows)
+    dnl Windows-specific validation
+    if test "$WINDRES" = "none"; then
+      AC_MSG_ERROR([windres is required for Windows builds])
+    fi
+    if test "$cross_compiling" = "yes" && test -z "$host_alias"; then
+      AC_MSG_WARN([Cross-compiling for Windows but no host alias specified])
+    fi
+    ;;
+  darwin)
+    dnl macOS-specific validation
+    if test "$cross_compiling" = "yes"; then
+      if test -z "$DSYMUTIL"; then
+        AC_MSG_WARN([dsymutil not found - debug symbols may not work properly])
+      fi
+    else
+      dnl Native macOS build validation
+      if ! command -v xcrun >/dev/null 2>&1; then
+        AC_MSG_WARN([xcrun not found - Xcode command line tools may not be installed])
+      fi
+    fi
+    ;;
+  linux)
+    dnl Linux-specific validation
+    if test "$cross_compiling" = "yes"; then
+      case $host in
+        *aarch64*|*arm64*)
+          if test -z "$CC" || test "$CC" = "gcc"; then
+            AC_MSG_WARN([Cross-compiling for ARM64 but no cross-compiler specified])
+          fi
+          ;;
+      esac
+    fi
+    ;;
+esac
+
+dnl Dependency validation
+if test "$enable_wallet" = "yes"; then
+  if test "$use_bdb" = "no" && test "$use_sqlite" = "no"; then
+    AC_MSG_ERROR([Wallet enabled but no database backend available (BDB or SQLite)])
+  fi
+fi
+
+if test "$bitcoin_enable_qt" = "yes"; then
+  if test -z "$QT_LIBS"; then
+    AC_MSG_ERROR([Qt GUI enabled but Qt libraries not found])
+  fi
+fi
+
+dnl Cross-compilation validation
+if test "$cross_compiling" = "yes"; then
+  AC_MSG_CHECKING([cross-compilation setup])
+  
+  dnl Check for cross-compilation tools
+  if test -z "$host_alias"; then
+    AC_MSG_WARN([Cross-compiling but no host triplet specified])
+  fi
+  
+  dnl Check pkg-config setup for cross-compilation
+  if test -n "$PKG_CONFIG_LIBDIR"; then
+    if test ! -d "$PKG_CONFIG_LIBDIR"; then
+      AC_MSG_WARN([PKG_CONFIG_LIBDIR points to non-existent directory: $PKG_CONFIG_LIBDIR])
+    fi
+  else
+    AC_MSG_WARN([Cross-compiling but PKG_CONFIG_LIBDIR not set])
+  fi
+  
+  AC_MSG_RESULT([checked])
+fi
+
+dnl Compiler compatibility validation
+AC_MSG_CHECKING([compiler compatibility])
+compiler_issues=""
+
+dnl Check for known problematic compiler combinations
+if test "$GXX" = "yes"; then
+  gcc_version=$($CXX -dumpversion 2>/dev/null | cut -d. -f1)
+  if test -n "$gcc_version" && test "$gcc_version" -lt 9; then
+    compiler_issues="$compiler_issues GCC version $gcc_version may have C++20 compatibility issues."
+  fi
+fi
+
+if test "$enable_werror" = "yes" && test "$cross_compiling" = "yes"; then
+  compiler_issues="$compiler_issues -Werror with cross-compilation may cause issues."
+fi
+
+if test -n "$compiler_issues"; then
+  AC_MSG_RESULT([issues found])
+  AC_MSG_WARN([Compiler compatibility issues: $compiler_issues])
+else
+  AC_MSG_RESULT([ok])
+fi
+
+dnl Flag validation
+AC_MSG_CHECKING([compilation flags])
+flag_issues=""
+
+dnl Check for conflicting optimization flags
+opt_count=$(echo "$CORE_CXXFLAGS $HARDENED_CXXFLAGS $DEBUG_CXXFLAGS" | grep -o '\-O[0-9s]' | wc -l)
+if test "$opt_count" -gt 1; then
+  flag_issues="$flag_issues Multiple optimization flags detected."
+fi
+
+dnl Check for conflicting stack protector flags
+stack_count=$(echo "$HARDENED_CXXFLAGS" | grep -o '\-fstack-protector[^[:space:]]*' | wc -l)
+if test "$stack_count" -gt 1; then
+  flag_issues="$flag_issues Multiple stack protector flags detected."
+fi
+
+if test -n "$flag_issues"; then
+  AC_MSG_RESULT([issues found])
+  AC_MSG_WARN([Compilation flag issues: $flag_issues])
+else
+  AC_MSG_RESULT([ok])
+fi
+
+AC_MSG_RESULT([configuration appears valid])
+
+dnl Create configuration debugging script
+AC_MSG_NOTICE([Creating configuration debugging script])
+cat > config-debug.sh << 'EOF'
+#!/bin/bash
+# BabaChain Configuration Debug Script
+# Generated by configure
+
+echo "=== BabaChain Build Configuration Debug ==="
+echo "Generated on: $(date)"
+echo
+
+echo "=== Host Information ==="
+echo "Build system: $build"
+echo "Host system: $host"
+echo "Target OS: $TARGET_OS"
+echo "Cross compiling: $cross_compiling"
+echo
+
+echo "=== Compiler Information ==="
+echo "CC: $CC"
+echo "CXX: $CXX"
+echo "CFLAGS: $CFLAGS"
+echo "CXXFLAGS: $DEBUG_CXXFLAGS $HARDENED_CXXFLAGS $WARN_CXXFLAGS $NOWARN_CXXFLAGS $ERROR_CXXFLAGS $GPROF_CXXFLAGS $CORE_CXXFLAGS $CXXFLAGS"
+echo "CPPFLAGS: $DEBUG_CPPFLAGS $HARDENED_CPPFLAGS $CORE_CPPFLAGS $CPPFLAGS"
+echo "LDFLAGS: $PTHREAD_LIBS $HARDENED_LDFLAGS $GPROF_LDFLAGS $CORE_LDFLAGS $LDFLAGS"
+echo
+
+echo "=== Build Targets ==="
+echo "Build daemon: $build_bitcoind"
+echo "Build CLI: $build_bitcoin_cli"
+echo "Build TX: $build_bitcoin_tx"
+echo "Build wallet tool: $build_bitcoin_wallet"
+echo "Build libraries: $build_bitcoin_libs"
+echo "Build Qt GUI: $bitcoin_enable_qt"
+echo "Build tests: $use_tests"
+echo "Build benchmarks: $use_bench"
+echo "Build fuzz binary: $enable_fuzz_binary"
+echo
+
+echo "=== Features ==="
+echo "Wallet support: $enable_wallet"
+if test "$enable_wallet" = "yes"; then
+  echo "  SQLite support: $use_sqlite"
+  echo "  BDB support: $use_bdb"
+fi
+echo "ZMQ support: $use_zmq"
+echo "UPnP support: $use_upnp"
+echo "NAT-PMP support: $use_natpmp"
+echo "QR code support: $use_qr"
+echo "Hardening: $use_hardening"
+echo "Debug mode: $enable_debug"
+echo
+
+echo "=== Dependencies ==="
+echo "libevent: $use_libevent"
+if test "$use_libevent" = "yes"; then
+  echo "  CFLAGS: $EVENT_CFLAGS"
+  echo "  LIBS: $EVENT_LIBS"
+fi
+echo "GMP: $gmp_found"
+if test "$gmp_found" = "yes"; then
+  echo "  CFLAGS: $GMP_CFLAGS"
+  echo "  LIBS: $GMP_LIBS"
+fi
+echo
+
+echo "=== PKG-CONFIG Information ==="
+echo "PKG_CONFIG: $PKG_CONFIG"
+echo "PKG_CONFIG_PATH: $PKG_CONFIG_PATH"
+echo "PKG_CONFIG_LIBDIR: $PKG_CONFIG_LIBDIR"
+echo
+
+echo "=== Architecture Support ==="
+echo "SSSE3: $enable_ssse3"
+echo "SSE4.1: $enable_sse41"
+echo "SSE4.2: $enable_sse42"
+echo "AVX2: $enable_avx2"
+echo "x86 AES-NI: $enable_x86_aesni"
+echo "x86 SHA-NI: $enable_x86_shani"
+echo "ARM AES: $enable_arm_aes"
+echo "ARM CRC: $enable_arm_crc"
+echo "ARM NEON: $enable_arm_neon"
+echo "ARM SHA-NI: $enable_arm_shani"
+echo
+
+echo "=== Troubleshooting ==="
+echo "If you encounter build issues:"
+echo "1. Check that all dependencies are installed"
+echo "2. Verify cross-compilation toolchain setup"
+echo "3. Check PKG_CONFIG_LIBDIR for cross-compilation"
+echo "4. Review compiler and linker flags for conflicts"
+echo "5. Try with --disable-hardening if hardening flags cause issues"
+echo
+EOF
+
+chmod +x config-debug.sh
 
 AM_CONDITIONAL([TARGET_DARWIN], [test "$TARGET_OS" = "darwin"])
 AM_CONDITIONAL([BUILD_DARWIN], [test "$BUILD_OS" = "darwin"])
