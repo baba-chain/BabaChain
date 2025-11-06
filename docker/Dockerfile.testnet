@@ -1,0 +1,200 @@
+# BabaChain Real Testnet Docker Image
+FROM ubuntu:22.04
+
+# Metadata
+LABEL maintainer="BabaChain Team <team@babachain.org>"
+LABEL description="BabaChain Real Testnet Node"
+LABEL version="1.0.0-testnet"
+
+# Çevre değişkenleri
+ENV DEBIAN_FRONTEND=noninteractive
+ENV BABACHAIN_USER=babachain
+ENV BABACHAIN_HOME=/home/babachain
+ENV BABACHAIN_DATA=/home/babachain/.babachain
+
+# Sistem güncellemesi ve runtime dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    gosu \
+    openssl \
+    ca-certificates \
+    libboost-system1.74.0 \
+    libboost-filesystem1.74.0 \
+    libboost-thread1.74.0 \
+    libboost-chrono1.74.0 \
+    libssl3 \
+    libdb5.3++ \
+    libminiupnpc17 \
+    libzmq5 \
+    libevent-2.1-7 \
+    && rm -rf /var/lib/apt/lists/*
+
+# BabaChain kullanıcısı oluşturma
+RUN useradd -m -s /bin/bash $BABACHAIN_USER && \
+    mkdir -p $BABACHAIN_DATA && \
+    chown -R $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_HOME
+
+# BabaChain binary'lerini kopyala (build sonrası)
+COPY src/babachaind /usr/local/bin/
+COPY src/babachain-cli /usr/local/bin/
+COPY src/babachain-tx /usr/local/bin/
+RUN chmod +x /usr/local/bin/babachain*
+
+# Testnet konfigürasyon şablonu
+RUN cat > $BABACHAIN_DATA/babachain.conf.template << 'EOF'
+# BabaChain Testnet Configuration
+testnet=1
+server=1
+daemon=1
+txindex=1
+
+# Network ports
+port=19999
+rpcport=19998
+
+# RPC settings
+rpcuser=${RPC_USER:-babachain_testnet}
+rpcpassword=${RPC_PASSWORD:-CHANGE_THIS_PASSWORD}
+rpcbind=0.0.0.0
+rpcallowip=127.0.0.1
+rpcallowip=172.16.0.0/12
+
+# PoS Staking
+staking=1
+stakegen=1
+reservebalance=0
+
+# Testnet seed nodes (will be updated with real testnet nodes)
+# addnode=testnet-seed1.babachain.org:19999
+# addnode=testnet-seed2.babachain.org:19999
+
+# Performance settings
+maxconnections=50
+dbcache=300
+maxmempool=100
+
+# Logging
+debug=pos,staking,net,rpc
+printtoconsole=1
+
+# Testnet specific
+[test]
+rpcport=19998
+port=19999
+EOF
+
+RUN chown $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_DATA/babachain.conf.template
+
+# Entrypoint script
+RUN cat > /usr/local/bin/docker-entrypoint.sh << 'EOF'
+#!/bin/bash
+set -e
+
+echo "🚀 BabaChain Testnet Node Starting..."
+
+BABACHAIN_USER=${BABACHAIN_USER:-babachain}
+BABACHAIN_DATA=${BABACHAIN_DATA:-/home/babachain/.babachain}
+BABACHAIN_CONF=${BABACHAIN_DATA}/babachain.conf
+
+# Create config if it doesn't exist
+if [ ! -f "$BABACHAIN_CONF" ]; then
+    echo "📝 Creating testnet configuration..."
+    
+    # Generate random RPC password
+    RPC_PASSWORD=${RPC_PASSWORD:-$(openssl rand -base64 32)}
+    
+    cat > "$BABACHAIN_CONF" << CONF_EOF
+# BabaChain Testnet Configuration
+testnet=1
+server=1
+daemon=1
+txindex=1
+
+# Network ports
+port=19999
+rpcport=19998
+
+# RPC settings
+rpcuser=${RPC_USER:-babachain_testnet}
+rpcpassword=${RPC_PASSWORD}
+rpcbind=0.0.0.0
+rpcallowip=127.0.0.1
+rpcallowip=172.16.0.0/12
+
+# PoS Staking
+staking=${STAKING:-1}
+stakegen=${STAKEGEN:-1}
+reservebalance=${RESERVE_BALANCE:-0}
+
+# Performance settings
+maxconnections=${MAX_CONNECTIONS:-50}
+dbcache=${DB_CACHE:-300}
+maxmempool=${MAX_MEMPOOL:-100}
+
+# Logging
+debug=${DEBUG:-pos,staking,net}
+printtoconsole=1
+
+# Mining (for initial coin generation)
+gen=${GENERATE:-0}
+genproclimit=${GEN_PROC_LIMIT:-1}
+CONF_EOF
+
+    echo "✅ Configuration created"
+    echo "🔑 RPC Password: $RPC_PASSWORD"
+fi
+
+# Set ownership
+chown -R $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_DATA
+
+# Handle different commands
+if [ "$1" = 'babachaind' ]; then
+    echo "🌐 Starting BabaChain testnet daemon..."
+    echo "📊 Data directory: $BABACHAIN_DATA"
+    echo "🔌 RPC Port: 19998"
+    echo "🌐 P2P Port: 19999"
+    
+    exec gosu $BABACHAIN_USER babachaind \
+        -conf=$BABACHAIN_CONF \
+        -datadir=$BABACHAIN_DATA \
+        -testnet \
+        -printtoconsole
+        
+elif [ "$1" = 'babachain-cli' ]; then
+    shift
+    exec gosu $BABACHAIN_USER babachain-cli \
+        -conf=$BABACHAIN_CONF \
+        -datadir=$BABACHAIN_DATA \
+        -testnet \
+        "$@"
+        
+elif [ "$1" = 'generate-coins' ]; then
+    echo "💰 Starting coin generation mode..."
+    exec gosu $BABACHAIN_USER babachaind \
+        -conf=$BABACHAIN_CONF \
+        -datadir=$BABACHAIN_DATA \
+        -testnet \
+        -gen=1 \
+        -genproclimit=1 \
+        -printtoconsole
+        
+else
+    exec "$@"
+fi
+EOF
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Expose ports
+EXPOSE 19999 19998
+
+# Volume for blockchain data
+VOLUME ["$BABACHAIN_DATA"]
+
+# Working directory
+WORKDIR $BABACHAIN_HOME
+
+# Entrypoint
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["babachaind"]

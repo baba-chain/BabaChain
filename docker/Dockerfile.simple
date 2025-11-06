@@ -1,10 +1,10 @@
-# BabaChain Docker Image
+# BabaChain Simple Docker Image (for local development)
 FROM ubuntu:22.04
 
 # Metadata
 LABEL maintainer="BabaChain Team <team@babachain.org>"
-LABEL description="BabaChain Proof-of-Stake Cryptocurrency Node"
-LABEL version="1.0.0"
+LABEL description="BabaChain Proof-of-Stake Cryptocurrency Node (Development)"
+LABEL version="1.0.0-dev"
 
 # Çevre değişkenleri
 ENV DEBIAN_FRONTEND=noninteractive
@@ -12,34 +12,13 @@ ENV BABACHAIN_USER=babachain
 ENV BABACHAIN_HOME=/home/babachain
 ENV BABACHAIN_DATA=/home/babachain/.babachain
 
-# Sistem güncellemesi ve gerekli paketlerin yüklenmesi
+# Sistem güncellemesi ve temel paketler
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libtool \
-    autotools-dev \
-    automake \
-    pkg-config \
-    bsdmainutils \
-    python3 \
-    git \
     wget \
     curl \
-    libboost-all-dev \
-    libssl-dev \
-    libdb++-dev \
-    libminiupnpc-dev \
-    libzmq3-dev \
-    libqt5gui5 \
-    libqt5core5a \
-    libqt5dbus5 \
-    qttools5-dev \
-    qttools5-dev-tools \
-    libprotobuf-dev \
-    protobuf-compiler \
-    libevent-dev \
-    libqrencode-dev \
     gosu \
     openssl \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # BabaChain kullanıcısı oluşturma
@@ -47,16 +26,9 @@ RUN useradd -m -s /bin/bash $BABACHAIN_USER && \
     mkdir -p $BABACHAIN_DATA && \
     chown -R $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_HOME
 
-# BabaChain kaynak kodunu kopyalama
-COPY . $BABACHAIN_HOME/BabaChain/
-RUN chown -R $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_HOME/BabaChain
-
-# BabaChain'i derleme (autotools kullanarak)
-WORKDIR $BABACHAIN_HOME/BabaChain
-RUN ./autogen.sh && \
-    ./configure --prefix=/usr/local --disable-tests --disable-bench && \
-    make -j$(nproc) && \
-    make install
+# Pre-built binaries kopyalama (eğer varsa)
+# Bu kısım daha sonra gerçek binary'ler ile değiştirilecek
+RUN mkdir -p /usr/local/bin
 
 # Konfigürasyon dosyası şablonu
 COPY docker/babachain.conf.template $BABACHAIN_DATA/babachain.conf.template
@@ -65,6 +37,11 @@ RUN chown $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_DATA/babachain.conf.templat
 # Entrypoint scripti
 COPY docker/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Dummy binaries oluştur (geliştirme için)
+RUN echo '#!/bin/bash\necho "BabaChain Daemon v1.0.0-dev"\necho "Starting in development mode..."\nsleep infinity' > /usr/local/bin/babachaind && \
+    echo '#!/bin/bash\necho "BabaChain CLI v1.0.0-dev"\necho "Development mode - limited functionality"' > /usr/local/bin/babachain-cli && \
+    chmod +x /usr/local/bin/babachaind /usr/local/bin/babachain-cli
 
 # Portları aç
 EXPOSE 9999 9998

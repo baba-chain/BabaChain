@@ -341,3 +341,11 @@ test-build-verification: $(bin_PROGRAMS)
 test-checksums: $(bin_PROGRAMS)
 	@echo "Generating checksums for binaries..."
 	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/generate-checksums.py generate src --patterns "*$(EXEEXT)"
+
+docker-deploy:
+	@echo "Deploying BabaChain with Docker..."
+	$(AM_V_at) ./docker/scripts/local-deploy.sh
+
+docker-manage:
+	@echo "Managing BabaChain Docker container..."
+	$(AM_V_at) ./docker/scripts/manage.sh $(ARGS)

@@ -1,0 +1,348 @@
+# BabaChain Development Docker Image
+FROM ubuntu:22.04
+
+# Metadata
+LABEL maintainer="BabaChain Team <team@babachain.org>"
+LABEL description="BabaChain Development Environment"
+LABEL version="1.0.0-dev"
+
+# Çevre değişkenleri
+ENV DEBIAN_FRONTEND=noninteractive
+ENV BABACHAIN_USER=babachain
+ENV BABACHAIN_HOME=/home/babachain
+ENV BABACHAIN_DATA=/home/babachain/.babachain
+
+# Sistem güncellemesi ve temel paketler
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    gosu \
+    openssl \
+    ca-certificates \
+    python3 \
+    python3-pip \
+    jq \
+    htop \
+    nano \
+    vim \
+    net-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+# BabaChain kullanıcısı oluşturma
+RUN useradd -m -s /bin/bash $BABACHAIN_USER && \
+    mkdir -p $BABACHAIN_DATA && \
+    chown -R $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_HOME
+
+# Development tools
+RUN pip3 install requests
+
+# Mock BabaChain binaries (development için)
+RUN cat > /usr/local/bin/babachaind << 'EOF'
+#!/bin/bash
+echo "🚀 BabaChain Daemon v1.0.0-dev"
+echo "📍 Starting in development mode..."
+echo "📊 Data directory: $BABACHAIN_DATA"
+echo "🌐 P2P Port: 9999"
+echo "🔌 RPC Port: 9998"
+echo "⏰ $(date): Daemon started successfully"
+
+# Create a simple HTTP server to simulate RPC
+python3 -c "
+import http.server
+import socketserver
+import json
+from urllib.parse import urlparse, parse_qs
+
+class BabaChainRPCHandler(http.server.BaseHTTPRequestHandler):
+    def do_POST(self):
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
+        
+        try:
+            request = json.loads(post_data.decode('utf-8'))
+            method = request.get('method', '')
+            
+            # Mock responses
+            responses = {
+                'getblockchaininfo': {
+                    'chain': 'main',
+                    'blocks': 12345,
+                    'headers': 12345,
+                    'bestblockhash': '0000000000000000000000000000000000000000000000000000000000000000',
+                    'difficulty': 1.0,
+                    'verificationprogress': 1.0
+                },
+                'getstakinginfo': {
+                    'enabled': True,
+                    'staking': True,
+                    'errors': '',
+                    'currentblocksize': 1000,
+                    'currentblocktx': 0,
+                    'pooledtx': 0,
+                    'difficulty': 1.0,
+                    'search-interval': 16,
+                    'weight': 1000000,
+                    'netstakeweight': 10000000,
+                    'expectedtime': 3600
+                },
+                'getwalletinfo': {
+                    'walletname': 'wallet.dat',
+                    'walletversion': 169900,
+                    'balance': 100.0,
+                    'unconfirmed_balance': 0.0,
+                    'immature_balance': 0.0,
+                    'txcount': 1,
+                    'keypoololdest': 1640995200,
+                    'keypoolsize': 1000,
+                    'unlocked_until': 0
+                },
+                'getpeerinfo': [],
+                'getblockcount': 12345,
+                'getbalance': 100.0,
+                'getinfo': {
+                    'version': 1000000,
+                    'protocolversion': 70015,
+                    'walletversion': 169900,
+                    'balance': 100.0,
+                    'blocks': 12345,
+                    'timeoffset': 0,
+                    'connections': 8,
+                    'proxy': '',
+                    'difficulty': 1.0,
+                    'testnet': False,
+                    'keypoololdest': 1640995200,
+                    'keypoolsize': 1000,
+                    'paytxfee': 0.0,
+                    'relayfee': 0.00001,
+                    'errors': ''
+                }
+            }
+            
+            result = responses.get(method, {'error': 'Method not found'})
+            
+            response = {
+                'result': result,
+                'error': None,
+                'id': request.get('id', 1)
+            }
+            
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(response).encode())
+            
+        except Exception as e:
+            self.send_response(500)
+            self.end_headers()
+            self.wfile.write(str(e).encode())
+    
+    def log_message(self, format, *args):
+        pass  # Suppress default logging
+
+PORT = 9998
+with socketserver.TCPServer(('', PORT), BabaChainRPCHandler) as httpd:
+    print(f'🔌 RPC Server started on port {PORT}')
+    print('💡 Development mode: Mock responses enabled')
+    print('🔄 Ready to accept RPC calls...')
+    httpd.serve_forever()
+"
+EOF
+
+RUN cat > /usr/local/bin/babachain-cli << 'EOF'
+#!/bin/bash
+
+# Default RPC settings
+RPC_USER=${RPC_USER:-babachain_local}
+RPC_PASSWORD=${RPC_PASSWORD:-local_dev_password}
+RPC_HOST=${RPC_HOST:-127.0.0.1}
+RPC_PORT=${RPC_PORT:-9998}
+
+# Parse command line arguments
+METHOD=""
+PARAMS=""
+
+for arg in "$@"; do
+    case $arg in
+        -rpcuser=*)
+            RPC_USER="${arg#*=}"
+            ;;
+        -rpcpassword=*)
+            RPC_PASSWORD="${arg#*=}"
+            ;;
+        -rpchost=*)
+            RPC_HOST="${arg#*=}"
+            ;;
+        -rpcport=*)
+            RPC_PORT="${arg#*=}"
+            ;;
+        *)
+            if [ -z "$METHOD" ]; then
+                METHOD="$arg"
+            else
+                PARAMS="$PARAMS $arg"
+            fi
+            ;;
+    esac
+done
+
+if [ -z "$METHOD" ]; then
+    echo "BabaChain CLI v1.0.0-dev"
+    echo "Usage: babachain-cli [options] <command> [params]"
+    echo ""
+    echo "Available commands (development mode):"
+    echo "  getblockchaininfo  - Get blockchain information"
+    echo "  getstakinginfo     - Get staking information"
+    echo "  getwalletinfo      - Get wallet information"
+    echo "  getpeerinfo        - Get peer information"
+    echo "  getblockcount      - Get block count"
+    echo "  getbalance         - Get wallet balance"
+    echo "  getinfo            - Get general information"
+    echo ""
+    echo "Options:"
+    echo "  -rpcuser=<user>     RPC username"
+    echo "  -rpcpassword=<pass> RPC password"
+    echo "  -rpchost=<host>     RPC host (default: 127.0.0.1)"
+    echo "  -rpcport=<port>     RPC port (default: 9998)"
+    exit 0
+fi
+
+# Make RPC call
+python3 -c "
+import requests
+import json
+import sys
+
+try:
+    url = 'http://$RPC_HOST:$RPC_PORT/'
+    headers = {'Content-Type': 'application/json'}
+    auth = ('$RPC_USER', '$RPC_PASSWORD')
+    
+    data = {
+        'jsonrpc': '1.0',
+        'id': 'cli',
+        'method': '$METHOD',
+        'params': []
+    }
+    
+    response = requests.post(url, json=data, headers=headers, auth=auth, timeout=10)
+    
+    if response.status_code == 200:
+        result = response.json()
+        if result.get('error'):
+            print(f'Error: {result[\"error\"]}')
+            sys.exit(1)
+        else:
+            print(json.dumps(result['result'], indent=2))
+    else:
+        print(f'HTTP Error: {response.status_code}')
+        sys.exit(1)
+        
+except requests.exceptions.ConnectionError:
+    print('Error: Could not connect to BabaChain daemon. Is it running?')
+    sys.exit(1)
+except Exception as e:
+    print(f'Error: {e}')
+    sys.exit(1)
+"
+EOF
+
+RUN chmod +x /usr/local/bin/babachaind /usr/local/bin/babachain-cli
+
+# Konfigürasyon dosyası şablonu oluştur
+RUN cat > $BABACHAIN_DATA/babachain.conf.template << 'EOF'
+# BabaChain Configuration Template
+rpcuser=${RPC_USER:-babachain_user}
+rpcpassword=${RPC_PASSWORD:-CHANGE_THIS_PASSWORD}
+rpcport=${RPC_PORT:-9998}
+rpcbind=0.0.0.0
+rpcallowip=0.0.0.0/0
+port=${P2P_PORT:-9999}
+listen=1
+discover=1
+upnp=${UPNP:-1}
+staking=${STAKING:-1}
+stakegen=${STAKEGEN:-1}
+reservebalance=${RESERVE_BALANCE:-0}
+addnode=seed1.babachain.org:9999
+addnode=seed2.babachain.org:9999
+maxconnections=${MAX_CONNECTIONS:-125}
+timeout=${TIMEOUT:-5000}
+dbcache=${DB_CACHE:-300}
+debug=${DEBUG:-pos,staking,net}
+testnet=${TESTNET:-0}
+printtoconsole=1
+EOF
+
+RUN chown $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_DATA/babachain.conf.template
+
+# Entrypoint scripti oluştur
+RUN cat > /usr/local/bin/docker-entrypoint.sh << 'EOF'
+#!/bin/bash
+set -e
+
+BABACHAIN_USER=${BABACHAIN_USER:-babachain}
+BABACHAIN_DATA=${BABACHAIN_DATA:-/home/babachain/.babachain}
+BABACHAIN_CONF=${BABACHAIN_DATA}/babachain.conf
+
+# Konfigürasyon dosyası oluştur (eğer yoksa)
+if [ ! -f "$BABACHAIN_CONF" ]; then
+    echo "Konfigürasyon dosyası oluşturuluyor..."
+    
+    RPC_PASSWORD=${RPC_PASSWORD:-$(openssl rand -base64 32)}
+    
+    cat > "$BABACHAIN_CONF" << CONF_EOF
+# BabaChain Docker Konfigürasyonu
+rpcuser=${RPC_USER:-babachain_user}
+rpcpassword=${RPC_PASSWORD}
+rpcport=${RPC_PORT:-9998}
+rpcbind=0.0.0.0
+rpcallowip=0.0.0.0/0
+port=${P2P_PORT:-9999}
+listen=1
+discover=1
+upnp=${UPNP:-1}
+staking=${STAKING:-1}
+stakegen=${STAKEGEN:-1}
+reservebalance=${RESERVE_BALANCE:-0}
+addnode=seed1.babachain.org:9999
+addnode=seed2.babachain.org:9999
+maxconnections=${MAX_CONNECTIONS:-125}
+timeout=${TIMEOUT:-5000}
+dbcache=${DB_CACHE:-300}
+debug=${DEBUG:-pos,staking,net}
+testnet=${TESTNET:-0}
+printtoconsole=1
+CONF_EOF
+
+    echo "RPC Şifresi: $RPC_PASSWORD"
+fi
+
+# Dosya sahipliğini ayarla
+chown -R $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_DATA
+
+# Komut argümanlarını işle
+if [ "$1" = 'babachaind' ]; then
+    echo "BabaChain daemon başlatılıyor..."
+    exec gosu $BABACHAIN_USER babachaind -conf=$BABACHAIN_CONF -datadir=$BABACHAIN_DATA -printtoconsole
+elif [ "$1" = 'babachain-cli' ]; then
+    shift
+    exec gosu $BABACHAIN_USER babachain-cli -conf=$BABACHAIN_CONF -datadir=$BABACHAIN_DATA "$@"
+else
+    exec gosu $BABACHAIN_USER "$@"
+fi
+EOF
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Portları aç
+EXPOSE 9999 9998
+
+# Volume'lar
+VOLUME ["$BABACHAIN_DATA"]
+
+# Çalışma dizini
+WORKDIR $BABACHAIN_HOME
+
+# Entrypoint
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["babachaind"]

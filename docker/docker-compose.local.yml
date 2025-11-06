@@ -1,0 +1,37 @@
+services:
+  babachain:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.minimal
+    container_name: babachain-local
+    restart: unless-stopped
+    ports:
+      - "19999:9999"  # P2P port
+      - "127.0.0.1:19998:9998"  # RPC port (localhost only)
+    volumes:
+      - babachain-local-data:/home/babachain/.babachain
+      - ./logs:/home/babachain/logs
+    environment:
+      - RPC_USER=babachain_local
+      - RPC_PASSWORD=$(grep rpcpassword ./config/babachain.conf | cut -d'=' -f2)
+      - STAKING=1
+      - STAKEGEN=1
+      - MAX_CONNECTIONS=50
+      - DB_CACHE=200
+      - DEBUG=pos,staking,net
+    healthcheck:
+      test: ["CMD", "echo", "healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - babachain-network
+
+volumes:
+  babachain-local-data:
+    driver: local
+
+networks:
+  babachain-network:
+    driver: bridge

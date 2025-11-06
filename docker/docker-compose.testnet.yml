@@ -1,0 +1,39 @@
+services:
+  babachain-testnet:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: babachain-testnet
+    restart: unless-stopped
+    ports:
+      - "19999:19999"  # P2P port
+      - "127.0.0.1:19998:19998"  # RPC port
+    volumes:
+      - babachain-testnet-data:/home/babachain/.babachain
+      - ./config/babachain-testnet.conf:/home/babachain/.babachain/babachain.conf:ro
+      - ./logs:/home/babachain/logs
+    environment:
+      - TESTNET=1
+      - RPC_USER=babachain_testnet
+      - RPC_PASSWORD=$(grep rpcpassword ./config/babachain-testnet.conf | cut -d'=' -f2)
+      - STAKING=1
+      - STAKEGEN=1
+      - MAX_CONNECTIONS=50
+      - DB_CACHE=200
+      - DEBUG=pos,staking,net
+    healthcheck:
+      test: ["CMD", "babachain-cli", "-testnet", "getblockcount"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    networks:
+      - babachain-testnet-network
+
+volumes:
+  babachain-testnet-data:
+    driver: local
+
+networks:
+  babachain-testnet-network:
+    driver: bridge

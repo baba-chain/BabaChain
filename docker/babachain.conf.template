@@ -1,0 +1,46 @@
+# BabaChain Configuration Template
+# This file will be used as a template for generating babachain.conf
+
+# RPC Settings
+rpcuser=${RPC_USER:-babachain_user}
+rpcpassword=${RPC_PASSWORD:-CHANGE_THIS_PASSWORD}
+rpcport=${RPC_PORT:-9998}
+rpcbind=0.0.0.0
+rpcallowip=0.0.0.0/0
+
+# Network Settings
+port=${P2P_PORT:-9999}
+listen=1
+discover=1
+upnp=${UPNP:-1}
+
+# PoS Staking Settings
+staking=${STAKING:-1}
+stakegen=${STAKEGEN:-1}
+reservebalance=${RESERVE_BALANCE:-0}
+
+# Seed Nodes
+addnode=seed1.babachain.org:9999
+addnode=seed2.babachain.org:9999
+addnode=seed3.babachain.org:9999
+addnode=node1.babachain.org:9999
+addnode=node2.babachain.org:9999
+
+# Performance Settings
+maxconnections=${MAX_CONNECTIONS:-125}
+timeout=${TIMEOUT:-5000}
+dbcache=${DB_CACHE:-300}
+maxmempool=${MAX_MEMPOOL:-300}
+
+# Security
+rpcssl=0
+
+# Logging
+debug=${DEBUG:-pos,staking,net}
+
+# Network Type
+testnet=${TESTNET:-0}
+regtest=${REGTEST:-0}
+
+# Docker Optimizations
+printtoconsole=1
