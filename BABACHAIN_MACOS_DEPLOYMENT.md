@@ -46,7 +46,7 @@ eval "$(/usr/local/bin/brew shellenv)"
 ### 3. Gerekli Paketleri Yükleme
 ```bash
 # Gerekli paketleri yükle
-brew install cmake boost openssl berkeley-db miniupnpc zeromq qt5 protobuf pkg-config libevent qrencode
+brew install cmake boost openssl berkeley-db miniupnpc zeromq qt6 protobuf pkg-config libevent qrencode
 
 # Python ve diğer araçlar
 brew install python3 git wget curl
