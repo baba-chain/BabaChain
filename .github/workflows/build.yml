@@ -1,8 +1,15 @@
-name: CI
+name: CI (Legacy - Use release-cross-platform.yml for releases)
 
 on:
-  push:
-  pull_request_target:
+  # Temporarily disabled to prevent conflicts with new release system
+  # push:
+  # pull_request_target:
+  workflow_dispatch:
+    inputs:
+      force_enable:
+        description: 'Force enable legacy CI'
+        type: boolean
+        default: false
 
 permissions:
   contents: read

@@ -1,4 +1,4 @@
-name: Guix Build
+name: Guix Build (DISABLED - Use release-cross-platform.yml instead)
 
 permissions:
   packages: write
@@ -6,8 +6,15 @@ permissions:
   attestations: write
 
 on:
-  pull_request_target:
-  push:
+  # Disabled - Use new cross-platform release system instead
+  # pull_request_target:
+  # push:
+  workflow_dispatch:
+    inputs:
+      force_enable:
+        description: 'Force enable Guix build (not recommended)'
+        type: boolean
+        default: false
 
 jobs:
   build-image:
