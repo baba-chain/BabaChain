@@ -6,7 +6,7 @@ The following directions assume you have a Tor proxy running on port 9050. Many 
 
 ## Compatibility
 
-- Starting with version 20.0, BabaChain Core only supports Tor version 3 hidden
+- Starting with version 1.0, BabaChain Core only supports Tor version 3 hidden
   services (Tor v3). Tor v2 addresses are ignored by BabaChain Core and neither
   relayed nor stored.
 

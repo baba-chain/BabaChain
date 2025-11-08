@@ -1,0 +1,33 @@
+services:
+  babachain-regtest:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.simple-testnet
+    container_name: babachain-regtest
+    restart: unless-stopped
+    ports:
+      - "19999:19999"  # P2P port
+      - "127.0.0.1:19998:19998"  # RPC port
+    volumes:
+      - babachain-regtest-data:/home/babachain/.babachain
+      - ./logs:/home/babachain/logs
+    environment:
+      - RPC_USER=babachain_regtest
+      - RPC_PASSWORD=regtest_password_123
+      - REGTEST=1
+    healthcheck:
+      test: ["CMD", "echo", "healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - babachain-regtest-network
+
+volumes:
+  babachain-regtest-data:
+    driver: local
+
+networks:
+  babachain-regtest-network:
+    driver: bridge

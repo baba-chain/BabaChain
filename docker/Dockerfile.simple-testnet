@@ -1,0 +1,561 @@
+# BabaChain Simple Testnet (Regtest Mode)
+FROM ubuntu:22.04
+
+# Metadata
+LABEL maintainer="BabaChain Team <team@babachain.org>"
+LABEL description="BabaChain Simple Testnet (Regtest Mode)"
+LABEL version="1.0.0-regtest"
+
+# Çevre değişkenleri
+ENV DEBIAN_FRONTEND=noninteractive
+ENV BABACHAIN_USER=babachain
+ENV BABACHAIN_HOME=/home/babachain
+ENV BABACHAIN_DATA=/home/babachain/.babachain
+
+# Sistem güncellemesi ve temel paketler
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    gosu \
+    openssl \
+    ca-certificates \
+    python3 \
+    python3-pip \
+    jq \
+    nano \
+    net-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+# BabaChain kullanıcısı oluşturma
+RUN useradd -m -s /bin/bash $BABACHAIN_USER && \
+    mkdir -p $BABACHAIN_DATA && \
+    chown -R $BABACHAIN_USER:$BABACHAIN_USER $BABACHAIN_HOME
+
+# Python requests kurulumu
+RUN pip3 install requests
+
+# Simulated BabaChain daemon with regtest capabilities
+RUN cat > /usr/local/bin/babachaind << 'EOF'
+#!/bin/bash
+echo "🚀 BabaChain Regtest Daemon v1.0.0"
+echo "📍 Starting regtest mode for local testing..."
+echo "📊 Data directory: ${BABACHAIN_DATA:-/home/babachain/.babachain}"
+echo "🌐 P2P Port: 19999"
+echo "🔌 RPC Port: 19998"
+echo "⏰ $(date): Regtest daemon started"
+
+# Enhanced RPC server with wallet functionality
+python3 -c "
+import http.server
+import socketserver
+import json
+import sys
+import time
+import random
+import hashlib
+from datetime import datetime
+
+class RegtestRPCHandler(http.server.BaseHTTPRequestHandler):
+    # Simulated blockchain state
+    blocks = []
+    transactions = []
+    addresses = []
+    balances = {}
+    current_block_height = 0
+    
+    def __init__(self, *args, **kwargs):
+        # Initialize with genesis block
+        if not RegtestRPCHandler.blocks:
+            genesis_block = {
+                'height': 0,
+                'hash': '0000000000000000000000000000000000000000000000000000000000000000',
+                'time': int(time.time()),
+                'tx': [],
+                'difficulty': 1.0
+            }
+            RegtestRPCHandler.blocks.append(genesis_block)
+            
+        super().__init__(*args, **kwargs)
+    
+    def generate_block_hash(self):
+        # Generate BabaChain style block hash: bk + 126 characters (total 128 chars)
+        # Ultra-secure with quadruple SHA256 hashing
+        first_hash = hashlib.sha256(f'{time.time()}{random.randint(1000000, 9999999)}'.encode()).hexdigest()
+        second_hash = hashlib.sha256(f'{first_hash}{random.randint(1000000, 9999999)}'.encode()).hexdigest()
+        third_hash = hashlib.sha256(f'{second_hash}{random.randint(1000000, 9999999)}'.encode()).hexdigest()
+        fourth_hash = hashlib.sha256(f'{third_hash}{random.randint(1000000, 9999999)}'.encode()).hexdigest()
+        # Combine all hashes for maximum entropy
+        combined_hash = first_hash + second_hash + third_hash + fourth_hash
+        block_hash = combined_hash[:126]  # 126 characters
+        return f'bk{block_hash}'
+    
+    def generate_address(self):
+        # Generate BabaChain style address: bc + 62 characters (total 64 chars)
+        # Use standard hexadecimal (0-9, a-f) format
+        first_hash = hashlib.sha256(f'{time.time()}{random.randint(100000, 999999)}'.encode()).hexdigest()
+        second_hash = hashlib.sha256(f'{first_hash}{random.randint(100000, 999999)}'.encode()).hexdigest()
+        
+        # Combine hashes and take 62 hex characters
+        combined_hash = first_hash + second_hash
+        addr_hash = combined_hash[:62]  # 62 hex characters
+        
+        return f'bc{addr_hash}'
+    
+    def generate_txid(self):
+        # Generate BabaChain style transaction ID: tx + 94 characters (total 96 chars)
+        # Use standard hexadecimal (0-9, a-f) format
+        first_hash = hashlib.sha256(f'{time.time()}{random.randint(1000000, 9999999)}'.encode()).hexdigest()
+        second_hash = hashlib.sha256(f'{first_hash}{random.randint(1000000, 9999999)}'.encode()).hexdigest()
+        third_hash = hashlib.sha256(f'{second_hash}{random.randint(1000000, 9999999)}'.encode()).hexdigest()
+        
+        # Combine hashes and take 94 hex characters for extra security
+        combined_hash = first_hash + second_hash + third_hash
+        txid_hash = combined_hash[:94]  # 94 hex characters
+        
+        return f'tx{txid_hash}'
+    
+    def do_POST(self):
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length > 0:
+                post_data = self.rfile.read(content_length)
+                request = json.loads(post_data.decode('utf-8'))
+            else:
+                request = {}
+            
+            method = request.get('method', 'unknown')
+            params = request.get('params', [])
+            
+            result = None
+            
+            if method == 'getblockchaininfo':
+                result = {
+                    'chain': 'regtest',
+                    'blocks': len(self.blocks) - 1,
+                    'headers': len(self.blocks) - 1,
+                    'bestblockhash': self.blocks[-1]['hash'] if self.blocks else '0000000000000000000000000000000000000000000000000000000000000000',
+                    'difficulty': 1.0,
+                    'verificationprogress': 1.0,
+                    'chainwork': '0000000000000000000000000000000000000000000000000000000000000001'
+                }
+                
+            elif method == 'getstakinginfo':
+                result = {
+                    'enabled': True,
+                    'staking': True,
+                    'weight': 1000000,
+                    'netstakeweight': 10000000,
+                    'expectedtime': 60,
+                    'difficulty': 1.0
+                }
+                
+            elif method == 'getwalletinfo':
+                total_balance = sum(self.balances.values())
+                result = {
+                    'walletname': 'regtest_wallet',
+                    'walletversion': 169900,
+                    'balance': total_balance,
+                    'unconfirmed_balance': 0.0,
+                    'immature_balance': 0.0,
+                    'txcount': len(self.transactions),
+                    'keypoololdest': int(time.time()) - 3600,
+                    'keypoolsize': 1000
+                }
+                
+            elif method == 'getbalance':
+                result = sum(self.balances.values())
+                
+            elif method == 'getnewaddress':
+                new_addr = self.generate_address()
+                self.addresses.append(new_addr)
+                self.balances[new_addr] = 0.0
+                result = new_addr
+                
+            elif method == 'listreceivedbyaddress':
+                result = [
+                    {
+                        'address': addr,
+                        'amount': self.balances.get(addr, 0.0),
+                        'confirmations': 6,
+                        'txids': []
+                    }
+                    for addr in self.addresses
+                ]
+                
+            elif method == 'generate':
+                num_blocks = params[0] if params else 1
+                generated_blocks = []
+                
+                for i in range(num_blocks):
+                    block_hash = self.generate_block_hash()
+                    block = {
+                        'height': len(self.blocks),
+                        'hash': block_hash,
+                        'time': int(time.time()),
+                        'tx': [],
+                        'difficulty': 1.0
+                    }
+                    self.blocks.append(block)
+                    generated_blocks.append(block_hash)
+                    
+                    # Add coinbase reward to first address if exists
+                    if self.addresses:
+                        reward_addr = self.addresses[0]
+                        self.balances[reward_addr] = self.balances.get(reward_addr, 0) + 50.0
+                        
+                        # Create coinbase transaction
+                        coinbase_tx = {
+                            'txid': self.generate_txid(),
+                            'amount': 50.0,
+                            'address': reward_addr,
+                            'category': 'generate',
+                            'confirmations': 1,
+                            'time': int(time.time())
+                        }
+                        self.transactions.append(coinbase_tx)
+                
+                result = generated_blocks
+                
+            elif method == 'sendtoaddress':
+                if len(params) >= 2:
+                    to_address = params[0]
+                    amount = float(params[1])
+                    
+                    # Simple validation
+                    if amount <= 0:
+                        raise Exception('Invalid amount')
+                    
+                    # Check if we have enough balance
+                    total_balance = sum(self.balances.values())
+                    if total_balance < amount:
+                        raise Exception('Insufficient funds')
+                    
+                    # Create transaction
+                    txid = self.generate_txid()
+                    tx = {
+                        'txid': txid,
+                        'amount': amount,
+                        'address': to_address,
+                        'category': 'send',
+                        'confirmations': 0,
+                        'time': int(time.time())
+                    }
+                    self.transactions.append(tx)
+                    
+                    # Update balances (simplified)
+                    if self.addresses:
+                        from_addr = self.addresses[0]
+                        self.balances[from_addr] = max(0, self.balances.get(from_addr, 0) - amount)
+                    
+                    if to_address not in self.balances:
+                        self.balances[to_address] = 0
+                    self.balances[to_address] += amount
+                    
+                    result = txid
+                else:
+                    raise Exception('Missing parameters')
+                    
+            elif method == 'listtransactions':
+                count = params[1] if len(params) > 1 else 10
+                result = self.transactions[-count:]
+                
+            elif method == 'gettransaction':
+                if params:
+                    txid = params[0]
+                    tx = next((t for t in self.transactions if t['txid'] == txid), None)
+                    if tx:
+                        result = tx
+                    else:
+                        raise Exception('Transaction not found')
+                else:
+                    raise Exception('Missing txid parameter')
+                    
+            elif method == 'getpeerinfo':
+                result = []
+                
+            elif method == 'getconnectioncount':
+                result = 0
+                
+            elif method == 'getblockcount':
+                result = len(self.blocks) - 1
+                
+            elif method == 'getinfo':
+                result = {
+                    'version': 1000000,
+                    'protocolversion': 70015,
+                    'walletversion': 169900,
+                    'balance': sum(self.balances.values()),
+                    'blocks': len(self.blocks) - 1,
+                    'timeoffset': 0,
+                    'connections': 0,
+                    'proxy': '',
+                    'difficulty': 1.0,
+                    'testnet': False,
+                    'regtest': True,
+                    'keypoololdest': int(time.time()) - 3600,
+                    'keypoolsize': 1000,
+                    'paytxfee': 0.0,
+                    'relayfee': 0.00001,
+                    'errors': ''
+                }
+                
+            else:
+                result = {'error': f'Method {method} not implemented in regtest mode'}
+            
+            response = {
+                'result': result,
+                'error': None,
+                'id': request.get('id', 1)
+            }
+            
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.end_headers()
+            self.wfile.write(json.dumps(response, indent=2).encode())
+            
+        except Exception as e:
+            error_response = {
+                'result': None,
+                'error': {'code': -1, 'message': str(e)},
+                'id': request.get('id', 1) if 'request' in locals() else 1
+            }
+            
+            self.send_response(500)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(error_response).encode())
+    
+    def log_message(self, format, *args):
+        print(f'RPC: {format % args}')
+
+PORT = 19998
+print(f'🔌 Starting Regtest RPC server on port {PORT}')
+print('💡 Regtest mode: Full wallet functionality enabled')
+print('⛏️  Use generate command to mine blocks and earn coins')
+
+try:
+    with socketserver.TCPServer(('0.0.0.0', PORT), RegtestRPCHandler) as httpd:
+        print('🟢 Regtest RPC server ready - accepting connections')
+        httpd.serve_forever()
+except KeyboardInterrupt:
+    print('🔴 Regtest RPC server stopped')
+except Exception as e:
+    print(f'❌ RPC server error: {e}')
+    sys.exit(1)
+"
+EOF
+
+# Enhanced BabaChain CLI for regtest
+RUN cat > /usr/local/bin/babachain-cli << 'EOF'
+#!/bin/bash
+
+# Default settings
+RPC_HOST="127.0.0.1"
+RPC_PORT="19998"
+RPC_USER="babachain_regtest"
+RPC_PASSWORD="regtest_password"
+
+# Parse arguments
+METHOD=""
+PARAMS=()
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -regtest)
+            # Regtest flag (ignored, always in regtest mode)
+            shift
+            ;;
+        -testnet)
+            # Testnet flag (ignored, always in regtest mode)
+            shift
+            ;;
+        -rpcuser=*)
+            RPC_USER="${1#*=}"
+            shift
+            ;;
+        -rpcpassword=*)
+            RPC_PASSWORD="${1#*=}"
+            shift
+            ;;
+        -rpchost=*)
+            RPC_HOST="${1#*=}"
+            shift
+            ;;
+        -rpcport=*)
+            RPC_PORT="${1#*=}"
+            shift
+            ;;
+        *)
+            if [ -z "$METHOD" ]; then
+                METHOD="$1"
+            else
+                PARAMS+=("$1")
+            fi
+            shift
+            ;;
+    esac
+done
+
+if [ -z "$METHOD" ]; then
+    echo "BabaChain CLI v1.0.0-regtest"
+    echo ""
+    echo "Usage: babachain-cli [options] <command> [params]"
+    echo ""
+    echo "Blockchain commands:"
+    echo "  getblockchaininfo  - Get blockchain information"
+    echo "  getblockcount      - Get block count"
+    echo "  generate <n>       - Generate n blocks (mine coins)"
+    echo ""
+    echo "Wallet commands:"
+    echo "  getwalletinfo      - Get wallet information"
+    echo "  getbalance         - Get wallet balance"
+    echo "  getnewaddress      - Generate new address"
+    echo "  listreceivedbyaddress - List addresses with balances"
+    echo ""
+    echo "Transaction commands:"
+    echo "  sendtoaddress <addr> <amount> - Send coins to address"
+    echo "  listtransactions   - List recent transactions"
+    echo "  gettransaction <txid> - Get transaction details"
+    echo ""
+    echo "Staking commands:"
+    echo "  getstakinginfo     - Get staking information"
+    echo ""
+    echo "Network commands:"
+    echo "  getpeerinfo        - Get peer information"
+    echo "  getconnectioncount - Get connection count"
+    echo ""
+    echo "General:"
+    echo "  getinfo            - Get general information"
+    echo ""
+    echo "Options:"
+    echo "  -rpcuser=<user>     RPC username"
+    echo "  -rpcpassword=<pass> RPC password"
+    echo "  -rpchost=<host>     RPC host (default: 127.0.0.1)"
+    echo "  -rpcport=<port>     RPC port (default: 19998)"
+    exit 0
+fi
+
+# Convert PARAMS array to JSON array
+PARAMS_JSON="[]"
+if [ ${#PARAMS[@]} -gt 0 ]; then
+    PARAMS_JSON="["
+    for i in "${!PARAMS[@]}"; do
+        if [ $i -gt 0 ]; then
+            PARAMS_JSON+=","
+        fi
+        # Try to parse as number, otherwise treat as string
+        if [[ "${PARAMS[$i]}" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+            PARAMS_JSON+="${PARAMS[$i]}"
+        else
+            PARAMS_JSON+="\"${PARAMS[$i]}\""
+        fi
+    done
+    PARAMS_JSON+="]"
+fi
+
+# Make RPC call
+python3 -c "
+import requests
+import json
+import sys
+
+try:
+    url = f'http://$RPC_HOST:$RPC_PORT/'
+    headers = {'Content-Type': 'application/json'}
+    
+    data = {
+        'jsonrpc': '1.0',
+        'id': 'cli',
+        'method': '$METHOD',
+        'params': $PARAMS_JSON
+    }
+    
+    response = requests.post(url, json=data, headers=headers, timeout=10)
+    
+    if response.status_code == 200:
+        result = response.json()
+        if result.get('error'):
+            print(f'Error: {result[\"error\"][\"message\"]}')
+            sys.exit(1)
+        else:
+            if isinstance(result['result'], (dict, list)):
+                print(json.dumps(result['result'], indent=2))
+            else:
+                print(result['result'])
+    else:
+        print(f'HTTP Error: {response.status_code}')
+        sys.exit(1)
+        
+except requests.exceptions.ConnectionError:
+    print('Error: Could not connect to BabaChain daemon')
+    print('Make sure the daemon is running on {}:{}'.format('$RPC_HOST', '$RPC_PORT'))
+    sys.exit(1)
+except Exception as e:
+    print(f'Error: {e}')
+    sys.exit(1)
+"
+EOF
+
+RUN chmod +x /usr/local/bin/babachaind /usr/local/bin/babachain-cli
+
+# Simple entrypoint
+RUN cat > /usr/local/bin/docker-entrypoint.sh << 'EOF'
+#!/bin/bash
+set -e
+
+echo "🐳 BabaChain Regtest Container Starting..."
+
+# Create config if needed
+BABACHAIN_DATA=${BABACHAIN_DATA:-/home/babachain/.babachain}
+BABACHAIN_CONF=${BABACHAIN_DATA}/babachain.conf
+
+if [ ! -f "$BABACHAIN_CONF" ]; then
+    echo "📝 Creating regtest configuration..."
+    mkdir -p "$BABACHAIN_DATA"
+    cat > "$BABACHAIN_CONF" << CONF_EOF
+# BabaChain Regtest Configuration
+regtest=1
+server=1
+rpcuser=${RPC_USER:-babachain_regtest}
+rpcpassword=${RPC_PASSWORD:-regtest_password}
+rpcport=19998
+rpcbind=0.0.0.0
+rpcallowip=0.0.0.0/0
+port=19999
+listen=1
+staking=1
+printtoconsole=1
+CONF_EOF
+    echo "✅ Regtest configuration created"
+fi
+
+# Set ownership
+chown -R babachain:babachain "$BABACHAIN_DATA" 2>/dev/null || true
+
+# Execute command
+if [ "$1" = 'babachaind' ]; then
+    echo "🚀 Starting BabaChain regtest daemon..."
+    exec gosu babachain babachaind
+elif [ "$1" = 'babachain-cli' ]; then
+    shift
+    exec gosu babachain babachain-cli "$@"
+else
+    exec "$@"
+fi
+EOF
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Expose ports
+EXPOSE 19999 19998
+
+# Volume
+VOLUME ["/home/babachain/.babachain"]
+
+# Working directory
+WORKDIR /home/babachain
+
+# Entrypoint
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["babachaind"]

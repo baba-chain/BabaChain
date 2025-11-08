@@ -52,8 +52,8 @@ Task 14 "Final Integration and Deployment" has been successfully completed, mark
 1. **seed1.babachain.org** - US-East
 2. **seed2.babachain.org** - EU-West  
 3. **seed3.babachain.org** - Asia-Pacific
-4. **node1.babachain.network** - US-West
-5. **node2.babachain.network** - EU-Central
+4. **node1.babachain.org** - US-West
+5. **node2.babachain.org** - EU-Central
 
 **Files Created:**
 - `config/mainnet_chainparams.cpp` - Mainnet parameters
